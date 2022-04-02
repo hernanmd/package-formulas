@@ -46,6 +46,16 @@ EnvironmentFormulas class >> blockStyler [
 ]
 
 { #category : #formulas }
+EnvironmentFormulas class >> chanel [
+	<general>
+
+	Metacello new
+		baseline: 'Chanel';
+		repository: 'github://jecisc/Chanel:v1.x.x/src';
+		load.
+]
+
+{ #category : #formulas }
 EnvironmentFormulas class >> collectionExtensions [
 	<collections>
 
@@ -53,6 +63,16 @@ EnvironmentFormulas class >> collectionExtensions [
 		githubUser: 'pharo-contributions' project: 'CollectionExtensions' commitish: 'v1.x.x' path: 'src';
     	baseline: 'CollectionExtensions';
     	load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> commonUtils [
+	<general>
+
+	Metacello new
+		baseline: 'CommonUtils';
+		repository: 'github://hernanmd/CommonUtils/repository';
+		load.
 ]
 
 { #category : #formulas }
@@ -137,6 +157,16 @@ EnvironmentFormulas class >> cryptography [
 ]
 
 { #category : #formulas }
+EnvironmentFormulas class >> dataFrame [
+	<science>
+
+	Metacello new
+		baseline: 'DataFrame';
+		repository: 'github://PolyMathOrg/DataFrame/src';
+		load.
+]
+
+{ #category : #formulas }
 EnvironmentFormulas class >> deepTraverser [
 	<general>
 
@@ -144,6 +174,26 @@ EnvironmentFormulas class >> deepTraverser [
 		githubUser: 'pharo-contributions' project: 'DeepTraverser' commitish: 'master' path: 'src';
     	baseline: 'DeepTraverser';
     	load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> fame [
+	<general>
+
+	Metacello new
+		baseline: 'Fame';
+		repository: 'github://moosetechnology/Fame:development/src';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> famix [
+	<general>
+
+	Metacello new
+		baseline: 'Famix';
+		repository: 'github://moosetechnology/Famix:development/src';
+		load.
 ]
 
 { #category : #accessing }
@@ -163,6 +213,16 @@ EnvironmentFormulas class >> garage [
 		githubUser: 'pharo-rdbms' project: 'garage' commitish: 'master' path: '';
 		baseline: 'Garage';
     	load
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> geoJSON [
+	<general>
+
+	Metacello new
+		baseline: 'GeoJSON';
+		repository: 'github://zweidenker/GeoJSON';
+		load.
 ]
 
 { #category : #formulas }
@@ -192,6 +252,16 @@ EnvironmentFormulas class >> graphQl [
 	Metacello new
 		baseline: 'GraphQL';
 		repository: 'github://OBJECTSEMANTICS/GraphQL';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> grease [
+	<general>
+
+	Metacello new
+		baseline: 'Grease';
+		repository: 'github://GsDevKit/Grease:master/repository';
 		load.
 ]
 
@@ -291,6 +361,26 @@ EnvironmentFormulas class >> mustache [
 ]
 
 { #category : #formulas }
+EnvironmentFormulas class >> neoCsv [
+	<general>
+
+	Metacello new
+		baseline: 'NeoCSV';
+		repository: 'github://svenvc/NeoCSV/repository';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> neoJson [
+	<general>
+
+	Metacello new
+		baseline: 'NeoJSON';
+		repository: 'github://svenvc/NeoJSON/repository';
+		load.
+]
+
+{ #category : #formulas }
 EnvironmentFormulas class >> orderPreservingDictionary [
 	<collections>
 
@@ -364,6 +454,26 @@ EnvironmentFormulas class >> pharoSQLite3 [
 ]
 
 { #category : #formulas }
+EnvironmentFormulas class >> polyMath [
+	<science>
+
+	Metacello new
+		baseline: 'PolyMath';
+		repository: 'github://PolyMathOrg/PolyMath/src';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> projectFramework [
+	<general>
+
+	Metacello new
+		baseline: 'ProjectFramework';
+		repository: 'github://hernanmd/ProjectFramework/repository';
+		load.
+]
+
+{ #category : #formulas }
 EnvironmentFormulas class >> punQLite [
 	<databases>
 
@@ -382,6 +492,16 @@ EnvironmentFormulas class >> quickAccess [
 		baseline: 'QuickAccess';
 		load.
 
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> sState [
+	<general>
+
+	Metacello new
+		baseline: 'SState';
+		repository: 'github://mumez/SState/repository';
+		load.
 ]
 
 { #category : #formulas }
@@ -413,6 +533,26 @@ EnvironmentFormulas class >> soup [
 		baseline: 'Soup';
 		repository: 'github://Ducasse/Soup';
 		load
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> stringExtensions [
+	<collections>
+
+	Metacello new
+		baseline: 'StringExtensions';
+		repository: 'github://hernanmd/StringExtensions/repository';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> systemInteraction [
+	<general>
+
+	Metacello new
+		baseline: 'SystemInteraction';
+		repository: 'github://jecisc/SystemInteraction:v1.x.x/src';
+		load.
 ]
 
 { #category : #formulas }

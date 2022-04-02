@@ -15,7 +15,7 @@ EnvironmentProfile class >> generateMenuItems [
 
 	(aBuilder item: #{2})
 		parent: #Profiles;
-		order: 1;
+		order: {1};
 		label: ''{3}'';
 		help: ''{3} Packages'';
 		action: [ self openSelectorForPackagesIn: #{2} ]'.
@@ -34,8 +34,7 @@ EnvironmentProfile class >> menu00EnvironmentsProfilesOn: aBuilder [
 	(aBuilder item: #Profiles)
 		parent: #Tools;
 		label: 'Environment Profiles';
-		"icon: self roassalIcon;"
-		action:[ self halt. EnvironmentProfileApp new run ];
+		icon: (self iconNamed: #catalog);
 		help: 'Package installation profiles';
 		order: 666
 ]
@@ -149,11 +148,23 @@ EnvironmentProfile class >> menu09EnvironmentsProfilesOn: aBuilder [
 ]
 
 { #category : #menu }
+EnvironmentProfile class >> menu99EnvironmentsProfilesOn: aBuilder [
+	<worldMenu>
+
+	(aBuilder item: #all)
+		parent: #Profiles;
+		order: 99;
+		label: 'All';
+		help: 'All Packages';
+		action: [ self openSelectorForPackagesIn: #all ]
+]
+
+{ #category : #menu }
 EnvironmentProfile class >> openSelectorForPackages: aCollection [
 	"Private - Open a window for packages in aCollection"
 	
 	EnvironmentProfileApp new
-		formulas: aCollection;
+		formulas: (aCollection asSortedCollection: [ : p1 :p2 | p1 method selector <= p2 method selector ]);
 		run.
 ]
 

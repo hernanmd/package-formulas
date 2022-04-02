@@ -9,17 +9,10 @@ Class {
 	#category : #'EnvironmentProfiles-UI'
 }
 
-{ #category : #'instance creation' }
-EnvironmentProfileUI class >> open [
-	<example>
-
-	self new openWithSpec
-]
-
 { #category : #initialization }
 EnvironmentProfileUI >> initialExtent [
  
-	^ 600@400
+	^ 400@600
 ]
 
 { #category : #initialization }
@@ -46,14 +39,19 @@ EnvironmentProfileUI >> initializeSelectableFormulas [
 	metacelloTable := self newTable.
 	metacelloTable
 		addColumn:
-			((SpCheckBoxTableColumn title: ' ' evaluated: [ :class | self selectedFormulas includes: class ])
+			((SpCheckBoxTableColumn title: ' ' evaluated: [ :pragma | self selectedFormulas includes: pragma ])
 				onActivation: [ :class | self selectedFormulas add: class ];
 				onDeactivation: [ :class | self selectedFormulas remove: class ];
 				width: 20;
-				yourself);
+				yourself);	
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: [: p | p method selector capitalized ]);
+		addColumn: ((SpCheckBoxTableColumn title: 'Installed' evaluated: [: pragma | pragma hasFormulaInstalled ])
+				width: 90;
+				yourself);			
 		"addColumn: (SpStringTableColumn title: 'Number of subclasses' evaluated: [ :class | class subclasses size asString ]);"
-		items: self application formulas;
+		items: self application formulas asSortedCollection;
+		whenSelectionChangedDo: [ : selection | 
+			self application propertyAt: #selection put: selection selectedItem ];
 		beResizable. 
 
 ]
@@ -66,6 +64,15 @@ EnvironmentProfileUI >> initializeToolbar [
 		"displayMode: self application toolbarDisplayMode;"
 		fillWith: self toolbarActions;
 		yourself
+]
+
+{ #category : #initialization }
+EnvironmentProfileUI >> initializeWindow: aWindowPresenter [
+
+	aWindowPresenter
+		title: self title;
+		initialExtent: self initialExtent;
+		windowIcon: self windowIcon
 ]
 
 { #category : #accessing }
@@ -86,5 +93,6 @@ EnvironmentProfileUI >> toolbarActions [
 
 	^ CmCommandGroup forSpec
 		register: (EnvironmentProfileInstallCommand forSpecContext: self);
+		register: (EnvironmentProfileInspectCommand forSpecContext: self);
 		yourself
 ]
