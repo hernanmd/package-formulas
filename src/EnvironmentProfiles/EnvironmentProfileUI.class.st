@@ -2,9 +2,9 @@ Class {
 	#name : #EnvironmentProfileUI,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'metacelloTable',
 		'selectedFormulas',
-		'toolbar'
+		'toolbar',
+		'formulasTable'
 	],
 	#category : #'EnvironmentProfiles-UI'
 }
@@ -19,7 +19,7 @@ EnvironmentProfileUI >> initialExtent [
 EnvironmentProfileUI >> initializeLayout [
 
 	self layout: (SpBoxLayout newTopToBottom
-		add: #metacelloTable;
+		add: #formulasTable;
 		add: #toolbar height: self class toolbarHeight;
 		yourself)
 ]
@@ -36,19 +36,18 @@ EnvironmentProfileUI >> initializePresenters [
 { #category : #initialization }
 EnvironmentProfileUI >> initializeSelectableFormulas [
 
-	metacelloTable := self newTable.
-	metacelloTable
+	formulasTable := self newTable.
+	formulasTable
 		addColumn:
 			((SpCheckBoxTableColumn title: ' ' evaluated: [ :pragma | self selectedFormulas includes: pragma ])
-				onActivation: [ :class | self selectedFormulas add: class ];
-				onDeactivation: [ :class | self selectedFormulas remove: class ];
+				onActivation: [ :pragma | pragma hasFormulaInstalled ifFalse: [ self selectedFormulas add: pragma ] ];
+				onDeactivation: [ :pragma | self selectedFormulas remove: pragma ];
 				width: 20;
 				yourself);	
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: [: p | p method selector capitalized ]);
 		addColumn: ((SpCheckBoxTableColumn title: 'Installed' evaluated: [: pragma | pragma hasFormulaInstalled ])
 				width: 90;
 				yourself);			
-		"addColumn: (SpStringTableColumn title: 'Number of subclasses' evaluated: [ :class | class subclasses size asString ]);"
 		items: self application formulas asSortedCollection;
 		whenSelectionChangedDo: [ : selection | 
 			self application propertyAt: #selection put: selection selectedItem ];
@@ -60,7 +59,7 @@ EnvironmentProfileUI >> initializeSelectableFormulas [
 EnvironmentProfileUI >> initializeToolbar [
 
 	toolbar := self newToolbar
-		addStyle: 'stToolbar';
+		"addStyle: 'stToolbar';"
 		"displayMode: self application toolbarDisplayMode;"
 		fillWith: self toolbarActions;
 		yourself
@@ -93,6 +92,7 @@ EnvironmentProfileUI >> toolbarActions [
 
 	^ CmCommandGroup forSpec
 		register: (EnvironmentProfileInstallCommand forSpecContext: self);
-		register: (EnvironmentProfileInspectCommand forSpecContext: self);
+		register: (EnvironmentProfileBrowseCommand forSpecContext: self);
+		register: (EnvironmentProfileQuitCommand forSpecContext: self);		
 		yourself
 ]

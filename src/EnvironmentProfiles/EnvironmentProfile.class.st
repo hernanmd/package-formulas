@@ -40,19 +40,19 @@ EnvironmentProfile class >> menu00EnvironmentsProfilesOn: aBuilder [
 ]
 
 { #category : #menu }
-EnvironmentProfile class >> menu01EnvironmentsProfilesOn: aBuilder [
+EnvironmentProfile class >> menu010EnvironmentsProfilesOn: aBuilder [
 	<worldMenu>
 
-	(aBuilder item: #math)
+	(aBuilder item: #xml)
 		parent: #Profiles;
-		order: 1;
-		label: 'Math';
-		help: 'Math Packages';
-		action: [ self openSelectorForPackagesIn: #math ]
+		order: 10;
+		label: 'Xml';
+		help: 'Xml Packages';
+		action: [ self openSelectorForPackagesIn: #xml ]
 ]
 
 { #category : #menu }
-EnvironmentProfile class >> menu02EnvironmentsProfilesOn: aBuilder [
+EnvironmentProfile class >> menu01EnvironmentsProfilesOn: aBuilder [
 	<worldMenu>
 
 	(aBuilder item: #ide)
@@ -64,15 +64,27 @@ EnvironmentProfile class >> menu02EnvironmentsProfilesOn: aBuilder [
 ]
 
 { #category : #menu }
+EnvironmentProfile class >> menu02EnvironmentsProfilesOn: aBuilder [
+	<worldMenu>
+
+	(aBuilder item: #testing)
+		parent: #Profiles;
+		order: 2;
+		label: 'Testing';
+		help: 'Testing Packages';
+		action: [ self openSelectorForPackagesIn: #testing ]
+]
+
+{ #category : #menu }
 EnvironmentProfile class >> menu03EnvironmentsProfilesOn: aBuilder [
 	<worldMenu>
 
-	(aBuilder item: #web)
+	(aBuilder item: #collections)
 		parent: #Profiles;
-		order: 1;
-		label: 'Web';
-		help: 'Web Packages';
-		action: [ self openSelectorForPackagesIn: #web ]
+		order: 3;
+		label: 'Collections';
+		help: 'Collections Packages';
+		action: [ self openSelectorForPackagesIn: #collections ]
 ]
 
 { #category : #menu }
@@ -81,7 +93,7 @@ EnvironmentProfile class >> menu04EnvironmentsProfilesOn: aBuilder [
 
 	(aBuilder item: #general)
 		parent: #Profiles;
-		order: 1;
+		order: 4;
 		label: 'General';
 		help: 'General Packages';
 		action: [ self openSelectorForPackagesIn: #general ]
@@ -91,36 +103,36 @@ EnvironmentProfile class >> menu04EnvironmentsProfilesOn: aBuilder [
 EnvironmentProfile class >> menu05EnvironmentsProfilesOn: aBuilder [
 	<worldMenu>
 
-	(aBuilder item: #testing)
+	(aBuilder item: #databases)
 		parent: #Profiles;
-		order: 1;
-		label: 'Testing';
-		help: 'Testing Packages';
-		action: [ self openSelectorForPackagesIn: #testing ]
+		order: 5;
+		label: 'Databases';
+		help: 'Databases Packages';
+		action: [ self openSelectorForPackagesIn: #databases ]
 ]
 
 { #category : #menu }
 EnvironmentProfile class >> menu06EnvironmentsProfilesOn: aBuilder [
 	<worldMenu>
 
-	(aBuilder item: #collections)
+	(aBuilder item: #web)
 		parent: #Profiles;
-		order: 1;
-		label: 'Collections';
-		help: 'Collections Packages';
-		action: [ self openSelectorForPackagesIn: #collections ]
+		order: 6;
+		label: 'Web';
+		help: 'Web Packages';
+		action: [ self openSelectorForPackagesIn: #web ]
 ]
 
 { #category : #menu }
 EnvironmentProfile class >> menu07EnvironmentsProfilesOn: aBuilder [
 	<worldMenu>
 
-	(aBuilder item: #databases)
+	(aBuilder item: #math)
 		parent: #Profiles;
-		order: 1;
-		label: 'Databases';
-		help: 'Databases Packages';
-		action: [ self openSelectorForPackagesIn: #databases ]
+		order: 7;
+		label: 'Math';
+		help: 'Math Packages';
+		action: [ self openSelectorForPackagesIn: #math ]
 ]
 
 { #category : #menu }
@@ -129,7 +141,7 @@ EnvironmentProfile class >> menu08EnvironmentsProfilesOn: aBuilder [
 
 	(aBuilder item: #security)
 		parent: #Profiles;
-		order: 1;
+		order: 8;
 		label: 'Security';
 		help: 'Security Packages';
 		action: [ self openSelectorForPackagesIn: #security ]
@@ -139,12 +151,12 @@ EnvironmentProfile class >> menu08EnvironmentsProfilesOn: aBuilder [
 EnvironmentProfile class >> menu09EnvironmentsProfilesOn: aBuilder [
 	<worldMenu>
 
-	(aBuilder item: #xml)
+	(aBuilder item: #science)
 		parent: #Profiles;
-		order: 1;
-		label: 'Xml';
-		help: 'Xml Packages';
-		action: [ self openSelectorForPackagesIn: #xml ]
+		order: 9;
+		label: 'Science';
+		help: 'Science Packages';
+		action: [ self openSelectorForPackagesIn: #science ]
 ]
 
 { #category : #menu }

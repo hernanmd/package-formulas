@@ -30,8 +30,8 @@ EnvironmentProfileInstallCommand >> canBeExecuted [
 
 { #category : #execution }
 EnvironmentProfileInstallCommand >> execute [
+	"Install all selected formulas in the receiver"
 
-	self halt.
-	self selectedFormulas do: #install
+	self selectedFormulas do: [ : pragma | pragma installFormula ]
 
 ]
