@@ -1,7 +1,7 @@
 Class {
 	#name : #EnvironmentProfileCommand,
 	#superclass : #CmCommand,
-	#category : #'EnvironmentProfiles-UI'
+	#category : #'EnvironmentProfiles-UI-Commands'
 }
 
 { #category : #accessing }

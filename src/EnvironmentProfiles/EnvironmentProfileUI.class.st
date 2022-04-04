@@ -9,6 +9,56 @@ Class {
 	#category : #'EnvironmentProfiles-UI'
 }
 
+{ #category : #accessing }
+EnvironmentProfileUI class >> buildCommandsGroupWith: presenterInstance forRoot: rootCommandGroup [
+
+	rootCommandGroup
+		register: (self buildEPContextualGroupWith: presenterInstance)
+]
+
+{ #category : #accessing }
+EnvironmentProfileUI class >> buildEPContextualGroupWith: presenterInstance [
+
+	^ (CmCommandGroup named: 'EPContextualMenu') asSpecGroup
+		register: (self buildSelectionOperationsGroupWith: presenterInstance);	
+		register: (self buildRepositoryOperationsGroupWith: presenterInstance);
+		yourself
+]
+
+{ #category : #accessing }
+EnvironmentProfileUI class >> buildRepositoryOperationsGroupWith: presenterInstance [
+
+	^ (CmCommandGroup named: 'RepositoryOperationsMenu') asSpecGroup
+		register: ((EnvironmentProfileVisitHomepageCommand
+			forSpecWithIconNamed: #smallOpen
+			shortcutKey: 'H' asShortcut) 
+				context: presenterInstance;
+				description: 'Open a web browser on the selected repository homepage');			
+		register: ((EnvironmentProfileOpenIssueCommand 
+			forSpecWithIconNamed: #smallError
+			shortcutKey: 'I' asShortcut)
+				context: presenterInstance;
+				description: 'Open a web browser on the selected repository issues page');
+		beDisplayedAsGroup;
+		yourself
+]
+
+{ #category : #accessing }
+EnvironmentProfileUI class >> buildSelectionOperationsGroupWith: presenterInstance [
+
+	^ (CmCommandGroup named: 'SelectionOperationsMenu') asSpecGroup
+		register: ((EnvironmentProfileSelectAllCommand
+			forSpecWithIconNamed: #checkedBox
+			shortcutKey: 'A' asShortcut) 
+				context: presenterInstance);			
+		register: ((EnvironmentProfileSelectNoneCommand 
+			forSpecWithIconNamed: #checkboxUnselected
+			shortcutKey: 'N' asShortcut)
+				context: presenterInstance);
+		beDisplayedAsGroup;
+		yourself
+]
+
 { #category : #initialization }
 EnvironmentProfileUI >> initialExtent [
  
@@ -51,6 +101,7 @@ EnvironmentProfileUI >> initializeSelectableFormulas [
 		items: self application formulas asSortedCollection;
 		whenSelectionChangedDo: [ : selection | 
 			self application propertyAt: #selection put: selection selectedItem ];
+		contextMenu: [ (self rootCommandsGroup / 'EPContextualMenu') beRoot asMenuPresenter ];	
 		beResizable. 
 
 ]

@@ -35,6 +35,37 @@ EnvironmentFormulas class >> autotest [
 ]
 
 { #category : #formulas }
+EnvironmentFormulas class >> awsSdkSmalltalk [
+	<general>
+
+	Metacello new
+		baseline: 'AWS';
+		repository: 'github://newapplesho/aws-sdk-smalltalk/pharo-repository';
+		onConflictUseLoaded;
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> bloc [
+	<graphics>
+
+	Metacello new
+		baseline: 'NewBloc';
+		repository: 'github://pharo-graphics/Bloc/src';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> blocPac [
+	<graphics>
+
+	Metacello new
+		baseline: 'NewBlocPac';
+		repository: 'github://pharo-graphics/bloc-pac/src';
+		load.
+]
+
+{ #category : #formulas }
 EnvironmentFormulas class >> blockStyler [
 	<ide>
 
@@ -43,6 +74,36 @@ EnvironmentFormulas class >> blockStyler [
 		repository: 'github://maenu/BlockStyler/repository';
 		load.
 
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> boardwalk [
+	<web>
+
+	Metacello new
+		baseline: 'Boardwalk';
+		repository: 'github://ba-st/Boardwalk:release-candidate/source';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> brick [
+	<graphics>
+
+	Metacello new
+        baseline: 'NewBrick';
+        repository: 'github://pharo-graphics/Brick/src';
+        load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> cannon [
+	<general>
+
+	Metacello new
+		baseline: 'Cannon';
+		repository: 'github://ba-st/Cannon:release-candidate/source';
+		load.
 ]
 
 { #category : #formulas }
@@ -88,6 +149,27 @@ EnvironmentFormulas class >> compendium [
 ]
 
 { #category : #formulas }
+EnvironmentFormulas class >> containersArray2D [
+	<collections>
+
+	Metacello new
+		baseline: 'ContainersArray2D';
+		repository: 'github://pharo-containers/Containers-Array2D/src';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> containersBTree [
+	<collections>
+
+	Metacello new
+		baseline: 'ContainersBTree';
+		repository: 'github://Ducasse/Containers-BTree';
+		load.
+
+]
+
+{ #category : #formulas }
 EnvironmentFormulas class >> containersEssentials [
 	<collections>
 
@@ -114,6 +196,26 @@ EnvironmentFormulas class >> containersGrid [
 ]
 
 { #category : #formulas }
+EnvironmentFormulas class >> containersHashTable [
+	<collections>
+
+	Metacello new
+		baseline: 'ContainersHashTable';
+		repository: 'github://pharo-containers/Containers-HashTable/src';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> containersKeyedTree [
+	<collections>
+
+	Metacello new
+		baseline: 'ContainersKeyedTree';
+		repository: 'github://pharo-containers/Containers-KeyedTree:v1.0/src';
+		load.
+]
+
+{ #category : #formulas }
 EnvironmentFormulas class >> containersLinkedList [
 	<collections>
 
@@ -122,6 +224,16 @@ EnvironmentFormulas class >> containersLinkedList [
 		repository: 'github://Ducasse/Containers-LinkedList';
 		load.
 
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> containersOrderPreservingDictionary [
+	<collections>
+
+	Metacello new
+		baseline: 'ContainersOrderPreservingDictionary';
+		repository: 'github://pharo-containers/Containers-OrderPreservingDictionary';
+		load.
 ]
 
 { #category : #formulas }
@@ -136,6 +248,16 @@ EnvironmentFormulas class >> containersOrderedMultiMap [
 ]
 
 { #category : #formulas }
+EnvironmentFormulas class >> containersOrderedSet [
+	<collections>
+
+	Metacello new
+		baseline: 'ContainersOrderedSet';
+		repository: 'github://pharo-containers/Containers-OrderedSet/src';
+		load.
+]
+
+{ #category : #formulas }
 EnvironmentFormulas class >> containersPropertyEnvironment [
 	<collections>
 
@@ -144,6 +266,87 @@ EnvironmentFormulas class >> containersPropertyEnvironment [
 		repository: 'github://Ducasse/Containers-PropertyEnvironment';
 		load.
 
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> containersQueue [
+	<collections>
+
+	Metacello new
+ 		baseline: 'ContainersQueue';
+		repository: 'github://pharo-containers/Containers-Queue/';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> containersRope [
+	<collections>
+
+	Metacello new
+		baseline: 'ContainersRope';
+		repository: 'github://pharo-containers/Containers-Rope/src';
+		load.
+
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> containersRunArraye [
+	<collections>
+
+	Metacello new
+		baseline: 'ContainersRunArray';
+		repository: 'github://pharo-containers/Containers-RunArray/src';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> containersStack [
+	<collections>
+
+	Metacello new
+		baseline: 'ContainersStack';
+		repository: 'github://pharo-containers/Containers-Stack:v1.0/src';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> containersTrie [
+	<collections>
+
+	Metacello new
+		baseline: 'ContainersTrie';
+		repository: 'github://pharo-containers/Containers-Trie/src';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> containersUniqueOrdered [
+	<collections>
+
+	Metacello new
+		baseline: 'ContainersUniqueOrdered';
+		repository: 'github://pharo-containers/Containers-UniqueOrdered';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> cormas [
+	<science>
+
+	Metacello new
+		baseline: 'Cormas';
+		repository: 'github://Cormas/Cormas/src';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> cryptoNacl [
+	<security>
+
+	Metacello new
+		baseline: 'CryptoNacl';
+		repository: 'github://objectguild/Crypto-Nacl:master';
+		load.
 ]
 
 { #category : #formulas }
@@ -177,6 +380,26 @@ EnvironmentFormulas class >> deepTraverser [
 ]
 
 { #category : #formulas }
+EnvironmentFormulas class >> documentationSupport [
+	<documentation>
+
+	Metacello new
+		baseline: 'DocumentationSupport';
+		repository: 'github://pavel-krivanek/DocumentationSupport:main/src';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> elasticsearch [
+	<general>
+
+	Metacello new
+		baseline: 'Elasticsearch';
+		repository: 'github://newapplesho/elasticsearch-smalltalk/pharo-repository';
+		load.
+]
+
+{ #category : #formulas }
 EnvironmentFormulas class >> fame [
 	<general>
 
@@ -196,6 +419,36 @@ EnvironmentFormulas class >> famix [
 		load.
 ]
 
+{ #category : #formulas }
+EnvironmentFormulas class >> fixedDecimal [
+	<math>
+
+	Metacello new
+		repository: 'github://hernanmd/FixedDecimal/repository';	
+		baseline: 'FixedDecimal';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> fog [
+	<blockchain>
+
+	Metacello new
+		baseline: 'Fog';
+		repository: 'github://smartanvil/Fog/src';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> fogEvm [
+	<blockchain>
+
+	Metacello new
+		baseline: 'FogEVM';
+		repository: 'github://smartanvil/FogEVM/src';
+		load.
+]
+
 { #category : #accessing }
 EnvironmentFormulas class >> formulasFor: aSymbol [
 	"Answer a <Collection> of <CompiledMethod> of receiver's formulas"
@@ -203,6 +456,16 @@ EnvironmentFormulas class >> formulasFor: aSymbol [
 	^ Pragma 
 		allNamed: aSymbol
 		in: self class.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> function [
+	<math>
+
+	Metacello new
+		baseline: 'Function';
+		repository: 'github://olekscode/Function/src';
+		load.
 ]
 
 { #category : #formulas }
@@ -246,12 +509,33 @@ EnvironmentFormulas class >> getText [
 ]
 
 { #category : #formulas }
+EnvironmentFormulas class >> ghost [
+	<ide>
+
+	Metacello new
+		baseline: 'Ghost';
+		repository: 'github://pharo-ide/Ghost';
+		load
+
+]
+
+{ #category : #formulas }
 EnvironmentFormulas class >> graphQl [
 	<web>
 
 	Metacello new
 		baseline: 'GraphQL';
 		repository: 'github://OBJECTSEMANTICS/GraphQL';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> graphViz [
+	<graphics>
+
+	Metacello new
+		baseline: 'GraphViz';
+		repository: 'github://hernanmd/GraphViz';
 		load.
 ]
 
@@ -288,6 +572,17 @@ EnvironmentFormulas class >> hashTable [
 ]
 
 { #category : #formulas }
+EnvironmentFormulas class >> iconFactory [
+	<graphics>
+
+	Metacello new
+		baseline: #IconFactory;
+		repository: 'github://peteruhnak/IconFactory/repository';
+		load
+
+]
+
+{ #category : #formulas }
 EnvironmentFormulas class >> infinity [
 	<math>
 
@@ -316,6 +611,16 @@ EnvironmentFormulas class >> magicLiteralsSelector [
 		baseline: 'MagicLiteralsSelector';
 		load
 
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> magritte [
+	<general>
+
+	Metacello new
+		baseline: 'Magritte';
+		repository: 'github://magritte-metamodel/Magritte';
+		load
 ]
 
 { #category : #formulas }
@@ -357,6 +662,16 @@ EnvironmentFormulas class >> mustache [
 	Metacello new
 		baseline: 'Mustache';
 		repository: 'github://noha/mustache/repository';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> mutalk [
+	<testing>
+
+	Metacello new
+		baseline: 'MuTalk';
+		repository: 'github://pavel-krivanek/mutalk/src';
 		load.
 ]
 
@@ -515,6 +830,26 @@ EnvironmentFormulas class >> scheduler [
 ]
 
 { #category : #formulas }
+EnvironmentFormulas class >> seamless [
+	<ide>
+
+	Metacello new
+		baseline: 'Seamless';
+		repository: 'github://pharo-ide/Seamless';
+		load
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> seaside [
+	<web>
+
+	Metacello new
+		baseline:'Seaside3';
+		repository: 'github://SeasideSt/Seaside:master/repository';
+		load
+]
+
+{ #category : #formulas }
 EnvironmentFormulas class >> smartTest [
 	<testing>
 
@@ -533,6 +868,17 @@ EnvironmentFormulas class >> soup [
 		baseline: 'Soup';
 		repository: 'github://Ducasse/Soup';
 		load
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> sparta [
+	<graphics>
+
+	Metacello new
+		baseline: 'Sparta';
+		repository: 'github://pharo-graphics/sparta/src';
+		load
+
 ]
 
 { #category : #formulas }
@@ -577,12 +923,42 @@ EnvironmentFormulas class >> tealight [
 ]
 
 { #category : #formulas }
+EnvironmentFormulas class >> telePharoClient [
+	<ide>
+
+	Metacello new
+		baseline: 'TelePharo';
+		repository: 'github://pharo-ide/TelePharo';
+		load: 'Client'.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> telePharoServer [
+	<ide>
+
+	Metacello new
+		baseline: 'TelePharo';
+		repository: 'github://pharo-ide/TelePharo';
+		load: 'Server'.
+]
+
+{ #category : #formulas }
 EnvironmentFormulas class >> treeQuery [
 	<general>
 
 	Metacello new
 		repository: 'github://JulienDelplanque/TreeQuery/src';
 		baseline: 'TreeQuery';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> turbo [
+	<ide>
+
+	Metacello new
+		baseline: 'Turbo';
+		repository: 'github://pavel-krivanek/Turbo';
 		load.
 ]
 
@@ -604,6 +980,16 @@ EnvironmentFormulas class >> voyageMongo [
 		repository: 'github://pharo-nosql/voyage/mc';
 		baseline: 'Voyage';
 		load: 'mongo tests'.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> workflow [
+	<science>
+
+	Metacello new
+		baseline: #Workflow;
+		repository: 'github://Ducasse/Workflow:master/src';
+		load.
 ]
 
 { #category : #formulas }

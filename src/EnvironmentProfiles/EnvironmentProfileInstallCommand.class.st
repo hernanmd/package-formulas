@@ -1,7 +1,7 @@
 Class {
 	#name : #EnvironmentProfileInstallCommand,
 	#superclass : #EnvironmentProfileCommand,
-	#category : #'EnvironmentProfiles-UI'
+	#category : #'EnvironmentProfiles-UI-Commands'
 }
 
 { #category : #'accessing - defaults' }
