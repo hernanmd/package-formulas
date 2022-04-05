@@ -13,7 +13,7 @@ EnvironmentProfileToolbarCommand class >> defaultShortcut [
 { #category : #accessing }
 EnvironmentProfileToolbarCommand >> application [
 
-	^ context application
+	^ self context application
 ]
 
 { #category : #converting }

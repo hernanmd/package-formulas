@@ -38,13 +38,27 @@ Pragma >> installFormula [
 ]
 
 { #category : #'*EnvironmentProfiles' }
+Pragma >> recordFormula [
+
+	| metacelloRecordExpression |
+	metacelloRecordExpression := (RBParseTreeRewriter 
+		replace: '``@anything load' 
+		with: '``@anything record' 
+		in: self method ast body) formattedCode.
+	Smalltalk compiler evaluate: metacelloRecordExpression.
+]
+
+{ #category : #'*EnvironmentProfiles' }
 Pragma >> webLinkHome [
 	"Answer a <String> representing the home page URL of the receiver's formula"
 
-	| litNode url |
+	| urlString url |
 	
-	litNode := (RBParseTreeSearcher treeMatching: '``@anything repository: ``@arg1' in: self method ast) arguments anyOne.
-	url := litNode value asZnUrl.
+	urlString := ((RBParseTreeSearcher treeMatching: '``@anything repository: ``@arg1' in: self method ast))
+			ifNotNil: [ : args | args arguments anyOne value ]
+			ifNil: [ ((RBParseTreeSearcher treeMatching: '``@anything githubUser: ``@arg1 project: ``@arg2 commitish: ``@arg3 path: ``@arg4' in: self method ast) arguments first: 2)
+				ifNotNil: [ : args | 'github://' , args first value , '/' , args second value ] ].
+	url := urlString asZnUrl.
 	^ String streamContents: [ : stream |
 		stream
 			<< 'https://github.com/';

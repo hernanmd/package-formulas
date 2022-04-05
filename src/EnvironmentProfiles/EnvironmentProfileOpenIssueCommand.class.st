@@ -21,3 +21,11 @@ EnvironmentProfileOpenIssueCommand class >> defaultName [
 
 	^ 'Open Issue'
 ]
+
+{ #category : #execution }
+EnvironmentProfileOpenIssueCommand >> execute [
+	"Parse the selected formula and open issues page"
+	
+	self application propertyAt: #selection ifAbsent: [ ^ self ].
+	WebBrowser openOn: (self application propertyAt: #selection) webLinkIssues.
+]

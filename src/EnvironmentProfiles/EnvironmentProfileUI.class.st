@@ -60,6 +60,15 @@ EnvironmentProfileUI class >> buildSelectionOperationsGroupWith: presenterInstan
 ]
 
 { #category : #initialization }
+EnvironmentProfileUI >> buildToolbar [
+	
+	^ self toolbarActions asToolbarPresenterWith: [ :presenter |
+		presenter
+			displayMode: self application toolbarDisplayMode;
+			addStyle: 'stToolbar' ]
+]
+
+{ #category : #initialization }
 EnvironmentProfileUI >> initialExtent [
  
 	^ 400@600
@@ -70,7 +79,6 @@ EnvironmentProfileUI >> initializeLayout [
 
 	self layout: (SpBoxLayout newTopToBottom
 		add: #formulasTable;
-		add: #toolbar height: self class toolbarHeight;
 		yourself)
 ]
 
@@ -78,7 +86,6 @@ EnvironmentProfileUI >> initializeLayout [
 EnvironmentProfileUI >> initializePresenters [
 
 	self initializeSelectableFormulas.
-	self initializeToolbar.
 	self initializeLayout.
 
 ]
@@ -107,26 +114,18 @@ EnvironmentProfileUI >> initializeSelectableFormulas [
 ]
 
 { #category : #initialization }
-EnvironmentProfileUI >> initializeToolbar [
-
-	toolbar := self newToolbar
-		"addStyle: 'stToolbar';"
-		"displayMode: self application toolbarDisplayMode;"
-		fillWith: self toolbarActions;
-		yourself
-]
-
-{ #category : #initialization }
 EnvironmentProfileUI >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
 		title: self title;
+		toolbar: (toolbar := self buildToolbar);
 		initialExtent: self initialExtent;
 		windowIcon: self windowIcon
 ]
 
 { #category : #accessing }
 EnvironmentProfileUI >> selectedFormulas [
+	"Answer a <Collection> of formulas marked for installation"
 
 	^ selectedFormulas
 		ifNil: [ selectedFormulas := OrderedCollection new ]
@@ -135,13 +134,15 @@ EnvironmentProfileUI >> selectedFormulas [
 { #category : #initialization }
 EnvironmentProfileUI >> title [ 
 
-	^ 'Formulas to install'
+	^ 'Formulas in ' , self application group , ' group'
 ]
 
 { #category : #initialization }
 EnvironmentProfileUI >> toolbarActions [
 
-	^ CmCommandGroup forSpec
+	^ (CmCommandGroup named: 'EPToolbar') asSpecGroup 
+		beRoot;
+		description: 'Commands related to toolbar operations and global application behavior';
 		register: (EnvironmentProfileInstallCommand forSpecContext: self);
 		register: (EnvironmentProfileBrowseCommand forSpecContext: self);
 		register: (EnvironmentProfileTestCommand forSpecContext: self);

@@ -21,3 +21,11 @@ EnvironmentProfileSelectAllCommand class >> defaultName [
 
 	^ 'Select All'
 ]
+
+{ #category : #execution }
+EnvironmentProfileSelectAllCommand >> execute [
+	"Parse the selected formula and open issues page"
+	
+	self application propertyAt: #selection ifAbsent: [ ^ self ].
+	
+]

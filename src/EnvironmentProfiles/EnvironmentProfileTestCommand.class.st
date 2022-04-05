@@ -24,8 +24,7 @@ EnvironmentProfileTestCommand class >> defaultName [
 
 { #category : #execution }
 EnvironmentProfileTestCommand >> execute [
-	"Try to update the Environment Profiles application"
+	"Test installation of selected formulas"
 
-	EnvironmentProfileApp updateApp.
-
+	self selectedFormulas do: [ : formula | formula recordFormula ]
 ]

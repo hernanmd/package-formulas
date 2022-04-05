@@ -7,5 +7,5 @@ Class {
 { #category : #accessing }
 EnvironmentProfilesContextualMenuCommand >> application [
 
-	^ context application
+	^ self context application
 ]

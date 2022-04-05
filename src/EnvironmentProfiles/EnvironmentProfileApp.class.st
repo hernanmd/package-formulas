@@ -2,7 +2,8 @@ Class {
 	#name : #EnvironmentProfileApp,
 	#superclass : #SpApplication,
 	#instVars : [
-		'formulas'
+		'formulas',
+		'group'
 	],
 	#category : #'EnvironmentProfiles-UI'
 }
@@ -45,8 +46,26 @@ EnvironmentProfileApp >> formulas: anObject [
 ]
 
 { #category : #accessing }
+EnvironmentProfileApp >> group [
+
+	^ group
+]
+
+{ #category : #accessing }
+EnvironmentProfileApp >> group: anObject [
+
+	group := anObject
+]
+
+{ #category : #accessing }
 EnvironmentProfileApp >> start [
 	" Private - See superimplementor's comment "
 
 	(EnvironmentProfileUI newApplication: self) openWithSpec.
+]
+
+{ #category : #accessing }
+EnvironmentProfileApp >> toolbarDisplayMode [
+
+	^ StPharoSettings toolbarDisplayMode
 ]
