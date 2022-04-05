@@ -1,6 +1,6 @@
 Class {
 	#name : #EnvironmentProfileQuitCommand,
-	#superclass : #EnvironmentProfileCommand,
+	#superclass : #EnvironmentProfileToolbarCommand,
 	#category : #'EnvironmentProfiles-UI-Commands'
 }
 
@@ -24,7 +24,7 @@ EnvironmentProfileQuitCommand class >> defaultName [
 
 { #category : #execution }
 EnvironmentProfileQuitCommand >> execute [
-	"Quit applicationr"
+	"Close all the application's UI windows"
 
 	self application close
 

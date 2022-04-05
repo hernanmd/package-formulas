@@ -144,6 +144,8 @@ EnvironmentProfileUI >> toolbarActions [
 	^ CmCommandGroup forSpec
 		register: (EnvironmentProfileInstallCommand forSpecContext: self);
 		register: (EnvironmentProfileBrowseCommand forSpecContext: self);
+		register: (EnvironmentProfileTestCommand forSpecContext: self);
+		register: (EnvironmentProfileUpdateCommand forSpecContext: self);
 		register: (EnvironmentProfileQuitCommand forSpecContext: self);		
 		yourself
 ]

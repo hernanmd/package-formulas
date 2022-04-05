@@ -1,6 +1,6 @@
 Class {
 	#name : #EnvironmentProfileInstallCommand,
-	#superclass : #EnvironmentProfileCommand,
+	#superclass : #EnvironmentProfileToolbarCommand,
 	#category : #'EnvironmentProfiles-UI-Commands'
 }
 

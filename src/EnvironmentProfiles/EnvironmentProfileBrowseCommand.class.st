@@ -1,6 +1,6 @@
 Class {
 	#name : #EnvironmentProfileBrowseCommand,
-	#superclass : #EnvironmentProfileCommand,
+	#superclass : #EnvironmentProfileToolbarCommand,
 	#category : #'EnvironmentProfiles-UI-Commands'
 }
 

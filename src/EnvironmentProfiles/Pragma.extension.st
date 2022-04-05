@@ -38,6 +38,22 @@ Pragma >> installFormula [
 ]
 
 { #category : #'*EnvironmentProfiles' }
+Pragma >> webLinkHome [
+	"Answer a <String> representing the home page URL of the receiver's formula"
+
+	| litNode url |
+	
+	litNode := (RBParseTreeSearcher treeMatching: '``@anything repository: ``@arg1' in: self method ast) arguments anyOne.
+	url := litNode value asZnUrl.
+	^ String streamContents: [ : stream |
+		stream
+			<< 'https://github.com/';
+			<< url authority;
+			<< '/';
+			<< (url directory copyUpTo: $:) ]
+]
+
+{ #category : #'*EnvironmentProfiles' }
 Pragma >> wrap: aClass selector: aSelector [
 
 	| formulaExpression |

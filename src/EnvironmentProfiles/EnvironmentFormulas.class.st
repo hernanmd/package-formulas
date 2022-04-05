@@ -149,6 +149,17 @@ EnvironmentFormulas class >> compendium [
 ]
 
 { #category : #formulas }
+EnvironmentFormulas class >> consultingDetective [
+	<general>
+
+	Metacello new
+		baseline: 'ConsultingDetective';
+		repository: 'github://olekscode/ConsultingDetective/src';
+		load.
+
+]
+
+{ #category : #formulas }
 EnvironmentFormulas class >> containersArray2D [
 	<collections>
 
@@ -360,6 +371,17 @@ EnvironmentFormulas class >> cryptography [
 ]
 
 { #category : #formulas }
+EnvironmentFormulas class >> dataBindings [
+	<web>
+
+	Metacello new
+		baseline: 'DataBindings';
+		repository: 'github://dorellang/DataBindings/src';
+		load.
+
+]
+
+{ #category : #formulas }
 EnvironmentFormulas class >> dataFrame [
 	<science>
 
@@ -400,6 +422,16 @@ EnvironmentFormulas class >> elasticsearch [
 ]
 
 { #category : #formulas }
+EnvironmentFormulas class >> ethel [
+	<web>
+
+	Metacello new
+		baseline: 'Ethel';
+		repository: 'github://grype/Ethel';
+		load.
+]
+
+{ #category : #formulas }
 EnvironmentFormulas class >> fame [
 	<general>
 
@@ -417,6 +449,17 @@ EnvironmentFormulas class >> famix [
 		baseline: 'Famix';
 		repository: 'github://moosetechnology/Famix:development/src';
 		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> fileLibraryHelper [
+	<web>
+
+    Metacello new
+    	githubUser: 'DuneSt' project: 'FileLibraryHelper' commitish: 'v1.x.x' path: 'src';
+    	baseline: 'FileLibraryHelper';
+    	onWarningLog;
+    	load
 ]
 
 { #category : #formulas }
@@ -469,6 +512,16 @@ EnvironmentFormulas class >> function [
 ]
 
 { #category : #formulas }
+EnvironmentFormulas class >> gadm [
+	<gis>
+
+	Metacello new
+		repository: 'github://hernanmd/GADM/repository';
+		baseline: 'GADM';
+		load.
+]
+
+{ #category : #formulas }
 EnvironmentFormulas class >> garage [
 	<databases>
 
@@ -486,6 +539,16 @@ EnvironmentFormulas class >> geoJSON [
 		baseline: 'GeoJSON';
 		repository: 'github://zweidenker/GeoJSON';
 		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> geoSphere [
+	<gis>
+
+	Metacello new
+		repository: 'github://akgrant43/GeoSphere/src';
+		baseline: 'GeoSphere';
+		load
 ]
 
 { #category : #formulas }
@@ -572,6 +635,38 @@ EnvironmentFormulas class >> hashTable [
 ]
 
 { #category : #formulas }
+EnvironmentFormulas class >> heimdall [
+	<web>
+
+    Metacello new
+    	githubUser: 'DuneSt' project: 'Heimdall' commitish: 'v1.x.x' path: 'src';
+    	baseline: 'Heimdall';
+    	onWarningLog;
+		onUpgrade: [ :e | e useIncoming ];
+    	load
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> highchartsSt [
+	<web>
+
+	Metacello new
+		baseline: 'HighchartsSt';
+		repository: 'github://ba-st/HighchartsSt:release-candidate/source';
+		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> hunter [
+	<reverse_engineering>
+
+	Metacello new
+		baseline: 'Hunter';
+		repository: 'github://dorellang/hunter:master/src';
+		load.
+]
+
+{ #category : #formulas }
 EnvironmentFormulas class >> iconFactory [
 	<graphics>
 
@@ -593,6 +688,16 @@ EnvironmentFormulas class >> infinity [
 ]
 
 { #category : #formulas }
+EnvironmentFormulas class >> iterators [
+	<collections>
+
+	Metacello new
+		baseline: 'Iterators';
+		repository: 'github://juliendelplanque/Iterators/src';
+		load
+]
+
+{ #category : #formulas }
 EnvironmentFormulas class >> kobold [
 	<web>
 
@@ -600,6 +705,16 @@ EnvironmentFormulas class >> kobold [
 		baseline: 'Kobold';
 		repository: 'github://juliangrigera/Kobold';
 		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> mDBaseGenerator [
+	<web>
+
+    Metacello new
+    	githubUser: 'DuneSt' project: 'MDBaseGenerator' commitish: 'master' path: 'src';
+    	baseline: 'MDBaseGenerator';
+    	load
 ]
 
 { #category : #formulas }
@@ -656,6 +771,27 @@ EnvironmentFormulas class >> mirage [
 ]
 
 { #category : #formulas }
+EnvironmentFormulas class >> mocketry [
+	<testing>
+
+	Metacello new
+		baseline: 'Mocketry';
+		repository: 'github://dionisiydk/Mocketry';
+		load
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> mqtt [
+	<general>
+
+	Metacello new
+		repository: 'github://svenvc/mqtt/repository';
+		baseline: 'MQTT';
+		load.
+
+]
+
+{ #category : #formulas }
 EnvironmentFormulas class >> mustache [
 	<general>
 
@@ -693,6 +829,16 @@ EnvironmentFormulas class >> neoJson [
 		baseline: 'NeoJSON';
 		repository: 'github://svenvc/NeoJSON/repository';
 		load.
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> openApi [
+	<general>
+
+	Metacello new
+		baseline: 'OpenAPI';
+		repository: 'github://zweidenker/OpenAPI/source';
+		load
 ]
 
 { #category : #formulas }
@@ -735,6 +881,17 @@ EnvironmentFormulas class >> petitParser [
 		repository: 'github://moosetechnology/PetitParser:v3.x.x/src';
 		load.
 
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> pharoEnhacements [
+	<ide>
+
+	Metacello new
+		baseline: 'PharoEnhancements';
+		repository: 'github://seandenigris/Pharo-Enhancements';
+		"onConflict: [ :ex | ex allow ];"
+		load: #('ALL')
 ]
 
 { #category : #formulas }
@@ -847,6 +1004,18 @@ EnvironmentFormulas class >> seaside [
 		baseline:'Seaside3';
 		repository: 'github://SeasideSt/Seaside:master/repository';
 		load
+]
+
+{ #category : #formulas }
+EnvironmentFormulas class >> seasideQuasar [
+	<web>
+
+	Metacello new
+		repository: 'github://yannij/Seaside-Quasar:main/src';
+		baseline: 'SeasideQuasar';
+		onConflictUseLoaded;
+		load: 'all'.
+
 ]
 
 { #category : #formulas }
