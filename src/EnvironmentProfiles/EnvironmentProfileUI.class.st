@@ -68,6 +68,12 @@ EnvironmentProfileUI >> buildToolbar [
 			addStyle: 'stToolbar' ]
 ]
 
+{ #category : #accessing }
+EnvironmentProfileUI >> formulasTable [
+
+	^ formulasTable
+]
+
 { #category : #initialization }
 EnvironmentProfileUI >> initialExtent [
  
@@ -96,9 +102,10 @@ EnvironmentProfileUI >> initializeSelectableFormulas [
 	formulasTable := self newTable.
 	formulasTable
 		addColumn:
-			((SpCheckBoxTableColumn title: ' ' evaluated: [ :pragma | self selectedFormulas includes: pragma ])
+			((SpCheckBoxTableColumn title: '' evaluated: [ :pragma | self selectedFormulas includes: pragma ])
 				onActivation: [ :pragma | pragma hasFormulaInstalled ifFalse: [ self selectedFormulas add: pragma ] ];
 				onDeactivation: [ :pragma | self selectedFormulas remove: pragma ];
+				beNotExpandable;
 				width: 20;
 				yourself);	
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: [: p | p method selector capitalized ]);

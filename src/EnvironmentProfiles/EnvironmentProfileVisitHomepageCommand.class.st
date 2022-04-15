@@ -24,8 +24,6 @@ EnvironmentProfileVisitHomepageCommand class >> defaultName [
 
 { #category : #executing }
 EnvironmentProfileVisitHomepageCommand >> execute [
-	"Execute the actions that should be done by the command.
-	 This method expect that the context has been put in #context inst. var. if any context is relevant."
 	
 	self application propertyAt: #selection ifAbsent: [ ^ self ].
 	WebBrowser openOn: (self application propertyAt: #selection) webLinkHome.

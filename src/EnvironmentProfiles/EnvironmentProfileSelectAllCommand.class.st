@@ -24,8 +24,14 @@ EnvironmentProfileSelectAllCommand class >> defaultName [
 
 { #category : #execution }
 EnvironmentProfileSelectAllCommand >> execute [
-	"Parse the selected formula and open issues page"
+	"Select all uninstalled formula items"
 	
-	self application propertyAt: #selection ifAbsent: [ ^ self ].
-	
+	self formulasTableItems do: [ : fti | 
+		| cbs |
+		"Horrible way to get the table checkboxes..."
+		cbs := self formulasTableColumns select: [ : c |
+			(c isKindOf: SpCheckBoxTableColumn) and: [ c title isEmpty  ] ].
+		cbs do: [ : cb | cb onActivation cull: fti ] ].
+	self formulasTable refresh.
+
 ]

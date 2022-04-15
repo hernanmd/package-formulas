@@ -22,7 +22,7 @@ EnvironmentProfileInstallCommand class >> defaultName [
 	^ 'Install'
 ]
 
-{ #category : #execution }
+{ #category : #testing }
 EnvironmentProfileInstallCommand >> canBeExecuted [ 
 
 	^ self selectedFormulas notEmpty
