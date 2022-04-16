@@ -88,13 +88,13 @@ PackageFormulasSelectorUI >> initializeSelectableFormulas [
 	formulasTable
 		addColumn:
 			((SpCheckBoxTableColumn title: '' evaluated: [ :pragma | self selectedFormulas includes: pragma ])
-				onActivation: [ :pragma | pragma hasFormulaInstalled ifFalse: [ self selectedFormulas add: pragma ] ];
+				onActivation: [ :pragma | pragma isInstalled ifFalse: [ self selectedFormulas add: pragma ] ];
 				onDeactivation: [ : formulas | self removeSelections: formulas ];
 				beNotExpandable;
 				width: 20;
 				yourself);	
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: [: p | p method selector capitalized ]);
-		addColumn: ((SpCheckBoxTableColumn title: 'Installed' evaluated: [: pragma | pragma hasFormulaInstalled ])
+		addColumn: ((SpCheckBoxTableColumn title: 'Installed' evaluated: [: pragma | pragma isInstalled ])
 				width: 90;
 				yourself);			
 		items: self application formulas asSortedCollection;

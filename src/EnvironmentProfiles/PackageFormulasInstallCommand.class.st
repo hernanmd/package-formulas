@@ -33,7 +33,7 @@ PackageFormulasInstallCommand >> execute [
 	"Install all selected formulas in the receiver"
 
 	self selectedFormulas 
-		do: [ : formula | formula installFormula ]
+		do: [ : formula | formula install ]
 		displayingProgress: [ : formula | 'Installing ' , formula ].
 	self inform: 'Done'
 ]

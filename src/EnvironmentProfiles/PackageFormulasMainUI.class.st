@@ -97,6 +97,7 @@ PackageFormulasMainUI >> packagesIn: aPackageGroupSymbol [
 
 { #category : #callbacks }
 PackageFormulasMainUI >> refreshFormulasList [
+	"Private - Category has changed, update the displayed formulas"
 
 	self formulasTable items: (self packagesIn: self categorySelector selectedItem) 
 ]
@@ -130,6 +131,7 @@ PackageFormulasMainUI >> toolbarActions [
 		register: (PackageFormulasBrowseCommand forSpecContext: self);
 		register: (PackageFormulasTestCommand forSpecContext: self);
 		register: (PackageFormulasUpdateCommand forSpecContext: self);
-		register: (PackageFormulasQuitCommand forSpecContext: self);		
+		register: (PackageFormulasOptionsCommand forSpecContext: self);				
+		register: (PackageFormulasQuitCommand forSpecContext: self);
 		yourself
 ]

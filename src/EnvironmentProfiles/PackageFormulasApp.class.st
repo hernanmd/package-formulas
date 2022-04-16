@@ -8,6 +8,19 @@ Class {
 	#category : #'EnvironmentProfiles-UI'
 }
 
+{ #category : #private }
+PackageFormulasApp class >> menuPackageFormulasOn: aBuilder [
+	<worldMenu>
+
+	(aBuilder item: #Profiles)
+		parent: #Tools;
+		label: 'Package Formulas';
+		icon: (self iconNamed: #catalog);
+		action: [ PackageFormulasApp new run ];
+		help: 'Package installation profiles';
+		order: 627
+]
+
 { #category : #accessing }
 PackageFormulasApp class >> updateApp [
 	UIManager default

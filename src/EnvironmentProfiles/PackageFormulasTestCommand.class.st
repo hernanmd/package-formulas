@@ -26,5 +26,5 @@ PackageFormulasTestCommand class >> defaultName [
 PackageFormulasTestCommand >> execute [
 	"Test installation of selected formulas"
 
-	self selectedFormulas do: [ : formula | formula recordFormula ]
+	self selectedFormulas do: [ : formula | formula record ]
 ]
