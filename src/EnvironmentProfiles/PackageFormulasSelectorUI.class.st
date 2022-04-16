@@ -1,5 +1,5 @@
 Class {
-	#name : #EnvironmentProfileUI,
+	#name : #PackageFormulasSelectorUI,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'selectedFormulas',
@@ -10,14 +10,14 @@ Class {
 }
 
 { #category : #accessing }
-EnvironmentProfileUI class >> buildCommandsGroupWith: presenterInstance forRoot: rootCommandGroup [
+PackageFormulasSelectorUI class >> buildCommandsGroupWith: presenterInstance forRoot: rootCommandGroup [
 
 	rootCommandGroup
 		register: (self buildEPContextualGroupWith: presenterInstance)
 ]
 
 { #category : #accessing }
-EnvironmentProfileUI class >> buildEPContextualGroupWith: presenterInstance [
+PackageFormulasSelectorUI class >> buildEPContextualGroupWith: presenterInstance [
 
 	^ (CmCommandGroup named: 'EPContextualMenu') asSpecGroup
 		register: (self buildSelectionOperationsGroupWith: presenterInstance);	
@@ -26,15 +26,15 @@ EnvironmentProfileUI class >> buildEPContextualGroupWith: presenterInstance [
 ]
 
 { #category : #accessing }
-EnvironmentProfileUI class >> buildRepositoryOperationsGroupWith: presenterInstance [
+PackageFormulasSelectorUI class >> buildRepositoryOperationsGroupWith: presenterInstance [
 
 	^ (CmCommandGroup named: 'RepositoryOperationsMenu') asSpecGroup
-		register: ((EnvironmentProfileVisitHomepageCommand
+		register: ((PackageFormulasOpenHomepageCommand
 			forSpecWithIconNamed: #smallOpen
 			shortcutKey: 'H' asShortcut) 
 				context: presenterInstance;
 				description: 'Open a web browser on the selected repository homepage');			
-		register: ((EnvironmentProfileOpenIssueCommand 
+		register: ((PackageFormulasOpenIssueCommand 
 			forSpecWithIconNamed: #smallError
 			shortcutKey: 'I' asShortcut)
 				context: presenterInstance;
@@ -44,14 +44,14 @@ EnvironmentProfileUI class >> buildRepositoryOperationsGroupWith: presenterInsta
 ]
 
 { #category : #accessing }
-EnvironmentProfileUI class >> buildSelectionOperationsGroupWith: presenterInstance [
+PackageFormulasSelectorUI class >> buildSelectionOperationsGroupWith: presenterInstance [
 
 	^ (CmCommandGroup named: 'SelectionOperationsMenu') asSpecGroup
-		register: ((EnvironmentProfileSelectAllCommand
+		register: ((PackageFormulasSelectAllCommand
 			forSpecWithIconNamed: #checkedBox
 			shortcutKey: 'A' asShortcut) 
 				context: presenterInstance);			
-		register: ((EnvironmentProfileSelectNoneCommand 
+		register: ((PackageFormulasSelectNoneCommand 
 			forSpecWithIconNamed: #checkboxUnselected
 			shortcutKey: 'N' asShortcut)
 				context: presenterInstance);
@@ -59,29 +59,14 @@ EnvironmentProfileUI class >> buildSelectionOperationsGroupWith: presenterInstan
 		yourself
 ]
 
-{ #category : #initialization }
-EnvironmentProfileUI >> buildToolbar [
-	
-	^ self toolbarActions asToolbarPresenterWith: [ :presenter |
-		presenter
-			displayMode: self application toolbarDisplayMode;
-			addStyle: 'stToolbar' ]
-]
-
 { #category : #accessing }
-EnvironmentProfileUI >> formulasTable [
+PackageFormulasSelectorUI >> formulasTable [
 
 	^ formulasTable
 ]
 
 { #category : #initialization }
-EnvironmentProfileUI >> initialExtent [
- 
-	^ 400@600
-]
-
-{ #category : #initialization }
-EnvironmentProfileUI >> initializeLayout [
+PackageFormulasSelectorUI >> initializeLayout [
 
 	self layout: (SpBoxLayout newTopToBottom
 		add: #formulasTable;
@@ -89,7 +74,7 @@ EnvironmentProfileUI >> initializeLayout [
 ]
 
 { #category : #initialization }
-EnvironmentProfileUI >> initializePresenters [
+PackageFormulasSelectorUI >> initializePresenters [
 
 	self initializeSelectableFormulas.
 	self initializeLayout.
@@ -97,14 +82,14 @@ EnvironmentProfileUI >> initializePresenters [
 ]
 
 { #category : #initialization }
-EnvironmentProfileUI >> initializeSelectableFormulas [
+PackageFormulasSelectorUI >> initializeSelectableFormulas [
 
 	formulasTable := self newTable.
 	formulasTable
 		addColumn:
 			((SpCheckBoxTableColumn title: '' evaluated: [ :pragma | self selectedFormulas includes: pragma ])
 				onActivation: [ :pragma | pragma hasFormulaInstalled ifFalse: [ self selectedFormulas add: pragma ] ];
-				onDeactivation: [ :pragma | self selectedFormulas remove: pragma ];
+				onDeactivation: [ : formulas | self removeSelections: formulas ];
 				beNotExpandable;
 				width: 20;
 				yourself);	
@@ -121,39 +106,31 @@ EnvironmentProfileUI >> initializeSelectableFormulas [
 ]
 
 { #category : #initialization }
-EnvironmentProfileUI >> initializeWindow: aWindowPresenter [
+PackageFormulasSelectorUI >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
 		title: self title;
-		toolbar: (toolbar := self buildToolbar);
 		initialExtent: self initialExtent;
 		windowIcon: self windowIcon
 ]
 
 { #category : #accessing }
-EnvironmentProfileUI >> selectedFormulas [
+PackageFormulasSelectorUI >> items: aCollection [ 
+	
+	self formulasTable items: aCollection
+]
+
+{ #category : #accessing }
+PackageFormulasSelectorUI >> removeSelections: aFormula [ 
+
+	(self selectedFormulas includes: aFormula)
+		ifTrue: [ self selectedFormulas remove: aFormula ]
+]
+
+{ #category : #accessing }
+PackageFormulasSelectorUI >> selectedFormulas [
 	"Answer a <Collection> of formulas marked for installation"
 
 	^ selectedFormulas
 		ifNil: [ selectedFormulas := OrderedCollection new ]
-]
-
-{ #category : #initialization }
-EnvironmentProfileUI >> title [ 
-
-	^ 'Formulas in ' , self application group , ' group'
-]
-
-{ #category : #initialization }
-EnvironmentProfileUI >> toolbarActions [
-
-	^ (CmCommandGroup named: 'EPToolbar') asSpecGroup 
-		beRoot;
-		description: 'Commands related to toolbar operations and global application behavior';
-		register: (EnvironmentProfileInstallCommand forSpecContext: self);
-		register: (EnvironmentProfileBrowseCommand forSpecContext: self);
-		register: (EnvironmentProfileTestCommand forSpecContext: self);
-		register: (EnvironmentProfileUpdateCommand forSpecContext: self);
-		register: (EnvironmentProfileQuitCommand forSpecContext: self);		
-		yourself
 ]

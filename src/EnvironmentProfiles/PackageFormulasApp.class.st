@@ -1,5 +1,5 @@
 Class {
-	#name : #EnvironmentProfileApp,
+	#name : #PackageFormulasApp,
 	#superclass : #SpApplication,
 	#instVars : [
 		'formulas',
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : #accessing }
-EnvironmentProfileApp class >> updateApp [
+PackageFormulasApp class >> updateApp [
 	UIManager default
 		informUserDuring: [ :bar | 
 			bar label: 'Removing cached repository from github-cache'.
@@ -34,38 +34,39 @@ EnvironmentProfileApp class >> updateApp [
 ]
 
 { #category : #accessing }
-EnvironmentProfileApp >> formulas [
+PackageFormulasApp >> formulas [
 
 	^ formulas
+		ifNil: [ formulas := OrderedCollection new  ]
 ]
 
 { #category : #accessing }
-EnvironmentProfileApp >> formulas: anObject [
+PackageFormulasApp >> formulas: anObject [
 
 	formulas := anObject
 ]
 
 { #category : #accessing }
-EnvironmentProfileApp >> group [
+PackageFormulasApp >> group [
 
 	^ group
 ]
 
 { #category : #accessing }
-EnvironmentProfileApp >> group: anObject [
+PackageFormulasApp >> group: anObject [
 
 	group := anObject
 ]
 
 { #category : #accessing }
-EnvironmentProfileApp >> start [
+PackageFormulasApp >> start [
 	" Private - See superimplementor's comment "
 
-	(EnvironmentProfileUI newApplication: self) openWithSpec.
+	(PackageFormulasMainUI newApplication: self) openWithSpec.
 ]
 
 { #category : #accessing }
-EnvironmentProfileApp >> toolbarDisplayMode [
+PackageFormulasApp >> toolbarDisplayMode [
 
 	^ StPharoSettings toolbarDisplayMode
 ]

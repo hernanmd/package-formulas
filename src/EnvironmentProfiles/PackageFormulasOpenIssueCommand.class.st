@@ -1,29 +1,29 @@
 Class {
-	#name : #EnvironmentProfileOpenIssueCommand,
-	#superclass : #EnvironmentProfilesContextualMenuCommand,
-	#category : #'EnvironmentProfiles-UI-Commands'
+	#name : #PackageFormulasOpenIssueCommand,
+	#superclass : #PackageFormulasContextualMenuCommand,
+	#category : #'EnvironmentProfiles-Commands'
 }
 
 { #category : #'accessing - defaults' }
-EnvironmentProfileOpenIssueCommand class >> defaultDescription [
+PackageFormulasOpenIssueCommand class >> defaultDescription [
 
 	^ 'Open an issue'
 ]
 
 { #category : #initialization }
-EnvironmentProfileOpenIssueCommand class >> defaultIconName [
+PackageFormulasOpenIssueCommand class >> defaultIconName [
 
 	^ #comments
 ]
 
 { #category : #'accessing - defaults' }
-EnvironmentProfileOpenIssueCommand class >> defaultName [
+PackageFormulasOpenIssueCommand class >> defaultName [
 
 	^ 'Open Issue'
 ]
 
 { #category : #execution }
-EnvironmentProfileOpenIssueCommand >> execute [
+PackageFormulasOpenIssueCommand >> execute [
 	"Parse the selected formula and open issues page"
 	
 	self application propertyAt: #selection ifAbsent: [ ^ self ].

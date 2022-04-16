@@ -1,23 +1,23 @@
 Class {
-	#name : #EnvironmentProfileToolbarCommand,
+	#name : #PackageFormulasToolbarCommand,
 	#superclass : #CmCommand,
-	#category : #'EnvironmentProfiles-UI-Commands'
+	#category : #'EnvironmentProfiles-Commands'
 }
 
 { #category : #accessing }
-EnvironmentProfileToolbarCommand class >> defaultShortcut [
+PackageFormulasToolbarCommand class >> defaultShortcut [
 
 	^ nil
 ]
 
 { #category : #accessing }
-EnvironmentProfileToolbarCommand >> application [
+PackageFormulasToolbarCommand >> application [
 
 	^ self context application
 ]
 
 { #category : #converting }
-EnvironmentProfileToolbarCommand >> asSpecCommand [ 
+PackageFormulasToolbarCommand >> asSpecCommand [ 
 	| command |
 	
 	command := super asSpecCommand 
@@ -32,7 +32,7 @@ EnvironmentProfileToolbarCommand >> asSpecCommand [
 ]
 
 { #category : #execution }
-EnvironmentProfileToolbarCommand >> selectedFormulas [
+PackageFormulasToolbarCommand >> selectedFormulas [
 
 	^ self context selectedFormulas
 ]

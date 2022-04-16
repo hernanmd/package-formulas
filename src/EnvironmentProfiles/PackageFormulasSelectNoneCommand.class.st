@@ -1,29 +1,29 @@
 Class {
-	#name : #EnvironmentProfileSelectNoneCommand,
-	#superclass : #EnvironmentProfilesContextualMenuCommand,
-	#category : #'EnvironmentProfiles-UI-Commands'
+	#name : #PackageFormulasSelectNoneCommand,
+	#superclass : #PackageFormulasContextualMenuCommand,
+	#category : #'EnvironmentProfiles-Commands'
 }
 
 { #category : #'accessing - defaults' }
-EnvironmentProfileSelectNoneCommand class >> defaultDescription [
+PackageFormulasSelectNoneCommand class >> defaultDescription [
 
 	^ 'Unselect all formulas'
 ]
 
 { #category : #initialization }
-EnvironmentProfileSelectNoneCommand class >> defaultIconName [
+PackageFormulasSelectNoneCommand class >> defaultIconName [
 
 	^ #checkboxUnselected
 ]
 
 { #category : #'accessing - defaults' }
-EnvironmentProfileSelectNoneCommand class >> defaultName [
+PackageFormulasSelectNoneCommand class >> defaultName [
 
 	^ 'Select None'
 ]
 
 { #category : #execution }
-EnvironmentProfileSelectNoneCommand >> execute [
+PackageFormulasSelectNoneCommand >> execute [
 	"Unselect all marked formula items"
 	
 	self formulasTableItems do: [ : fti | 

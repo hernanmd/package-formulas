@@ -1,35 +1,35 @@
 Class {
-	#name : #EnvironmentProfileBrowseCommand,
-	#superclass : #EnvironmentProfileToolbarCommand,
-	#category : #'EnvironmentProfiles-UI-Commands'
+	#name : #PackageFormulasBrowseCommand,
+	#superclass : #PackageFormulasToolbarCommand,
+	#category : #'EnvironmentProfiles-Commands'
 }
 
 { #category : #'accessing - defaults' }
-EnvironmentProfileBrowseCommand class >> defaultDescription [
+PackageFormulasBrowseCommand class >> defaultDescription [
 
 	^ 'Browse selected formulas'
 ]
 
 { #category : #'accessing - defaults' }
-EnvironmentProfileBrowseCommand class >> defaultIconName [
+PackageFormulasBrowseCommand class >> defaultIconName [
 
 	^ #glamorousBrowse
 ]
 
 { #category : #'accessing - defaults' }
-EnvironmentProfileBrowseCommand class >> defaultName [
+PackageFormulasBrowseCommand class >> defaultName [
 
 	^ 'Browse'
 ]
 
 { #category : #testing }
-EnvironmentProfileBrowseCommand >> canBeExecuted [ 
+PackageFormulasBrowseCommand >> canBeExecuted [ 
 
 	^ self selectedFormulas notEmpty
 ]
 
 { #category : #execution }
-EnvironmentProfileBrowseCommand >> execute [
+PackageFormulasBrowseCommand >> execute [
 	"Private - Inspect the selected pragma"
 
 	| method |

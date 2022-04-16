@@ -1,29 +1,29 @@
 Class {
-	#name : #EnvironmentProfileSelectAllCommand,
-	#superclass : #EnvironmentProfilesContextualMenuCommand,
-	#category : #'EnvironmentProfiles-UI-Commands'
+	#name : #PackageFormulasSelectAllCommand,
+	#superclass : #PackageFormulasContextualMenuCommand,
+	#category : #'EnvironmentProfiles-Commands'
 }
 
 { #category : #'accessing - defaults' }
-EnvironmentProfileSelectAllCommand class >> defaultDescription [
+PackageFormulasSelectAllCommand class >> defaultDescription [
 
 	^ 'Select all formulas'
 ]
 
 { #category : #initialization }
-EnvironmentProfileSelectAllCommand class >> defaultIconName [
+PackageFormulasSelectAllCommand class >> defaultIconName [
 
 	^ #checkedBox
 ]
 
 { #category : #'accessing - defaults' }
-EnvironmentProfileSelectAllCommand class >> defaultName [
+PackageFormulasSelectAllCommand class >> defaultName [
 
 	^ 'Select All'
 ]
 
 { #category : #execution }
-EnvironmentProfileSelectAllCommand >> execute [
+PackageFormulasSelectAllCommand >> execute [
 	"Select all uninstalled formula items"
 	
 	self formulasTableItems do: [ : fti | 

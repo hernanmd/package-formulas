@@ -33,8 +33,8 @@ Pragma >> installFormula [
 		selector: #wrap:selector:;
 		arguments: #(object selector);
 		control: #instead.
-	(EnvironmentFormulas class >> formulaSelector) ast link: link.
-	EnvironmentFormulas perform: formulaSelector
+	(PackageFormulas class >> formulaSelector) ast link: link.
+	PackageFormulas perform: formulaSelector
 ]
 
 { #category : #'*EnvironmentProfiles' }

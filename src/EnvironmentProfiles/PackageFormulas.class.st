@@ -1,11 +1,11 @@
 Class {
-	#name : #EnvironmentFormulas,
+	#name : #PackageFormulas,
 	#superclass : #Object,
 	#category : #'EnvironmentProfiles-Core'
 }
 
 { #category : #formulas }
-EnvironmentFormulas class >> abstractMath [
+PackageFormulas class >> abstractMath [
 	<math>
 
 	Metacello new 
@@ -15,7 +15,7 @@ EnvironmentFormulas class >> abstractMath [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> artefact [
+PackageFormulas class >> artefact [
 	<general>
 
 	Metacello new
@@ -25,7 +25,7 @@ EnvironmentFormulas class >> artefact [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> autotest [
+PackageFormulas class >> autotest [
 	<testing>
 
 	Metacello new 
@@ -35,7 +35,7 @@ EnvironmentFormulas class >> autotest [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> awsSdkSmalltalk [
+PackageFormulas class >> awsSdkSmalltalk [
 	<general>
 
 	Metacello new
@@ -46,7 +46,7 @@ EnvironmentFormulas class >> awsSdkSmalltalk [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> bloc [
+PackageFormulas class >> bloc [
 	<graphics>
 
 	Metacello new
@@ -56,7 +56,7 @@ EnvironmentFormulas class >> bloc [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> blocPac [
+PackageFormulas class >> blocPac [
 	<graphics>
 
 	Metacello new
@@ -66,7 +66,7 @@ EnvironmentFormulas class >> blocPac [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> blockStyler [
+PackageFormulas class >> blockStyler [
 	<ide>
 
 	Metacello new
@@ -77,7 +77,7 @@ EnvironmentFormulas class >> blockStyler [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> boardwalk [
+PackageFormulas class >> boardwalk [
 	<web>
 
 	Metacello new
@@ -87,7 +87,7 @@ EnvironmentFormulas class >> boardwalk [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> brick [
+PackageFormulas class >> brick [
 	<graphics>
 
 	Metacello new
@@ -97,7 +97,7 @@ EnvironmentFormulas class >> brick [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> cannon [
+PackageFormulas class >> cannon [
 	<general>
 
 	Metacello new
@@ -107,7 +107,7 @@ EnvironmentFormulas class >> cannon [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> chanel [
+PackageFormulas class >> chanel [
 	<general>
 
 	Metacello new
@@ -117,7 +117,7 @@ EnvironmentFormulas class >> chanel [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> collectionExtensions [
+PackageFormulas class >> collectionExtensions [
 	<collections>
 
 	Metacello new
@@ -127,7 +127,7 @@ EnvironmentFormulas class >> collectionExtensions [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> commonUtils [
+PackageFormulas class >> commonUtils [
 	<general>
 
 	Metacello new
@@ -137,7 +137,7 @@ EnvironmentFormulas class >> commonUtils [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> compendium [
+PackageFormulas class >> compendium [
 	<ide>
 
 	Metacello new 
@@ -149,7 +149,7 @@ EnvironmentFormulas class >> compendium [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> consultingDetective [
+PackageFormulas class >> consultingDetective [
 	<general>
 
 	Metacello new
@@ -160,7 +160,7 @@ EnvironmentFormulas class >> consultingDetective [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> containersArray2D [
+PackageFormulas class >> containersArray2D [
 	<collections>
 
 	Metacello new
@@ -170,7 +170,7 @@ EnvironmentFormulas class >> containersArray2D [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> containersBTree [
+PackageFormulas class >> containersBTree [
 	<collections>
 
 	Metacello new
@@ -181,7 +181,7 @@ EnvironmentFormulas class >> containersBTree [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> containersEssentials [
+PackageFormulas class >> containersEssentials [
 	<collections>
 
 	[ 
@@ -196,7 +196,7 @@ EnvironmentFormulas class >> containersEssentials [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> containersGrid [
+PackageFormulas class >> containersGrid [
 	<collections>
 
 	Metacello new
@@ -207,7 +207,7 @@ EnvironmentFormulas class >> containersGrid [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> containersHashTable [
+PackageFormulas class >> containersHashTable [
 	<collections>
 
 	Metacello new
@@ -217,7 +217,7 @@ EnvironmentFormulas class >> containersHashTable [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> containersKeyedTree [
+PackageFormulas class >> containersKeyedTree [
 	<collections>
 
 	Metacello new
@@ -227,7 +227,7 @@ EnvironmentFormulas class >> containersKeyedTree [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> containersLinkedList [
+PackageFormulas class >> containersLinkedList [
 	<collections>
 
 	Metacello new
@@ -238,7 +238,7 @@ EnvironmentFormulas class >> containersLinkedList [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> containersOrderPreservingDictionary [
+PackageFormulas class >> containersOrderPreservingDictionary [
 	<collections>
 
 	Metacello new
@@ -248,7 +248,7 @@ EnvironmentFormulas class >> containersOrderPreservingDictionary [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> containersOrderedMultiMap [
+PackageFormulas class >> containersOrderedMultiMap [
 	<collections>
 
 	Metacello new
@@ -259,7 +259,7 @@ EnvironmentFormulas class >> containersOrderedMultiMap [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> containersOrderedSet [
+PackageFormulas class >> containersOrderedSet [
 	<collections>
 
 	Metacello new
@@ -269,7 +269,7 @@ EnvironmentFormulas class >> containersOrderedSet [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> containersPropertyEnvironment [
+PackageFormulas class >> containersPropertyEnvironment [
 	<collections>
 
 	Metacello new
@@ -280,7 +280,7 @@ EnvironmentFormulas class >> containersPropertyEnvironment [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> containersQueue [
+PackageFormulas class >> containersQueue [
 	<collections>
 
 	Metacello new
@@ -290,7 +290,7 @@ EnvironmentFormulas class >> containersQueue [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> containersRope [
+PackageFormulas class >> containersRope [
 	<collections>
 
 	Metacello new
@@ -301,7 +301,7 @@ EnvironmentFormulas class >> containersRope [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> containersRunArraye [
+PackageFormulas class >> containersRunArraye [
 	<collections>
 
 	Metacello new
@@ -311,7 +311,7 @@ EnvironmentFormulas class >> containersRunArraye [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> containersStack [
+PackageFormulas class >> containersStack [
 	<collections>
 
 	Metacello new
@@ -321,7 +321,7 @@ EnvironmentFormulas class >> containersStack [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> containersTrie [
+PackageFormulas class >> containersTrie [
 	<collections>
 
 	Metacello new
@@ -331,7 +331,7 @@ EnvironmentFormulas class >> containersTrie [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> containersUniqueOrdered [
+PackageFormulas class >> containersUniqueOrdered [
 	<collections>
 
 	Metacello new
@@ -341,7 +341,7 @@ EnvironmentFormulas class >> containersUniqueOrdered [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> cormas [
+PackageFormulas class >> cormas [
 	<science>
 
 	Metacello new
@@ -351,7 +351,7 @@ EnvironmentFormulas class >> cormas [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> cryptoNacl [
+PackageFormulas class >> cryptoNacl [
 	<security>
 
 	Metacello new
@@ -361,7 +361,7 @@ EnvironmentFormulas class >> cryptoNacl [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> cryptography [
+PackageFormulas class >> cryptography [
 	<security>
 
 	Metacello new
@@ -371,7 +371,7 @@ EnvironmentFormulas class >> cryptography [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> dataBindings [
+PackageFormulas class >> dataBindings [
 	<web>
 
 	Metacello new
@@ -382,7 +382,7 @@ EnvironmentFormulas class >> dataBindings [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> dataFrame [
+PackageFormulas class >> dataFrame [
 	<science>
 
 	Metacello new
@@ -392,7 +392,7 @@ EnvironmentFormulas class >> dataFrame [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> deepTraverser [
+PackageFormulas class >> deepTraverser [
 	<general>
 
 	Metacello new
@@ -402,7 +402,7 @@ EnvironmentFormulas class >> deepTraverser [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> documentationSupport [
+PackageFormulas class >> documentationSupport [
 	<documentation>
 
 	Metacello new
@@ -412,7 +412,7 @@ EnvironmentFormulas class >> documentationSupport [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> elasticsearch [
+PackageFormulas class >> elasticsearch [
 	<general>
 
 	Metacello new
@@ -422,7 +422,7 @@ EnvironmentFormulas class >> elasticsearch [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> ethel [
+PackageFormulas class >> ethel [
 	<web>
 
 	Metacello new
@@ -432,7 +432,7 @@ EnvironmentFormulas class >> ethel [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> fame [
+PackageFormulas class >> fame [
 	<general>
 
 	Metacello new
@@ -442,7 +442,7 @@ EnvironmentFormulas class >> fame [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> famix [
+PackageFormulas class >> famix [
 	<general>
 
 	Metacello new
@@ -452,7 +452,7 @@ EnvironmentFormulas class >> famix [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> fileLibraryHelper [
+PackageFormulas class >> fileLibraryHelper [
 	<web>
 
     Metacello new
@@ -463,7 +463,7 @@ EnvironmentFormulas class >> fileLibraryHelper [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> fixedDecimal [
+PackageFormulas class >> fixedDecimal [
 	<math>
 
 	Metacello new
@@ -473,7 +473,7 @@ EnvironmentFormulas class >> fixedDecimal [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> fog [
+PackageFormulas class >> fog [
 	<blockchain>
 
 	Metacello new
@@ -483,7 +483,7 @@ EnvironmentFormulas class >> fog [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> fogEvm [
+PackageFormulas class >> fogEvm [
 	<blockchain>
 
 	Metacello new
@@ -493,7 +493,7 @@ EnvironmentFormulas class >> fogEvm [
 ]
 
 { #category : #accessing }
-EnvironmentFormulas class >> formulasFor: aSymbol [
+PackageFormulas class >> formulasFor: aSymbol [
 	"Answer a <Collection> of <CompiledMethod> of receiver's formulas"
 
 	^ Pragma 
@@ -502,7 +502,7 @@ EnvironmentFormulas class >> formulasFor: aSymbol [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> function [
+PackageFormulas class >> function [
 	<math>
 
 	Metacello new
@@ -512,7 +512,7 @@ EnvironmentFormulas class >> function [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> gadm [
+PackageFormulas class >> gadm [
 	<gis>
 
 	Metacello new
@@ -522,7 +522,7 @@ EnvironmentFormulas class >> gadm [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> garage [
+PackageFormulas class >> garage [
 	<databases>
 
     Metacello new
@@ -532,7 +532,7 @@ EnvironmentFormulas class >> garage [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> geoJSON [
+PackageFormulas class >> geoJSON [
 	<general>
 
 	Metacello new
@@ -542,7 +542,7 @@ EnvironmentFormulas class >> geoJSON [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> geoSphere [
+PackageFormulas class >> geoSphere [
 	<gis>
 
 	Metacello new
@@ -552,7 +552,7 @@ EnvironmentFormulas class >> geoSphere [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> geometry [
+PackageFormulas class >> geometry [
 	<math>
 
 	Metacello new
@@ -562,7 +562,7 @@ EnvironmentFormulas class >> geometry [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> getText [
+PackageFormulas class >> getText [
 	<general>
 
 	Metacello new
@@ -572,7 +572,7 @@ EnvironmentFormulas class >> getText [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> ghost [
+PackageFormulas class >> ghost [
 	<ide>
 
 	Metacello new
@@ -583,7 +583,7 @@ EnvironmentFormulas class >> ghost [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> graphQl [
+PackageFormulas class >> graphQl [
 	<web>
 
 	Metacello new
@@ -593,7 +593,7 @@ EnvironmentFormulas class >> graphQl [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> graphViz [
+PackageFormulas class >> graphViz [
 	<graphics>
 
 	Metacello new
@@ -603,7 +603,7 @@ EnvironmentFormulas class >> graphViz [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> grease [
+PackageFormulas class >> grease [
 	<general>
 
 	Metacello new
@@ -613,7 +613,7 @@ EnvironmentFormulas class >> grease [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> harbour [
+PackageFormulas class >> harbour [
 	<ide>
 
 	Metacello new 
@@ -625,7 +625,7 @@ EnvironmentFormulas class >> harbour [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> hashTable [
+PackageFormulas class >> hashTable [
 	<collections>
 
 	Metacello new
@@ -635,7 +635,7 @@ EnvironmentFormulas class >> hashTable [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> heimdall [
+PackageFormulas class >> heimdall [
 	<web>
 
     Metacello new
@@ -647,7 +647,7 @@ EnvironmentFormulas class >> heimdall [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> highchartsSt [
+PackageFormulas class >> highchartsSt [
 	<web>
 
 	Metacello new
@@ -657,7 +657,7 @@ EnvironmentFormulas class >> highchartsSt [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> hunter [
+PackageFormulas class >> hunter [
 	<reverse_engineering>
 
 	Metacello new
@@ -667,7 +667,7 @@ EnvironmentFormulas class >> hunter [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> iconFactory [
+PackageFormulas class >> iconFactory [
 	<graphics>
 
 	Metacello new
@@ -678,7 +678,7 @@ EnvironmentFormulas class >> iconFactory [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> infinity [
+PackageFormulas class >> infinity [
 	<math>
 
 	Metacello new 
@@ -688,7 +688,7 @@ EnvironmentFormulas class >> infinity [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> iterators [
+PackageFormulas class >> iterators [
 	<collections>
 
 	Metacello new
@@ -698,7 +698,7 @@ EnvironmentFormulas class >> iterators [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> kobold [
+PackageFormulas class >> kobold [
 	<web>
 
 	Metacello new
@@ -708,7 +708,7 @@ EnvironmentFormulas class >> kobold [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> mDBaseGenerator [
+PackageFormulas class >> mDBaseGenerator [
 	<web>
 
     Metacello new
@@ -718,7 +718,7 @@ EnvironmentFormulas class >> mDBaseGenerator [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> magicLiteralsSelector [
+PackageFormulas class >> magicLiteralsSelector [
 	<ide>
 
 	Metacello new
@@ -729,7 +729,7 @@ EnvironmentFormulas class >> magicLiteralsSelector [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> magritte [
+PackageFormulas class >> magritte [
 	<general>
 
 	Metacello new
@@ -739,7 +739,7 @@ EnvironmentFormulas class >> magritte [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> mathemagics [
+PackageFormulas class >> mathemagics [
 	<math>
 
 	Gofer new
@@ -750,7 +750,7 @@ EnvironmentFormulas class >> mathemagics [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> methodProxies [
+PackageFormulas class >> methodProxies [
 	<general>
 
 	Metacello new
@@ -760,7 +760,7 @@ EnvironmentFormulas class >> methodProxies [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> mirage [
+PackageFormulas class >> mirage [
 	<ide>
 
 	Metacello new
@@ -771,7 +771,7 @@ EnvironmentFormulas class >> mirage [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> mocketry [
+PackageFormulas class >> mocketry [
 	<testing>
 
 	Metacello new
@@ -781,7 +781,7 @@ EnvironmentFormulas class >> mocketry [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> mqtt [
+PackageFormulas class >> mqtt [
 	<general>
 
 	Metacello new
@@ -792,7 +792,7 @@ EnvironmentFormulas class >> mqtt [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> mustache [
+PackageFormulas class >> mustache [
 	<general>
 
 	Metacello new
@@ -802,7 +802,7 @@ EnvironmentFormulas class >> mustache [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> mutalk [
+PackageFormulas class >> mutalk [
 	<testing>
 
 	Metacello new
@@ -812,7 +812,7 @@ EnvironmentFormulas class >> mutalk [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> neoCsv [
+PackageFormulas class >> neoCsv [
 	<general>
 
 	Metacello new
@@ -822,7 +822,7 @@ EnvironmentFormulas class >> neoCsv [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> neoJson [
+PackageFormulas class >> neoJson [
 	<general>
 
 	Metacello new
@@ -832,7 +832,7 @@ EnvironmentFormulas class >> neoJson [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> openApi [
+PackageFormulas class >> openApi [
 	<general>
 
 	Metacello new
@@ -842,7 +842,7 @@ EnvironmentFormulas class >> openApi [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> orderPreservingDictionary [
+PackageFormulas class >> orderPreservingDictionary [
 	<collections>
 
 	Metacello new
@@ -852,7 +852,7 @@ EnvironmentFormulas class >> orderPreservingDictionary [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> osSubprocess [
+PackageFormulas class >> osSubprocess [
 	<general>
 
 	Metacello new
@@ -863,7 +863,7 @@ EnvironmentFormulas class >> osSubprocess [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> pastell [
+PackageFormulas class >> pastell [
 	<xml>
 
 	Metacello new
@@ -873,7 +873,7 @@ EnvironmentFormulas class >> pastell [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> petitParser [
+PackageFormulas class >> petitParser [
 	<general>
 
 	Metacello new
@@ -884,7 +884,7 @@ EnvironmentFormulas class >> petitParser [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> pharoEnhacements [
+PackageFormulas class >> pharoEnhacements [
 	<ide>
 
 	Metacello new
@@ -895,7 +895,7 @@ EnvironmentFormulas class >> pharoEnhacements [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> pharoI18n [
+PackageFormulas class >> pharoI18n [
 	<ide>
 
 	Metacello new
@@ -906,7 +906,7 @@ EnvironmentFormulas class >> pharoI18n [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> pharoODBC [
+PackageFormulas class >> pharoODBC [
 	<databases>
 
 	Metacello new
@@ -916,7 +916,7 @@ EnvironmentFormulas class >> pharoODBC [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> pharoSQLite3 [
+PackageFormulas class >> pharoSQLite3 [
 	<databases>
 
 	Metacello new
@@ -926,7 +926,7 @@ EnvironmentFormulas class >> pharoSQLite3 [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> polyMath [
+PackageFormulas class >> polyMath [
 	<science>
 
 	Metacello new
@@ -936,7 +936,7 @@ EnvironmentFormulas class >> polyMath [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> projectFramework [
+PackageFormulas class >> projectFramework [
 	<general>
 
 	Metacello new
@@ -946,7 +946,7 @@ EnvironmentFormulas class >> projectFramework [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> punQLite [
+PackageFormulas class >> punQLite [
 	<databases>
 
 	Metacello new 
@@ -956,7 +956,7 @@ EnvironmentFormulas class >> punQLite [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> quickAccess [
+PackageFormulas class >> quickAccess [
 	<ide>
 
 	Metacello new 
@@ -967,7 +967,7 @@ EnvironmentFormulas class >> quickAccess [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> sState [
+PackageFormulas class >> sState [
 	<general>
 
 	Metacello new
@@ -977,7 +977,7 @@ EnvironmentFormulas class >> sState [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> scheduler [
+PackageFormulas class >> scheduler [
 	<general>
 
 	Metacello new 
@@ -987,7 +987,7 @@ EnvironmentFormulas class >> scheduler [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> seamless [
+PackageFormulas class >> seamless [
 	<ide>
 
 	Metacello new
@@ -997,7 +997,7 @@ EnvironmentFormulas class >> seamless [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> seaside [
+PackageFormulas class >> seaside [
 	<web>
 
 	Metacello new
@@ -1007,7 +1007,7 @@ EnvironmentFormulas class >> seaside [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> seasideQuasar [
+PackageFormulas class >> seasideQuasar [
 	<web>
 
 	Metacello new
@@ -1019,7 +1019,7 @@ EnvironmentFormulas class >> seasideQuasar [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> smartTest [
+PackageFormulas class >> smartTest [
 	<testing>
 
 	Metacello new
@@ -1030,7 +1030,7 @@ EnvironmentFormulas class >> smartTest [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> soup [
+PackageFormulas class >> soup [
 	<web>
 
 	Metacello new
@@ -1040,7 +1040,7 @@ EnvironmentFormulas class >> soup [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> sparta [
+PackageFormulas class >> sparta [
 	<graphics>
 
 	Metacello new
@@ -1051,7 +1051,7 @@ EnvironmentFormulas class >> sparta [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> stringExtensions [
+PackageFormulas class >> stringExtensions [
 	<collections>
 
 	Metacello new
@@ -1061,7 +1061,7 @@ EnvironmentFormulas class >> stringExtensions [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> systemInteraction [
+PackageFormulas class >> systemInteraction [
 	<general>
 
 	Metacello new
@@ -1071,7 +1071,7 @@ EnvironmentFormulas class >> systemInteraction [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> tasksLogger [
+PackageFormulas class >> tasksLogger [
 	<web>
 
 	Metacello new
@@ -1082,7 +1082,7 @@ EnvironmentFormulas class >> tasksLogger [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> tealight [
+PackageFormulas class >> tealight [
 	<web>
 
 	Metacello new 
@@ -1092,7 +1092,7 @@ EnvironmentFormulas class >> tealight [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> telePharoClient [
+PackageFormulas class >> telePharoClient [
 	<ide>
 
 	Metacello new
@@ -1102,7 +1102,7 @@ EnvironmentFormulas class >> telePharoClient [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> telePharoServer [
+PackageFormulas class >> telePharoServer [
 	<ide>
 
 	Metacello new
@@ -1112,7 +1112,7 @@ EnvironmentFormulas class >> telePharoServer [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> treeQuery [
+PackageFormulas class >> treeQuery [
 	<general>
 
 	Metacello new
@@ -1122,7 +1122,7 @@ EnvironmentFormulas class >> treeQuery [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> turbo [
+PackageFormulas class >> turbo [
 	<ide>
 
 	Metacello new
@@ -1132,7 +1132,7 @@ EnvironmentFormulas class >> turbo [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> voyageEjdb [
+PackageFormulas class >> voyageEjdb [
 	<databases>
 
 	Metacello new 
@@ -1142,7 +1142,7 @@ EnvironmentFormulas class >> voyageEjdb [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> voyageMongo [
+PackageFormulas class >> voyageMongo [
 	<databases>
 
 	Metacello new 
@@ -1152,7 +1152,7 @@ EnvironmentFormulas class >> voyageMongo [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> workflow [
+PackageFormulas class >> workflow [
 	<science>
 
 	Metacello new
@@ -1162,7 +1162,7 @@ EnvironmentFormulas class >> workflow [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> xPath [
+PackageFormulas class >> xPath [
 	<xml>
 
 	Metacello new
@@ -1173,7 +1173,7 @@ EnvironmentFormulas class >> xPath [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> xmlParser [
+PackageFormulas class >> xmlParser [
 	<xml>
 
 	Metacello new
@@ -1184,7 +1184,7 @@ EnvironmentFormulas class >> xmlParser [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> xmlParserHTML [
+PackageFormulas class >> xmlParserHTML [
 	<xml>
 
 	Metacello new
@@ -1195,7 +1195,7 @@ EnvironmentFormulas class >> xmlParserHTML [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> xmlParserStAX [
+PackageFormulas class >> xmlParserStAX [
 	<xml>
 
 	Metacello new
@@ -1205,7 +1205,7 @@ EnvironmentFormulas class >> xmlParserStAX [
 ]
 
 { #category : #formulas }
-EnvironmentFormulas class >> xmlWriter [
+PackageFormulas class >> xmlWriter [
 	<xml>
 
 	Metacello new
