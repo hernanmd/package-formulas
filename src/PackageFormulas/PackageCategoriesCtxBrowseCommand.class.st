@@ -29,11 +29,28 @@ PackageCategoriesCtxBrowseCommand >> execute [
 	| categoryName |
 	
 	categoryName := self context categoriesList selectedItem.
-	SystemNavigation new browseMessageList: 
-		((Pragma 
-			allNamed: categoryName uncapitalized 
-			in: self application formulasContainer class) collect: #method)
-			name: 'Formulas for category: ' , categoryName
+	SystemNavigation new 
+		browseMessageList: (self messageListForCategory: categoryName)
+		name: 'Formulas for category: ' , categoryName
 
 
+]
+
+{ #category : #private }
+PackageCategoriesCtxBrowseCommand >> messageListForCategory: aString [ 
+
+	| formulasContainer pragmas |
+	
+	formulasContainer := self application formulasContainer.
+	pragmas := aString isUppercase
+		ifFalse: [ 
+			Pragma 
+				allNamed: aString uncapitalized 
+				in: formulasContainer class ]
+		ifTrue: [ 
+			Pragma 
+				allNamed: aString 
+				in: formulasContainer class
+			 ].
+	^ pragmas collect: #method.
 ]

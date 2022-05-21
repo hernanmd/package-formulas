@@ -68,13 +68,6 @@ PackageFormula >> addDecoration: aDecoration [
 ]
 
 { #category : #private }
-PackageFormula >> basicInstallExpression: aClass selector: aSelector [
-	"Answer a <String> representing a package installation expression as originally provided by a package author"
-	
-	^ (aClass class >> aSelector) ast body sourceCode
-]
-
-{ #category : #private }
 PackageFormula >> buildGitHubLink: args [
 	"Answer a <String> representing the github link to the receiver's repository"
 
@@ -224,4 +217,11 @@ PackageFormula >> webLinkHome [
 		             ifNotNil: [ :args | args arguments anyOne value ]
 		             ifNil: [ self parseFromGitHubExtendedShortcut ].
 	^ self buildHTTPHomeLink: urlString asZnUrl
+]
+
+{ #category : #accessing }
+PackageFormula >> wrapInClass: aClass selector: aSelector [
+	"Answer a <String> representing a package installation expression as originally provided by a package author"
+	
+	^ (aClass class >> aSelector) ast body sourceCode
 ]

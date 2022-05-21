@@ -9,13 +9,12 @@ Class {
 
 { #category : #private }
 PackageFormulaDisableMonitorWrapper >> wrapInClass: aClass selector: aSelector [
+	" Private - See superimplementor's comment"
 
-	| formulaExpression |
-	formulaExpression := String streamContents: [ : stream |
+	^ String streamContents: [ : stream |
 		stream
 			<< 'EpMonitor disableDuring: [ ';
 			cr;
-			<< 	(self basicInstallExpression: aClass selector: aSelector);
+			<< 	(self next wrapInClass: aClass selector: aSelector);
 			<< ' ].' ].
-	self evaluate: formulaExpression
 ]

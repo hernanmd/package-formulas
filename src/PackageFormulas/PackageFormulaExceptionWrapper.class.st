@@ -30,18 +30,17 @@ PackageFormulaExceptionWrapper >> exceptionClass: anObject [
 
 { #category : #private }
 PackageFormulaExceptionWrapper >> wrapInClass: aClass selector: aSelector [
+	" Private - See superimplementor's comment"
 
-	| formulaExpression |
-	formulaExpression := String streamContents: [ : stream |
+	^ String streamContents: [ : stream |
 		stream
 			<< '[ ';
 			cr;
-			<< 	(self basicInstallExpression: aClass selector: aSelector);
+			<< 	(self next wrapInClass: aClass selector: aSelector);
 			cr;
 			<< ' ] on: ';
 			<< self exceptionClass;
 			cr;
 			<< 'do: ';
 			<< self exceptionBlock ].
-	self evaluate: formulaExpression
 ]
