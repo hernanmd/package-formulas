@@ -1,3 +1,13 @@
+"
+This is the main PackageFormulas Spec2 application class which:
+
+- Handles the Formulas container: A class which acts as a repository of formulas.
+- Provides convenience methods to retrieve formulas and its categories.
+- Handles the application initialization: See the `PackageFormulasApp>>start` method.
+- Creates a new entry for this application in the World menu.
+- Can perform updates of both the application and formulas.
+
+"
 Class {
 	#name : #PackageFormulasApp,
 	#superclass : #SpApplication,
@@ -54,20 +64,14 @@ PackageFormulasApp >> defaultFormulasContainer [
 	^ PackageFormulas
 ]
 
-{ #category : #private }
+{ #category : #queries }
 PackageFormulasApp >> formulas [
 	"Answer a <Collection> of <PackageFormula>"
 
 	^ PackageFormula allIn: self formulasContainer class
 ]
 
-{ #category : #accessing }
-PackageFormulasApp >> formulas: anObject [
-
-	formulas := anObject
-]
-
-{ #category : #private }
+{ #category : #queries }
 PackageFormulasApp >> formulasCategories [
 	"Answer a <Collection> of <String> each describing a formula category"
 
@@ -76,7 +80,7 @@ PackageFormulasApp >> formulasCategories [
 		as: Set) collect: [ : pragmaSelector | pragmaSelector capitalized ]
 ]
 
-{ #category : #private }
+{ #category : #queries }
 PackageFormulasApp >> formulasContainer [
 	"Answer a <Class> responsible of storing the <PackageFormula>s"
 	
@@ -94,6 +98,18 @@ PackageFormulasApp >> group [
 PackageFormulasApp >> group: anObject [
 
 	group := anObject
+]
+
+{ #category : #queries }
+PackageFormulasApp >> packagesIn: aPackageGroupSymbol [
+	"Answer a <Collection> for pacakges categorized in aPackageGroupSymbol"
+	
+	| pkgPragmaId |
+
+	pkgPragmaId := (aPackageGroupSymbol allSatisfy: #isUppercase)
+		ifFalse: [ aPackageGroupSymbol uncapitalized ]
+		ifTrue: [ aPackageGroupSymbol ].
+	^ PackageFormulas formulasFor: pkgPragmaId
 ]
 
 { #category : #accessing }

@@ -1,29 +1,29 @@
 Class {
-	#name : #PackageFormulasTestCommand,
+	#name : #PackageFormulasRecordCommand,
 	#superclass : #PackageFormulasToolbarCommand,
 	#category : #'PackageFormulas-Commands'
 }
 
 { #category : #'accessing - defaults' }
-PackageFormulasTestCommand class >> defaultDescription [
+PackageFormulasRecordCommand class >> defaultDescription [
 
-	^ 'Test installation of selected formulas'
+	^ 'Record installation of selected formulas'
 ]
 
 { #category : #'accessing - defaults' }
-PackageFormulasTestCommand class >> defaultIconName [
+PackageFormulasRecordCommand class >> defaultIconName [
 
 	^ #testGreen
 ]
 
 { #category : #'accessing - defaults' }
-PackageFormulasTestCommand class >> defaultName [
+PackageFormulasRecordCommand class >> defaultName [
 
-	^ 'Test'
+	^ 'Record'
 ]
 
 { #category : #execution }
-PackageFormulasTestCommand >> execute [
+PackageFormulasRecordCommand >> execute [
 	"Test installation of selected formulas"
 
 	self selectedFormulas do: [ : formula | formula record ]

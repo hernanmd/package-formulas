@@ -8,13 +8,13 @@ Class {
 }
 
 { #category : #private }
-PackageFormulaBackgroundWrapper >> wrapInClass: aClass selector: aSelector [
+PackageFormulaBackgroundWrapper >> valueInClass: aClass withSelector: aSelector [
 	" Private - See superimplementor's comment"
 
 	^ String streamContents: [ : stream |
 		stream
 			<< '[ ';
 			cr;
-			<< 	(self next wrapInClass: aClass selector: aSelector);
+			<< 	(self next valueInClass: aClass withSelector: aSelector);
 			<< ' ] fork.' ]
 ]

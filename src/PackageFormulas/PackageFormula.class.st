@@ -12,6 +12,11 @@ A formula can perform the following actions:
 
 To use another class to store the formulas, subclass this class and add the methods in the class side.
 
+The rules for naming formula's categories through pragmas are as follows:
+
+- If the category represents an acronym, it must be all uppercase: FIFA, UN, MERCOSUR, etc.
+- If the category is a common name, it must be all lowercase, no capitalization.
+- If the category has two or more words, they must be separated by the Character $_
 "
 Class {
 	#name : #PackageFormula,
@@ -50,6 +55,13 @@ PackageFormula class >> newFrom: aPragma [
 		yourself
 ]
 
+{ #category : #comparing }
+PackageFormula >> <= aPackageFormula [
+	"Answer <true> if the receiver's selector comes before aPackageFormula in alphabetically order"
+	
+	^ self method selector <= aPackageFormula method selector
+]
+
 { #category : #'accessing - decorators' }
 PackageFormula >> addDecoration: aDecoration [
 	"Add aDecoration to the receivers decoration chain. Answer the added decoration."
@@ -57,13 +69,13 @@ PackageFormula >> addDecoration: aDecoration [
 	| previous current |
 	previous := nil.
 	current := self decoration.
-	[ current ~~ self "and: [ current isDelegation ] "] whileTrue: [
+	[ current ~~ self ] whileTrue: [
 		previous := current.
 		current := current next ].
 	aDecoration setNext: current.
 	previous isNil
-		ifTrue: [ self decoration: aDecoration ]
-		ifFalse: [ previous setNext: aDecoration ].
+		ifNil: [ self decoration: aDecoration ]
+		ifNotNil: [ previous setNext: aDecoration ].
 	^ aDecoration
 ]
 
@@ -127,12 +139,13 @@ PackageFormula >> initialize [
 { #category : #accessing }
 PackageFormula >> install [
 	"Execute the receiver's body part assumed to have a Metacello install expression"
-	| formulaSelector |
+	| formulaSelector ast metaLink |
 	
 	formulaSelector := self method selector.
-	self halt.
-	self decoration installIn: (PackageFormulas class >> formulaSelector) ast.
-	PackageFormulas perform: formulaSelector
+	ast := (PackageFormulas class >> formulaSelector) ast.
+	metaLink := self decoration installIn: ast.
+	PackageFormulas perform: formulaSelector.
+	ast removeLink: metaLink.
 ]
 
 { #category : #accessing }
@@ -209,6 +222,13 @@ PackageFormula >> removeDecoration: aDecoration [
 ]
 
 { #category : #accessing }
+PackageFormula >> valueInClass: aClass withSelector: aSelector [
+	"Answer a <String> representing a package installation expression as originally provided by a package author"
+	
+	^ (aClass class >> aSelector) ast body sourceCode
+]
+
+{ #category : #accessing }
 PackageFormula >> webLinkHome [
 	"Answer a <String> representing the home page URL of the receiver's formula"
 
@@ -217,11 +237,4 @@ PackageFormula >> webLinkHome [
 		             ifNotNil: [ :args | args arguments anyOne value ]
 		             ifNil: [ self parseFromGitHubExtendedShortcut ].
 	^ self buildHTTPHomeLink: urlString asZnUrl
-]
-
-{ #category : #accessing }
-PackageFormula >> wrapInClass: aClass selector: aSelector [
-	"Answer a <String> representing a package installation expression as originally provided by a package author"
-	
-	^ (aClass class >> aSelector) ast body sourceCode
 ]

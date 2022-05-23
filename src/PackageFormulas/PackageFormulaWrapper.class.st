@@ -1,3 +1,8 @@
+"
+A hierarchy of wrapper for package formulas.
+
+Subclasses should implement the method #valueInClass:withSelector: which receives a `Class` and a selector `Symbol` and answer (currently) a `String` with wrapped source code.
+"
 Class {
 	#name : #PackageFormulaWrapper,
 	#superclass : #PackageFormulaInstallDecoration,
@@ -5,12 +10,17 @@ Class {
 }
 
 { #category : #private }
-PackageFormulaWrapper >> newLink [
+PackageFormulaWrapper >> newFormulaLink [
 	"Private - See superimplementor's comment"
 
 	^ MetaLink new
 		metaObject: self;
-		selector: #wrapInClass:selector:;
+		selector: #valueInClass:withSelector:;
 		arguments: #(object selector);
 		control: #instead.
+]
+
+{ #category : #private }
+PackageFormulaWrapper >> valueInClass: aClass withSelector: aSelector [
+	" Private - "
 ]

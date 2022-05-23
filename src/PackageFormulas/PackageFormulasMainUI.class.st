@@ -10,8 +10,7 @@ Class {
 	#instVars : [
 		'categorySelector',
 		'formulasTable',
-		'toolbar',
-		'selectableFormulas'
+		'toolbar'
 	],
 	#category : #'PackageFormulas-UI'
 }
@@ -89,19 +88,6 @@ PackageFormulasMainUI >> refreshFormulasSelector: aString [
 ]
 
 { #category : #accessing }
-PackageFormulasMainUI >> selectableFormulas [
-
-	^ selectableFormulas
-		ifNil: [ selectableFormulas := OrderedCollection new ]
-]
-
-{ #category : #accessing }
-PackageFormulasMainUI >> selectableFormulas: anObject [
-
-	selectableFormulas := anObject
-]
-
-{ #category : #accessing }
 PackageFormulasMainUI >> selectedFormulas [
 	"Answer a <Collection> of formulas marked for installation"
 	
@@ -128,7 +114,7 @@ PackageFormulasMainUI >> toolbarActions [
 		description: 'Commands related to toolbar operations and global application behavior';
 		register: (PackageFormulasInstallCommand forSpecContext: self);
 		register: (PackageFormulasBrowseCommand forSpecContext: self);
-		register: (PackageFormulasTestCommand forSpecContext: self);
+		register: (PackageFormulasRecordCommand forSpecContext: self);
 		register: (PackageFormulasUpdateCommand forSpecContext: self);
 		register: (PackageFormulasOptionsCommand forSpecContext: self);				
 		register: (PackageFormulasQuitCommand forSpecContext: self);

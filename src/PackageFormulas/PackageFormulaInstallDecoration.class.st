@@ -42,9 +42,12 @@ PackageFormulaInstallDecoration >> initialize [
 
 { #category : #private }
 PackageFormulaInstallDecoration >> installIn: anAST [
-	"Install the receiver's annotation into anAST"
+	"Install the receiver's annotation into anAST. Answer the new <MetaLink>"
 
-	anAST link: self newLink.
+	| metaLink |
+	metaLink := self newFormulaLink.
+	anAST link: metaLink.
+	^ metaLink
 
 
 ]

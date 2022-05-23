@@ -29,14 +29,14 @@ PackageFormulaExceptionWrapper >> exceptionClass: anObject [
 ]
 
 { #category : #private }
-PackageFormulaExceptionWrapper >> wrapInClass: aClass selector: aSelector [
+PackageFormulaExceptionWrapper >> valueInClass: aClass withSelector: aSelector [
 	" Private - See superimplementor's comment"
 
 	^ String streamContents: [ : stream |
 		stream
 			<< '[ ';
 			cr;
-			<< 	(self next wrapInClass: aClass selector: aSelector);
+			<< 	(self next valueInClass: aClass withSelector: aSelector);
 			cr;
 			<< ' ] on: ';
 			<< self exceptionClass;

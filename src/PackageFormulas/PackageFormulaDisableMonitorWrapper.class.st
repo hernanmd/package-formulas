@@ -8,13 +8,13 @@ Class {
 }
 
 { #category : #private }
-PackageFormulaDisableMonitorWrapper >> wrapInClass: aClass selector: aSelector [
+PackageFormulaDisableMonitorWrapper >> valueInClass: aClass withSelector: aSelector [
 	" Private - See superimplementor's comment"
 
 	^ String streamContents: [ : stream |
 		stream
 			<< 'EpMonitor disableDuring: [ ';
 			cr;
-			<< 	(self next wrapInClass: aClass selector: aSelector);
+			<< 	(self next valueInClass: aClass withSelector: aSelector);
 			<< ' ].' ].
 ]

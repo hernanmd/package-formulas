@@ -101,7 +101,7 @@ PackageFormulasSelectorUI >> initializeSelectableFormulas [
 		addColumn: ((SpCheckBoxTableColumn title: 'Installed' evaluated: [: pragma | pragma isInstalled ])
 				width: 90;
 				yourself);			
-		items: self owner selectableFormulas asSortedCollection;
+		items: OrderedCollection new;
 		whenSelectionChangedDo: [ : selection | 
 			self application propertyAt: #formulaSelection put: selection selectedItem ];
 		contextMenu: [ (self rootCommandsGroup / 'PFSelContextualMenu') beRoot asMenuPresenter ];	
@@ -118,29 +118,18 @@ PackageFormulasSelectorUI >> initializeWindow: aWindowPresenter [
 		windowIcon: self windowIcon
 ]
 
-{ #category : #accessing }
-PackageFormulasSelectorUI >> items: aCollection [ 
-	
-	self formulasTable items: aCollection
-]
-
 { #category : #menu }
 PackageFormulasSelectorUI >> packagesIn: aPackageGroupSymbol [
 	"Private - Answer a <Collection> for pacakges categorized in aPackageGroupSymbol"
 	
-	| pkgPragmaId |
-
-	pkgPragmaId := (aPackageGroupSymbol allSatisfy: #isUppercase)
-		ifFalse: [ aPackageGroupSymbol uncapitalized ]
-		ifTrue: [ aPackageGroupSymbol ].
-	^ PackageFormulas formulasFor: pkgPragmaId
+	^ self application packagesIn: aPackageGroupSymbol
 ]
 
 { #category : #callbacks }
 PackageFormulasSelectorUI >> refreshFormulasSelector: aSelectedCategory [
 	"Private - Category selection has changed, update the displayed formulas"
 
-	self formulasTable items: (self packagesIn: aSelectedCategory) 
+	self formulasTable items: (self packagesIn: aSelectedCategory) asSortedCollection
 ]
 
 { #category : #accessing }
