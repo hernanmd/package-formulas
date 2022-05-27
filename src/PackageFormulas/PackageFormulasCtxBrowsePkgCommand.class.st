@@ -1,35 +1,44 @@
 Class {
-	#name : #PackageFormulasCtxBrowseCommand,
+	#name : #PackageFormulasCtxBrowsePkgCommand,
 	#superclass : #PackageFormulasContextualMenuCommand,
 	#category : #'PackageFormulas-Commands'
 }
 
 { #category : #'accessing - defaults' }
-PackageFormulasCtxBrowseCommand class >> defaultDescription [
+PackageFormulasCtxBrowsePkgCommand class >> defaultDescription [
 
-	^ 'Browse selected formula'
+	^ 'Browse selected formula''s source code'
 ]
 
 { #category : #'accessing - defaults' }
-PackageFormulasCtxBrowseCommand class >> defaultIconName [
+PackageFormulasCtxBrowsePkgCommand class >> defaultIconName [
 
 	^ #glamorousBrowse
 ]
 
 { #category : #'accessing - defaults' }
-PackageFormulasCtxBrowseCommand class >> defaultName [
+PackageFormulasCtxBrowsePkgCommand class >> defaultName [
 
-	^ 'Browse'
+	^ 'Browse Source Code'
 ]
 
 { #category : #executing }
-PackageFormulasCtxBrowseCommand >> execute [
+PackageFormulasCtxBrowsePkgCommand >> canBeExecuted [ 
+
+	^ (self application 
+		propertyAt: #formulaSelection 
+		ifAbsent: [ ^ false ]) isInstalled.
+]
+
+{ #category : #executing }
+PackageFormulasCtxBrowsePkgCommand >> execute [
 	"Private - Inspect the selected pragma"
 
 	| method |
 	
 	self application propertyAt: #formulaSelection ifAbsent: [ ^ self ].
 	method := (self application propertyAt: #formulaSelection) method.
+	self shouldBeImplemented.
 	Smalltalk tools browser
 		openOnClass: method methodClass
 		selector: method selector.

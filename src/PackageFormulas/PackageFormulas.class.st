@@ -8,9 +8,16 @@ Class {
 	#category : #'PackageFormulas-Core'
 }
 
+{ #category : #accessing }
+PackageFormulas class >> @ formulaName [
+	"Answer a <PackageFormula> identified by formulaName <Symbol>"
+	
+	^ (self class >> formulaName) formula
+]
+
 { #category : #formulas }
 PackageFormulas class >> abstractMath [
-	<math>
+	<formula: #math>
 
 	Metacello new 
 		repository: 'github://astares/Pharo-AbstractMath/src';
@@ -20,7 +27,7 @@ PackageFormulas class >> abstractMath [
 
 { #category : #formulas }
 PackageFormulas class >> artefact [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		githubUser: 'pharo-contributions' project: 'Artefact' commitish: 'master' path: 'src';
@@ -30,7 +37,7 @@ PackageFormulas class >> artefact [
 
 { #category : #formulas }
 PackageFormulas class >> autotest [
-	<testing>
+	<formula: #testing>
 
 	Metacello new 
 		repository: 'github://pharo-contributions/Autotest:main/src';
@@ -40,7 +47,7 @@ PackageFormulas class >> autotest [
 
 { #category : #formulas }
 PackageFormulas class >> awsSdkSmalltalk [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		baseline: 'AWS';
@@ -51,7 +58,7 @@ PackageFormulas class >> awsSdkSmalltalk [
 
 { #category : #formulas }
 PackageFormulas class >> bloc [
-	<graphics>
+	<formula: #graphics>
 
 	Metacello new
 		baseline: 'NewBloc';
@@ -61,7 +68,7 @@ PackageFormulas class >> bloc [
 
 { #category : #formulas }
 PackageFormulas class >> blocPac [
-	<graphics>
+	<formula: #graphics>
 
 	Metacello new
 		baseline: 'NewBlocPac';
@@ -71,7 +78,7 @@ PackageFormulas class >> blocPac [
 
 { #category : #formulas }
 PackageFormulas class >> blockStyler [
-	<IDE>
+	<formula: #IDE>
 
 	Metacello new
 		baseline: 'BlockStyler';
@@ -82,7 +89,7 @@ PackageFormulas class >> blockStyler [
 
 { #category : #formulas }
 PackageFormulas class >> boardwalk [
-	<web>
+	<formula: #web>
 
 	Metacello new
 		baseline: 'Boardwalk';
@@ -92,7 +99,7 @@ PackageFormulas class >> boardwalk [
 
 { #category : #formulas }
 PackageFormulas class >> brick [
-	<graphics>
+	<formula: #graphics>
 
 	Metacello new
         baseline: 'NewBrick';
@@ -102,7 +109,7 @@ PackageFormulas class >> brick [
 
 { #category : #formulas }
 PackageFormulas class >> cannon [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		baseline: 'Cannon';
@@ -112,7 +119,7 @@ PackageFormulas class >> cannon [
 
 { #category : #formulas }
 PackageFormulas class >> chanel [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		baseline: 'Chanel';
@@ -122,7 +129,7 @@ PackageFormulas class >> chanel [
 
 { #category : #formulas }
 PackageFormulas class >> collectionExtensions [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
 		githubUser: 'pharo-contributions' project: 'CollectionExtensions' commitish: 'v1.x.x' path: 'src';
@@ -132,7 +139,7 @@ PackageFormulas class >> collectionExtensions [
 
 { #category : #formulas }
 PackageFormulas class >> commonUtils [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		baseline: 'CommonUtils';
@@ -142,7 +149,7 @@ PackageFormulas class >> commonUtils [
 
 { #category : #formulas }
 PackageFormulas class >> compendium [
-	<IDE>
+	<formula: #IDE>
 
 	Metacello new 
 		repository: 'github://astares/Pharo-Compendium/src';
@@ -154,7 +161,7 @@ PackageFormulas class >> compendium [
 
 { #category : #formulas }
 PackageFormulas class >> consultingDetective [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		baseline: 'ConsultingDetective';
@@ -165,7 +172,7 @@ PackageFormulas class >> consultingDetective [
 
 { #category : #formulas }
 PackageFormulas class >> containersArray2D [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
 		baseline: 'ContainersArray2D';
@@ -175,7 +182,7 @@ PackageFormulas class >> containersArray2D [
 
 { #category : #formulas }
 PackageFormulas class >> containersBTree [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
 		baseline: 'ContainersBTree';
@@ -186,7 +193,7 @@ PackageFormulas class >> containersBTree [
 
 { #category : #formulas }
 PackageFormulas class >> containersEssentials [
-	<collections>
+	<formula: #collections>
 
 	[ 
 		Metacello new
@@ -201,7 +208,7 @@ PackageFormulas class >> containersEssentials [
 
 { #category : #formulas }
 PackageFormulas class >> containersGrid [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
 		baseline: 'ContainersGrid';
@@ -212,7 +219,7 @@ PackageFormulas class >> containersGrid [
 
 { #category : #formulas }
 PackageFormulas class >> containersHashTable [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
 		baseline: 'ContainersHashTable';
@@ -222,7 +229,7 @@ PackageFormulas class >> containersHashTable [
 
 { #category : #formulas }
 PackageFormulas class >> containersKeyedTree [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
 		baseline: 'ContainersKeyedTree';
@@ -232,7 +239,7 @@ PackageFormulas class >> containersKeyedTree [
 
 { #category : #formulas }
 PackageFormulas class >> containersLinkedList [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
 		baseline: 'ContainersLinkedList';
@@ -243,7 +250,7 @@ PackageFormulas class >> containersLinkedList [
 
 { #category : #formulas }
 PackageFormulas class >> containersOrderPreservingDictionary [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
 		baseline: 'ContainersOrderPreservingDictionary';
@@ -253,7 +260,7 @@ PackageFormulas class >> containersOrderPreservingDictionary [
 
 { #category : #formulas }
 PackageFormulas class >> containersOrderedMultiMap [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
 		baseline: 'ContainersOrderedMultiMap';	
@@ -264,7 +271,7 @@ PackageFormulas class >> containersOrderedMultiMap [
 
 { #category : #formulas }
 PackageFormulas class >> containersOrderedSet [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
 		baseline: 'ContainersOrderedSet';
@@ -274,7 +281,7 @@ PackageFormulas class >> containersOrderedSet [
 
 { #category : #formulas }
 PackageFormulas class >> containersPropertyEnvironment [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
 		baseline: 'ContainersPropertyEnvironment';
@@ -285,7 +292,7 @@ PackageFormulas class >> containersPropertyEnvironment [
 
 { #category : #formulas }
 PackageFormulas class >> containersQueue [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
  		baseline: 'ContainersQueue';
@@ -295,7 +302,7 @@ PackageFormulas class >> containersQueue [
 
 { #category : #formulas }
 PackageFormulas class >> containersRope [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
 		baseline: 'ContainersRope';
@@ -306,7 +313,7 @@ PackageFormulas class >> containersRope [
 
 { #category : #formulas }
 PackageFormulas class >> containersRunArraye [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
 		baseline: 'ContainersRunArray';
@@ -316,7 +323,7 @@ PackageFormulas class >> containersRunArraye [
 
 { #category : #formulas }
 PackageFormulas class >> containersStack [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
 		baseline: 'ContainersStack';
@@ -326,7 +333,7 @@ PackageFormulas class >> containersStack [
 
 { #category : #formulas }
 PackageFormulas class >> containersTrie [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
 		baseline: 'ContainersTrie';
@@ -336,7 +343,7 @@ PackageFormulas class >> containersTrie [
 
 { #category : #formulas }
 PackageFormulas class >> containersUniqueOrdered [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
 		baseline: 'ContainersUniqueOrdered';
@@ -346,7 +353,7 @@ PackageFormulas class >> containersUniqueOrdered [
 
 { #category : #formulas }
 PackageFormulas class >> cormas [
-	<science>
+	<formula: #science>
 
 	Metacello new
 		baseline: 'Cormas';
@@ -356,7 +363,7 @@ PackageFormulas class >> cormas [
 
 { #category : #formulas }
 PackageFormulas class >> cryptoNacl [
-	<security>
+	<formula: #security>
 
 	Metacello new
 		baseline: 'CryptoNacl';
@@ -366,7 +373,7 @@ PackageFormulas class >> cryptoNacl [
 
 { #category : #formulas }
 PackageFormulas class >> cryptography [
-	<security>
+	<formula: #security>
 
 	Metacello new
 		baseline: 'Cryptography';
@@ -376,7 +383,7 @@ PackageFormulas class >> cryptography [
 
 { #category : #formulas }
 PackageFormulas class >> dataBindings [
-	<web>
+	<formula: #web>
 
 	Metacello new
 		baseline: 'DataBindings';
@@ -387,7 +394,7 @@ PackageFormulas class >> dataBindings [
 
 { #category : #formulas }
 PackageFormulas class >> dataFrame [
-	<science>
+	<formula: #science>
 
 	Metacello new
 		baseline: 'DataFrame';
@@ -397,7 +404,7 @@ PackageFormulas class >> dataFrame [
 
 { #category : #formulas }
 PackageFormulas class >> deepTraverser [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		githubUser: 'pharo-contributions' project: 'DeepTraverser' commitish: 'master' path: 'src';
@@ -407,7 +414,7 @@ PackageFormulas class >> deepTraverser [
 
 { #category : #formulas }
 PackageFormulas class >> documentationSupport [
-	<documentation>
+	<formula: #documentation>
 
 	Metacello new
 		baseline: 'DocumentationSupport';
@@ -417,7 +424,7 @@ PackageFormulas class >> documentationSupport [
 
 { #category : #formulas }
 PackageFormulas class >> elasticsearch [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		baseline: 'Elasticsearch';
@@ -427,7 +434,7 @@ PackageFormulas class >> elasticsearch [
 
 { #category : #formulas }
 PackageFormulas class >> ethel [
-	<web>
+	<formula: #web>
 
 	Metacello new
 		baseline: 'Ethel';
@@ -437,7 +444,7 @@ PackageFormulas class >> ethel [
 
 { #category : #formulas }
 PackageFormulas class >> fame [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		baseline: 'Fame';
@@ -447,7 +454,7 @@ PackageFormulas class >> fame [
 
 { #category : #formulas }
 PackageFormulas class >> famix [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		baseline: 'Famix';
@@ -457,7 +464,7 @@ PackageFormulas class >> famix [
 
 { #category : #formulas }
 PackageFormulas class >> fileLibraryHelper [
-	<web>
+	<formula: #web>
 
     Metacello new
     	githubUser: 'DuneSt' project: 'FileLibraryHelper' commitish: 'v1.x.x' path: 'src';
@@ -468,7 +475,7 @@ PackageFormulas class >> fileLibraryHelper [
 
 { #category : #formulas }
 PackageFormulas class >> fixedDecimal [
-	<math>
+	<formula: #math>
 
 	Metacello new
 		repository: 'github://hernanmd/FixedDecimal/repository';	
@@ -478,7 +485,7 @@ PackageFormulas class >> fixedDecimal [
 
 { #category : #formulas }
 PackageFormulas class >> fog [
-	<blockchain>
+	<formula: #blockchain>
 
 	Metacello new
 		baseline: 'Fog';
@@ -488,7 +495,7 @@ PackageFormulas class >> fog [
 
 { #category : #formulas }
 PackageFormulas class >> fogEvm [
-	<blockchain>
+	<formula: #blockchain>
 
 	Metacello new
 		baseline: 'FogEVM';
@@ -497,17 +504,17 @@ PackageFormulas class >> fogEvm [
 ]
 
 { #category : #accessing }
-PackageFormulas class >> formulasFor: aSymbol [
-	"Answer a <Collection> of <CompiledMethod> of receiver's formulas"
+PackageFormulas class >> for: aSymbol [
+	"Answer a <Collection> of <PackageFormula> matching receiver's formulas in aSymbol category"
 
 	^ PackageFormula 
 		allNamed: aSymbol
-		in: self class.
+		in: self class
 ]
 
 { #category : #formulas }
 PackageFormulas class >> function [
-	<math>
+	<formula: #math>
 
 	Metacello new
 		baseline: 'Function';
@@ -517,7 +524,7 @@ PackageFormulas class >> function [
 
 { #category : #formulas }
 PackageFormulas class >> gadm [
-	<GIS>
+	<formula: #GIS>
 
 	Metacello new
 		repository: 'github://hernanmd/GADM/repository';
@@ -527,7 +534,7 @@ PackageFormulas class >> gadm [
 
 { #category : #formulas }
 PackageFormulas class >> garage [
-	<databases>
+	<formula: #databases>
 
     Metacello new
 		githubUser: 'pharo-rdbms' project: 'garage' commitish: 'master' path: '';
@@ -537,7 +544,7 @@ PackageFormulas class >> garage [
 
 { #category : #formulas }
 PackageFormulas class >> geoJSON [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		baseline: 'GeoJSON';
@@ -547,7 +554,7 @@ PackageFormulas class >> geoJSON [
 
 { #category : #formulas }
 PackageFormulas class >> geoSphere [
-	<GIS>
+	<formula: #GIS>
 
 	Metacello new
 		repository: 'github://akgrant43/GeoSphere/src';
@@ -557,7 +564,7 @@ PackageFormulas class >> geoSphere [
 
 { #category : #formulas }
 PackageFormulas class >> geometry [
-	<math>
+	<formula: #math>
 
 	Metacello new
 		baseline: 'Geometry';
@@ -567,7 +574,7 @@ PackageFormulas class >> geometry [
 
 { #category : #formulas }
 PackageFormulas class >> getText [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		baseline: 'Gettext';
@@ -577,7 +584,7 @@ PackageFormulas class >> getText [
 
 { #category : #formulas }
 PackageFormulas class >> ghost [
-	<IDE>
+	<formula: #IDE>
 
 	Metacello new
 		baseline: 'Ghost';
@@ -588,7 +595,7 @@ PackageFormulas class >> ghost [
 
 { #category : #formulas }
 PackageFormulas class >> graphQl [
-	<web>
+	<formula: #web>
 
 	Metacello new
 		baseline: 'GraphQL';
@@ -598,7 +605,7 @@ PackageFormulas class >> graphQl [
 
 { #category : #formulas }
 PackageFormulas class >> graphViz [
-	<graphics>
+	<formula: #graphics>
 
 	Metacello new
 		baseline: 'GraphViz';
@@ -608,7 +615,7 @@ PackageFormulas class >> graphViz [
 
 { #category : #formulas }
 PackageFormulas class >> grease [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		baseline: 'Grease';
@@ -618,7 +625,7 @@ PackageFormulas class >> grease [
 
 { #category : #formulas }
 PackageFormulas class >> harbour [
-	<IDE>
+	<formula: #IDE>
 
 	Metacello new 
 		repository: 'github://astares/Pharo-Harbour/src';
@@ -630,7 +637,7 @@ PackageFormulas class >> harbour [
 
 { #category : #formulas }
 PackageFormulas class >> hashTable [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
 		githubUser: 'pharo-contributions' project: 'Hashtable' commitish: 'v1.x.x' path: 'src';
@@ -640,7 +647,7 @@ PackageFormulas class >> hashTable [
 
 { #category : #formulas }
 PackageFormulas class >> heimdall [
-	<web>
+	<formula: #web>
 
     Metacello new
     	githubUser: 'DuneSt' project: 'Heimdall' commitish: 'v1.x.x' path: 'src';
@@ -652,7 +659,7 @@ PackageFormulas class >> heimdall [
 
 { #category : #formulas }
 PackageFormulas class >> highchartsSt [
-	<web>
+	<formula: #web>
 
 	Metacello new
 		baseline: 'HighchartsSt';
@@ -662,7 +669,7 @@ PackageFormulas class >> highchartsSt [
 
 { #category : #formulas }
 PackageFormulas class >> hunter [
-	<reverse_engineering>
+	<formula: #reverse_engineering>
 
 	Metacello new
 		baseline: 'Hunter';
@@ -672,7 +679,7 @@ PackageFormulas class >> hunter [
 
 { #category : #formulas }
 PackageFormulas class >> iconFactory [
-	<graphics>
+	<formula: #graphics>
 
 	Metacello new
 		baseline: #IconFactory;
@@ -683,7 +690,7 @@ PackageFormulas class >> iconFactory [
 
 { #category : #formulas }
 PackageFormulas class >> infinity [
-	<math>
+	<formula: #math>
 
 	Metacello new 
 		repository: 'github://astares/Pharo-Infinity/src';
@@ -693,7 +700,7 @@ PackageFormulas class >> infinity [
 
 { #category : #formulas }
 PackageFormulas class >> iterators [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
 		baseline: 'Iterators';
@@ -703,7 +710,7 @@ PackageFormulas class >> iterators [
 
 { #category : #formulas }
 PackageFormulas class >> kobold [
-	<web>
+	<formula: #web>
 
 	Metacello new
 		baseline: 'Kobold';
@@ -713,7 +720,7 @@ PackageFormulas class >> kobold [
 
 { #category : #formulas }
 PackageFormulas class >> mDBaseGenerator [
-	<web>
+	<formula: #web>
 
     Metacello new
     	githubUser: 'DuneSt' project: 'MDBaseGenerator' commitish: 'master' path: 'src';
@@ -723,7 +730,7 @@ PackageFormulas class >> mDBaseGenerator [
 
 { #category : #formulas }
 PackageFormulas class >> magicLiteralsSelector [
-	<IDE>
+	<formula: #IDE>
 
 	Metacello new
 		repository: 'github://juliendelplanque/MagicLiteralsSelector/src';
@@ -734,7 +741,7 @@ PackageFormulas class >> magicLiteralsSelector [
 
 { #category : #formulas }
 PackageFormulas class >> magritte [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		baseline: 'Magritte';
@@ -744,7 +751,7 @@ PackageFormulas class >> magritte [
 
 { #category : #formulas }
 PackageFormulas class >> mathemagics [
-	<math>
+	<formula: #math>
 
 	Gofer new
 		url: 'https://github.com/grpistoia/Mathemagics';
@@ -755,7 +762,7 @@ PackageFormulas class >> mathemagics [
 
 { #category : #formulas }
 PackageFormulas class >> methodProxies [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		baseline: 'MethodProxies';
@@ -765,7 +772,7 @@ PackageFormulas class >> methodProxies [
 
 { #category : #formulas }
 PackageFormulas class >> mirage [
-	<IDE>
+	<formula: #IDE>
 
 	Metacello new
 		repository: 'github://JulienDelplanque/Mirage:dev/src';
@@ -776,7 +783,7 @@ PackageFormulas class >> mirage [
 
 { #category : #formulas }
 PackageFormulas class >> mocketry [
-	<testing>
+	<formula: #testing>
 
 	Metacello new
 		baseline: 'Mocketry';
@@ -786,7 +793,7 @@ PackageFormulas class >> mocketry [
 
 { #category : #formulas }
 PackageFormulas class >> mqtt [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		repository: 'github://svenvc/mqtt/repository';
@@ -797,7 +804,7 @@ PackageFormulas class >> mqtt [
 
 { #category : #formulas }
 PackageFormulas class >> mustache [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		baseline: 'Mustache';
@@ -807,7 +814,7 @@ PackageFormulas class >> mustache [
 
 { #category : #formulas }
 PackageFormulas class >> mutalk [
-	<testing>
+	<formula: #testing>
 
 	Metacello new
 		baseline: 'MuTalk';
@@ -817,7 +824,7 @@ PackageFormulas class >> mutalk [
 
 { #category : #formulas }
 PackageFormulas class >> neoCsv [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		baseline: 'NeoCSV';
@@ -827,7 +834,8 @@ PackageFormulas class >> neoCsv [
 
 { #category : #formulas }
 PackageFormulas class >> neoJson [
-	<general>
+	<formula: #general>
+	<formula: #parsing>
 
 	Metacello new
 		baseline: 'NeoJSON';
@@ -837,7 +845,7 @@ PackageFormulas class >> neoJson [
 
 { #category : #formulas }
 PackageFormulas class >> openApi [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		baseline: 'OpenAPI';
@@ -847,7 +855,7 @@ PackageFormulas class >> openApi [
 
 { #category : #formulas }
 PackageFormulas class >> orderPreservingDictionary [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
 		baseline: 'OrderPreservingDictionary';
@@ -857,7 +865,7 @@ PackageFormulas class >> orderPreservingDictionary [
 
 { #category : #formulas }
 PackageFormulas class >> osSubprocess [
-	<general>
+	<formula: #general>
 
 	Metacello new
  		baseline: 'OSSubprocess';
@@ -868,7 +876,7 @@ PackageFormulas class >> osSubprocess [
 
 { #category : #formulas }
 PackageFormulas class >> pastell [
-	<XML>
+	<formula: #XML>
 
 	Metacello new
 		baseline: 'Pastell';
@@ -878,7 +886,7 @@ PackageFormulas class >> pastell [
 
 { #category : #formulas }
 PackageFormulas class >> petitParser [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		baseline: 'PetitParser';
@@ -889,7 +897,7 @@ PackageFormulas class >> petitParser [
 
 { #category : #formulas }
 PackageFormulas class >> pharoEnhacements [
-	<IDE>
+	<formula: #IDE>
 
 	Metacello new
 		baseline: 'PharoEnhancements';
@@ -900,7 +908,7 @@ PackageFormulas class >> pharoEnhacements [
 
 { #category : #formulas }
 PackageFormulas class >> pharoI18n [
-	<IDE>
+	<formula: #IDE>
 
 	Metacello new
 		baseline: 'I18N';
@@ -911,7 +919,7 @@ PackageFormulas class >> pharoI18n [
 
 { #category : #formulas }
 PackageFormulas class >> pharoODBC [
-	<databases>
+	<formula: #databases>
 
 	Metacello new
 		repository: 'github://pharo-rdbms/Pharo-ODBC/src';
@@ -921,7 +929,7 @@ PackageFormulas class >> pharoODBC [
 
 { #category : #formulas }
 PackageFormulas class >> pharoSQLite3 [
-	<databases>
+	<formula: #databases>
 
 	Metacello new
 		repository: 'github://pharo-rdbms/Pharo-SQLite3/src';
@@ -931,7 +939,7 @@ PackageFormulas class >> pharoSQLite3 [
 
 { #category : #formulas }
 PackageFormulas class >> polyMath [
-	<science>
+	<formula: #science>
 
 	Metacello new
 		baseline: 'PolyMath';
@@ -941,7 +949,7 @@ PackageFormulas class >> polyMath [
 
 { #category : #formulas }
 PackageFormulas class >> projectFramework [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		baseline: 'ProjectFramework';
@@ -951,7 +959,7 @@ PackageFormulas class >> projectFramework [
 
 { #category : #formulas }
 PackageFormulas class >> punQLite [
-	<databases>
+	<formula: #databases>
 
 	Metacello new 
 		repository: 'github://pharo-nosql/PunQLite/repository';
@@ -961,7 +969,7 @@ PackageFormulas class >> punQLite [
 
 { #category : #formulas }
 PackageFormulas class >> quickAccess [
-	<IDE>
+	<formula: #IDE>
 
 	Metacello new 
 		repository: 'github://astares/Pharo-QuickAccess/src';
@@ -972,7 +980,7 @@ PackageFormulas class >> quickAccess [
 
 { #category : #formulas }
 PackageFormulas class >> sState [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		baseline: 'SState';
@@ -982,7 +990,7 @@ PackageFormulas class >> sState [
 
 { #category : #formulas }
 PackageFormulas class >> scheduler [
-	<general>
+	<formula: #general>
 
 	Metacello new 
 		repository: 'github://pharo-contributions/Scheduler/src';
@@ -992,7 +1000,7 @@ PackageFormulas class >> scheduler [
 
 { #category : #formulas }
 PackageFormulas class >> seamless [
-	<IDE>
+	<formula: #IDE>
 
 	Metacello new
 		baseline: 'Seamless';
@@ -1002,7 +1010,7 @@ PackageFormulas class >> seamless [
 
 { #category : #formulas }
 PackageFormulas class >> seaside [
-	<web>
+	<formula: #web>
 
 	Metacello new
 		baseline:'Seaside3';
@@ -1012,7 +1020,7 @@ PackageFormulas class >> seaside [
 
 { #category : #formulas }
 PackageFormulas class >> seasideQuasar [
-	<web>
+	<formula: #web>
 
 	Metacello new
 		repository: 'github://yannij/Seaside-Quasar:main/src';
@@ -1024,7 +1032,7 @@ PackageFormulas class >> seasideQuasar [
 
 { #category : #formulas }
 PackageFormulas class >> smartTest [
-	<testing>
+	<formula: #testing>
 
 	Metacello new
 		baseline: #SmartTest;
@@ -1035,7 +1043,7 @@ PackageFormulas class >> smartTest [
 
 { #category : #formulas }
 PackageFormulas class >> soup [
-	<web>
+	<formula: #web>
 
 	Metacello new
 		baseline: 'Soup';
@@ -1045,7 +1053,7 @@ PackageFormulas class >> soup [
 
 { #category : #formulas }
 PackageFormulas class >> sparta [
-	<graphics>
+	<formula: #graphics>
 
 	Metacello new
 		baseline: 'Sparta';
@@ -1056,7 +1064,7 @@ PackageFormulas class >> sparta [
 
 { #category : #formulas }
 PackageFormulas class >> stringExtensions [
-	<collections>
+	<formula: #collections>
 
 	Metacello new
 		baseline: 'StringExtensions';
@@ -1066,7 +1074,7 @@ PackageFormulas class >> stringExtensions [
 
 { #category : #formulas }
 PackageFormulas class >> systemInteraction [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		baseline: 'SystemInteraction';
@@ -1076,7 +1084,7 @@ PackageFormulas class >> systemInteraction [
 
 { #category : #formulas }
 PackageFormulas class >> tasksLogger [
-	<web>
+	<formula: #web>
 
 	Metacello new
 		baseline: 'TasksLogger';
@@ -1087,7 +1095,7 @@ PackageFormulas class >> tasksLogger [
 
 { #category : #formulas }
 PackageFormulas class >> tealight [
-	<web>
+	<formula: #web>
 
 	Metacello new 
 		repository: 'github://astares/Tealight/repository';
@@ -1097,7 +1105,7 @@ PackageFormulas class >> tealight [
 
 { #category : #formulas }
 PackageFormulas class >> telePharoClient [
-	<IDE>
+	<formula: #IDE>
 
 	Metacello new
 		baseline: 'TelePharo';
@@ -1107,7 +1115,7 @@ PackageFormulas class >> telePharoClient [
 
 { #category : #formulas }
 PackageFormulas class >> telePharoServer [
-	<IDE>
+	<formula: #IDE>
 
 	Metacello new
 		baseline: 'TelePharo';
@@ -1117,7 +1125,7 @@ PackageFormulas class >> telePharoServer [
 
 { #category : #formulas }
 PackageFormulas class >> treeQuery [
-	<general>
+	<formula: #general>
 
 	Metacello new
 		repository: 'github://JulienDelplanque/TreeQuery/src';
@@ -1127,7 +1135,7 @@ PackageFormulas class >> treeQuery [
 
 { #category : #formulas }
 PackageFormulas class >> turbo [
-	<IDE>
+	<formula: #IDE>
 
 	Metacello new
 		baseline: 'Turbo';
@@ -1137,7 +1145,7 @@ PackageFormulas class >> turbo [
 
 { #category : #formulas }
 PackageFormulas class >> voyageEjdb [
-	<databases>
+	<formula: #databases>
 
 	Metacello new 
 		repository: 'github://pharo-nosql/voyage/mc';
@@ -1147,7 +1155,7 @@ PackageFormulas class >> voyageEjdb [
 
 { #category : #formulas }
 PackageFormulas class >> voyageMongo [
-	<databases>
+	<formula: #databases>
 
 	Metacello new 
 		repository: 'github://pharo-nosql/voyage/mc';
@@ -1157,7 +1165,7 @@ PackageFormulas class >> voyageMongo [
 
 { #category : #formulas }
 PackageFormulas class >> workflow [
-	<science>
+	<formula: #science>
 
 	Metacello new
 		baseline: #Workflow;
@@ -1167,7 +1175,7 @@ PackageFormulas class >> workflow [
 
 { #category : #formulas }
 PackageFormulas class >> xPath [
-	<XML>
+	<formula: #XML>
 
 	Metacello new
 		baseline: 'XPath';
@@ -1178,7 +1186,7 @@ PackageFormulas class >> xPath [
 
 { #category : #formulas }
 PackageFormulas class >> xmlParser [
-	<XML>
+	<formula: #XML>
 
 	Metacello new
 		baseline: 'XMLParser';
@@ -1189,7 +1197,7 @@ PackageFormulas class >> xmlParser [
 
 { #category : #formulas }
 PackageFormulas class >> xmlParserHTML [
-	<XML>
+	<formula: #XML>
 
 	Metacello new
 		baseline: 'XMLParserHTML';
@@ -1200,7 +1208,7 @@ PackageFormulas class >> xmlParserHTML [
 
 { #category : #formulas }
 PackageFormulas class >> xmlParserStAX [
-	<XML>
+	<formula: #XML>
 
 	Metacello new
 		baseline: 'XMLParserStAX';
@@ -1210,7 +1218,7 @@ PackageFormulas class >> xmlParserStAX [
 
 { #category : #formulas }
 PackageFormulas class >> xmlWriter [
-	<XML>
+	<formula: #XML>
 
 	Metacello new
 		baseline: 'XMLWriter';

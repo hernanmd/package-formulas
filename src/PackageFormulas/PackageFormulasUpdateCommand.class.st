@@ -24,7 +24,7 @@ PackageFormulasUpdateCommand class >> defaultName [
 
 { #category : #execution }
 PackageFormulasUpdateCommand >> execute [
-	"Try to update the Environment Profiles application"
+	"Try to update the application"
 
 	PackageFormulasApp updateApp.
 	self inform: 'Done'

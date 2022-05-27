@@ -31,14 +31,14 @@ PackageFormulasTest >> testFormulasFor [
 
 	| someFormulas |
 	
-	someFormulas := PackageFormulas formulasFor: #general.
+	someFormulas := PackageFormulas for: #general.
 
 	self
 		assert: someFormulas notEmpty
 		description: 'It tests there are already general package formulas available'.
 	
 	self
-		assert: (someFormulas allSatisfy: [ : each | each isKindOf: Pragma ])
+		assert: (someFormulas allSatisfy: [ : each | each isKindOf: PackageFormula ])
 		description: 'It tests all retrieved formulas are package formula'
 ]
 

@@ -40,18 +40,18 @@ PackageCategoriesCtxBrowseCommand >> execute [
 PackageCategoriesCtxBrowseCommand >> messageListForCategory: aString [ 
 	"Private - Answer a <Collection> of <CompiledMethod> including a pragma named aString.
 	See PackageFormula for rules for naming formulas through pragmas"
-	| formulasContainer pragmas |
+	| formulasContainer formulas |
 	
 	formulasContainer := self application formulasContainer.
-	pragmas := aString isUppercase
+	formulas := (aString allSatisfy: #isUppercase)
 		ifFalse: [ 
-			Pragma 
+			PackageFormula 
 				allNamed: aString uncapitalized 
 				in: formulasContainer class ]
 		ifTrue: [ 
-			Pragma 
-				allNamed: aString asLowercase
+			PackageFormula 
+				allNamed: aString
 				in: formulasContainer class
 			 ].
-	^ pragmas collect: #method.
+	^ formulas collect: #method.
 ]

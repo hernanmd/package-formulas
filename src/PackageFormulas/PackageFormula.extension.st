@@ -2,17 +2,17 @@ Extension { #name : #PackageFormula }
 
 { #category : #'*PackageFormulas' }
 PackageFormula class >> allIn: aClass [
-	"Answer a <Collection> of receiver's instances found in aClass"
+	"Answer a <Collection> of <PackageFormula> found in aClass"
 
-	^ (aClass methods select: #hasPragma) collect: #pragmas
+	^ (aClass methods select: #hasPragma) collect: #formula
 ]
 
 { #category : #'*PackageFormulas' }
 PackageFormula class >> allNamed: aSymbol in: aClass [
-	"Answer a collection of all pragmas found in methods of aClass whose selector is aSymbol."
+	"Answer a <Collection> of all package formulas found in methods of aClass whose selector is aSymbol."
 	
 	^ Array streamContents: [ :stream |
-		 aClass formulasDo: [ :pragma |
-			pragma selector = aSymbol
-				ifTrue: [ stream nextPut: pragma ] ] ]
+		 aClass formulasDo: [ : formula |
+			(formula categories includes: aSymbol)
+				ifTrue: [ stream nextPut: formula ] ] ]
 ]

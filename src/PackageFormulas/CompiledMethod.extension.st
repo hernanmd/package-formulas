@@ -1,9 +1,18 @@
 Extension { #name : #CompiledMethod }
 
 { #category : #'*PackageFormulas' }
-CompiledMethod >> formulasDo: aFullBlockClosure [
-	| selectorOrProperties |
+CompiledMethod >> formula [
+	"Answer the receiver's <PackageFormula>"
 
-	(selectorOrProperties := self penultimateLiteral) isMethodProperties
-		ifTrue: [ selectorOrProperties formulasDo: aFullBlockClosure ]
+	| additionalMethodState |
+
+	(additionalMethodState := self penultimateLiteral) isPackageFormula
+		ifTrue: [ ^ additionalMethodState formula ]
+]
+
+{ #category : #'*PackageFormulas' }
+CompiledMethod >> hasPackageFormula [
+	"Answer <true> if the recevier contains a pragma defining a PackageFormula"
+
+	^ self hasPragmaNamed: #formula:
 ]

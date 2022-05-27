@@ -75,9 +75,7 @@ PackageFormulasApp >> formulas [
 PackageFormulasApp >> formulasCategories [
 	"Answer a <Collection> of <String> each describing a formula category"
 
-	^ (self formulas
-		flatCollect: [ : pragmaArray | pragmaArray collect: #selector ]
-		as: Set) collect: [ : pragmaSelector | pragmaSelector capitalized ]
+	^ (self formulas flatCollect: #categories as: Set) collect: #capitalized
 ]
 
 { #category : #queries }
@@ -109,7 +107,7 @@ PackageFormulasApp >> packagesIn: aPackageGroupSymbol [
 	pkgPragmaId := (aPackageGroupSymbol allSatisfy: #isUppercase)
 		ifFalse: [ aPackageGroupSymbol uncapitalized ]
 		ifTrue: [ aPackageGroupSymbol ].
-	^ PackageFormulas formulasFor: pkgPragmaId
+	^ PackageFormulas for: pkgPragmaId
 ]
 
 { #category : #accessing }

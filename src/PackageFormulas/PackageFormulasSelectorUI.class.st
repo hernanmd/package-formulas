@@ -47,10 +47,18 @@ PackageFormulasSelectorUI class >> buildRepositoryOperationsGroupWith: presenter
 PackageFormulasSelectorUI class >> buildSelectionOperationsGroupWith: presenterInstance [
 
 	^ (CmCommandGroup named: 'SelectionOperationsMenu') asSpecGroup
-		register: ((PackageFormulasCtxBrowseCommand
+		register: ((PackageFormulasCtxBrowseFormulaCommand
 			forSpecWithIconNamed: #glamorousBrowse
 			shortcutKey: 'B' asShortcut) 
-				context: presenterInstance);		
+				context: presenterInstance);
+		register: ((PackageFormulasCtxBrowseBaselineCommand
+			forSpecWithIconNamed: #glamorousBrowse
+			shortcutKey: 'M' asShortcut) 
+				context: presenterInstance);				
+		register: ((PackageFormulasCtxBrowsePkgCommand
+			forSpecWithIconNamed: #glamorousBrowse
+			shortcutKey: 'S' asShortcut) 
+				context: presenterInstance);					
 		register: ((PackageFormulasCtxSelectAllCommand
 			forSpecWithIconNamed: #checkedBox
 			shortcutKey: 'A' asShortcut) 
@@ -92,13 +100,16 @@ PackageFormulasSelectorUI >> initializeSelectableFormulas [
 	formulasTable
 		addColumn:
 			((SpCheckBoxTableColumn title: '' evaluated: [ :pragma | self selectedFormulas includes: pragma ])
-				onActivation: [ :pragma | pragma isInstalled ifFalse: [ self selectedFormulas add: pragma ] ];
+				onActivation: [ :pragma | pragma hasBaseline ifFalse: [ self selectedFormulas add: pragma ] ];
 				onDeactivation: [ : formulas | self removeSelections: formulas ];
 				beNotExpandable;
 				width: 20;
 				yourself);	
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: [: p | p method selector capitalized ]);
-		addColumn: ((SpCheckBoxTableColumn title: 'Installed' evaluated: [: pragma | pragma isInstalled ])
+		addColumn: ((SpCheckBoxTableColumn title: 'Installed' evaluated: [: formula | formula isInstalled ])
+				width: 90;
+				yourself);		
+		addColumn: ((SpCheckBoxTableColumn title: 'Baseline' evaluated: [: formula | formula hasBaseline ])
 				width: 90;
 				yourself);			
 		items: OrderedCollection new;

@@ -35,15 +35,13 @@ PackageFormulasBrowseCommand >> canBeExecuted [
 
 { #category : #execution }
 PackageFormulasBrowseCommand >> execute [
-	"Private - Inspect the selected pragma"
+	"Private - Inspect the selected formula"
 
-	| method |
-	
-	self application propertyAt: #formulaSelection ifAbsent: [ ^ self ].
-	method := (self application propertyAt: #formulaSelection) method.
-	Smalltalk tools browser
-		openOnClass: method methodClass
-		selector: method selector.
-
+	self application propertyAt: #formulaSelection 
+		ifPresent: [ : p | 
+			p ifNotNil: [ 
+				Smalltalk tools browser
+					openOnClass: p method methodClass
+					selector: p method selector ] ]
 
 ]

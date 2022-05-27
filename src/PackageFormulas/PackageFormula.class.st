@@ -22,27 +22,27 @@ Class {
 	#name : #PackageFormula,
 	#superclass : #Pragma,
 	#instVars : [
-		'packageInstaller',
-		'decoration'
+		'decoration',
+		'categories'
 	],
 	#category : #'PackageFormulas-Core'
 }
 
 { #category : #'*PackageFormulas' }
 PackageFormula class >> allIn: aClass [
-	"Answer a <Collection> of receiver's instances found in aClass"
+	"Answer a <Collection> of <PackageFormula> found in aClass"
 
-	^ (aClass methods select: #hasPragma) collect: #pragmas
+	^ (aClass methods select: #hasPragma) collect: #formula
 ]
 
 { #category : #'*PackageFormulas' }
 PackageFormula class >> allNamed: aSymbol in: aClass [
-	"Answer a collection of all pragmas found in methods of aClass whose selector is aSymbol."
+	"Answer a <Collection> of all package formulas found in methods of aClass whose selector is aSymbol."
 	
 	^ Array streamContents: [ :stream |
-		 aClass formulasDo: [ :pragma |
-			pragma selector = aSymbol
-				ifTrue: [ stream nextPut: pragma ] ] ]
+		 aClass formulasDo: [ : formula |
+			(formula categories includes: aSymbol)
+				ifTrue: [ stream nextPut: formula ] ] ]
 ]
 
 { #category : #'instance creation' }
@@ -73,7 +73,7 @@ PackageFormula >> addDecoration: aDecoration [
 		previous := current.
 		current := current next ].
 	aDecoration setNext: current.
-	previous isNil
+	previous
 		ifNil: [ self decoration: aDecoration ]
 		ifNotNil: [ previous setNext: aDecoration ].
 	^ aDecoration
@@ -103,6 +103,19 @@ PackageFormula >> buildHTTPHomeLink: url [
 			  << (url directory copyUpTo: $:) ]
 ]
 
+{ #category : #accessing }
+PackageFormula >> categories [
+
+	^ categories
+		ifNil: [ categories := OrderedCollection new ]
+]
+
+{ #category : #accessing }
+PackageFormula >> categories: anObject [
+
+	categories := anObject
+]
+
 { #category : #'accessing - decorators' }
 PackageFormula >> decoration [
 
@@ -127,6 +140,21 @@ PackageFormula >> decorations [
 		result add: current.
 		current := current next ].
 	^ result
+]
+
+{ #category : #testing }
+PackageFormula >> hasBaseline [
+	"Answer <true> if receiver's method, assumed to be a Metacello install expression, is installed in the receiver"
+
+	| extractedTree baselineName |
+	
+	extractedTree := RBParseTreeSearcher 
+		treeMatching: '``@anything baseline: ``@args' 
+		in: self method ast.
+	extractedTree ifNotNil: [ 
+		baselineName := extractedTree arguments anyOne.
+		^ Smalltalk hasClassNamed: 'BaselineOf' , baselineName value ].
+	^ false
 ]
 
 { #category : #initialization }
@@ -164,8 +192,10 @@ PackageFormula >> isInstalled [
 		treeMatching: '``@anything baseline: ``@args' 
 		in: self method ast.
 	extractedTree ifNotNil: [ 
+		| pkgRepository |
 		baselineName := extractedTree arguments anyOne.
-		^ Smalltalk hasClassNamed: 'BaselineOf' , baselineName value ].
+		pkgRepository := IceRepository registry detect: [ : r | r name = baselineName value ] ifNone: [ ^ false ].
+		^ pkgRepository loadedPackages anySatisfy: [:aPackage | aPackage name = baselineName value ] ].
 	^ false
 ]
 
@@ -189,7 +219,9 @@ PackageFormula >> parseFromGitHubShortcut [
 { #category : #printing }
 PackageFormula >> printOn: aStream [
 
-	aStream << self method asString
+	aStream 
+		<< 'Formula: ';
+		<< self method asString
 ]
 
 { #category : #accessing }
