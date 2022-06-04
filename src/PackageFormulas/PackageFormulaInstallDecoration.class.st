@@ -7,13 +7,6 @@ Class {
 	#category : #'PackageFormulas-Core'
 }
 
-{ #category : #private }
-PackageFormulaInstallDecoration >> basicInstallExpression: aClass selector: aSelector [
-	"Answer a <String> representing a package installation expression as originally provided by a package author"
-	
-	^ (aClass class >> aSelector) ast body sourceCode
-]
-
 { #category : #'accessing - deco' }
 PackageFormulaInstallDecoration >> build [
 

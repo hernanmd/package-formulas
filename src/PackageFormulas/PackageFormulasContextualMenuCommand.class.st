@@ -6,6 +6,9 @@ Subclasses implement behavior accessible through right-click menus in the formul
 Class {
 	#name : #PackageFormulasContextualMenuCommand,
 	#superclass : #CmCommand,
+	#instVars : [
+		'querier'
+	],
 	#category : #'PackageFormulas-Commands'
 }
 
@@ -31,4 +34,12 @@ PackageFormulasContextualMenuCommand >> formulasTableColumns [
 PackageFormulasContextualMenuCommand >> formulasTableItems [
 
 	^ 	self formulasTable items
+]
+
+{ #category : #accessing }
+PackageFormulasContextualMenuCommand >> querier [
+	"Answer the receiver's object to make queries to package formulas"
+	
+	^ querier
+		ifNil: [ querier := PackageFormulaBaselineQuerier new ]
 ]

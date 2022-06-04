@@ -31,7 +31,7 @@ PackageFormulasInstallCommand >> canBeExecuted [
 	^ self selectedFormulas notEmpty
 ]
 
-{ #category : #execution }
+{ #category : #executing }
 PackageFormulasInstallCommand >> execute [
 	"Install all selected formulas in the receiver"
 

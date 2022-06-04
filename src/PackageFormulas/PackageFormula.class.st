@@ -201,6 +201,7 @@ PackageFormula >> isInstalled [
 
 { #category : #parsing }
 PackageFormula >> parseFromGitHubExtendedShortcut [
+	"Parse an alternative usage of Metacello install expressions"
 
 	^ ((RBParseTreeSearcher
 		    treeMatching: '``@anything githubUser: ``@arg1 project: ``@arg2 commitish: ``@arg3 path: ``@arg4'
