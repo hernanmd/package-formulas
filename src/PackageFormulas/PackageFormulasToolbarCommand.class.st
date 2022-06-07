@@ -41,3 +41,9 @@ PackageFormulasToolbarCommand >> selectedFormulas [
 
 	^ self context selectedFormulas
 ]
+
+{ #category : #accessing }
+PackageFormulasToolbarCommand >> stBrowser [
+
+	^ Smalltalk tools browser
+]

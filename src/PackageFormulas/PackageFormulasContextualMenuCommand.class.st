@@ -43,3 +43,9 @@ PackageFormulasContextualMenuCommand >> querier [
 	^ querier
 		ifNil: [ querier := PackageFormulaBaselineQuerier new ]
 ]
+
+{ #category : #accessing }
+PackageFormulasContextualMenuCommand >> stBrowser [
+
+	^ Smalltalk tools browser
+]

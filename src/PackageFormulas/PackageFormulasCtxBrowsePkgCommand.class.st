@@ -32,16 +32,13 @@ PackageFormulasCtxBrowsePkgCommand >> canBeExecuted [
 
 { #category : #executing }
 PackageFormulasCtxBrowsePkgCommand >> execute [
-	"Private - Inspect the selected pragma"
+	"Private - Open a Smalltalk browser on the selected pragma"
 
 	| method |
 	
 	self application propertyAt: #formulaSelection ifAbsent: [ ^ self ].
 	method := (self application propertyAt: #formulaSelection) method.
-	self shouldBeImplemented.
-	Smalltalk tools browser
-		openOnClass: method methodClass
-		selector: method selector.
-
+	self querier packageFormula: method.
+	self stBrowser openOnPackage: self querier package
 
 ]

@@ -41,7 +41,7 @@ PackageFormulasCtxBrowseBaselineCommand >> execute [
 	self querier packageFormula: method.
 	self querier baselineName
 		ifNotEmpty: [ : baselineName |
-			Smalltalk tools browser
+			self stBrowser
 				openOnClass: ('BaselineOf' , baselineName) asClass
 				selector: #baseline: ]
 

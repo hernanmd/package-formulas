@@ -23,6 +23,13 @@ PackageFormulaBaselineQuerier >> baselineName [
 			ifNotEmpty: [ : args | args first value ]
 ]
 
+{ #category : #baselines }
+PackageFormulaBaselineQuerier >> package [
+	"Answer the <RPackage> of the receiver's package name"
+	
+	^ self baselineName asPackage
+]
+
 { #category : #accessing }
 PackageFormulaBaselineQuerier >> packageFormula [
 

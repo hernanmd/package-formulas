@@ -40,7 +40,7 @@ PackageFormulasBrowseCommand >> execute [
 	self application propertyAt: #formulaSelection 
 		ifPresent: [ : p | 
 			p ifNotNil: [ 
-				Smalltalk tools browser
+				self stBrowser
 					openOnClass: p method methodClass
 					selector: p method selector ] ]
 

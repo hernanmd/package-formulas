@@ -30,7 +30,7 @@ PackageFormulasCtxBrowseFormulaCommand >> execute [
 	
 	self application propertyAt: #formulaSelection ifAbsent: [ ^ self ].
 	method := (self application propertyAt: #formulaSelection) method.
-	Smalltalk tools browser
+	self stBrowser
 		openOnClass: method methodClass
 		selector: method selector.
 
