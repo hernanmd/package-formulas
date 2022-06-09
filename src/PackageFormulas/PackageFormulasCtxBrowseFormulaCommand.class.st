@@ -1,3 +1,7 @@
+"
+Command to open a code browser on the selected formula, currently a method defining a Metacello install expression.
+
+"
 Class {
 	#name : #PackageFormulasCtxBrowseFormulaCommand,
 	#superclass : #PackageFormulasContextualMenuCommand,

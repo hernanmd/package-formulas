@@ -313,3 +313,9 @@ PackageFormula >> webLinkHome [
 		             ifNil: [ self parseFromGitHubExtendedShortcut ].
 	^ self buildHTTPHomeLink: urlString asZnUrl
 ]
+
+{ #category : #'accessing - cursor' }
+PackageFormula >> webLinkIssues [
+	
+	^ self webLinkHome , '/issues'
+]

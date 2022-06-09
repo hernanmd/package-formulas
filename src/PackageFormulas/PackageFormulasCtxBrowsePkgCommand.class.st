@@ -1,3 +1,6 @@
+"
+Command to open a code browser on the receiver's context (selected formula package).
+"
 Class {
 	#name : #PackageFormulasCtxBrowsePkgCommand,
 	#superclass : #PackageFormulasContextualMenuCommand,

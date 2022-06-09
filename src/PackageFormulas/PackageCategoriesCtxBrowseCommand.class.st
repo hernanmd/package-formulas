@@ -1,3 +1,6 @@
+"
+Command to open a message list browser listing all the formulas which belong to the receiver's category.
+"
 Class {
 	#name : #PackageCategoriesCtxBrowseCommand,
 	#superclass : #PackageCategoriesContextualMenuCommand,
@@ -40,18 +43,11 @@ PackageCategoriesCtxBrowseCommand >> execute [
 PackageCategoriesCtxBrowseCommand >> messageListForCategory: aString [ 
 	"Private - Answer a <Collection> of <CompiledMethod> including a pragma named aString.
 	See PackageFormula for rules for naming formulas through pragmas"
-	| formulasContainer formulas |
+	| formulasContainer formulaName |
 	
 	formulasContainer := self application formulasContainer.
-	formulas := (aString allSatisfy: #isUppercase)
-		ifFalse: [ 
-			PackageFormula 
-				allNamed: aString uncapitalized 
-				in: formulasContainer class ]
-		ifTrue: [ 
-			PackageFormula 
-				allNamed: aString
-				in: formulasContainer class
-			 ].
-	^ formulas collect: #method.
+	formulaName := 	aString.
+	(aString allSatisfy: #isUppercase)
+		ifFalse: [ formulaName := aString uncapitalized ].
+	^ (PackageFormula allNamed: formulaName in: formulasContainer class) collect: #method.
 ]

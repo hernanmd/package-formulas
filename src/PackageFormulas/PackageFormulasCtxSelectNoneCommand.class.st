@@ -1,3 +1,7 @@
+"
+Command to unselect all the displayed formulas in the receiver's context.
+
+"
 Class {
 	#name : #PackageFormulasCtxSelectNoneCommand,
 	#superclass : #PackageFormulasContextualMenuCommand,

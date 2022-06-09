@@ -26,6 +26,6 @@ PackageFormulasHelpCommand class >> defaultName [
 PackageFormulasHelpCommand >> execute [
 	"Open a Help"
 
-	PackageFormulasApp openHelp.
+	PackageFormulasHelp open.
 
 ]

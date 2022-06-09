@@ -1,3 +1,6 @@
+"
+Command to open a web browser in the context receiver's selection.
+"
 Class {
 	#name : #PackageFormulasCtxOpenIssueCommand,
 	#superclass : #PackageFormulasContextualMenuCommand,

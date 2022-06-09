@@ -1,3 +1,6 @@
+"
+Command to open a code browser on the selected formula Baseline class (if installed).
+"
 Class {
 	#name : #PackageFormulasCtxBrowseBaselineCommand,
 	#superclass : #PackageFormulasContextualMenuCommand,

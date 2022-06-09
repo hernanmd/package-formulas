@@ -1,3 +1,6 @@
+"
+Command to select all the displayed formulas in the receiver's context.
+"
 Class {
 	#name : #PackageFormulasCtxSelectAllCommand,
 	#superclass : #PackageFormulasContextualMenuCommand,
