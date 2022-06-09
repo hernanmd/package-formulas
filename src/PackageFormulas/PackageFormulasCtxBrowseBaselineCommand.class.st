@@ -42,8 +42,9 @@ PackageFormulasCtxBrowseBaselineCommand >> execute [
 	self querier baselineName
 		ifNotEmpty: [ : baselineName |
 			self stBrowser
-				openOnClass: ('BaselineOf' , baselineName) asClass
+				openOnClass: (self class environment at: ('BaselineOf' , baselineName) asSymbol)
 				selector: #baseline: ]
+		ifEmpty: [ self inform: 'Baseline name not found!' ]
 
 
 ]

@@ -49,3 +49,9 @@ PackageFormulasContextualMenuCommand >> stBrowser [
 
 	^ Smalltalk tools browser
 ]
+
+{ #category : #accessing }
+PackageFormulasContextualMenuCommand >> webBrowser [
+
+	^ WebBrowser
+]

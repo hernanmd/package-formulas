@@ -19,6 +19,13 @@ Class {
 	#category : #'PackageFormulas-UI'
 }
 
+{ #category : #accessing }
+PackageFormulasApp class >> appLocalWorkingDirectory [
+	"Answer a <FileReference> pointing to the local application directory"
+
+	^ (FileLocator workingDirectory / 'github-cache' / self repositoryOwnerDirectory / 'PackageFormulas' )
+]
+
 { #category : #private }
 PackageFormulasApp class >> menuPackageFormulasOn: aBuilder [
 	<worldMenu>
@@ -33,13 +40,18 @@ PackageFormulasApp class >> menuPackageFormulasOn: aBuilder [
 ]
 
 { #category : #accessing }
+PackageFormulasApp class >> repositoryOwnerDirectory [
+
+	^ 'hernanmd'
+]
+
+{ #category : #accessing }
 PackageFormulasApp class >> updateApp [
 	UIManager default
 		informUserDuring: [ :bar | 
 			bar label: 'Removing cached repository from github-cache'.
 			bar current: 0.
-			(FileLocator workingDirectory / 'github-cache' / 'hernanmd' / 'environment-profiles')
-				ensureDeleteAll.
+			self appLocalWorkingDirectory ensureDeleteAll.
 			bar label: 'Updating baseline definition'.
 			bar current: 0.33.
 			Iceberg enableMetacelloIntegration ifFalse: [ 

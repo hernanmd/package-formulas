@@ -25,6 +25,9 @@ Class {
 		'decoration',
 		'categories'
 	],
+	#classVars : [
+		'RepositorySchemas'
+	],
 	#category : #'PackageFormulas-Core'
 }
 
@@ -45,6 +48,21 @@ PackageFormula class >> allNamed: aSymbol in: aClass [
 				ifTrue: [ stream nextPut: formula ] ] ]
 ]
 
+{ #category : #'as yet unclassified' }
+PackageFormula class >> initRepositorySchemas [
+	"Private - Ideally this could be built using something like:
+	IceUrlBuilder new
+		protocol: IceHttpsProtocol new;
+		beGithub;
+		buildUrl."
+
+	^ Dictionary new
+		at: 'github' put: 'https://github.com/';
+		at: 'gitlab' put: 'https://gitlab.com/';
+		at: 'bitbucet' put: 'https://bitbucket.org/';
+		yourself
+]
+
 { #category : #'instance creation' }
 PackageFormula class >> newFrom: aPragma [
 	
@@ -53,6 +71,14 @@ PackageFormula class >> newFrom: aPragma [
 		selector: aPragma selector;
 		arguments: aPragma arguments;
 		yourself
+]
+
+{ #category : #'as yet unclassified' }
+PackageFormula class >> repositorySchemas [
+	"Answer a <Dictionary> which maps host names to its web URL"
+
+	^ RepositorySchemas 
+		ifNil: [ RepositorySchemas := self initRepositorySchemas ]
 ]
 
 { #category : #comparing }
@@ -93,14 +119,14 @@ PackageFormula >> buildGitHubLink: args [
 
 { #category : #private }
 PackageFormula >> buildHTTPHomeLink: url [
-	"Answer a <String> representing the receiver's home page"
+	"Answer a <String> representing the receiver's home URL address"
 
 	^ String streamContents: [ :stream | 
 		  stream
-			  << 'https://github.com/';
-			  << url authority;
-			  << '/';
-			  << (url directory copyUpTo: $:) ]
+				<< (self urlForScheme: url scheme);
+				<< url authority;
+				<< $/;
+				<< (url directory copyUpTo: $:) ]
 ]
 
 { #category : #accessing }
@@ -210,7 +236,8 @@ PackageFormula >> parseFromGitHubExtendedShortcut [
 ]
 
 { #category : #parsing }
-PackageFormula >> parseFromGitHubShortcut [
+PackageFormula >> parseRepositoryExpression [
+	"Answer a <RBMessageNode> matching the receiver's expected repository: expression"
 
 	^ RBParseTreeSearcher
 		  treeMatching: '``@anything repository: ``@arg1'
@@ -254,6 +281,21 @@ PackageFormula >> removeDecoration: aDecoration [
 	^ nil
 ]
 
+{ #category : #private }
+PackageFormula >> repositorySchemas [ 
+	"See class side"
+	
+	^ self class repositorySchemas
+]
+
+{ #category : #private }
+PackageFormula >> urlForScheme: aString [ 
+	"Answer a <String> representing a valid web address for aString. i.e. Given 'github' get 'https://github.com'"
+	
+	^ self repositorySchemas at: aString
+
+]
+
 { #category : #accessing }
 PackageFormula >> valueInClass: aClass withSelector: aSelector [
 	"Answer a <String> representing a package installation expression as originally provided by a package author"
@@ -266,8 +308,8 @@ PackageFormula >> webLinkHome [
 	"Answer a <String> representing the home page URL of the receiver's formula"
 
 	| urlString |
-	urlString := self parseFromGitHubShortcut
-		             ifNotNil: [ :args | args arguments anyOne value ]
+	urlString := self parseRepositoryExpression
+		             ifNotNil: [ :messageNode | messageNode arguments anyOne value ]
 		             ifNil: [ self parseFromGitHubExtendedShortcut ].
 	^ self buildHTTPHomeLink: urlString asZnUrl
 ]

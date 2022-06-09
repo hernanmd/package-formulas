@@ -10,7 +10,9 @@ Class {
 	#instVars : [
 		'categorySelector',
 		'formulasTable',
-		'toolbar'
+		'toolbar',
+		'statusBar',
+		'selectionCount'
 	],
 	#category : #'PackageFormulas-UI'
 }
@@ -22,15 +24,37 @@ PackageFormulasMainUI >> categorySelector [
 ]
 
 { #category : #accessing }
+PackageFormulasMainUI >> decreaseFormulaCount [
+
+	selectionCount >= 1 ifFalse: [ ^ self ].
+	selectionCount := selectionCount - 1.
+	statusBar pushMessage: ('Packages to install: {1}' format: { selectionCount })
+]
+
+{ #category : #accessing }
 PackageFormulasMainUI >> formulasTable [
 
 	^ formulasTable
+]
+
+{ #category : #accessing }
+PackageFormulasMainUI >> increaseFormulaCount [
+	
+	selectionCount := selectionCount + 1.
+	statusBar pushMessage: ('Packages to install: {1}' format: { selectionCount })
 ]
 
 { #category : #initialization }
 PackageFormulasMainUI >> initialExtent [
  
 	^ 700 @ 600
+]
+
+{ #category : #initialization }
+PackageFormulasMainUI >> initialize [
+
+	super initialize.
+	selectionCount := 0
 ]
 
 { #category : #initialization }
@@ -56,7 +80,8 @@ PackageFormulasMainUI >> initializeLayout [
 			positionOfSlider: 30 percent;
 			add: #categorySelector;
 			add: #formulasTable;
-			yourself));
+			yourself);
+		add: #statusBar height: SpToolbarMorph statusBarHeight);
 		yourself
 ]
 
@@ -65,10 +90,17 @@ PackageFormulasMainUI >> initializePresenters [
 
 	self 
 		initializeToolbar;
+		initializeStatusbar;
 		initializeCategorySelector;
 		initializeFormulasSelector;
-		initializeLayout.
+		initializeLayout
 
+]
+
+{ #category : #initialization }
+PackageFormulasMainUI >> initializeStatusbar [
+
+	statusBar := SpStatusBarPresenter new
 ]
 
 { #category : #initialization }
@@ -78,6 +110,12 @@ PackageFormulasMainUI >> initializeToolbar [
 		presenter
 			displayMode: self application toolbarDisplayMode;
 			addStyle: 'stToolbar' ]
+]
+
+{ #category : #accessing }
+PackageFormulasMainUI >> popMessage [
+
+	statusBar popMessage
 ]
 
 { #category : #callbacks }
@@ -116,7 +154,8 @@ PackageFormulasMainUI >> toolbarActions [
 		register: (PackageFormulasBrowseCommand forSpecContext: self);
 		register: (PackageFormulasRecordCommand forSpecContext: self);
 		register: (PackageFormulasUpdateCommand forSpecContext: self);
-		register: (PackageFormulasOptionsCommand forSpecContext: self);				
+		register: (PackageFormulasOptionsCommand forSpecContext: self);
+		register: (PackageFormulasHelpCommand forSpecContext: self);			
 		register: (PackageFormulasQuitCommand forSpecContext: self);
 		yourself
 ]

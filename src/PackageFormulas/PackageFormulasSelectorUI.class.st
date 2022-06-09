@@ -100,8 +100,8 @@ PackageFormulasSelectorUI >> initializeSelectableFormulas [
 	formulasTable
 		addColumn:
 			((SpCheckBoxTableColumn title: '' evaluated: [ :pragma | self selectedFormulas includes: pragma ])
-				onActivation: [ :pragma | pragma hasBaseline ifFalse: [ self selectedFormulas add: pragma ] ];
-				onDeactivation: [ : formulas | self removeSelections: formulas ];
+				onActivation: [ :formula | self updateSelectedFormula: formula ];
+				onDeactivation: [ : formula | self updateUnselectedFormula: formula ];
 				beNotExpandable;
 				width: 20;
 				yourself);	
@@ -156,4 +156,20 @@ PackageFormulasSelectorUI >> selectedFormulas [
 
 	^ selectedFormulas
 		ifNil: [ selectedFormulas := OrderedCollection new ]
+]
+
+{ #category : #initialization }
+PackageFormulasSelectorUI >> updateSelectedFormula: formula [
+
+	formula hasBaseline 
+		ifFalse: [ 
+			self selectedFormulas add: formula.
+			self owner increaseFormulaCount. ]
+]
+
+{ #category : #initialization }
+PackageFormulasSelectorUI >> updateUnselectedFormula: formula [
+
+	self removeSelections: formula.
+	self owner decreaseFormulaCount.
 ]
