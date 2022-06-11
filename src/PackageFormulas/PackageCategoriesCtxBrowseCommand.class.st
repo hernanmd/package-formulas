@@ -13,12 +13,6 @@ PackageCategoriesCtxBrowseCommand class >> defaultDescription [
 	^ 'Browse selected category'
 ]
 
-{ #category : #'accessing - defaults' }
-PackageCategoriesCtxBrowseCommand class >> defaultIconName [
-
-	^ #glamorousBrowse
-]
-
 { #category : #default }
 PackageCategoriesCtxBrowseCommand class >> defaultName [
 
@@ -27,7 +21,7 @@ PackageCategoriesCtxBrowseCommand class >> defaultName [
 
 { #category : #executing }
 PackageCategoriesCtxBrowseCommand >> execute [
-	"Private - Inspect the selected pragma"
+	"Private - Open a Browser on the selected category"
 
 	| categoryName |
 	
@@ -49,5 +43,5 @@ PackageCategoriesCtxBrowseCommand >> messageListForCategory: aString [
 	formulaName := 	aString.
 	(aString allSatisfy: #isUppercase)
 		ifFalse: [ formulaName := aString uncapitalized ].
-	^ (PackageFormula allNamed: formulaName in: formulasContainer class) collect: #method.
+	^ (PackageFormulas allNamed: formulaName in: formulasContainer class) collect: #method.
 ]

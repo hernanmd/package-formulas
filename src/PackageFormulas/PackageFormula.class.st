@@ -31,23 +31,6 @@ Class {
 	#category : #'PackageFormulas-Core'
 }
 
-{ #category : #'*PackageFormulas' }
-PackageFormula class >> allIn: aClass [
-	"Answer a <Collection> of <PackageFormula> found in aClass"
-
-	^ (aClass methods select: #hasPragma) collect: #formula
-]
-
-{ #category : #'*PackageFormulas' }
-PackageFormula class >> allNamed: aSymbol in: aClass [
-	"Answer a <Collection> of all package formulas found in methods of aClass whose selector is aSymbol."
-	
-	^ Array streamContents: [ :stream |
-		 aClass formulasDo: [ : formula |
-			(formula categories includes: aSymbol)
-				ifTrue: [ stream nextPut: formula ] ] ]
-]
-
 { #category : #'as yet unclassified' }
 PackageFormula class >> initRepositorySchemas [
 	"Private - Ideally this could be built using something like:
@@ -123,7 +106,7 @@ PackageFormula >> buildHTTPHomeLink: url [
 
 	^ String streamContents: [ :stream | 
 		  stream
-				<< (self urlForScheme: url scheme);
+				<< (self urlForSchema: url scheme);
 				<< url authority;
 				<< $/;
 				<< (url directory copyUpTo: $:) ]
@@ -131,6 +114,7 @@ PackageFormula >> buildHTTPHomeLink: url [
 
 { #category : #accessing }
 PackageFormula >> categories [
+	"Answer a <Collection> of <Symbol> representing categories found in the receiver"
 
 	^ categories
 		ifNil: [ categories := OrderedCollection new ]
@@ -289,7 +273,7 @@ PackageFormula >> repositorySchemas [
 ]
 
 { #category : #private }
-PackageFormula >> urlForScheme: aString [ 
+PackageFormula >> urlForSchema: aString [ 
 	"Answer a <String> representing a valid web address for aString. i.e. Given 'github' get 'https://github.com'"
 	
 	^ self repositorySchemas at: aString

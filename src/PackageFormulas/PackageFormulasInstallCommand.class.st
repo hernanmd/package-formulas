@@ -16,7 +16,7 @@ PackageFormulasInstallCommand class >> defaultDescription [
 { #category : #'accessing - defaults' }
 PackageFormulasInstallCommand class >> defaultIconName [
 
-	^ #glamorousGo
+	^ #smallDoIt
 ]
 
 { #category : #'accessing - defaults' }

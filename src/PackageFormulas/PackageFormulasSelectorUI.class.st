@@ -71,6 +71,20 @@ PackageFormulasSelectorUI class >> buildSelectionOperationsGroupWith: presenterI
 		yourself
 ]
 
+{ #category : #menu }
+PackageFormulasSelectorUI >> formulasIn: aPackageGroupSymbol [
+	"Private - Answer a <Collection> for pacakges categorized in aPackageGroupSymbol"
+	
+	^ self application formulasIn: aPackageGroupSymbol
+]
+
+{ #category : #callbacks }
+PackageFormulasSelectorUI >> formulasItems: aCollection [
+	"Private - Update the displayed formulas with aCollection"
+
+	self formulasTable items: aCollection
+]
+
 { #category : #accessing }
 PackageFormulasSelectorUI >> formulasTable [
 
@@ -129,20 +143,6 @@ PackageFormulasSelectorUI >> initializeWindow: aWindowPresenter [
 		windowIcon: self windowIcon
 ]
 
-{ #category : #menu }
-PackageFormulasSelectorUI >> packagesIn: aPackageGroupSymbol [
-	"Private - Answer a <Collection> for pacakges categorized in aPackageGroupSymbol"
-	
-	^ self application packagesIn: aPackageGroupSymbol
-]
-
-{ #category : #callbacks }
-PackageFormulasSelectorUI >> refreshFormulasSelector: aSelectedCategory [
-	"Private - Category selection has changed, update the displayed formulas"
-
-	self formulasTable items: (self packagesIn: aSelectedCategory) asSortedCollection
-]
-
 { #category : #accessing }
 PackageFormulasSelectorUI >> removeSelections: aFormula [ 
 
@@ -172,4 +172,11 @@ PackageFormulasSelectorUI >> updateUnselectedFormula: formula [
 
 	self removeSelections: formula.
 	self owner decreaseFormulaCount.
+]
+
+{ #category : #callbacks }
+PackageFormulasSelectorUI >> updateWithFormulasIn: aSelectedCategory [
+	"Private - Category selection has changed, update the displayed formulas"
+
+	self formulasItems: (self formulasIn: aSelectedCategory) asSortedCollection
 ]

@@ -1,3 +1,9 @@
+"
+Display a list of category items found in `PackageFormulas class`.
+Categories are defined as a `Symbol` in parameters of each `PackageFormula`.
+
+Note that a `PackageFormula` can belong to multiple categories.
+"
 Class {
 	#name : #PackageFormulasCategoriesUI,
 	#superclass : #SpPresenter,
@@ -27,11 +33,21 @@ PackageFormulasCategoriesUI class >> buildSelectionOperationsGroupWith: presente
 
 	^ (CmCommandGroup named: 'SelectionOperationsMenu') asSpecGroup
 		register: ((PackageCategoriesCtxBrowseCommand
-			forSpecWithIconNamed: #glamorousBrowse
+			forSpecWithIconNamed: #class
 			shortcutKey: 'B' asShortcut) 
-				context: presenterInstance);		
+				context: presenterInstance);
+		register: ((PackageCategoriesCtxRequestCommand 
+			forSpecWithIconNamed: #packageAdd
+			shortcutKey: 'R' asShortcut) 
+				context: presenterInstance);					
 		beDisplayedAsGroup;
 		yourself
+]
+
+{ #category : #initialization }
+PackageFormulasCategoriesUI >> allCategories [
+
+	^ self sortedFormulasCategories add: 'All'; yourself
 ]
 
 { #category : #accessing }
@@ -44,6 +60,12 @@ PackageFormulasCategoriesUI >> categoriesList [
 PackageFormulasCategoriesUI >> categoriesList: anObject [
 
 	categoriesList := anObject
+]
+
+{ #category : #initialization }
+PackageFormulasCategoriesUI >> formulasCategories [
+
+	^ self application formulasCategories
 ]
 
 { #category : #initialization }
@@ -66,8 +88,8 @@ PackageFormulasCategoriesUI >> initializePresenters [
 PackageFormulasCategoriesUI >> initializeSelectableCategories [
 
 	categoriesList	:= self newList
-		items: self application formulasCategories asSortedCollection;
-		whenSelectionChangedDo: [ self refreshFormulasSelector: self selectedCategory ];
+		items: self allCategories;
+		whenSelectionChangedDo: [ self updateWithFormulasIn: self selectedCategory ];
 		contextMenu: [ (self rootCommandsGroup / 'PFCatContextualMenu') beRoot asMenuPresenter ]
 
 ]
@@ -78,16 +100,24 @@ PackageFormulasCategoriesUI >> items: aCollection [
 	self categoriesList items: aCollection
 ]
 
-{ #category : #callbacks }
-PackageFormulasCategoriesUI >> refreshFormulasSelector: aString [ 
-	"Private - Refresh the formulas in the receiver's selector"
+{ #category : #initialization }
+PackageFormulasCategoriesUI >> selectedCategory [
+	"Answer a <Symbol> reoresenting the currently selected category"
 
-	self owner refreshFormulasSelector: aString.
+	^ self categoriesList selectedItem
 ]
 
 { #category : #initialization }
-PackageFormulasCategoriesUI >> selectedCategory [
-	"Answer a <> with the currently selected category"
+PackageFormulasCategoriesUI >> sortedFormulasCategories [
+	
+	^ self formulasCategories asSortedCollection
+]
 
-	^ self categoriesList selectedItem
+{ #category : #callbacks }
+PackageFormulasCategoriesUI >> updateWithFormulasIn: aString [ 
+	"Private - Refresh the formulas in the receiver's selector"
+
+	self owner 
+		updateWithFormulasIn: aString;
+		updateStatusBar
 ]

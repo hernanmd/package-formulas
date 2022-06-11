@@ -40,9 +40,27 @@ PackageFormulasApp class >> menuPackageFormulasOn: aBuilder [
 ]
 
 { #category : #accessing }
+PackageFormulasApp class >> repositoryAddress [
+
+	^ 'github://' , self repositoryOwnerDirectory , self repositorySourceDirectory
+]
+
+{ #category : #accessing }
+PackageFormulasApp class >> repositoryHttpAddress [
+
+	^ 'http://www.github.com/' , self repositoryOwnerDirectory , '/package-formulas'
+]
+
+{ #category : #accessing }
 PackageFormulasApp class >> repositoryOwnerDirectory [
 
 	^ 'hernanmd'
+]
+
+{ #category : #accessing }
+PackageFormulasApp class >> repositorySourceDirectory [
+
+	^ '/package-formulas/src'
 ]
 
 { #category : #accessing }
@@ -54,19 +72,34 @@ PackageFormulasApp class >> updateApp [
 			self appLocalWorkingDirectory ensureDeleteAll.
 			bar label: 'Updating baseline definition'.
 			bar current: 0.33.
-			Iceberg enableMetacelloIntegration ifFalse: [ 
-				Gofer new 
-					url: 'github://hernanmd/environment-profiles/src' asZnUrl;
-					package: 'BaselineOfEnvironmentProfiles';
-					load ].
+			self updateBaseline.
 			bar label: 'Updating source files'.
 			bar current: 0.66.
-			Metacello new
-				baseline: #EnvironmentProfiles;
-				repository: 'github://hernanmd/environment-profiles/src';
-				onConflict: [: ex | ex allow ]; 
-				load: #default.
+			self updatePackage.
 			bar current: 1 ].
+]
+
+{ #category : #accessing }
+PackageFormulasApp class >> updateBaseline [
+		
+	Iceberg enableMetacelloIntegration ifFalse: [ 
+		Gofer new 
+			url: self repositoryAddress asZnUrl;
+			package: 'BaselineOfPackageFormulas';
+			load ].
+
+]
+
+{ #category : #accessing }
+PackageFormulasApp class >> updatePackage [
+
+	EpMonitor disableDuring: [ 
+		Metacello new
+			baseline: #PackageFormulas;
+			repository: self repositoryAddress;
+			onConflict: [: ex | ex allow ]; 
+			load: #default ]
+
 ]
 
 { #category : #defaults }
@@ -78,9 +111,9 @@ PackageFormulasApp >> defaultFormulasContainer [
 
 { #category : #queries }
 PackageFormulasApp >> formulas [
-	"Answer a <Collection> of <PackageFormula>"
+	"Answer a <Collection> of <PackageFormula> found in the receiver's environment"
 
-	^ PackageFormula allIn: self formulasContainer class
+	^ PackageFormulas allIn: self formulasContainer class
 ]
 
 { #category : #queries }
@@ -98,6 +131,29 @@ PackageFormulasApp >> formulasContainer [
 		ifNil: [ formulasContainer := self defaultFormulasContainer ]
 ]
 
+{ #category : #queries }
+PackageFormulasApp >> formulasIn: aPackageCategorySymbol [
+	"Answer a <Collection> for pacakges categorized in aPackageGroupSymbol"
+	
+	^ aPackageCategorySymbol asLowercase = 'all'
+		ifTrue: [ self formulas ]
+		ifFalse: [ self formulasInCategory: aPackageCategorySymbol ]
+
+]
+
+{ #category : #queries }
+PackageFormulasApp >> formulasInCategory: aPackageCategorySymbol [
+	"Answer a <Collection> of <Symbol> representing a package formula in aPackageCategorySymbol"
+
+	| pkgPragmaId |
+
+	pkgPragmaId := (aPackageCategorySymbol allSatisfy: #isUppercase)
+		ifFalse: [ aPackageCategorySymbol uncapitalized ]
+		ifTrue: [ aPackageCategorySymbol ].
+	^ PackageFormulas for: pkgPragmaId
+
+]
+
 { #category : #accessing }
 PackageFormulasApp >> group [
 
@@ -110,16 +166,18 @@ PackageFormulasApp >> group: anObject [
 	group := anObject
 ]
 
-{ #category : #queries }
-PackageFormulasApp >> packagesIn: aPackageGroupSymbol [
-	"Answer a <Collection> for pacakges categorized in aPackageGroupSymbol"
+{ #category : #testing }
+PackageFormulasApp >> hasFormulasInstalled [
+	"Answer <true> if the receiver's image includes any of its defined formulas already installed"
 	
-	| pkgPragmaId |
+	^ self formulas anySatisfy: #isInstalled
+]
 
-	pkgPragmaId := (aPackageGroupSymbol allSatisfy: #isUppercase)
-		ifFalse: [ aPackageGroupSymbol uncapitalized ]
-		ifTrue: [ aPackageGroupSymbol ].
-	^ PackageFormulas for: pkgPragmaId
+{ #category : #accessing }
+PackageFormulasApp >> installedFormulas [
+	"Answer a <Collection> of <PackageFormula> installed in the receiver's environment"
+
+	^ self formulas select: #isInstalled
 ]
 
 { #category : #accessing }

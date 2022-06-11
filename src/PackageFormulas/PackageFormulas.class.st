@@ -25,6 +25,23 @@ PackageFormulas class >> abstractMath [
 		load
 ]
 
+{ #category : #accessing }
+PackageFormulas class >> allIn: aClass [
+	"Answer a <Collection> of <PackageFormula> found in aClass"
+
+	^ (aClass methods select: #hasPragma) collect: #formula
+]
+
+{ #category : #accessing }
+PackageFormulas class >> allNamed: aSymbol in: aClass [
+	"Answer a <Collection> of all <PackageFormula> found in methods of aClass whose selector is aSymbol."
+	
+	^ Array streamContents: [ :stream |
+		 aClass formulasDo: [ : formula |
+			(formula categories includes: aSymbol)
+				ifTrue: [ stream nextPut: formula ] ] ]
+]
+
 { #category : #formulas }
 PackageFormulas class >> artefact [
 	<formula: #general>
@@ -504,11 +521,11 @@ PackageFormulas class >> fogEvm [
 ]
 
 { #category : #accessing }
-PackageFormulas class >> for: aSymbol [
-	"Answer a <Collection> of <PackageFormula> matching receiver's formulas in aSymbol category"
+PackageFormulas class >> for: aCategorySymbol [
+	"Answer a <Collection> of <PackageFormula> matching receiver's formulas in aCategorySymbol"
 
-	^ PackageFormula 
-		allNamed: aSymbol
+	^ self 
+		allNamed: aCategorySymbol
 		in: self class
 ]
 

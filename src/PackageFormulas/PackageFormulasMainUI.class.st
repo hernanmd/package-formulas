@@ -23,12 +23,19 @@ PackageFormulasMainUI >> categorySelector [
 	^ categorySelector
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing - status bar' }
 PackageFormulasMainUI >> decreaseFormulaCount [
 
 	selectionCount >= 1 ifFalse: [ ^ self ].
 	selectionCount := selectionCount - 1.
-	statusBar pushMessage: ('Packages to install: {1}' format: { selectionCount })
+	self updateStatusBar.
+]
+
+{ #category : #accessing }
+PackageFormulasMainUI >> formulasItems: aCollection [
+	"Update the displayed formulas with aCollection"
+	
+	self formulasTable formulasItems: aCollection
 ]
 
 { #category : #accessing }
@@ -38,10 +45,18 @@ PackageFormulasMainUI >> formulasTable [
 ]
 
 { #category : #accessing }
+PackageFormulasMainUI >> hasFormulasInstalled [
+	"Answer <true> if the receiver's application includes any of its defined formulas already installed"
+	
+	^ self application hasFormulasInstalled
+	
+]
+
+{ #category : #'accessing - status bar' }
 PackageFormulasMainUI >> increaseFormulaCount [
 	
 	selectionCount := selectionCount + 1.
-	statusBar pushMessage: ('Packages to install: {1}' format: { selectionCount })
+	self updateStatusBar.
 ]
 
 { #category : #initialization }
@@ -54,7 +69,8 @@ PackageFormulasMainUI >> initialExtent [
 PackageFormulasMainUI >> initialize [
 
 	super initialize.
-	selectionCount := 0
+	selectionCount := 0.
+	statusBar pushMessage: self statusBarMessage.
 ]
 
 { #category : #initialization }
@@ -112,17 +128,17 @@ PackageFormulasMainUI >> initializeToolbar [
 			addStyle: 'stToolbar' ]
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing - status bar' }
 PackageFormulasMainUI >> popMessage [
 
 	statusBar popMessage
 ]
 
-{ #category : #callbacks }
-PackageFormulasMainUI >> refreshFormulasSelector: aString [ 
-	"Private - Refresh the selectable formulas in the receiver's formulas selector"
-	
-	self formulasTable refreshFormulasSelector: aString
+{ #category : #accessing }
+PackageFormulasMainUI >> selectedCategory [ 
+	"Answer a <Symbol> representing the currently selected category"
+
+	^ self categorySelector selectedCategory 
 ]
 
 { #category : #accessing }
@@ -130,6 +146,22 @@ PackageFormulasMainUI >> selectedFormulas [
 	"Answer a <Collection> of formulas marked for installation"
 	
 	^ self formulasTable selectedFormulas
+]
+
+{ #category : #'accessing - status bar' }
+PackageFormulasMainUI >> statusBarMessage [
+
+	| listedFormulasCount |
+	
+	listedFormulasCount := self selectedCategory 
+		ifNil: [ 0 ]
+		ifNotNil: [ (self application formulasInCategory: self selectedCategory) size ].
+	^ '{1} formulas, {2} listed, {3} to install, {4} installed' 
+		format: { 
+			(self application formulas size) .
+			listedFormulasCount .
+			selectionCount .
+			self application installedFormulas size }
 ]
 
 { #category : #initialization }
@@ -151,11 +183,23 @@ PackageFormulasMainUI >> toolbarActions [
 		beRoot;
 		description: 'Commands related to toolbar operations and global application behavior';
 		register: (PackageFormulasInstallCommand forSpecContext: self);
-		register: (PackageFormulasBrowseCommand forSpecContext: self);
-		register: (PackageFormulasRecordCommand forSpecContext: self);
+		register: (PackageFormulasInstallOptionsCommand forSpecContext: self);
+		register: (PackageFormulasViewInstalledCommand forSpecContext: self);
 		register: (PackageFormulasUpdateCommand forSpecContext: self);
-		register: (PackageFormulasOptionsCommand forSpecContext: self);
 		register: (PackageFormulasHelpCommand forSpecContext: self);			
 		register: (PackageFormulasQuitCommand forSpecContext: self);
 		yourself
+]
+
+{ #category : #'accessing - status bar' }
+PackageFormulasMainUI >> updateStatusBar [
+
+	statusBar pushMessage: self statusBarMessage.
+]
+
+{ #category : #callbacks }
+PackageFormulasMainUI >> updateWithFormulasIn: aString [ 
+	"Private - Refresh the selectable formulas in the receiver's formulas selector"
+	
+	self formulasTable updateWithFormulasIn: aString
 ]
