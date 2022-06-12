@@ -8,19 +8,25 @@ Class {
 	#name : #PackageFormulasMainUI,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'categorySelector',
 		'formulasTable',
 		'toolbar',
 		'statusBar',
-		'selectionCount'
+		'selectionCount',
+		'categoriesPresenter'
 	],
 	#category : #'PackageFormulas-UI'
 }
 
 { #category : #accessing }
-PackageFormulasMainUI >> categorySelector [
+PackageFormulasMainUI >> categoriesPresenter [
 
-	^ categorySelector
+	^ categoriesPresenter
+]
+
+{ #category : #callbacks }
+PackageFormulasMainUI >> cleanCategoriesPresenterSelection [
+
+	self categoriesPresenter unselect.
 ]
 
 { #category : #'accessing - status bar' }
@@ -76,8 +82,8 @@ PackageFormulasMainUI >> initialize [
 { #category : #initialization }
 PackageFormulasMainUI >> initializeCategorySelector [
 
-	categorySelector := self instantiate: PackageFormulasCategoriesUI.
-	categorySelector application: self application.
+	categoriesPresenter := self instantiate: PackageFormulasCategoriesUI.
+	categoriesPresenter application: self application.
 ]
 
 { #category : #initialization }
@@ -94,7 +100,7 @@ PackageFormulasMainUI >> initializeLayout [
 		add: #toolbar height: self class toolbarHeight + 10;
 		add: (SpPanedLayout newLeftToRight
 			positionOfSlider: 30 percent;
-			add: #categorySelector;
+			add: #categoriesPresenter;
 			add: #formulasTable;
 			yourself);
 		add: #statusBar height: SpToolbarMorph statusBarHeight);
@@ -138,7 +144,7 @@ PackageFormulasMainUI >> popMessage [
 PackageFormulasMainUI >> selectedCategory [ 
 	"Answer a <Symbol> representing the currently selected category"
 
-	^ self categorySelector selectedCategory 
+	^ self categoriesPresenter selectedCategory 
 ]
 
 { #category : #accessing }

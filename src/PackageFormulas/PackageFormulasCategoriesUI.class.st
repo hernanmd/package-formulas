@@ -113,11 +113,18 @@ PackageFormulasCategoriesUI >> sortedFormulasCategories [
 	^ self formulasCategories asSortedCollection
 ]
 
+{ #category : #accessing }
+PackageFormulasCategoriesUI >> unselect [
+
+	self categoriesList unselectAll.
+]
+
 { #category : #callbacks }
 PackageFormulasCategoriesUI >> updateWithFormulasIn: aString [ 
 	"Private - Refresh the formulas in the receiver's selector"
 
-	self owner 
-		updateWithFormulasIn: aString;
-		updateStatusBar
+	aString ifNotNil: [ 
+		self owner 
+			updateWithFormulasIn: aString;
+			updateStatusBar ]
 ]

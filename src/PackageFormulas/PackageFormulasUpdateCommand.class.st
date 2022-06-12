@@ -26,6 +26,14 @@ PackageFormulasUpdateCommand class >> defaultName [
 PackageFormulasUpdateCommand >> execute [
 	"Try to update the application"
 
+	| answer |
+	answer := (SpConfirmDialog newApplication: self application)
+		label: 'Do you want to update PackageFormulas?';
+		acceptLabel: 'Confirm';
+		cancelLabel: 'Cancel';
+		title: 'PackageFormulas confirmation request';
+		openModalWithSpec.
+	answer ifFalse: [ ^ self ].
 	PackageFormulasApp updateApp.
 	self inform: 'Done'
 ]

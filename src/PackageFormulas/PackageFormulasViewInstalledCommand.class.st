@@ -38,5 +38,7 @@ PackageFormulasViewInstalledCommand >> execute [
 	"Private - Inspect the selected formula"
 
 	self canBeExecuted ifFalse: [ ^ self inform: 'No installed formulas in this image' ].
-	self context formulasItems: self application installedFormulas.
+	self context 
+		formulasItems: self application installedFormulas;
+		cleanCategoriesPresenterSelection.
 ]

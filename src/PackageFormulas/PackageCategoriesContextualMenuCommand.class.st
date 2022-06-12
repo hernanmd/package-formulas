@@ -16,6 +16,12 @@ PackageCategoriesContextualMenuCommand >> application [
 ]
 
 { #category : #accessing }
+PackageCategoriesContextualMenuCommand >> applicationClass [
+
+	^ self application class
+]
+
+{ #category : #accessing }
 PackageCategoriesContextualMenuCommand >> formulasTable [
 
 	^ 	self context formulasTable.

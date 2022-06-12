@@ -23,7 +23,7 @@ PackageCategoriesCtxRequestCommand >> execute [
 	| categoryName |
 	
 	categoryName := self context categoriesList selectedItem.
-	WebBrowser openOn: self application class repositoryHttpAddress , '/issues/new/choose'.
+	WebBrowser openOn: self applicationClass repositoryHttpAddress , '/issues/new/choose'.
 
 
 ]
