@@ -42,7 +42,7 @@ PackageFormulasInstallOptionsCommand >> openInstallOptions [
 
 	| answer |
 	
-	answer := PackageFormulasScriptUI new openModalWithSpec.
+	answer := PackageFormulasScripterUI new openModalWithSpec.
 	answer
 		ifNotNil: [ : presenter | 
 			presenter isCancelled 
