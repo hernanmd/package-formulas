@@ -1,11 +1,14 @@
 Class {
 	#name : #PackageFormulasScripterUI,
-	#superclass : #SpPresenter,
+	#superclass : #SpPackageFormulasPresenter,
 	#instVars : [
 		'actionsSelectorPresenter',
 		'preActionsPresenter',
 		'scriptPresenter',
-		'postActionsPresenter'
+		'postActionsPresenter',
+		'preActionsLabel',
+		'postActionsLabel',
+		'installActionLabel'
 	],
 	#category : #'PackageFormulas-UI'
 }
@@ -32,7 +35,7 @@ PackageFormulasScripterUI >> actionsSelectorPresenter: anObject [
 { #category : #initialization }
 PackageFormulasScripterUI >> initialExtent [
 
-	^ 500 @ 700
+	^ 700 @ 600
 ]
 
 { #category : #initialization }
@@ -50,8 +53,13 @@ PackageFormulasScripterUI >> initializeLayout [
 		add: #actionsSelectorPresenter height: 20;
 		add: (SpBoxLayout newTopToBottom
 			spacing: 2;
+			add: #preActionsLabel height: self labelHeight;
 			add: #preActionsPresenter height: 50;
+
+			add: #installActionLabel height: self labelHeight;
 			add: #scriptPresenter;
+
+			add: #postActionsLabel height: self labelHeight;
 			add: #postActionsPresenter height: 50;
 			yourself);
 		yourself)
@@ -69,19 +77,22 @@ PackageFormulasScripterUI >> initializePresenters [
 
 { #category : #initialization }
 PackageFormulasScripterUI >> initializeScriptPresenters [
-		
+	
+	preActionsLabel := self newLabel label: 'Pre-install actions'; yourself.
 	preActionsPresenter := self newCode 
 		beWrapWord;
 		withoutLineNumbers;
 		whenSubmitDo: [ : scriptCode | self validateScript: scriptCode ].
+	postActionsLabel := self newLabel label: 'Post-install actions'; yourself.
 	postActionsPresenter := self newCode 
 		beNotEditable;
 		beWrapWord;
 		withoutLineNumbers.
+	installActionLabel := self newLabel label: 'Main installation'; yourself.
 	scriptPresenter := self newCode
 		beWrapWord;
 		withoutLineNumbers;
-		whenSubmitDo: [ : scriptCode | self validateScript: scriptCode ].		
+		whenSubmitDo: [ : scriptCode | self validateScript: scriptCode ].
 ]
 
 { #category : #initialization }

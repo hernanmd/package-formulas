@@ -1,6 +1,6 @@
 Class {
 	#name : #PackageFormulasSelectorUI,
-	#superclass : #SpPresenter,
+	#superclass : #SpPackageFormulasPresenter,
 	#instVars : [
 		'selectedFormulas',
 		'toolbar',

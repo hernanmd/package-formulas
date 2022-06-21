@@ -11,15 +11,17 @@ Common installation actions are:
 - Log execution.
 - Background installation.
 - Simulate loading.
-
+- Schedule installation.
 "
 Class {
 	#name : #PackageFormulasScriptActionsTree,
-	#superclass : #SpPresenter,
+	#superclass : #SpPackageFormulasPresenter,
 	#instVars : [
 		'actionsTreePresenter',
 		'actionsTypesPresenter',
-		'actionsMap'
+		'actionsMap',
+		'actionsLabelPresenter',
+		'actionsDetailPresenter'
 	],
 	#category : #'PackageFormulas-UI'
 }
@@ -34,7 +36,7 @@ PackageFormulasScriptActionsTree class >> open [
 ]
 
 { #category : #initialization }
-PackageFormulasScriptActionsTree >> actionsFor: selection [
+PackageFormulasScriptActionsTree >> actionsAt: selection [
 
 	^ self actionsMap at: selection selectedItem
 		
@@ -71,7 +73,7 @@ PackageFormulasScriptActionsTree >> actionsTypesPresenter: anObject [
 	actionsTypesPresenter := anObject
 ]
 
-{ #category : #initialization }
+{ #category : #defaults }
 PackageFormulasScriptActionsTree >> defaultActionsMap [
 
 	^ Dictionary new
@@ -82,31 +84,66 @@ PackageFormulasScriptActionsTree >> defaultActionsMap [
 		
 ]
 
-{ #category : #initialization }
+{ #category : #defaults }
 PackageFormulasScriptActionsTree >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
-		add: #actionsTypesPresenter; 
+		add: #actionsTypesPresenter;
+		add: #actionsLabelPresenter height: self labelHeight;
 		add: #actionsTreePresenter;
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : #defaults }
 PackageFormulasScriptActionsTree >> defaultPostInstallActions [
 
-	^ { 'post-install 1' . 'post-install 2' }
+	^ { 
+		((PackageFormulaBeforeInstall named: 'Open Workspace')
+			sourceCode: 'Smalltalk tools workspace open.') .
+			
+		((PackageFormulaBeforeInstall named: 'Open Test Runner')
+			sourceCode: 'Smalltalk tools openTestRunner.')	.
+				
+		((PackageFormulaBeforeInstall named: 'Open Help Browser')
+			sourceCode: 'HelpBrowser open.') .
+			
+		((PackageFormulaBeforeInstall named: 'Log start')
+			sourceCode: '''Installation finished'' asBeaconSignal log.') .
+
+	 }
 ]
 
-{ #category : #initialization }
+{ #category : #defaults }
 PackageFormulasScriptActionsTree >> defaultPreInstallActions [
 
-	^ { 'pre-install 1' . 'pre-install 2' }
+	^ { 
+
+		((PackageFormulaBeforeInstall named: 'Open Transcript')
+			sourceCode: 'Smalltalk tools openTranscript	.') .
+	
+		((PackageFormulaBeforeInstall named: 'Log start')
+			sourceCode: '''Installation started'' asBeaconSignal log.') . 
+			
+		((PackageFormulaBeforeInstall named: 'Save image')
+			sourceCode: '(Smalltalk snapshot: true andQuit: false)
+				ifFalse: [ UIManager default inform: ''Image saved'' ].')
+				
+		}
 ]
 
-{ #category : #initialization }
+{ #category : #defaults }
 PackageFormulasScriptActionsTree >> defaultWrapperInstallActions [
 
-	^ { 'wrap-install 1' . 'wrap-install 2' }
+	^ { 
+
+		(PackageFormulaBackgroundWrapper named: 'Background install') .
+	
+		(PackageFormulaDisableMonitorWrapper named: 'Disable monitor') . 
+			
+		((PackageFormulaExceptionWrapper named: 'Install exception')
+			exceptionClass: Error;
+			sourceCode: 'self halt')	
+	}
 ]
 
 { #category : #initialization }
@@ -116,21 +153,27 @@ PackageFormulasScriptActionsTree >> initializePresenters [
 	actionsTypesPresenter := self newList
 		items: self installActions;
 		beSingleSelection;
-		whenSelectionChangedDo: [ : selection | self actionsTreePresenter items: (self actionsFor: selection) ];
+		whenSelectionChangedDo: [ : selection | self actionsTreePresenter items: (self actionsAt: selection) ];
 		yourself.
+	
+	actionsLabelPresenter := self newLabel label: 'Available actions'; yourself.
 	actionsTreePresenter := 	self newList
 		beSingleSelection;
-		display: [ : action | action printString ];
+		display: #name;
 		whenSelectionChangedDo: [ : selection |  ];
-		yourself
+		yourself.
+		
+	actionsDetailPresenter := self newText.
 ]
 
 { #category : #initialization }
 PackageFormulasScriptActionsTree >> installActions [
 
-	^ #('Pre-install'
-	'Wrappers'
-	'Post-install')
+	^ #(
+		'Pre-install'
+		'Wrappers'
+		'Post-install'
+		)
 ]
 
 { #category : #'instance creation' }

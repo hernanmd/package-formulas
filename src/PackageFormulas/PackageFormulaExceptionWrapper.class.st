@@ -28,6 +28,12 @@ PackageFormulaExceptionWrapper >> exceptionClass: anObject [
 	exceptionClass := anObject
 ]
 
+{ #category : #accessing }
+PackageFormulaExceptionWrapper >> sourceCode: aString [ 
+
+	exceptionBlock := aString
+]
+
 { #category : #private }
 PackageFormulaExceptionWrapper >> valueInClass: aClass withSelector: aSelector [
 	" Private - See superimplementor's comment"

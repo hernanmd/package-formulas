@@ -41,7 +41,7 @@ PackageFormulasContextualMenuCommand >> querier [
 	"Answer the receiver's object to make queries to package formulas"
 	
 	^ querier
-		ifNil: [ querier := PackageFormulaBaselineQuerier new ]
+		ifNil: [ querier := PackageFormulaQuerier new ]
 ]
 
 { #category : #accessing }

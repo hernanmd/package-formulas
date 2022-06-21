@@ -23,7 +23,8 @@ Class {
 	#superclass : #Pragma,
 	#instVars : [
 		'decoration',
-		'categories'
+		'categories',
+		'querier'
 	],
 	#classVars : [
 		'RepositorySchemas'
@@ -194,19 +195,9 @@ PackageFormula >> installIn: anAST [
 
 { #category : #testing }
 PackageFormula >> isInstalled [
-	"Answer <true> if receiver's method, assumed to be a Metacello install expression, is installed in the receiver"
+	"Answer <true> if the receiver is installed in the current environment"
 
-	| extractedTree baselineName |
-	
-	extractedTree := RBParseTreeSearcher 
-		treeMatching: '``@anything baseline: ``@args' 
-		in: self method ast.
-	extractedTree ifNotNil: [ 
-		| pkgRepository |
-		baselineName := extractedTree arguments anyOne.
-		pkgRepository := IceRepository registry detect: [ : r | r name = baselineName value ] ifNone: [ ^ false ].
-		^ pkgRepository loadedPackages anySatisfy: [:aPackage | aPackage name = baselineName value ] ].
-	^ false
+	^ self querier isPackageInstalled: self method ast.
 ]
 
 { #category : #parsing }
@@ -234,6 +225,13 @@ PackageFormula >> printOn: aStream [
 	aStream 
 		<< 'Formula: ';
 		<< self method asString
+]
+
+{ #category : #accessing }
+PackageFormula >> querier [
+
+	^ querier
+		ifNil: [ querier := PackageFormulaQuerier new ]
 ]
 
 { #category : #accessing }
