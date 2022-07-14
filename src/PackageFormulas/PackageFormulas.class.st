@@ -5,7 +5,7 @@ Acts as a repository of `PackageFormula`. Each PackageFormula can be browsed in 
 Class {
 	#name : #PackageFormulas,
 	#superclass : #Object,
-	#category : #'PackageFormulas-Core'
+	#category : #'PackageFormulas-Repository'
 }
 
 { #category : #accessing }
