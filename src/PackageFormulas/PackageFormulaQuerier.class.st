@@ -45,6 +45,14 @@ PackageFormulaQuerier >> isPackageInstalled: anAST [
 ]
 
 { #category : #testing }
+PackageFormulaQuerier >> matchPackageName: aString and: aString2 [ 
+
+	^ aString size > aString2 size 
+		ifTrue: [ aString asLowercase beginsWith: aString2 asLowercase ]
+		ifFalse: [ aString2 asLowercase beginsWith: aString asLowercase ]
+]
+
+{ #category : #testing }
 PackageFormulaQuerier >> matchPackageName: aString withPackageNamed: aString2 [ 
 	"Answer <true> if aString matches aString2"
 
