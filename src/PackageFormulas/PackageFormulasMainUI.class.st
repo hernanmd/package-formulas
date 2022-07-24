@@ -6,7 +6,7 @@ The container for formulas can be configured through #formulasContainer: setter 
 "
 Class {
 	#name : #PackageFormulasMainUI,
-	#superclass : #SpPresenter,
+	#superclass : #SpPackageFormulasPresenter,
 	#instVars : [
 		'formulasTable',
 		'toolbar',

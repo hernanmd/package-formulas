@@ -5,7 +5,7 @@ Acts as a repository of `PackageFormula`. Each PackageFormula can be browsed in 
 Class {
 	#name : #PackageFormulas,
 	#superclass : #Object,
-	#category : #'PackageFormulas-Core'
+	#category : #'PackageFormulas-Repository'
 }
 
 { #category : #accessing }
@@ -23,6 +23,16 @@ PackageFormulas class >> abstractMath [
 		repository: 'github://astares/Pharo-AbstractMath/src';
 		baseline: 'AbstractMath';
 		load
+]
+
+{ #category : #formulas }
+PackageFormulas class >> aconcagua [
+	<formula: #General>
+
+	Metacello new
+		baseline: 'Aconcagua';
+		repository: 'github://ba-st/Aconcagua:release-candidate/source';
+		load.
 ]
 
 { #category : #accessing }
@@ -125,12 +135,32 @@ PackageFormulas class >> brick [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> bugReport [
+	<formula: #Debugging>
+
+    Metacello new
+    	githubUser: 'jecisc' project: 'BugReport' commitish: 'v1.x.x' path: 'src';
+    	baseline: 'BugReport';
+    	load
+]
+
+{ #category : #formulas }
 PackageFormulas class >> cannon [
 	<formula: #general>
 
 	Metacello new
 		baseline: 'Cannon';
 		repository: 'github://ba-st/Cannon:release-candidate/source';
+		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> cdb [
+	<formula: #databases>
+
+	Metacello new
+		baseline: 'CDB';
+		repository: 'github://Ducasse/CDB';
 		load.
 ]
 
@@ -145,6 +175,26 @@ PackageFormulas class >> chanel [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> chest [
+	<formula: #debugging>
+	
+	Metacello new
+		baseline: 'Chest';
+		repository: 'github://dupriezt/Chest';
+		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> citezen [
+	<formula: #Documentation>
+
+	Metacello new
+		baseline: 'Citezen';
+		repository: 'github://Ducasse/Citezen';
+		load.
+]
+
+{ #category : #formulas }
 PackageFormulas class >> collectionExtensions [
 	<formula: #collections>
 
@@ -152,6 +202,16 @@ PackageFormulas class >> collectionExtensions [
 		githubUser: 'pharo-contributions' project: 'CollectionExtensions' commitish: 'v1.x.x' path: 'src';
     	baseline: 'CollectionExtensions';
     	load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> colorExtensions [
+	<formula: #graphics>
+
+	Metacello new
+		githubUser: 'pharo-contributions' project: 'ColorsExtensions' commitish: 'master' path: 'src';
+ 		baseline: 'ColorsExtensions';
+		load
 ]
 
 { #category : #formulas }
@@ -174,6 +234,16 @@ PackageFormulas class >> compendium [
 		load
 
 
+]
+
+{ #category : #formulas }
+PackageFormulas class >> constraintsLayout [
+	<formula: #graphics>
+
+	Metacello new
+		baseline: 'ConstraintsLayout';
+		repository: 'github://tesonep/ConstraintsLayout/src';
+		load.
 ]
 
 { #category : #formulas }
@@ -379,6 +449,16 @@ PackageFormulas class >> cormas [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> coverageBrowser [
+	<formula: #testing>
+	
+	Metacello new
+		baseline: 'CoverageBrowser';
+		repository: 'github://bauing-schmidt/CoverageBrowser/src';
+		load.
+]
+
+{ #category : #formulas }
 PackageFormulas class >> cryptoNacl [
 	<formula: #security>
 
@@ -450,6 +530,16 @@ PackageFormulas class >> elasticsearch [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> espell [
+	<formula: #General>
+
+	Metacello new
+		baseline: 'Espell';
+		repository: 'github://guillep/espell';
+		load.
+]
+
+{ #category : #formulas }
 PackageFormulas class >> ethel [
 	<formula: #web>
 
@@ -488,6 +578,17 @@ PackageFormulas class >> fileLibraryHelper [
     	baseline: 'FileLibraryHelper';
     	onWarningLog;
     	load
+]
+
+{ #category : #formulas }
+PackageFormulas class >> fileMan [
+	<formula: #general>
+
+	Gofer it
+      url: 'http://squeaksource.com/MetacelloRepository';
+      package: 'ConfigurationOfFileMan';
+      load.
+	(Smalltalk at: #ConfigurationOfFileMan) perform: #load.
 ]
 
 { #category : #formulas }
@@ -611,6 +712,16 @@ PackageFormulas class >> ghost [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> gitBridge [
+	<formula: #interaction>
+
+    Metacello new
+    	githubUser: 'jecisc' project: 'GitBridge' commitish: 'v1.x.x' path: 'src';
+    	baseline: 'GitBridge';
+    	load
+]
+
+{ #category : #formulas }
 PackageFormulas class >> graphQl [
 	<formula: #web>
 
@@ -716,6 +827,16 @@ PackageFormulas class >> infinity [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> ipfs [
+	<formula: #Blockchain>
+
+	Metacello new
+		baseline: 'IPFS';
+		repository: 'github://khinsen/ipfs-pharo/src';
+		load.
+]
+
+{ #category : #formulas }
 PackageFormulas class >> iterators [
 	<formula: #collections>
 
@@ -726,12 +847,54 @@ PackageFormulas class >> iterators [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> jun [
+	<formula: #graphics>
+
+	Metacello new
+		baseline: 'Jun';
+		repository: 'github://tomooda/Jun';
+		load.
+]
+
+{ #category : #formulas }
 PackageFormulas class >> kobold [
 	<formula: #web>
 
 	Metacello new
 		baseline: 'Kobold';
 		repository: 'github://juliangrigera/Kobold';
+		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> lapack [
+	<formula: #math>
+	<formula: #bindings>
+
+	Metacello new
+		baseline: 'Lapack';
+		repository: 'github://pharo-ai/lapack/src';
+		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> libusbPharo [
+	<formula: #iot>
+	<formula: #bindings>
+
+	Metacello new
+		repository: 'github://tamerescrl/libusb-pharo/repository';
+		baseline: 'HumanInterfaceDevice';
+		load
+]
+
+{ #category : #formulas }
+PackageFormulas class >> liveWeb [
+	<formula: #web>
+
+	Metacello new
+		repository: 'github://tatut/LiveWeb/src';
+		baseline: 'LiveWeb';
 		load.
 ]
 
@@ -767,6 +930,16 @@ PackageFormulas class >> magritte [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> materialColors [
+	<formula: #graphics>
+
+    Metacello new
+    	githubUser: 'DuneSt' project: 'MaterialColors' commitish: 'master' path: 'src';
+    	baseline: 'MaterialColors';
+    	load
+]
+
+{ #category : #formulas }
 PackageFormulas class >> mathemagics [
 	<formula: #math>
 
@@ -784,6 +957,16 @@ PackageFormulas class >> methodProxies [
 	Metacello new
 		baseline: 'MethodProxies';
 		repository: 'github://pharo-contributions/MethodProxies/src';
+		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> methodTrackers [
+	<formula: #testing>
+	
+	Metacello new
+		baseline: 'MethodTrackers';
+		repository: 'github://bauing-schmidt/MethodTracker/src';
 		load.
 ]
 
@@ -892,6 +1075,36 @@ PackageFormulas class >> osSubprocess [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> osc [
+	<formula: #interaction>
+
+	Metacello new
+		baseline: 'OSC';
+		repository: 'github://Ducasse/OSC/src';
+		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> p3 [
+	<formula: #databases>
+
+	Metacello new
+		baseline: 'P3';
+		repository: 'github://svenvc/P3';
+		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> p3glorp [
+	<formula: #databases>
+
+	Metacello new
+		baseline: 'P3';
+		repository: 'github://svenvc/P3';
+		load: 'glorp'.
+]
+
+{ #category : #formulas }
 PackageFormulas class >> pastell [
 	<formula: #XML>
 
@@ -935,6 +1148,16 @@ PackageFormulas class >> pharoI18n [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> pharoMinizinc [
+	<formula: #bindings>
+
+	Metacello new
+		baseline: 'Minizinc';
+		repository: 'github://tesonep/pharo-minizinc';
+		load.
+]
+
+{ #category : #formulas }
 PackageFormulas class >> pharoODBC [
 	<formula: #databases>
 
@@ -952,6 +1175,26 @@ PackageFormulas class >> pharoSQLite3 [
 		repository: 'github://pharo-rdbms/Pharo-SQLite3/src';
 		baseline: 'SQLite3';
 		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> pharoSpaceAndTime [
+	<formula: #testing>
+
+	Metacello new
+		baseline: 'SpaceAndTime';
+		repository: 'github://tesonep/spaceAndTime/';
+		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> pharoThings [
+	<formula: #IOT>
+
+	Metacello new
+		baseline: 'PharoThings';
+		repository: 'github://pharo-iot/PharoThings/src';
+		load: #(RemoteDevServer Raspberry).
 ]
 
 { #category : #formulas }
@@ -1048,6 +1291,26 @@ PackageFormulas class >> seasideQuasar [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> serialPort [
+	<formula: #bindings>
+
+	Metacello new
+		baseline: 'SerialPort';
+		repository: 'github://tesonep/SerialPort:main';
+		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> smallAmp [
+	<formula: #testing>
+
+	Metacello new
+		baseline: 'SmallAmp';
+		repository: 'github://mabdi/small-amp/src';
+		load
+]
+
+{ #category : #formulas }
 PackageFormulas class >> smartTest [
 	<formula: #testing>
 
@@ -1077,6 +1340,27 @@ PackageFormulas class >> sparta [
 		repository: 'github://pharo-graphics/sparta/src';
 		load
 
+]
+
+{ #category : #formulas }
+PackageFormulas class >> spreadsheet [
+	<formula: #general>
+
+	Metacello new
+		baseline:'Spreadsheet';
+		repository: 'github://pharo-contributions/Pharo-Spreadsheet:master/src';
+		load
+]
+
+{ #category : #formulas }
+PackageFormulas class >> sqlite3 [
+	<formula: #bindings>
+	<formula: #databases>
+
+	Metacello new
+		repository: 'github://pharo-rdbms/Pharo-SQLite3/src';
+		baseline: 'SQLite3';
+		load
 ]
 
 { #category : #formulas }
@@ -1141,12 +1425,46 @@ PackageFormulas class >> telePharoServer [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> testWorkers [
+	<formula: #testing>
+	
+	Metacello new
+		baseline: 'TestWorkers';
+		repository: 'github://tesonep/pharo-testWorkers/repository';
+		load
+]
+
+{ #category : #formulas }
+PackageFormulas class >> tilingWindowmanager [
+	<formula: #IDE>
+
+	Metacello new
+		githubUser: 'pharophile' 
+		project: 'TilingWindowManager' 
+ 		commitish: 'master' 
+		path: 'packages';
+		baseline: 'TilingWindowManager';
+		onWarningLog;
+		load
+]
+
+{ #category : #formulas }
 PackageFormulas class >> treeQuery [
 	<formula: #general>
 
 	Metacello new
 		repository: 'github://JulienDelplanque/TreeQuery/src';
 		baseline: 'TreeQuery';
+		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> tuio [
+	<formula: #interaction>
+
+	Metacello new
+		baseline: 'TUIO';
+		repository: 'github://Ducasse/TUIO/src';
 		load.
 ]
 
@@ -1158,6 +1476,16 @@ PackageFormulas class >> turbo [
 		baseline: 'Turbo';
 		repository: 'github://pavel-krivanek/Turbo';
 		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> uncommonThemes [
+	<formula: #IDE>
+
+	Metacello new 
+		repository: 'github://David5i6/Uncommon-Themes/src';
+		baseline: 'UncommonThemes';
+		load 	
 ]
 
 { #category : #formulas }
@@ -1178,6 +1506,16 @@ PackageFormulas class >> voyageMongo [
 		repository: 'github://pharo-nosql/voyage/mc';
 		baseline: 'Voyage';
 		load: 'mongo tests'.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> woden [
+	<formula: #graphics>
+
+	Metacello new
+		baseline: 'WodenEngine';
+		repository: 'github://woden-engine/woden';
+		load
 ]
 
 { #category : #formulas }

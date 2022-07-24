@@ -2,10 +2,20 @@ Class {
 	#name : #PackageFormulaInstallDecoration,
 	#superclass : #Object,
 	#instVars : [
-		'next'
+		'next',
+		'name'
 	],
 	#category : #'PackageFormulas-Core'
 }
+
+{ #category : #'instance creation' }
+PackageFormulaInstallDecoration class >> named: aString [
+	"Answer a new decoration named aString"
+
+	^ self new
+		name: aString;
+		yourself
+]
 
 { #category : #'accessing - deco' }
 PackageFormulaInstallDecoration >> build [
@@ -43,6 +53,18 @@ PackageFormulaInstallDecoration >> installIn: anAST [
 	^ metaLink
 
 
+]
+
+{ #category : #accessing }
+PackageFormulaInstallDecoration >> name [
+
+	^ name
+]
+
+{ #category : #accessing }
+PackageFormulaInstallDecoration >> name: anObject [
+
+	name := anObject
 ]
 
 { #category : #'accessing - deco' }

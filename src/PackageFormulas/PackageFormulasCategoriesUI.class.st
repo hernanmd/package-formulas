@@ -6,7 +6,7 @@ Note that a `PackageFormula` can belong to multiple categories.
 "
 Class {
 	#name : #PackageFormulasCategoriesUI,
-	#superclass : #SpPresenter,
+	#superclass : #SpPackageFormulasPresenter,
 	#instVars : [
 		'categoriesList'
 	],

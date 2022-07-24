@@ -42,7 +42,10 @@ PackageFormulasInstallOptionsCommand >> openInstallOptions [
 
 	| answer |
 	
-	answer := PackageFormulasScriptUI new openModalWithSpec.
+	answer := PackageFormulasScripterUI basicNew
+		formulas: self context selectedFormulas;	
+		initialize;
+		openModalWithSpec.
 	answer
 		ifNotNil: [ : presenter | 
 			presenter isCancelled 
