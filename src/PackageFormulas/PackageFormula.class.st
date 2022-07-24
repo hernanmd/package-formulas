@@ -270,6 +270,12 @@ PackageFormula >> repositorySchemas [
 	^ self class repositorySchemas
 ]
 
+{ #category : #accessing }
+PackageFormula >> sourceCode [
+
+	^ self method ast body sourceCode.
+]
+
 { #category : #private }
 PackageFormula >> urlForSchema: aString [ 
 	"Answer a <String> representing a valid web address for aString. i.e. Given 'github' get 'https://github.com'"

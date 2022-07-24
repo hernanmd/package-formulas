@@ -121,6 +121,7 @@ PackageFormulasSelectorUI >> initializeSelectableFormulas [
 				yourself);	
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: [: p | p method selector capitalized ]);
 		addColumn: ((SpCheckBoxTableColumn title: 'Installed' evaluated: [: formula | formula isInstalled ])
+				"enabled: false;"
 				width: 90;
 				yourself);		
 		addColumn: ((SpCheckBoxTableColumn title: 'Baseline' evaluated: [: formula | formula hasBaseline ])

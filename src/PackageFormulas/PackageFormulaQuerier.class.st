@@ -38,22 +38,10 @@ PackageFormulaQuerier >> handlePackageNotFound: aNotFound [
 
 { #category : #testing }
 PackageFormulaQuerier >> isPackageInstalled: anAST [
+	"Answer <true> if the package specified in anAST is found in the image"
 
-	| extractedTree baselineName |
-	extractedTree := RBParseTreeSearcher
-		                 treeMatching: '``@anything baseline: ``@args'
-		                 in: anAST.
-	extractedTree ifNotNil: [ :arg | 
-		| pkgRepository |
-		baselineName := extractedTree arguments anyOne.
-		pkgRepository := IceRepository registry
-			                 detect: [ :r | 
-			                 self
-				                 matchPackageName: r name
-				                 and: baselineName value ]
-			                 ifNone: [ ^ false ].
-		^ pkgRepository loadedPackages notEmpty ].
-	^ false
+	^ (self searchByBaselineName: anAST) or: [ self searchByRepositoryName: anAST ]
+
 ]
 
 { #category : #testing }
@@ -62,6 +50,23 @@ PackageFormulaQuerier >> matchPackageName: aString and: aString2 [
 	^ aString size > aString2 size 
 		ifTrue: [ aString asLowercase beginsWith: aString2 asLowercase ]
 		ifFalse: [ aString2 asLowercase beginsWith: aString asLowercase ]
+]
+
+{ #category : #testing }
+PackageFormulaQuerier >> matchPackageName: aString withPackageNamed: aString2 [ 
+	"Answer <true> if aString matches aString2"
+
+	^ aString size > aString2 size 
+		ifTrue: [ aString asLowercase beginsWith: aString2 asLowercase ]
+		ifFalse: [ aString2 asLowercase beginsWith: aString asLowercase ]
+]
+
+{ #category : #testing }
+PackageFormulaQuerier >> matchPackageName: pkgNameString withRepository: repositorySpecString [
+
+	| pkgNameInRepositorySpec |
+	pkgNameInRepositorySpec := (repositorySpecString substrings: '/') third.
+	^ pkgNameString asLowercase = pkgNameInRepositorySpec asLowercase
 ]
 
 { #category : #baselines }
@@ -83,4 +88,45 @@ PackageFormulaQuerier >> packageFormula [
 PackageFormulaQuerier >> packageFormula: anObject [
 
 	packageFormula := anObject
+]
+
+{ #category : #testing }
+PackageFormulaQuerier >> searchByBaselineName: anAST [ 
+
+	| extractedTree baselineName |
+	
+	extractedTree := RBParseTreeSearcher
+		                 treeMatching: '``@anything baseline: ``@args'
+		                 in: anAST.
+	extractedTree ifNotNil: [ :arg | 
+		| pkgRepository |
+		baselineName := extractedTree arguments anyOne.
+		pkgRepository := IceRepository registry
+			                 detect: [ :r | 
+			                 self
+				                 matchPackageName: r name
+				                 withPackageNamed: baselineName value ]
+			                 ifNone: [ ^ false ].
+		^ pkgRepository loadedPackages notEmpty ].
+	^ false
+]
+
+{ #category : #testing }
+PackageFormulaQuerier >> searchByRepositoryName: anAST [ 
+	| extractedTree repositorySpec |
+	
+	extractedTree := RBParseTreeSearcher
+		                 treeMatching: '``@anything repository: ``@args'
+		                 in: anAST.
+	extractedTree ifNotNil: [ :arg | 
+		| pkgRepository |
+		repositorySpec := extractedTree arguments anyOne.
+		pkgRepository := IceRepository registry
+			                 detect: [ :r | 
+			                 self
+				                 matchPackageName: r name
+				                 withRepository: repositorySpec value ]
+			                 ifNone: [ ^ false ].
+		^ pkgRepository loadedPackages notEmpty ].
+	^ false
 ]

@@ -8,7 +8,8 @@ Class {
 		'postActionsPresenter',
 		'preActionsLabel',
 		'postActionsLabel',
-		'installActionLabel'
+		'installActionLabel',
+		'formulas'
 	],
 	#category : #'PackageFormulas-UI'
 }
@@ -30,6 +31,28 @@ PackageFormulasScripterUI >> actionsSelectorPresenter [
 PackageFormulasScripterUI >> actionsSelectorPresenter: anObject [
 
 	actionsSelectorPresenter := anObject
+]
+
+{ #category : #initialization }
+PackageFormulasScripterUI >> collectFormulasSource [
+	"Answer a <String> representing the installation script"
+	
+	^ (self formulas collect: [ : formula |
+		(formula sourceCode endsWith: '.')
+			ifFalse: [ formula sourceCode , '.' ]
+			ifTrue: [ formula sourceCode ] ]) joinUsing: Character cr.
+]
+
+{ #category : #accessing }
+PackageFormulasScripterUI >> formulas [
+
+	^ formulas
+]
+
+{ #category : #accessing }
+PackageFormulasScripterUI >> formulas: anObject [
+
+	formulas := anObject
 ]
 
 { #category : #initialization }
@@ -92,6 +115,7 @@ PackageFormulasScripterUI >> initializeScriptPresenters [
 	scriptPresenter := self newCode
 		beWrapWord;
 		withoutLineNumbers;
+		text: self collectFormulasSource;
 		whenSubmitDo: [ : scriptCode | self validateScript: scriptCode ].
 ]
 

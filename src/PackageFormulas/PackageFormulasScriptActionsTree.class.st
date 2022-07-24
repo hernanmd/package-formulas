@@ -21,7 +21,10 @@ Class {
 		'actionsTypesPresenter',
 		'actionsMap',
 		'actionsLabelPresenter',
-		'actionsDetailPresenter'
+		'actionsDetailPresenter',
+		'actionTypesLabelPresenter',
+		'actionsPreviewLabelPresenter',
+		'actionsPreviewPresenter'
 	],
 	#category : #'PackageFormulas-UI'
 }
@@ -88,9 +91,12 @@ PackageFormulasScriptActionsTree >> defaultActionsMap [
 PackageFormulasScriptActionsTree >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
+		add: #actionTypesLabelPresenter height: self labelHeight;
 		add: #actionsTypesPresenter;
 		add: #actionsLabelPresenter height: self labelHeight;
 		add: #actionsTreePresenter;
+		add: #actionsPreviewLabelPresenter height: self labelHeight;
+		add: #actionsPreviewPresenter;
 		yourself
 ]
 
@@ -98,16 +104,16 @@ PackageFormulasScriptActionsTree >> defaultLayout [
 PackageFormulasScriptActionsTree >> defaultPostInstallActions [
 
 	^ { 
-		((PackageFormulaBeforeInstall named: 'Open Workspace')
+		((PackageFormulaAfterInstall named: 'Open Workspace')
 			sourceCode: 'Smalltalk tools workspace open.') .
 			
-		((PackageFormulaBeforeInstall named: 'Open Test Runner')
+		((PackageFormulaAfterInstall named: 'Open Test Runner')
 			sourceCode: 'Smalltalk tools openTestRunner.')	.
 				
-		((PackageFormulaBeforeInstall named: 'Open Help Browser')
+		((PackageFormulaAfterInstall named: 'Open Help Browser')
 			sourceCode: 'HelpBrowser open.') .
 			
-		((PackageFormulaBeforeInstall named: 'Log start')
+		((PackageFormulaAfterInstall named: 'Log start')
 			sourceCode: '''Installation finished'' asBeaconSignal log.') .
 
 	 }
@@ -150,6 +156,8 @@ PackageFormulasScriptActionsTree >> defaultWrapperInstallActions [
 PackageFormulasScriptActionsTree >> initializePresenters [
 
 	self layout: self defaultLayout.
+
+	actionTypesLabelPresenter := self newLabel label: 'Action types'; yourself.
 	actionsTypesPresenter := self newList
 		items: self installActions;
 		beSingleSelection;
@@ -163,6 +171,9 @@ PackageFormulasScriptActionsTree >> initializePresenters [
 		whenSelectionChangedDo: [ : selection |  ];
 		yourself.
 		
+	actionsPreviewLabelPresenter := self newLabel label: 'Action preview'; yourself.
+	actionsPreviewPresenter := self newText.
+	
 	actionsDetailPresenter := self newText.
 ]
 
