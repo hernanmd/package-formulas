@@ -18,30 +18,6 @@ PackageFormulasQueryingHelp class >> bookName [
 ]
 
 { #category : #'instance creation' }
-PackageFormulasQueryingHelp class >> exampleAddMultipleWrappers [
-
-	^ '(PackageFormulas @ #neoJson)
-		addDecoration: (PackageFormulaBackgroundWrapper new);
-		addDecoration: (PackageFormulaDisableMonitorWrapper new);
-		addDecoration: (PackageFormulaAfterInstall new sourceCode: ''self inform: ''Finished'');
-		yourself'
-]
-
-{ #category : #'instance creation' }
-PackageFormulasQueryingHelp class >> exampleAddWrapper [
-
-	^ '(PackageFormulas for: #IDE) second
- 	addDecoration: (PackageFormulaBackgroundWrapper new);
- 	install.'
-]
-
-{ #category : #'instance creation' }
-PackageFormulasQueryingHelp class >> exampleInstallScript [
-
-	^ '(PackageFormulas @ #neoJson) install.'
-]
-
-{ #category : #'instance creation' }
 PackageFormulasQueryingHelp class >> exampleListCategories [
 
 	^ '(PackageFormulas @ #neoJson) categories.'
@@ -80,23 +56,9 @@ PackageFormulasQueryingHelp class >> queryFormulasHelpContents [
 
 	^  'Most of the functionality is intended to be intuitive through the Package Formulas UI, but can also be used through the PackageFormula API. In that case, some examples are:
 
-## Installing a formula
-
-{1}
-
 ## Listing categories
 
-{2}
-
-## Add a wrapper and install
-
-{3}
-
-## Add multiple wrappers and install
-
-{4} ' format: { 
-	self exampleInstallScript . 
-	self exampleListCategories . 
-	self exampleAddWrapper . 
-	self exampleAddMultipleWrappers  }
+{1}
+ ' format: { 
+	self exampleListCategories }
 ]

@@ -32,7 +32,7 @@ PackageFormulaQuerier >> handlePackageNotFound: aNotFound [
 	RPackageOrganizer default packagesDo: [ : p |
 		(p name asLowercase beginsWith: pkgName)
 			ifTrue: [ ^ p ] ].
-	NotFound signal: aNotFound signaler.
+	self inform: 'A package was found but no source code seems to be available for this package: ' , aNotFound signaler.
 
 ]
 

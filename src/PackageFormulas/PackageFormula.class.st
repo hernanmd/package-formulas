@@ -22,9 +22,11 @@ Class {
 	#name : #PackageFormula,
 	#superclass : #Pragma,
 	#instVars : [
-		'decoration',
 		'categories',
-		'querier'
+		'querier',
+		'beforeDecoration',
+		'afterDecoration',
+		'aroundDecoration'
 	],
 	#classVars : [
 		'RepositorySchemas'
@@ -32,7 +34,7 @@ Class {
 	#category : #'PackageFormulas-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PackageFormula class >> initRepositorySchemas [
 	"Private - Ideally this could be built using something like:
 	IceUrlBuilder new
@@ -57,7 +59,7 @@ PackageFormula class >> newFrom: aPragma [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PackageFormula class >> repositorySchemas [
 	"Answer a <Dictionary> which maps host names to its web URL"
 
@@ -73,20 +75,100 @@ PackageFormula >> <= aPackageFormula [
 ]
 
 { #category : #'accessing - decorators' }
-PackageFormula >> addDecoration: aDecoration [
-	"Add aDecoration to the receivers decoration chain. Answer the added decoration."
-	
+PackageFormula >> addAfterDecoration: aPackageFormulaDecoration [
+
 	| previous current |
 	previous := nil.
-	current := self decoration.
+	current := self afterDecoration.
 	[ current ~~ self ] whileTrue: [
 		previous := current.
 		current := current next ].
-	aDecoration setNext: current.
+	aPackageFormulaDecoration setNext: current.
 	previous
-		ifNil: [ self decoration: aDecoration ]
-		ifNotNil: [ previous setNext: aDecoration ].
-	^ aDecoration
+		ifNil: [ self afterDecoration: aPackageFormulaDecoration ]
+		ifNotNil: [ previous setNext: aPackageFormulaDecoration ].
+	^ aPackageFormulaDecoration
+]
+
+{ #category : #'accessing - decorators' }
+PackageFormula >> addAroundDecoration: aPackageFormulaDecoration [
+
+	| previous current |
+	previous := nil.
+	current := self aroundDecoration.
+	[ current ~~ self ] whileTrue: [
+		previous := current.
+		current := current next ].
+	aPackageFormulaDecoration setNext: current.
+	previous
+		ifNil: [ self aroundDecoration: aPackageFormulaDecoration ]
+		ifNotNil: [ previous setNext: aPackageFormulaDecoration ].
+	^ aPackageFormulaDecoration
+]
+
+{ #category : #'accessing - decorators' }
+PackageFormula >> addBeforeDecoration: aPackageFormulaDecoration [
+
+	| previous current |
+	previous := nil.
+	current := self beforeDecoration.
+	[ current ~~ self ] whileTrue: [
+		previous := current.
+		current := current next ].
+	aPackageFormulaDecoration setNext: current.
+	previous
+		ifNil: [ self beforeDecoration: aPackageFormulaDecoration ]
+		ifNotNil: [ previous setNext: aPackageFormulaDecoration ].
+	^ aPackageFormulaDecoration
+]
+
+{ #category : #'accessing - decorators' }
+PackageFormula >> addDecoration: aDecoration [
+	"Add aDecoration to the receivers decoration chain. Answer the added decoration."
+	
+	aDecoration addToPackageFormula: self
+]
+
+{ #category : #'accessing - decorators' }
+PackageFormula >> afterDecoration [
+
+	^ afterDecoration 
+		ifNil: [ afterDecoration := self ]
+		ifNotNil: [ afterDecoration contents ]
+]
+
+{ #category : #'accessing - decorators' }
+PackageFormula >> afterDecoration: aDecoration [
+
+	afterDecoration contents: aDecoration
+]
+
+{ #category : #'accessing - decorators' }
+PackageFormula >> aroundDecoration [
+
+	^ aroundDecoration 
+		ifNotNil: [: deco | deco contents ]
+		ifNil: [ nil ]
+]
+
+{ #category : #'accessing - decorators' }
+PackageFormula >> aroundDecoration: aDecoration [
+
+	aroundDecoration contents: aDecoration
+]
+
+{ #category : #'accessing - decorators' }
+PackageFormula >> beforeDecoration [
+
+	^ beforeDecoration 
+		ifNil: [ beforeDecoration := self ]
+		ifNotNil: [ beforeDecoration contents ]
+]
+
+{ #category : #'accessing - decorators' }
+PackageFormula >> beforeDecoration: aDecoration [
+
+	beforeDecoration contents: aDecoration
 ]
 
 { #category : #private }
@@ -128,19 +210,6 @@ PackageFormula >> categories: anObject [
 ]
 
 { #category : #'accessing - decorators' }
-PackageFormula >> decoration [
-
-	^ decoration 
-		ifNil: [ decoration := self ]
-		ifNotNil: [ decoration contents ]
-]
-
-{ #category : #'accessing - decorators' }
-PackageFormula >> decoration: aDecoration [
-	decoration contents: aDecoration
-]
-
-{ #category : #'accessing - decorators' }
 PackageFormula >> decorations [
 	"Answer an ordered collection of all decorations active in the receiver."
 	
@@ -151,6 +220,12 @@ PackageFormula >> decorations [
 		result add: current.
 		current := current next ].
 	^ result
+]
+
+{ #category : #querying }
+PackageFormula >> decorationsSuchThat: aFullBlockClosure [ 
+
+	^ self decorations select: [ : deco | aFullBlockClosure value: deco ]
 ]
 
 { #category : #testing }
@@ -172,7 +247,15 @@ PackageFormula >> hasBaseline [
 PackageFormula >> initialize [
 
 	super initialize.
-	decoration := ValueHolder new contents: self
+	self initializeAroundDecoration.
+	beforeDecoration := ValueHolder new contents: self.
+	afterDecoration := ValueHolder new contents: self
+]
+
+{ #category : #'accessing - decorators' }
+PackageFormula >> initializeAroundDecoration [
+
+	aroundDecoration := ValueHolder new contents: self.
 ]
 
 { #category : #accessing }
@@ -182,6 +265,7 @@ PackageFormula >> install [
 	
 	formulaSelector := self method selector.
 	ast := (PackageFormulas class >> formulaSelector) ast.
+	self halt.
 	metaLink := self decoration installIn: ast.
 	PackageFormulas perform: formulaSelector.
 	ast removeLink: metaLink.
@@ -194,10 +278,31 @@ PackageFormula >> installIn: anAST [
 ]
 
 { #category : #testing }
+PackageFormula >> isDecoration [
+
+	^ false
+]
+
+{ #category : #testing }
 PackageFormula >> isInstalled [
 	"Answer <true> if the receiver is installed in the current environment"
 
 	^ self querier isPackageInstalled: self method ast.
+]
+
+{ #category : #testing }
+PackageFormula >> isWrapped [
+	"Answer <true> if the receiver has any wrapped decoration"
+	
+	^ self aroundDecoration isDecoration
+]
+
+{ #category : #accessing }
+PackageFormula >> link [
+	"Link the receiver's body part assumed to have a Metacello install expression"
+
+	self aroundDecoration installIn: self method ast.
+
 ]
 
 { #category : #parsing }
@@ -246,16 +351,59 @@ PackageFormula >> record [
 ]
 
 { #category : #'accessing - decorators' }
-PackageFormula >> removeDecoration: aDecoration [ 
+PackageFormula >> removeAfterDecoration: aDecoration [ 
 	"Remove aDecoration from the chain of decorations. Answer nil if aDecoration is not present."
 
 	| previous current |
 	previous := nil.
-	current := self decoration.
+	current := self afterDecoration.
 	[ current = self ] whileFalse: [
 		current = aDecoration ifTrue: [
 			previous isNil
-				ifTrue: [ self decoration: current next ]
+				ifTrue: [ self afterDecoration: current next ]
+				ifFalse: [ previous setNext: current next ].
+			^ aDecoration setNext: nil ].
+		previous := current.
+		current := current next ].
+	^ nil
+]
+
+{ #category : #'accessing - decorators' }
+PackageFormula >> removeAllDecorationsSuchThat: aFullBlockClosure [ 
+
+	(self decorationsSuchThat: aFullBlockClosure)
+		do: [ : deco | self removeDecoration: deco ]
+]
+
+{ #category : #'accessing - decorators' }
+PackageFormula >> removeAroundDecoration: aDecoration [ 
+	"Remove aDecoration from the chain of decorations. Answer nil if aDecoration is not present."
+
+	| previous current |
+	previous := nil.
+	current := self aroundDecoration.
+	[ current = self ] whileFalse: [
+		current = aDecoration ifTrue: [
+			previous isNil
+				ifTrue: [ self aroundDecoration: current next ]
+				ifFalse: [ previous setNext: current next ].
+			^ aDecoration setNext: nil ].
+		previous := current.
+		current := current next ].
+	^ nil
+]
+
+{ #category : #'accessing - decorators' }
+PackageFormula >> removeBeforeDecoration: aDecoration [ 
+	"Remove aDecoration from the chain of decorations. Answer nil if aDecoration is not present."
+
+	| previous current |
+	previous := nil.
+	current := self beforeDecoration.
+	[ current = self ] whileFalse: [
+		current = aDecoration ifTrue: [
+			previous isNil
+				ifTrue: [ self beforeDecoration: current next ]
 				ifFalse: [ previous setNext: current next ].
 			^ aDecoration setNext: nil ].
 		previous := current.
@@ -271,7 +419,16 @@ PackageFormula >> repositorySchemas [
 ]
 
 { #category : #accessing }
+PackageFormula >> selector [
+	"Answer the selector of the pragma.
+	 For a pragma defined as <key1: val1 key2: val2> this will answer #key1:key2:."
+	
+	^ self method selector
+]
+
+{ #category : #accessing }
 PackageFormula >> sourceCode [
+	"When asked the source, we setup the link"
 
 	^ self method ast body sourceCode.
 ]

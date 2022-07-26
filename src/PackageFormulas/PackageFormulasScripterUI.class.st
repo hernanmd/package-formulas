@@ -33,18 +33,9 @@ PackageFormulasScripterUI >> actionsSelectorPresenter: anObject [
 	actionsSelectorPresenter := anObject
 ]
 
-{ #category : #initialization }
-PackageFormulasScripterUI >> collectFormulasSource [
-	"Answer a <String> representing the installation script"
-	
-	^ (self formulas collect: [ : formula |
-		(formula sourceCode endsWith: '.')
-			ifFalse: [ formula sourceCode , '.' ]
-			ifTrue: [ formula sourceCode ] ]) joinUsing: Character cr.
-]
-
 { #category : #accessing }
 PackageFormulasScripterUI >> formulas [
+	"Answer a <PackageFormulaCollection>"
 
 	^ formulas
 ]
@@ -72,18 +63,18 @@ PackageFormulasScripterUI >> initializeActionSelectorPresenter [
 PackageFormulasScripterUI >> initializeLayout [
 
 	self layout: (SpBoxLayout newLeftToRight 
-		spacing: 2;
-		add: #actionsSelectorPresenter height: 20;
+		spacing: 3;
+		add: #actionsSelectorPresenter width: 200;
 		add: (SpBoxLayout newTopToBottom
 			spacing: 2;
 			add: #preActionsLabel height: self labelHeight;
-			add: #preActionsPresenter height: 50;
+			add: #preActionsPresenter height: 70;
 
 			add: #installActionLabel height: self labelHeight;
 			add: #scriptPresenter;
 
 			add: #postActionsLabel height: self labelHeight;
-			add: #postActionsPresenter height: 50;
+			add: #postActionsPresenter height: 70;
 			yourself);
 		yourself)
 ]
@@ -103,19 +94,22 @@ PackageFormulasScripterUI >> initializeScriptPresenters [
 	
 	preActionsLabel := self newLabel label: 'Pre-install actions'; yourself.
 	preActionsPresenter := self newCode 
+		beForScripting;
 		beWrapWord;
 		withoutLineNumbers;
 		whenSubmitDo: [ : scriptCode | self validateScript: scriptCode ].
 	postActionsLabel := self newLabel label: 'Post-install actions'; yourself.
 	postActionsPresenter := self newCode 
+		beForScripting;
 		beNotEditable;
 		beWrapWord;
 		withoutLineNumbers.
 	installActionLabel := self newLabel label: 'Main installation'; yourself.
 	scriptPresenter := self newCode
+		beForScripting;
 		beWrapWord;
 		withoutLineNumbers;
-		text: self collectFormulasSource;
+		text: self wrappedSource;
 		whenSubmitDo: [ : scriptCode | self validateScript: scriptCode ].
 ]
 
@@ -134,6 +128,14 @@ PackageFormulasScripterUI >> installScript: aString [
 	self scriptPresenter text: aString
 ]
 
+{ #category : #initialization }
+PackageFormulasScripterUI >> newUserFormula [
+
+	^ UserPackageFormula new
+		  sourceCodeFrom: self formulas;
+		  yourself
+]
+
 { #category : #accessing }
 PackageFormulasScripterUI >> postActionsPresenter [
 
@@ -146,6 +148,22 @@ PackageFormulasScripterUI >> postActionsPresenter: anObject [
 	postActionsPresenter := anObject
 ]
 
+{ #category : #callbacks }
+PackageFormulasScripterUI >> postActionsPresenterAddText: aString [
+
+	self postActionsPresenter text: (String streamContents: [ : stream |
+		stream
+			<< self postActionsPresenter text;
+			cr;
+			<< aString ]).
+]
+
+{ #category : #callbacks }
+PackageFormulasScripterUI >> postActionsPresenterSetEmpty [
+
+	self postActionsPresenter text: String empty
+]
+
 { #category : #accessing }
 PackageFormulasScripterUI >> preActionsPresenter [
 
@@ -156,6 +174,22 @@ PackageFormulasScripterUI >> preActionsPresenter [
 PackageFormulasScripterUI >> preActionsPresenter: anObject [
 
 	preActionsPresenter := anObject
+]
+
+{ #category : #callbacks }
+PackageFormulasScripterUI >> preActionsPresenterAddText: aString [
+
+	self preActionsPresenter text: (String streamContents: [ : stream |
+		stream
+			<< self preActionsPresenter text;
+			cr;
+			<< aString ]).
+]
+
+{ #category : #callbacks }
+PackageFormulasScripterUI >> preActionsPresenterSetEmpty [
+
+	self preActionsPresenter text: String empty
 ]
 
 { #category : #accessing }
@@ -200,4 +234,51 @@ PackageFormulasScripterUI >> toolbarButtons [
 PackageFormulasScripterUI >> validateScript: scriptCode [
 
 	self shouldBeImplemented 
+]
+
+{ #category : #initialization }
+PackageFormulasScripterUI >> wrappedSource [
+	"Answer a <String> representing the installation script"
+
+	^ self wrappedSource: self newUserFormula.
+
+]
+
+{ #category : #initialization }
+PackageFormulasScripterUI >> wrappedSource: aPackageFormula [
+
+	"Answer a <String> representing the installation script"
+
+	| userFormula firstDecoration |
+	userFormula := aPackageFormula.
+	firstDecoration := userFormula.
+	actionsSelectorPresenter selectedWrapperActions isEmpty ifFalse: [ 
+		userFormula isWrapped ifFalse: [ userFormula link ].
+		firstDecoration := userFormula aroundDecoration.
+		^ firstDecoration
+			  valueInClass: PackageFormulas
+			  withSelector: userFormula selector ].
+	^ userFormula sourceCode
+]
+
+{ #category : #callbacks }
+PackageFormulasScripterUI >> wrapperActionsPresenterAddText: aString [
+
+	self scriptPresenter text: (String streamContents: [ : stream |
+		stream
+			<< self scriptPresenter text;
+			cr;
+			<< aString ]).
+]
+
+{ #category : #callbacks }
+PackageFormulasScripterUI >> wrapperPresenterSetEmpty [
+
+	self scriptPresenter text: String empty
+]
+
+{ #category : #initialization }
+PackageFormulasScripterUI >> wrapperPresenterUpdate: aPackageFormula [
+
+	self wrapperActionsPresenterAddText: (self wrappedSource: aPackageFormula).
 ]

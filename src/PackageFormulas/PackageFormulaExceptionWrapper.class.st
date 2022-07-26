@@ -38,6 +38,7 @@ PackageFormulaExceptionWrapper >> sourceCode: aString [
 PackageFormulaExceptionWrapper >> valueInClass: aClass withSelector: aSelector [
 	" Private - See superimplementor's comment"
 
+	self halt.
 	^ String streamContents: [ : stream |
 		stream
 			<< '[ ';
@@ -45,8 +46,8 @@ PackageFormulaExceptionWrapper >> valueInClass: aClass withSelector: aSelector [
 			<< 	(self next valueInClass: aClass withSelector: aSelector);
 			cr;
 			<< ' ] on: ';
-			<< self exceptionClass;
+			<< self exceptionClass asString;
 			cr;
 			<< 'do: ';
-			<< self exceptionBlock ].
+			<< self exceptionBlock storeString ].
 ]

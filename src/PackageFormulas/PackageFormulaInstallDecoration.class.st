@@ -20,6 +20,8 @@ PackageFormulaInstallDecoration class >> named: aString [
 { #category : #'accessing - deco' }
 PackageFormulaInstallDecoration >> build [
 
+	self halt.
+	self flag: #toRemove.
 	self next build
 ]
 
@@ -53,6 +55,12 @@ PackageFormulaInstallDecoration >> installIn: anAST [
 	^ metaLink
 
 
+]
+
+{ #category : #testing }
+PackageFormulaInstallDecoration >> isDecoration [
+
+	^ true
 ]
 
 { #category : #accessing }

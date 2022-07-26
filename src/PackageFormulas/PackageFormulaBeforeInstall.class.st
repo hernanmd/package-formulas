@@ -4,6 +4,12 @@ Class {
 	#category : #'PackageFormulas-Core'
 }
 
+{ #category : #adding }
+PackageFormulaBeforeInstall >> addToPackageFormula: aPackageFormula [
+
+	aPackageFormula addBeforeDecoration: self
+]
+
 { #category : #'instance creation' }
 PackageFormulaBeforeInstall >> newFormulaLink [
 	"Private - See superimplementor's comment"
@@ -19,10 +25,11 @@ PackageFormulaBeforeInstall >> newFormulaLink [
 PackageFormulaBeforeInstall >> valueInClass: aClass withSelector: aSelector [
 	" Private - See superimplementor's comment"
 
+	self halt.
 	^ String streamContents: [ : stream |
 		stream
 			<< self sourceCode.
-		(self sourceCode endsWith: '.'	)
+		(self sourceCode endsWithSubCollection: '.'	)
 				ifFalse: [ stream << $. ].
 		stream
 			cr;

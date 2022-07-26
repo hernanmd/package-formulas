@@ -8,6 +8,7 @@ CompiledMethod >> formula [
 
 	(additionalMethodState := self penultimateLiteral) isPackageFormula
 		ifTrue: [ ^ additionalMethodState formula ]
+		ifFalse: [ self halt. "Uninstall MetaLink" ]
 ]
 
 { #category : #'*PackageFormulas' }

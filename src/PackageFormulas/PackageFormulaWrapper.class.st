@@ -9,6 +9,12 @@ Class {
 	#category : #'PackageFormulas-Core'
 }
 
+{ #category : #adding }
+PackageFormulaWrapper >> addToPackageFormula: aPackageFormula [
+
+	aPackageFormula addAroundDecoration: self
+]
+
 { #category : #private }
 PackageFormulaWrapper >> newFormulaLink [
 	"Private - See superimplementor's comment"
