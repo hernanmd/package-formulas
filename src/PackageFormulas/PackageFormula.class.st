@@ -180,13 +180,5 @@ PackageFormula >> selector [
 { #category : #accessing }
 PackageFormula >> sourceCode [
 
-	self halt.
 	^ self ast body sourceCode.
-]
-
-{ #category : #accessing }
-PackageFormula >> valueInClass: aClass withSelector: aSelector [
-	"Answer a <String> representing a package installation expression as originally provided by a package author"
-	
-	^ (aClass class >> aSelector) ast body sourceCode
 ]

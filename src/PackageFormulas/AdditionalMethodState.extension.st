@@ -4,8 +4,8 @@ Extension { #name : #AdditionalMethodState }
 AdditionalMethodState >> formula [
 	"Answer a <PackageFormula> if found in the receiver"
 
-	1 to: self basicSize do: [ :i | 
-		| propertyOrPragma	"<Association|Pragma>" |
+	1 to: self basicSize do: [ : i | 
+		| propertyOrPragma	|
 		propertyOrPragma := self basicAt: i.
 		propertyOrPragma isAssociation
 			ifFalse: [ 

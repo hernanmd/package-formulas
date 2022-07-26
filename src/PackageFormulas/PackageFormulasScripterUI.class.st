@@ -242,13 +242,8 @@ PackageFormulasScripterUI >> wrappedSource [
 PackageFormulasScripterUI >> wrappedSource: aPackageFormula [
 	"Answer a <String> representing the installation script"
 
-	| firstDecoration |
-
-	self halt.
-	firstDecoration := aPackageFormula.
-	actionsSelectorPresenter selectedWrapperActions isEmpty ifFalse: [ 
-		firstDecoration := aPackageFormula aroundDecoration.
-		^ firstDecoration sourceCode ].
+	actionsSelectorPresenter selectedWrapperActions isEmpty 
+		ifFalse: [ ^ aPackageFormula aroundDecoration sourceCode ].
 	^ aPackageFormula sourceCode
 ]
 

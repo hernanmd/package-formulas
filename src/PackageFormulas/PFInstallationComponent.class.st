@@ -134,6 +134,33 @@ PFInstallationComponent >> initialize [
 	afterDecoration := ValueHolder new contents: self
 ]
 
+{ #category : #initialization }
+PFInstallationComponent >> initializeAfterDecoration [
+
+	afterDecoration := ValueHolder new contents: self
+]
+
+{ #category : #initialization }
+PFInstallationComponent >> initializeAroundDecoration [
+
+	aroundDecoration := ValueHolder new contents: self.
+
+]
+
+{ #category : #initialization }
+PFInstallationComponent >> initializeBeforeDecoration [
+
+	beforeDecoration := ValueHolder new contents: self.
+
+]
+
+{ #category : #accessing }
+PFInstallationComponent >> install [
+
+	self halt.
+	self evaluate: self packageFormula sourceCode.
+]
+
 { #category : #accessing }
 PFInstallationComponent >> name [
 
@@ -151,6 +178,25 @@ PFInstallationComponent >> next [
 	"Answer the next decoration or component."
 
 	^ next contents
+]
+
+{ #category : #accessing }
+PFInstallationComponent >> nextAfter [
+
+	^ nextAfter
+]
+
+{ #category : #'accessing - deco' }
+PFInstallationComponent >> nextAround [
+	"Answer the next decoration or component."
+
+	^ nextAround contents
+]
+
+{ #category : #accessing }
+PFInstallationComponent >> nextBefore [
+
+	^ nextBefore
 ]
 
 { #category : #'accessing - decorators' }
@@ -210,4 +256,33 @@ PFInstallationComponent >> removeBeforeDecoration: aDecoration [
 { #category : #'accessing - deco' }
 PFInstallationComponent >> setNext: aDecoration [
 	next contents: aDecoration
+]
+
+{ #category : #'accessing - deco' }
+PFInstallationComponent >> setNextAfter: aDecoration [
+	nextAfter contents: aDecoration
+]
+
+{ #category : #'accessing - deco' }
+PFInstallationComponent >> setNextAround: aDecoration [
+	nextAround contents: aDecoration
+]
+
+{ #category : #'accessing - deco' }
+PFInstallationComponent >> setNextBefore: aDecoration [
+
+	nextBefore contents: aDecoration
+]
+
+{ #category : #accessing }
+PFInstallationComponent >> sourceCode [
+	"Answer the receivers installation <String>"
+
+	^ sourceCode
+]
+
+{ #category : #accessing }
+PFInstallationComponent >> sourceCode: aString [
+
+	sourceCode := aString
 ]
