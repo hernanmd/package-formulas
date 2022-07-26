@@ -3,7 +3,6 @@ Class {
 	#superclass : #SpPackageFormulasPresenter,
 	#instVars : [
 		'selectedFormulas',
-		'toolbar',
 		'formulasTable'
 	],
 	#category : #'PackageFormulas-UI'
@@ -120,11 +119,11 @@ PackageFormulasSelectorUI >> initializeSelectableFormulas [
 				width: 20;
 				yourself);	
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: [: p | p method selector capitalized ]);
-		addColumn: ((SpCheckBoxTableColumn title: 'Installed' evaluated: [: formula | formula isInstalled ])
+		addColumn: ((SpCheckBoxTableColumn title: 'Installed' evaluated: [: formula | formula hasPackageInstalled ])
 				"enabled: false;"
 				width: 90;
 				yourself);		
-		addColumn: ((SpCheckBoxTableColumn title: 'Baseline' evaluated: [: formula | formula hasBaseline ])
+		addColumn: ((SpCheckBoxTableColumn title: 'Baseline' evaluated: [: formula | formula hasBaselineInstalled ])
 				width: 90;
 				yourself);			
 		items: OrderedCollection new;
@@ -153,7 +152,7 @@ PackageFormulasSelectorUI >> removeSelections: aFormula [
 
 { #category : #accessing }
 PackageFormulasSelectorUI >> selectedFormulas [
-	"Answer a <Collection> of formulas marked for installation"
+	"Answer a <OrderedCollection> of formulas marked for installation"
 
 	^ selectedFormulas
 		ifNil: [ selectedFormulas := OrderedCollection new ]
@@ -162,10 +161,9 @@ PackageFormulasSelectorUI >> selectedFormulas [
 { #category : #initialization }
 PackageFormulasSelectorUI >> updateSelectedFormula: formula [
 
-	formula hasBaseline 
-		ifFalse: [ 
-			self selectedFormulas add: formula.
-			self owner increaseFormulaCount. ]
+	formula hasBaselineInstalled ifTrue: [ ^ self ].
+	self selectedFormulas add: formula.
+	self owner increaseFormulaCount
 ]
 
 { #category : #initialization }

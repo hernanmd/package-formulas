@@ -37,18 +37,25 @@ PackageFormulasInstallOptionsCommand >> execute [
 		ifFalse: [ self inform: 'No formulas selected.' ]
 ]
 
+{ #category : #'as yet unclassified' }
+PackageFormulasInstallOptionsCommand >> installFromScripter: aScripterUI [
+
+	self halt.
+	aScripterUI formula install
+]
+
 { #category : #execution }
 PackageFormulasInstallOptionsCommand >> openInstallOptions [
 
 	| answer |
 	
 	answer := PackageFormulasScripterUI basicNew
-		formulas: self context selectedFormulas;	
+		newUserFormulaFrom: self context selectedFormulas;	
 		initialize;
 		openModalWithSpec.
 	answer
 		ifNotNil: [ : presenter | 
 			presenter isCancelled 
-				ifFalse: [ self application install ] ].
+				ifFalse: [ self installFromScripter: answer presenter ] ].
 	^ answer
 ]

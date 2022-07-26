@@ -149,7 +149,7 @@ PackageFormulasMainUI >> selectedCategory [
 
 { #category : #accessing }
 PackageFormulasMainUI >> selectedFormulas [
-	"Answer a <Collection> of formulas marked for installation"
+	"Answer a <PackageFormulaCollection> of formulas marked for installation"
 	
 	^ self formulasTable selectedFormulas
 ]

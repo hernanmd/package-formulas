@@ -22,9 +22,10 @@ Class {
 	#name : #PackageFormula,
 	#superclass : #Pragma,
 	#instVars : [
-		'decoration',
 		'categories',
-		'querier'
+		'querier',
+		'installation',
+		'info'
 	],
 	#classVars : [
 		'RepositorySchemas'
@@ -32,7 +33,7 @@ Class {
 	#category : #'PackageFormulas-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PackageFormula class >> initRepositorySchemas [
 	"Private - Ideally this could be built using something like:
 	IceUrlBuilder new
@@ -57,7 +58,7 @@ PackageFormula class >> newFrom: aPragma [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PackageFormula class >> repositorySchemas [
 	"Answer a <Dictionary> which maps host names to its web URL"
 
@@ -72,45 +73,10 @@ PackageFormula >> <= aPackageFormula [
 	^ self method selector <= aPackageFormula method selector
 ]
 
-{ #category : #'accessing - decorators' }
-PackageFormula >> addDecoration: aDecoration [
-	"Add aDecoration to the receivers decoration chain. Answer the added decoration."
-	
-	| previous current |
-	previous := nil.
-	current := self decoration.
-	[ current ~~ self ] whileTrue: [
-		previous := current.
-		current := current next ].
-	aDecoration setNext: current.
-	previous
-		ifNil: [ self decoration: aDecoration ]
-		ifNotNil: [ previous setNext: aDecoration ].
-	^ aDecoration
-]
+{ #category : #accessing }
+PackageFormula >> ast [
 
-{ #category : #private }
-PackageFormula >> buildGitHubLink: args [
-	"Answer a <String> representing the github link to the receiver's repository"
-
-	^ String streamContents: [ : stream |
-		stream 
-			<< 'github://';
-			<<  args first value;
-			<<  $/;
-			<< args second value ]
-]
-
-{ #category : #private }
-PackageFormula >> buildHTTPHomeLink: url [
-	"Answer a <String> representing the receiver's home URL address"
-
-	^ String streamContents: [ :stream | 
-		  stream
-				<< (self urlForSchema: url scheme);
-				<< url authority;
-				<< $/;
-				<< (url directory copyUpTo: $:) ]
+	^ self method ast
 ]
 
 { #category : #accessing }
@@ -127,96 +93,47 @@ PackageFormula >> categories: anObject [
 	categories := anObject
 ]
 
-{ #category : #'accessing - decorators' }
-PackageFormula >> decoration [
+{ #category : #testing }
+PackageFormula >> hasBaselineInstalled [
+	"Answer <true> if receiver's method, assumed to be a Metacello install expression, is installed in the receiver"
 
-	^ decoration 
-		ifNil: [ decoration := self ]
-		ifNotNil: [ decoration contents ]
-]
-
-{ #category : #'accessing - decorators' }
-PackageFormula >> decoration: aDecoration [
-	decoration contents: aDecoration
-]
-
-{ #category : #'accessing - decorators' }
-PackageFormula >> decorations [
-	"Answer an ordered collection of all decorations active in the receiver."
-	
-	| current result |
-	current := self decoration.
-	result := OrderedCollection new.
-	[ current = self ] whileFalse: [
-		result add: current.
-		current := current next ].
-	^ result
+	^ self querier hasBaselineInstalled
 ]
 
 { #category : #testing }
-PackageFormula >> hasBaseline [
-	"Answer <true> if receiver's method, assumed to be a Metacello install expression, is installed in the receiver"
+PackageFormula >> hasPackageInstalled [
+	"Answer <true> if the receiver is installed in the current environment"
 
-	| extractedTree baselineName |
-	
-	extractedTree := RBParseTreeSearcher 
-		treeMatching: '``@anything baseline: ``@args' 
-		in: self method ast.
-	extractedTree ifNotNil: [ 
-		baselineName := extractedTree arguments anyOne.
-		^ Smalltalk hasClassNamed: 'BaselineOf' , baselineName value ].
-	^ false
+	^ self querier hasPackageInstalled
 ]
 
-{ #category : #initialization }
-PackageFormula >> initialize [
+{ #category : #accessing }
+PackageFormula >> info [
 
-	super initialize.
-	decoration := ValueHolder new contents: self
+	^ info
+		ifNil: [ info := PackageFormulaInfo for: self ]
 ]
 
 { #category : #accessing }
 PackageFormula >> install [
 	"Execute the receiver's body part assumed to have a Metacello install expression"
-	| formulaSelector ast metaLink |
-	
-	formulaSelector := self method selector.
-	ast := (PackageFormulas class >> formulaSelector) ast.
-	metaLink := self decoration installIn: ast.
-	PackageFormulas perform: formulaSelector.
-	ast removeLink: metaLink.
+
+	self halt.
+	PackageFormulas perform: self method selector.
+
 ]
 
 { #category : #accessing }
-PackageFormula >> installIn: anAST [
-	"By default we do nothing, if we want additional installation behavior, use one or multiple decorators"
+PackageFormula >> installation [
 
+	^ installation
 ]
 
 { #category : #testing }
 PackageFormula >> isInstalled [
 	"Answer <true> if the receiver is installed in the current environment"
 
-	^ self querier isPackageInstalled: self method ast.
-]
-
-{ #category : #parsing }
-PackageFormula >> parseFromGitHubExtendedShortcut [
-	"Parse an alternative usage of Metacello install expressions"
-
-	^ ((RBParseTreeSearcher
-		    treeMatching: '``@anything githubUser: ``@arg1 project: ``@arg2 commitish: ``@arg3 path: ``@arg4'
-		    in: self method ast) arguments first: 2) 
-				ifNotNil: [ :args | self buildGitHubLink: args ]
-]
-
-{ #category : #parsing }
-PackageFormula >> parseRepositoryExpression [
-	"Answer a <RBMessageNode> matching the receiver's expected repository: expression"
-
-	^ RBParseTreeSearcher
-		  treeMatching: '``@anything repository: ``@arg1'
-		  in: self method ast
+	^ self querier hasPackageInstalled
 ]
 
 { #category : #printing }
@@ -231,7 +148,7 @@ PackageFormula >> printOn: aStream [
 PackageFormula >> querier [
 
 	^ querier
-		ifNil: [ querier := PackageFormulaQuerier new ]
+		ifNil: [ querier := PackageFormulaQuerier for: self ]
 ]
 
 { #category : #accessing }
@@ -241,26 +158,8 @@ PackageFormula >> record [
 	metacelloRecordExpression := (RBParseTreeRewriter 
 		replace: '``@anything load' 
 		with: '``@anything record' 
-		in: self method ast body) formattedCode.
+		in: self ast body) formattedCode.
 	Smalltalk compiler evaluate: metacelloRecordExpression.
-]
-
-{ #category : #'accessing - decorators' }
-PackageFormula >> removeDecoration: aDecoration [ 
-	"Remove aDecoration from the chain of decorations. Answer nil if aDecoration is not present."
-
-	| previous current |
-	previous := nil.
-	current := self decoration.
-	[ current = self ] whileFalse: [
-		current = aDecoration ifTrue: [
-			previous isNil
-				ifTrue: [ self decoration: current next ]
-				ifFalse: [ previous setNext: current next ].
-			^ aDecoration setNext: nil ].
-		previous := current.
-		current := current next ].
-	^ nil
 ]
 
 { #category : #private }
@@ -271,39 +170,16 @@ PackageFormula >> repositorySchemas [
 ]
 
 { #category : #accessing }
+PackageFormula >> selector [
+	"Answer the selector of the pragma.
+	 For a pragma defined as <key1: val1 key2: val2> this will answer #key1:key2:."
+	
+	^ self method selector
+]
+
+{ #category : #accessing }
 PackageFormula >> sourceCode [
+	"Answer a <String> representing the Smalltalk source code of the receiver"
 
-	^ self method ast body sourceCode.
-]
-
-{ #category : #private }
-PackageFormula >> urlForSchema: aString [ 
-	"Answer a <String> representing a valid web address for aString. i.e. Given 'github' get 'https://github.com'"
-	
-	^ self repositorySchemas at: aString
-
-]
-
-{ #category : #accessing }
-PackageFormula >> valueInClass: aClass withSelector: aSelector [
-	"Answer a <String> representing a package installation expression as originally provided by a package author"
-	
-	^ (aClass class >> aSelector) ast body sourceCode
-]
-
-{ #category : #accessing }
-PackageFormula >> webLinkHome [
-	"Answer a <String> representing the home page URL of the receiver's formula"
-
-	| urlString |
-	urlString := self parseRepositoryExpression
-		             ifNotNil: [ :messageNode | messageNode arguments anyOne value ]
-		             ifNil: [ self parseFromGitHubExtendedShortcut ].
-	^ self buildHTTPHomeLink: urlString asZnUrl
-]
-
-{ #category : #'accessing - cursor' }
-PackageFormula >> webLinkIssues [
-	
-	^ self webLinkHome , '/issues'
+	^ self ast body sourceCode.
 ]

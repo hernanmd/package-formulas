@@ -631,6 +631,17 @@ PackageFormulas class >> for: aCategorySymbol [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> fsmEditor [
+	<formula: #General>
+
+	Metacello new
+		baseline: 'FsmEditor';
+		repository: 'github://OpenPonk/fsm-editor/repository';
+		load
+
+]
+
+{ #category : #formulas }
 PackageFormulas class >> function [
 	<formula: #math>
 
@@ -806,6 +817,16 @@ PackageFormulas class >> hunter [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> iPharo [
+	<formula: #science>
+
+	Metacello new 
+		baseline: 'IPharo';
+		repository: 'github://jmari/IPharo:master/repository';
+		load:'default'
+]
+
+{ #category : #formulas }
 PackageFormulas class >> iconFactory [
 	<formula: #graphics>
 
@@ -837,6 +858,17 @@ PackageFormulas class >> ipfs [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> iso3166 [
+	<formula: #General>
+
+	Metacello new
+		baseline: 'ISO3166';
+		onConflictUseLoaded;
+		repository: 'github://hernanmd/ISO3166/repository';
+		load
+]
+
+{ #category : #formulas }
 PackageFormulas class >> iterators [
 	<formula: #collections>
 
@@ -854,6 +886,17 @@ PackageFormulas class >> jun [
 		baseline: 'Jun';
 		repository: 'github://tomooda/Jun';
 		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> kendrick [
+	<formula: #science>
+
+	Metacello new
+		repository: 'github://KendrickOrg/kendrick';
+		baseline: 'Kendrick';
+		onWarningLog;
+		load
 ]
 
 { #category : #formulas }
@@ -878,14 +921,35 @@ PackageFormulas class >> lapack [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> launchpad [
+	<formula: #IDE>
+
+	Metacello new
+		baseline: 'Launchpad';
+		repository: 'github://ba-st/Launchpad:release-candidate';
+		load: 'Development'.
+]
+
+{ #category : #formulas }
 PackageFormulas class >> libusbPharo [
-	<formula: #iot>
+	<formula: #IOT>
 	<formula: #bindings>
 
 	Metacello new
 		repository: 'github://tamerescrl/libusb-pharo/repository';
 		baseline: 'HumanInterfaceDevice';
 		load
+]
+
+{ #category : #formulas }
+PackageFormulas class >> literateSmalltalk [
+	<formula: #IDE>
+
+	Metacello new
+		baseline: 'LiterateSmalltalk';
+		repository: 'github://jingtaozf/literate-smalltalk';
+		onConflict: [ :ex | ex allow ];
+		load.
 ]
 
 { #category : #formulas }
@@ -906,6 +970,18 @@ PackageFormulas class >> mDBaseGenerator [
     	githubUser: 'DuneSt' project: 'MDBaseGenerator' commitish: 'master' path: 'src';
     	baseline: 'MDBaseGenerator';
     	load
+]
+
+{ #category : #formulas }
+PackageFormulas class >> mPyTools [
+	<formula: #bindings>
+	<formula: #python>
+
+	Metacello new
+		baseline: 'MPyTools';
+		repository: 'github://EiichiroIto/MPyTools/src';
+		load.
+
 ]
 
 { #category : #formulas }
@@ -971,6 +1047,18 @@ PackageFormulas class >> methodTrackers [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> microwitch [
+	<formula: #bindings>
+	<formula: #python>
+
+	Metacello new
+		baseline: 'Microwitch';
+		repository: 'github://EiichiroIto/microwitch2/src';
+		load.
+
+]
+
+{ #category : #formulas }
 PackageFormulas class >> mirage [
 	<formula: #IDE>
 
@@ -989,6 +1077,16 @@ PackageFormulas class >> mocketry [
 		baseline: 'Mocketry';
 		repository: 'github://dionisiydk/Mocketry';
 		load
+]
+
+{ #category : #formulas }
+PackageFormulas class >> molecule [
+	<formula: #component>
+
+	Metacello new
+		baseline: 'Molecule';
+		repository: 'github://OpenSmock/Molecule';
+		load.
 ]
 
 { #category : #formulas }
@@ -1148,6 +1246,16 @@ PackageFormulas class >> pharoI18n [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> pharoLauncher [
+	<formula: #IDE>
+
+	Metacello new
+		baseline: 'PharoLauncher';
+		repository: 'github://pharo-project/pharo-launcher:development/src';
+		load
+]
+
+{ #category : #formulas }
 PackageFormulas class >> pharoMinizinc [
 	<formula: #bindings>
 
@@ -1204,6 +1312,16 @@ PackageFormulas class >> polyMath [
 	Metacello new
 		baseline: 'PolyMath';
 		repository: 'github://PolyMathOrg/PolyMath/src';
+		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> pots [
+	<formula: #IOT>
+
+	Metacello new
+		baseline: 'Pots';
+		repository: 'github://robvanlopik/Pots:main';
 		load.
 ]
 
@@ -1291,6 +1409,16 @@ PackageFormulas class >> seasideQuasar [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> seekerDebugger [
+	<formula: #debugging>
+
+	Metacello new
+		baseline: 'Seeker';
+		repository: 'github://maxwills/SeekerDebugger:main';
+		load.
+]
+
+{ #category : #formulas }
 PackageFormulas class >> serialPort [
 	<formula: #bindings>
 
@@ -1364,6 +1492,16 @@ PackageFormulas class >> sqlite3 [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> ston [
+	<formula: #serialization>
+
+	Metacello new
+		baseline: 'Ston';
+		repository: 'github://svenvc/ston/repository';
+		load
+]
+
+{ #category : #formulas }
 PackageFormulas class >> stringExtensions [
 	<formula: #collections>
 
@@ -1371,6 +1509,17 @@ PackageFormulas class >> stringExtensions [
 		baseline: 'StringExtensions';
 		repository: 'github://hernanmd/StringExtensions/repository';
 		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> superUser [
+	<formula: #General>
+
+	Metacello new
+		baseline: 'Superuser';
+		repository: 'github://seandenigris/Superuser';
+		"onConflict: [ :ex | ex allow ];"
+		load
 ]
 
 { #category : #formulas }
@@ -1425,6 +1574,18 @@ PackageFormulas class >> telePharoServer [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> telescopeCytoscape [
+	<formula: #graphics>
+
+    Metacello new
+    	githubUser: 'TelescopeSt' project: 'TelescopeCytoscape' commitish: 'v2.x.x' path: 'src';
+    	baseline: 'TelescopeCytoscape';
+    	onWarningLog;
+		onUpgrade: [ :e | e useIncoming ];
+    	load
+]
+
+{ #category : #formulas }
 PackageFormulas class >> testWorkers [
 	<formula: #testing>
 	
@@ -1445,6 +1606,16 @@ PackageFormulas class >> tilingWindowmanager [
 		path: 'packages';
 		baseline: 'TilingWindowManager';
 		onWarningLog;
+		load
+]
+
+{ #category : #formulas }
+PackageFormulas class >> tinyLogger [
+	<formula: #General>
+
+	Metacello new
+		githubUser: 'jecisc' project: 'TinyLogger' commitish: 'v1.x.x' path: 'src';
+		baseline: 'TinyLogger';
 		load
 ]
 
@@ -1475,6 +1646,26 @@ PackageFormulas class >> turbo [
 	Metacello new
 		baseline: 'Turbo';
 		repository: 'github://pavel-krivanek/Turbo';
+		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> twitterSdkPharo [
+	<formula: #web>
+
+	Metacello new 
+		repository: 'github://brackendev/TwitterSDK-Pharo/src';
+		baseline: 'TwitterSDK';
+		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> umlMetamodel [
+	<formula: #Reverse_engineering>
+
+	Metacello new
+		baseline: 'UMLMetamodel';
+		repository: 'github://OpenPonk/uml-metamodel/repository';
 		load.
 ]
 
@@ -1537,6 +1728,26 @@ PackageFormulas class >> xPath [
 		repository: 'github://pharo-contributions/XML-XPath/src';
 		load.
 
+]
+
+{ #category : #formulas }
+PackageFormulas class >> xmi [
+	<formula: #Reverse_engineering>
+
+	Metacello new
+		baseline: 'OPXMI';
+		repository: 'github://OpenPonk/xmi/repository';
+		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> xmlDomVisitor [
+	<formula: #XML>
+
+	Metacello new
+		baseline: 'XMLDOMVisitor';
+		repository: 'github://OpenPonk/xml-dom-visitor/repository';
+		load.
 ]
 
 { #category : #formulas }

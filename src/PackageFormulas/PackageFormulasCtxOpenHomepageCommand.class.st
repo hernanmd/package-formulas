@@ -34,6 +34,6 @@ PackageFormulasCtxOpenHomepageCommand class >> defaultName [
 PackageFormulasCtxOpenHomepageCommand >> execute [
 	
 	self application propertyAt: #formulaSelection ifAbsent: [ ^ self ].
-	self webBrowser openOn: (self application propertyAt: #formulaSelection) webLinkHome.
+	self webBrowser openOn: self selectedFormula info webLinkHome.
 
 ]

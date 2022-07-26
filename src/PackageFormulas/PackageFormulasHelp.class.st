@@ -62,7 +62,8 @@ PackageFormulasHelp class >> packageFormulasIntro [
 PackageFormulasHelp class >> packageFormulasIntroText [ 
 		
 		^ '
-Package Formulas is a front-end for installing packages on a Pharo image. Each package is specified in a formula.
+Package Formulas is a front-end for installing reviewed packages on a Pharo image. 
+Each package is represented by a formula entered by a user.
 
 In its most basic form, a PackageFormula is simply a CompiledMethod that includes a Pragma identified by the name "formula:", and an argument specifying a category.
 

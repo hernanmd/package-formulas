@@ -40,8 +40,14 @@ PackageFormulasContextualMenuCommand >> formulasTableItems [
 PackageFormulasContextualMenuCommand >> querier [
 	"Answer the receiver's object to make queries to package formulas"
 	
-	^ querier
-		ifNil: [ querier := PackageFormulaQuerier new ]
+	^ self selectedFormula querier
+]
+
+{ #category : #accessing }
+PackageFormulasContextualMenuCommand >> selectedFormula [
+	"Answer the currently selected <PackageFormula>, assuming there is one selected"
+
+	^ self application propertyAt: #formulaSelection
 ]
 
 { #category : #accessing }

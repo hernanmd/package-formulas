@@ -1,6 +1,6 @@
 Class {
-	#name : #PackageFormulaBackgroundWrapper,
-	#superclass : #PackageFormulaWrapper,
+	#name : #PFBackgroundWrapper,
+	#superclass : #PFWrapInstallDecoration,
 	#instVars : [
 		'link'
 	],
@@ -8,13 +8,13 @@ Class {
 }
 
 { #category : #private }
-PackageFormulaBackgroundWrapper >> valueInClass: aClass withSelector: aSelector [
+PFBackgroundWrapper >> sourceCode [
 	" Private - See superimplementor's comment"
 
 	^ String streamContents: [ : stream |
 		stream
 			<< '[ ';
 			cr;
-			<< 	(self next valueInClass: aClass withSelector: aSelector);
+			<< 	self next sourceCode;
 			<< ' ] fork.' ]
 ]
