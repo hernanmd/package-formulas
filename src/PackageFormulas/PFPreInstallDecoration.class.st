@@ -22,5 +22,5 @@ PFPreInstallDecoration >> sourceCode [
 			ifFalse: [ stream << $. ].
 		stream
 			cr;
-			<< 	self nextBefore sourceCode ]
+			<< 	self next sourceCode ]
 ]

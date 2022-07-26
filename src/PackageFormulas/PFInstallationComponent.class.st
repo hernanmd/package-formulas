@@ -2,14 +2,11 @@ Class {
 	#name : #PFInstallationComponent,
 	#superclass : #Object,
 	#instVars : [
-		'nextBefore',
-		'nextAfter',
+		'next',
 		'name',
 		'beforeDecoration',
 		'afterDecoration',
-		'aroundDecoration',
-		'sourceCode',
-		'nextAround'
+		'aroundDecoration'
 	],
 	#category : #'PackageFormulas-Core'
 }
@@ -29,13 +26,13 @@ PFInstallationComponent >> addAfterDecoration: aPackageFormulaDecoration [
 	| previous current |
 	previous := nil.
 	current := self afterDecoration.
-	[ current ~~ self ] whileTrue: [ 
+	[ current ~~ self ] whileTrue: [
 		previous := current.
-		current := current nextAfter ].
-	aPackageFormulaDecoration setNextAfter: current.
+		current := current next ].
+	aPackageFormulaDecoration setNext: current.
 	previous
 		ifNil: [ self afterDecoration: aPackageFormulaDecoration ]
-		ifNotNil: [ :arg | previous setNextAfter: aPackageFormulaDecoration ].
+		ifNotNil: [ previous setNext: aPackageFormulaDecoration ].
 	^ aPackageFormulaDecoration
 ]
 
@@ -45,14 +42,13 @@ PFInstallationComponent >> addAroundDecoration: aPackageFormulaDecoration [
 	| previous current |
 	previous := nil.
 	current := self aroundDecoration.
-	[ current ~~ self ] whileTrue: [ 
+	[ current ~~ self ] whileTrue: [
 		previous := current.
-		current := current nextAround ].
-	aPackageFormulaDecoration setNextAround: current.
+		current := current next ].
+	aPackageFormulaDecoration setNext: current.
 	previous
 		ifNil: [ self aroundDecoration: aPackageFormulaDecoration ]
-		ifNotNil: [ :arg | 
-		previous setNextAround: aPackageFormulaDecoration ].
+		ifNotNil: [ previous setNext: aPackageFormulaDecoration ].
 	^ aPackageFormulaDecoration
 ]
 
@@ -64,11 +60,11 @@ PFInstallationComponent >> addBeforeDecoration: aPackageFormulaDecoration [
 	current := self beforeDecoration.
 	[ current ~~ self ] whileTrue: [
 		previous := current.
-		current := current nextBefore ].
-	aPackageFormulaDecoration setNextBefore: current.
+		current := current next ].
+	aPackageFormulaDecoration setNext: current.
 	previous
 		ifNil: [ self beforeDecoration: aPackageFormulaDecoration ]
-		ifNotNil: [ previous setNextBefore: aPackageFormulaDecoration ].
+		ifNotNil: [ previous setNext: aPackageFormulaDecoration ].
 	^ aPackageFormulaDecoration
 ]
 
@@ -132,11 +128,10 @@ PFInstallationComponent >> evaluate: aFormulaExpression [
 PFInstallationComponent >> initialize [
 
 	super initialize.
-	nextAround := ValueHolder new.
-	self 
-		initializeAroundDecoration;
-		initializeAfterDecoration;
-		initializeBeforeDecoration.
+	next := ValueHolder new.
+	aroundDecoration := ValueHolder new contents: self.
+	beforeDecoration := ValueHolder new contents: self.
+	afterDecoration := ValueHolder new contents: self
 ]
 
 { #category : #initialization }
@@ -178,6 +173,13 @@ PFInstallationComponent >> name: anObject [
 	name := anObject
 ]
 
+{ #category : #'accessing - deco' }
+PFInstallationComponent >> next [
+	"Answer the next decoration or component."
+
+	^ next contents
+]
+
 { #category : #accessing }
 PFInstallationComponent >> nextAfter [
 
@@ -198,58 +200,62 @@ PFInstallationComponent >> nextBefore [
 ]
 
 { #category : #'accessing - decorators' }
-PFInstallationComponent >> removeAfterDecoration: aDecoration [
+PFInstallationComponent >> removeAfterDecoration: aDecoration [ 
 	"Remove aDecoration from the chain of decorations. Answer nil if aDecoration is not present."
 
 	| previous current |
 	previous := nil.
 	current := self afterDecoration.
-	[ current = self ] whileFalse: [ 
-		current = aDecoration ifTrue: [ 
-			previous
-				ifNil: [ self afterDecoration: current nextAfter ]
-				ifNotNil: [ :arg | previous setNextAfter: current nextAfter ].
-			^ aDecoration setNextAfter: nil ].
+	[ current = self ] whileFalse: [
+		current = aDecoration ifTrue: [
+			previous isNil
+				ifTrue: [ self afterDecoration: current next ]
+				ifFalse: [ previous setNext: current next ].
+			^ aDecoration setNext: nil ].
 		previous := current.
-		current := current nextAfter ].
+		current := current next ].
 	^ nil
 ]
 
 { #category : #'accessing - decorators' }
-PFInstallationComponent >> removeAroundDecoration: aDecoration [
+PFInstallationComponent >> removeAroundDecoration: aDecoration [ 
 	"Remove aDecoration from the chain of decorations. Answer nil if aDecoration is not present."
 
 	| previous current |
 	previous := nil.
 	current := self aroundDecoration.
-	[ current = self ] whileFalse: [ 
-		current = aDecoration ifTrue: [ 
-			previous
-				ifNil: [ self aroundDecoration: current nextAround ]
-				ifNotNil: [ :arg | previous setNextAround: current nextAround ].
-			^ aDecoration setNextAround: nil ].
+	[ current = self ] whileFalse: [
+		current = aDecoration ifTrue: [
+			previous isNil
+				ifTrue: [ self aroundDecoration: current next ]
+				ifFalse: [ previous setNext: current next ].
+			^ aDecoration setNext: nil ].
 		previous := current.
-		current := current nextAround ].
+		current := current next ].
 	^ nil
 ]
 
 { #category : #'accessing - decorators' }
-PFInstallationComponent >> removeBeforeDecoration: aDecoration [
-
+PFInstallationComponent >> removeBeforeDecoration: aDecoration [ 
 	"Remove aDecoration from the chain of decorations. Answer nil if aDecoration is not present."
 
 	| previous current |
 	previous := nil.
 	current := self beforeDecoration.
-	[ current = self ] whileFalse: [ 
-		current = aDecoration ifTrue: [ 
-			previous
-				ifNil: [ self beforeDecoration: current nextBefore ]
-				ifNotNil: [ :arg | previous setNextBefore: current nextBefore ].
-			^ aDecoration setNextBefore: nil ].
+	[ current = self ] whileFalse: [
+		current = aDecoration ifTrue: [
+			previous isNil
+				ifTrue: [ self beforeDecoration: current next ]
+				ifFalse: [ previous setNext: current next ].
+			^ aDecoration setNext: nil ].
 		previous := current.
-		current := current nextBefore ].
+		current := current next ].
 	^ nil
+]
+
+{ #category : #'accessing - deco' }
+PFInstallationComponent >> setNext: aDecoration [
+	next contents: aDecoration
 ]
 
 { #category : #'accessing - deco' }

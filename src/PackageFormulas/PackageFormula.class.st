@@ -179,7 +179,7 @@ PackageFormula >> selector [
 
 { #category : #accessing }
 PackageFormula >> sourceCode [
-	"Answer a <String> representing the Smalltalk source code of the receiver"
 
+	self halt.
 	^ self ast body sourceCode.
 ]

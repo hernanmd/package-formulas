@@ -7,7 +7,7 @@ Class {
 	#category : #'PackageFormulas-Core'
 }
 
-{ #category : #accessing }
+{ #category : #private }
 PFDisableMonitorWrapper >> sourceCode [
 	" Private - See superimplementor's comment"
 

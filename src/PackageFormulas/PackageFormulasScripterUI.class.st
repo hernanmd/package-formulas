@@ -9,7 +9,7 @@ Class {
 		'preActionsLabel',
 		'postActionsLabel',
 		'installActionLabel',
-		'installationComponent'
+		'userFormula'
 	],
 	#category : #'PackageFormulas-UI'
 }
@@ -119,15 +119,15 @@ PackageFormulasScripterUI >> installScript: aString [
 PackageFormulasScripterUI >> installation [
 	"If we have more than a single formula selected, then build a custom formula with user selected formulas"
 
-	^ installationComponent
+	^ userFormula
 ]
 
 { #category : #initialization }
 PackageFormulasScripterUI >> newUserFormulaFrom: aFormulaCollection [
 	"Answer a new <PackageFormula> including the source from the user selected formulas"
 
-	installationComponent := PFSingleInstallation newWithFormulas: aFormulaCollection.
-	^ installationComponent
+	userFormula := PFSingleInstallation newWithFormulas: aFormulaCollection.
+	^ userFormula
 ]
 
 { #category : #accessing }
@@ -234,7 +234,7 @@ PackageFormulasScripterUI >> validateScript: scriptCode [
 PackageFormulasScripterUI >> wrappedSource [
 	"Answer a <String> representing the installation script"
 
-	^ self wrappedSource: installationComponent
+	^ self wrappedSource: userFormula
 
 ]
 
@@ -242,8 +242,13 @@ PackageFormulasScripterUI >> wrappedSource [
 PackageFormulasScripterUI >> wrappedSource: aPackageFormula [
 	"Answer a <String> representing the installation script"
 
-	actionsSelectorPresenter selectedWrapperActions isEmpty 
-		ifFalse: [ ^ aPackageFormula aroundDecoration sourceCode ].
+	| firstDecoration |
+
+	self halt.
+	firstDecoration := aPackageFormula.
+	actionsSelectorPresenter selectedWrapperActions isEmpty ifFalse: [ 
+		firstDecoration := aPackageFormula aroundDecoration.
+		^ firstDecoration sourceCode ].
 	^ aPackageFormula sourceCode
 ]
 

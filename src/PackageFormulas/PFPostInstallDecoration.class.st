@@ -17,6 +17,6 @@ PFPostInstallDecoration >> sourceCode [
 	self halt.
 	^ String streamContents: [ : stream |
 		stream
-			<< self nextAfter sourceCode;
+			<< self next sourceCode;
 			<< super sourceCode ]
 ]

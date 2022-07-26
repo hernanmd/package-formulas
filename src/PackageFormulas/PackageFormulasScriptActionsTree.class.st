@@ -115,7 +115,7 @@ PackageFormulasScriptActionsTree >> defaultPostInstallActions [
 		((PFPostInstallDecoration named: 'Open Help Browser')
 			sourceCode: 'HelpBrowser open.') .
 			
-		((PFPostInstallDecoration named: 'Log finish')
+		((PFPostInstallDecoration named: 'Log start')
 			sourceCode: '''Installation finished'' asBeaconSignal log.') .
 
 	 }
@@ -158,7 +158,6 @@ PackageFormulasScriptActionsTree >> defaultWrapperInstallActions [
 PackageFormulasScriptActionsTree >> formulas [
 	"Answer the receciver's <PackageFormulaCollection>"
 
-	self halt.
 	^ self owner formulas
 ]
 
@@ -315,9 +314,8 @@ PackageFormulasScriptActionsTree >> updatePostActions [
 PackageFormulasScriptActionsTree >> updatePreActions [
 
 	self owner preActionsPresenterSetEmpty.
-	self installation initializeBeforeDecoration.
 	self selectedPreInstallActions do: [ :fAction | 
-		self installation addDecoration: fAction.
+		self formula addDecoration: fAction.
 		self owner preActionsPresenterAddText: fAction sourceCode ]
 ]
 
@@ -325,7 +323,6 @@ PackageFormulasScriptActionsTree >> updatePreActions [
 PackageFormulasScriptActionsTree >> updateWrapperActions [
 
 	self owner wrapperPresenterSetEmpty.
-	self installation initialize.
 	self selectedWrapperActions do: [ :fAction | 
 		self installation addDecoration: fAction ].
 	self owner wrapperPresenterUpdate: self installation.

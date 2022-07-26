@@ -8,7 +8,7 @@ Class {
 	#category : #'PackageFormulas-Core'
 }
 
-{ #category : #accessing }
+{ #category : #private }
 PFBenchmarkWrapper >> sourceCode [
 	" Private - See superimplementor's comment"
 
