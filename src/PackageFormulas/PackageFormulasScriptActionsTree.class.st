@@ -106,16 +106,16 @@ PackageFormulasScriptActionsTree >> defaultLayout [
 PackageFormulasScriptActionsTree >> defaultPostInstallActions [
 
 	^ { 
-		((PackageFormulaAfterInstall named: 'Open Workspace')
+		((PFPostInstallDecoration named: 'Open Workspace')
 			sourceCode: 'Smalltalk tools workspace open.') .
 			
-		((PackageFormulaAfterInstall named: 'Open Test Runner')
+		((PFPostInstallDecoration named: 'Open Test Runner')
 			sourceCode: 'Smalltalk tools openTestRunner.')	.
 				
-		((PackageFormulaAfterInstall named: 'Open Help Browser')
+		((PFPostInstallDecoration named: 'Open Help Browser')
 			sourceCode: 'HelpBrowser open.') .
 			
-		((PackageFormulaAfterInstall named: 'Log start')
+		((PFPostInstallDecoration named: 'Log start')
 			sourceCode: '''Installation finished'' asBeaconSignal log.') .
 
 	 }
@@ -126,13 +126,13 @@ PackageFormulasScriptActionsTree >> defaultPreInstallActions [
 
 	^ { 
 
-		((PackageFormulaBeforeInstall named: 'Open Transcript')
+		((PFPreInstallDecoration named: 'Open Transcript')
 			sourceCode: 'Smalltalk tools openTranscript	.') .
 	
-		((PackageFormulaBeforeInstall named: 'Log start')
+		((PFPreInstallDecoration named: 'Log start')
 			sourceCode: '''Installation started'' asBeaconSignal log.') . 
 			
-		((PackageFormulaBeforeInstall named: 'Save image')
+		((PFPreInstallDecoration named: 'Save image')
 			sourceCode: '(Smalltalk snapshot: true andQuit: false)
 				ifFalse: [ UIManager default inform: ''Image saved'' ].')
 				
@@ -144,22 +144,14 @@ PackageFormulasScriptActionsTree >> defaultWrapperInstallActions [
 
 	^ { 
 
-		(PackageFormulaBackgroundWrapper named: 'Background install') .
-		(PackageFormulaBenchWrapper	named: 'Benchmark') .
-		(PackageFormulaProfileWrapper named: 'Profile') .
-		(PackageFormulaDisableMonitorWrapper named: 'Disable monitor') . 
-		((PackageFormulaExceptionWrapper named: 'Install exception')
+		(PFBackgroundWrapper named: 'Background install') .
+		(PFBenchmarkWrapper	named: 'Benchmark') .
+		(PFProfileWrapper named: 'Profile') .
+		(PFDisableMonitorWrapper named: 'Disable monitor') . 
+		((PFExceptionWrapper named: 'Install exception')
 			exceptionClass: Error;
 			sourceCode: 'self halt')	
 	}
-]
-
-{ #category : #accessing }
-PackageFormulasScriptActionsTree >> formula [
-
-	^ self owner formulas size > 1
-		ifTrue: [ self owner newUserFormula ]
-		ifFalse: [ self owner formulas anyOne ]
 ]
 
 { #category : #accessing }
@@ -235,6 +227,12 @@ PackageFormulasScriptActionsTree >> initializeWrapperInstallAvailableActions [
 		items: self wrapperActions;	
 		yourself.
 
+]
+
+{ #category : #accessing }
+PackageFormulasScriptActionsTree >> installation [
+
+	^ self owner installation
 ]
 
 { #category : #'instance creation' }
@@ -324,13 +322,10 @@ PackageFormulasScriptActionsTree >> updatePreActions [
 { #category : #updating }
 PackageFormulasScriptActionsTree >> updateWrapperActions [
 
-	| currentFormula |
-
 	self owner wrapperPresenterSetEmpty.
-	currentFormula := self formula initializeAroundDecoration.
 	self selectedWrapperActions do: [ :fAction | 
-		currentFormula addDecoration: fAction ].
-	self owner wrapperPresenterUpdate: currentFormula.
+		self installation addDecoration: fAction ].
+	self owner wrapperPresenterUpdate: self installation.
 ]
 
 { #category : #initialization }

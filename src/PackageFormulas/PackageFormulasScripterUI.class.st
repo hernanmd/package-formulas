@@ -9,7 +9,7 @@ Class {
 		'preActionsLabel',
 		'postActionsLabel',
 		'installActionLabel',
-		'formulas'
+		'userFormula'
 	],
 	#category : #'PackageFormulas-UI'
 }
@@ -31,19 +31,6 @@ PackageFormulasScripterUI >> actionsSelectorPresenter [
 PackageFormulasScripterUI >> actionsSelectorPresenter: anObject [
 
 	actionsSelectorPresenter := anObject
-]
-
-{ #category : #accessing }
-PackageFormulasScripterUI >> formulas [
-	"Answer a <PackageFormulaCollection>"
-
-	^ formulas
-]
-
-{ #category : #accessing }
-PackageFormulasScripterUI >> formulas: anObject [
-
-	formulas := anObject
 ]
 
 { #category : #initialization }
@@ -128,12 +115,19 @@ PackageFormulasScripterUI >> installScript: aString [
 	self scriptPresenter text: aString
 ]
 
-{ #category : #initialization }
-PackageFormulasScripterUI >> newUserFormula [
+{ #category : #accessing }
+PackageFormulasScripterUI >> installation [
+	"If we have more than a single formula selected, then build a custom formula with user selected formulas"
 
-	^ UserPackageFormula new
-		  sourceCodeFrom: self formulas;
-		  yourself
+	^ userFormula
+]
+
+{ #category : #initialization }
+PackageFormulasScripterUI >> newUserFormulaFrom: aFormulaCollection [
+	"Answer a new <PackageFormula> including the source from the user selected formulas"
+
+	userFormula := PFSingleInstallation newWithFormulas: aFormulaCollection.
+	^ userFormula
 ]
 
 { #category : #accessing }
@@ -240,25 +234,22 @@ PackageFormulasScripterUI >> validateScript: scriptCode [
 PackageFormulasScripterUI >> wrappedSource [
 	"Answer a <String> representing the installation script"
 
-	^ self wrappedSource: self newUserFormula.
+	^ self wrappedSource: userFormula
 
 ]
 
 { #category : #initialization }
 PackageFormulasScripterUI >> wrappedSource: aPackageFormula [
-
 	"Answer a <String> representing the installation script"
 
-	| userFormula firstDecoration |
-	userFormula := aPackageFormula.
-	firstDecoration := userFormula.
+	| firstDecoration |
+
+	self halt.
+	firstDecoration := aPackageFormula.
 	actionsSelectorPresenter selectedWrapperActions isEmpty ifFalse: [ 
-		userFormula isWrapped ifFalse: [ userFormula link ].
-		firstDecoration := userFormula aroundDecoration.
-		^ firstDecoration
-			  valueInClass: PackageFormulas
-			  withSelector: userFormula selector ].
-	^ userFormula sourceCode
+		firstDecoration := aPackageFormula aroundDecoration.
+		^ firstDecoration sourceCode ].
+	^ aPackageFormula sourceCode
 ]
 
 { #category : #callbacks }

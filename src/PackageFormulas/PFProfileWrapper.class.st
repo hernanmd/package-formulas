@@ -2,19 +2,19 @@
 Measure the time to run of wrapped source code.
 "
 Class {
-	#name : #PackageFormulaProfileWrapper,
-	#superclass : #PackageFormulaWrapper,
+	#name : #PFProfileWrapper,
+	#superclass : #PFWrapInstallDecoration,
 	#category : #'PackageFormulas-Core'
 }
 
 { #category : #private }
-PackageFormulaProfileWrapper >> valueInClass: aClass withSelector: aSelector [
+PFProfileWrapper >> sourceCode [
 	" Private - See superimplementor's comment"
 
 	^ String streamContents: [ : stream |
 		stream
 			<< '[ ';
 			cr;
-			<< 	(self next valueInClass: aClass withSelector: aSelector);
+			<< self next sourceCode;
 			<< ' ] timeToRun inspect.' ].
 ]

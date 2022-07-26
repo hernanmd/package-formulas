@@ -170,14 +170,14 @@ PackageFormulasApp >> group: anObject [
 PackageFormulasApp >> hasFormulasInstalled [
 	"Answer <true> if the receiver's image includes any of its defined formulas already installed"
 	
-	^ self formulas anySatisfy: #isInstalled
+	^ self formulas anySatisfy: #hasPackageInstalled
 ]
 
 { #category : #accessing }
 PackageFormulasApp >> installedFormulas [
 	"Answer a <Collection> of <PackageFormula> installed in the receiver's environment"
 
-	^ self formulas select: #isInstalled
+	^ self formulas select: #hasPackageInstalled
 ]
 
 { #category : #accessing }

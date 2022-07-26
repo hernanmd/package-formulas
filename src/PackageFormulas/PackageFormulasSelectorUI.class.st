@@ -119,11 +119,11 @@ PackageFormulasSelectorUI >> initializeSelectableFormulas [
 				width: 20;
 				yourself);	
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: [: p | p method selector capitalized ]);
-		addColumn: ((SpCheckBoxTableColumn title: 'Installed' evaluated: [: formula | formula isInstalled ])
+		addColumn: ((SpCheckBoxTableColumn title: 'Installed' evaluated: [: formula | formula hasPackageInstalled ])
 				"enabled: false;"
 				width: 90;
 				yourself);		
-		addColumn: ((SpCheckBoxTableColumn title: 'Baseline' evaluated: [: formula | formula hasBaseline ])
+		addColumn: ((SpCheckBoxTableColumn title: 'Baseline' evaluated: [: formula | formula hasBaselineInstalled ])
 				width: 90;
 				yourself);			
 		items: OrderedCollection new;
@@ -161,7 +161,7 @@ PackageFormulasSelectorUI >> selectedFormulas [
 { #category : #initialization }
 PackageFormulasSelectorUI >> updateSelectedFormula: formula [
 
-	formula hasBaseline ifTrue: [ ^ self ].
+	formula hasBaselineInstalled ifTrue: [ ^ self ].
 	self selectedFormulas add: formula.
 	self owner increaseFormulaCount
 ]

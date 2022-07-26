@@ -11,6 +11,14 @@ Class {
 	#category : #'PackageFormulas-Core'
 }
 
+{ #category : #'instance creation' }
+PackageFormulaQuerier class >> for: aPackageFormula [
+
+	^ self new
+		packageFormula: aPackageFormula;
+		yourself
+]
+
 { #category : #baselines }
 PackageFormulaQuerier >> baselineName [
 	"Answer a <String> with the name of the receiver's baseline. i.e.: 'BaselineOfXXX'
@@ -18,7 +26,7 @@ PackageFormulaQuerier >> baselineName [
 	
 	^ (RBParseTreeSearcher
 		  treeMatching: '``@anything baseline: ``@arg1'
-		  in: self packageFormula ast) arguments
+		  in: self packageFormulaAst) arguments
 			ifEmpty: [ self inform: 'Formula has no Baseline arguments' ]
 			ifNotEmpty: [ : args | args first value ]
 ]
@@ -37,10 +45,27 @@ PackageFormulaQuerier >> handlePackageNotFound: aNotFound [
 ]
 
 { #category : #testing }
-PackageFormulaQuerier >> isPackageInstalled: anAST [
+PackageFormulaQuerier >> hasBaselineInstalled [
+	"Answer <true> if receiver's method, assumed to be a Metacello install expression, is installed in the receiver"
+
+	| extractedTree baselineName |
+	
+	extractedTree := RBParseTreeSearcher 
+		treeMatching: '``@anything baseline: ``@args' 
+		in: self packageFormulaAst.
+	extractedTree ifNotNil: [ 
+		baselineName := extractedTree arguments anyOne.
+		^ Smalltalk hasClassNamed: 'BaselineOf' , baselineName value ].
+	^ false
+]
+
+{ #category : #testing }
+PackageFormulaQuerier >> hasPackageInstalled [
 	"Answer <true> if the package specified in anAST is found in the image"
 
-	^ (self searchByBaselineName: anAST) or: [ self searchByRepositoryName: anAST ]
+	| pkgFormulaAST |
+	pkgFormulaAST := self packageFormulaAst.
+	^ (self searchByBaselineName: pkgFormulaAST) or: [ self searchByRepositoryName: pkgFormulaAST ]
 
 ]
 
@@ -88,6 +113,18 @@ PackageFormulaQuerier >> packageFormula [
 PackageFormulaQuerier >> packageFormula: anObject [
 
 	packageFormula := anObject
+]
+
+{ #category : #testing }
+PackageFormulaQuerier >> packageFormulaAst [
+
+	^ self packageFormulaMethod ast
+]
+
+{ #category : #testing }
+PackageFormulaQuerier >> packageFormulaMethod [
+
+	^ self packageFormula method
 ]
 
 { #category : #testing }

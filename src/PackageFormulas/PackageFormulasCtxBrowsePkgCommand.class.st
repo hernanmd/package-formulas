@@ -30,7 +30,7 @@ PackageFormulasCtxBrowsePkgCommand >> canBeExecuted [
 
 	^ (self application 
 		propertyAt: #formulaSelection 
-		ifAbsent: [ ^ false ]) isInstalled.
+		ifAbsent: [ ^ false ]) hasPackageInstalled.
 ]
 
 { #category : #executing }

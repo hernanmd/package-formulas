@@ -3,19 +3,19 @@ Wraps a Pharo expression to measure its execution time.
 
 "
 Class {
-	#name : #PackageFormulaBenchWrapper,
-	#superclass : #PackageFormulaWrapper,
+	#name : #PFBenchmarkWrapper,
+	#superclass : #PFWrapInstallDecoration,
 	#category : #'PackageFormulas-Core'
 }
 
 { #category : #private }
-PackageFormulaBenchWrapper >> valueInClass: aClass withSelector: aSelector [
+PFBenchmarkWrapper >> sourceCode [
 	" Private - See superimplementor's comment"
 
 	^ String streamContents: [ : stream |
 		stream
 			<< '[ ';
 			cr;
-			<< 	(self next valueInClass: aClass withSelector: aSelector);
+			<< self next sourceCode;
 			<< ' ] bench.' ].
 ]

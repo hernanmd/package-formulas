@@ -30,18 +30,14 @@ PackageFormulasCtxBrowseBaselineCommand >> canBeExecuted [
 
 	^ (self application 
 		propertyAt: #formulaSelection 
-		ifAbsent: [ ^ false ]) hasBaseline.
+		ifAbsent: [ ^ false ]) hasBaselineInstalled.
 ]
 
 { #category : #executing }
 PackageFormulasCtxBrowseBaselineCommand >> execute [
 	"Private - Inspect the selected pragma"
 
-	| method |
-	
 	self application propertyAt: #formulaSelection ifAbsent: [ ^ self ].
-	method := (self application propertyAt: #formulaSelection) method.
-	self querier packageFormula: method.
 	self querier baselineName
 		ifNotEmpty: [ : baselineName |
 			self stBrowser

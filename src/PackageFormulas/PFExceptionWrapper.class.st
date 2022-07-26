@@ -1,6 +1,6 @@
 Class {
-	#name : #PackageFormulaExceptionWrapper,
-	#superclass : #PackageFormulaWrapper,
+	#name : #PFExceptionWrapper,
+	#superclass : #PFWrapInstallDecoration,
 	#instVars : [
 		'exceptionClass',
 		'exceptionBlock'
@@ -9,33 +9,27 @@ Class {
 }
 
 { #category : #private }
-PackageFormulaExceptionWrapper >> exceptionBlock [
+PFExceptionWrapper >> exceptionBlock [
 
 	^ exceptionBlock
 		ifNil: [ exceptionBlock := '[ : ex | ex load ]' ]
 ]
 
 { #category : #private }
-PackageFormulaExceptionWrapper >> exceptionClass [
+PFExceptionWrapper >> exceptionClass [
 
 	^ exceptionClass
 		ifNil: [ exceptionClass := MCMergeOrLoadWarning ]
 ]
 
 { #category : #accessing }
-PackageFormulaExceptionWrapper >> exceptionClass: anObject [
+PFExceptionWrapper >> exceptionClass: anObject [
 
 	exceptionClass := anObject
 ]
 
-{ #category : #accessing }
-PackageFormulaExceptionWrapper >> sourceCode: aString [ 
-
-	exceptionBlock := aString
-]
-
 { #category : #private }
-PackageFormulaExceptionWrapper >> valueInClass: aClass withSelector: aSelector [
+PFExceptionWrapper >> sourceCode [
 	" Private - See superimplementor's comment"
 
 	self halt.
@@ -43,11 +37,17 @@ PackageFormulaExceptionWrapper >> valueInClass: aClass withSelector: aSelector [
 		stream
 			<< '[ ';
 			cr;
-			<< 	(self next valueInClass: aClass withSelector: aSelector);
+			<< self next sourceCode;
 			cr;
 			<< ' ] on: ';
 			<< self exceptionClass asString;
 			cr;
 			<< 'do: ';
 			<< self exceptionBlock storeString ].
+]
+
+{ #category : #accessing }
+PFExceptionWrapper >> sourceCode: aString [ 
+
+	exceptionBlock := aString
 ]

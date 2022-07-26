@@ -1,6 +1,6 @@
 Class {
-	#name : #PackageFormulaDisableMonitorWrapper,
-	#superclass : #PackageFormulaWrapper,
+	#name : #PFDisableMonitorWrapper,
+	#superclass : #PFWrapInstallDecoration,
 	#instVars : [
 		'link'
 	],
@@ -8,13 +8,13 @@ Class {
 }
 
 { #category : #private }
-PackageFormulaDisableMonitorWrapper >> valueInClass: aClass withSelector: aSelector [
+PFDisableMonitorWrapper >> sourceCode [
 	" Private - See superimplementor's comment"
 
 	^ String streamContents: [ : stream |
 		stream
 			<< 'EpMonitor disableDuring: [ ';
 			cr;
-			<< 	(self next valueInClass: aClass withSelector: aSelector);
+			<< 	self next sourceCode;
 			<< ' ].' ].
 ]

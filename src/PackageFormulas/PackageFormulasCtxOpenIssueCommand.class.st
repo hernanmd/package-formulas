@@ -30,5 +30,5 @@ PackageFormulasCtxOpenIssueCommand >> execute [
 	"Parse the selected formula and open issues page"
 	
 	self application propertyAt: #formulaSelection ifAbsent: [ ^ self ].
-	WebBrowser openOn: (self application propertyAt: #formulaSelection) webLinkIssues.
+	WebBrowser openOn: (self application propertyAt: #formulaSelection) info webLinkIssues.
 ]
