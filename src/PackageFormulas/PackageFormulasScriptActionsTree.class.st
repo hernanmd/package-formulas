@@ -70,8 +70,8 @@ PackageFormulasScriptActionsTree >> addPostAction: frmAction [
 { #category : #'add-remove' }
 PackageFormulasScriptActionsTree >> addPreAction: frmAction [
 
-	self selectedPreInstallActions add: frmAction.
-	self updatePreActions
+	self selectedWrapperActions add: frmAction.
+	self updateWrapperActions.
 ]
 
 { #category : #'add-remove' }
@@ -115,7 +115,7 @@ PackageFormulasScriptActionsTree >> defaultPostInstallActions [
 		((PFPostInstallDecoration named: 'Open Help Browser')
 			sourceCode: 'HelpBrowser open.') .
 			
-		((PFPostInstallDecoration named: 'Log start')
+		((PFPostInstallDecoration named: 'Log finished')
 			sourceCode: '''Installation finished'' asBeaconSignal log.') .
 
 	 }
@@ -171,33 +171,26 @@ PackageFormulasScriptActionsTree >> includes: aPackageFormulaAction [
 PackageFormulasScriptActionsTree >> initializePostInstallAvailableActions [
 
 	actionsPostTreePresenter := self newTable
-		addColumn: (SpCheckBoxTableColumn new
-			width: 20;
-			evaluated: [ :frmAction | self selectedPostInstallActions includes: frmAction ];
-			onActivation: [ : frmAction | self addPostAction: frmAction ];
-			onDeactivation: [ :frmAction | self removePostAction: frmAction ]);
-		addColumn: (SpStringTableColumn 
-			title: 'Post-install actions' 
-			evaluated: [ :anAction | anAction name ]);
-		items: self postInstallActions;	
-		yourself.
-
+		                            addColumn: self newPkgActionCheckbox;
+		                            addColumn: (SpStringTableColumn
+				                             title: 'Post-install actions'
+				                             evaluated: [ :anAction | 
+					                             anAction name ]);
+		                            items: self postInstallActions;
+		                            yourself
 ]
 
 { #category : #initialization }
 PackageFormulasScriptActionsTree >> initializePreInstallAvailableActions [
 
 	actionsPreTreePresenter := self newTable
-		addColumn: (SpCheckBoxTableColumn new
-			width: 20;
-			evaluated: [ :frmAction | self selectedPreInstallActions includes: frmAction ];
-			onActivation: [ :frmAction | self addPreAction: frmAction ];
-			onDeactivation: [ :frmAction | self removePreAction: frmAction ]);
-		addColumn: (SpStringTableColumn 
-			title: 'Pre-install Actions' 
-			evaluated: [ :anAction | anAction name ]);			
-		items: self preInstallActions;	
-		yourself.
+		                           addColumn: self newPkgActionCheckbox;
+		                           addColumn: (SpStringTableColumn
+				                            title: 'Pre-install Actions'
+				                            evaluated: [ :anAction | 
+					                            anAction name ]);
+		                           items: self preInstallActions;
+		                           yourself
 ]
 
 { #category : #initialization }
@@ -216,23 +209,31 @@ PackageFormulasScriptActionsTree >> initializePresenters [
 PackageFormulasScriptActionsTree >> initializeWrapperInstallAvailableActions [
 
 	actionsWrapperTreePresenter := self newTable
-		addColumn: (SpCheckBoxTableColumn new
-			width: 20;
-			evaluated: [ : frmAction | self selectedWrapperActions includes: frmAction ];
-			onActivation: [ :frmAction | self addWrapperAction: frmAction ];
-			onDeactivation: [ :frmAction | self removeWrapperAction: frmAction ]);
-		addColumn: (SpStringTableColumn 
-			title: 'Wrapper actions' 
-			evaluated: [ :anAction | anAction name ]);			
-		items: self wrapperActions;	
-		yourself.
-
+		                               addColumn: self newPkgActionCheckbox;
+		                               addColumn: (SpStringTableColumn
+				                                title: 'Wrapper actions'
+				                                evaluated: [ :anAction | 
+					                                anAction name ]);
+		                               items: self wrapperActions;
+		                               yourself
 ]
 
 { #category : #accessing }
 PackageFormulasScriptActionsTree >> installation [
 
 	^ self owner installation
+]
+
+{ #category : #initialization }
+PackageFormulasScriptActionsTree >> newPkgActionCheckbox [
+
+	^ SpCheckBoxTableColumn new
+		  width: 20;
+		  evaluated: [ :frmAction | 
+			  self selectedWrapperActions includes: frmAction ];
+		  onActivation: [ :frmAction | self addWrapperAction: frmAction ];
+		  onDeactivation: [ :frmAction | 
+			  self removeWrapperAction: frmAction ]
 ]
 
 { #category : #'instance creation' }
@@ -323,6 +324,7 @@ PackageFormulasScriptActionsTree >> updatePreActions [
 PackageFormulasScriptActionsTree >> updateWrapperActions [
 
 	self owner wrapperPresenterSetEmpty.
+	self installation initialize.
 	self selectedWrapperActions do: [ :fAction | 
 		self installation addDecoration: fAction ].
 	self owner wrapperPresenterUpdate: self installation.

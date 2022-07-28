@@ -8,14 +8,15 @@ Class {
 	#category : #'PackageFormulas-Core'
 }
 
-{ #category : #private }
+{ #category : #accessing }
 PFBenchmarkWrapper >> sourceCode [
+
 	" Private - See superimplementor's comment"
 
-	^ String streamContents: [ : stream |
-		stream
-			<< '[ ';
-			cr;
-			<< self next sourceCode;
-			<< ' ] bench.' ].
+	^ String streamContents: [ :stream | 
+		  stream
+			  << '[ ';
+			  nextPut: Character cr;
+			  << self next sourceCode;
+			  << ' ] bench.' ]
 ]

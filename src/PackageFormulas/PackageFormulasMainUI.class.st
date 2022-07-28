@@ -1,7 +1,8 @@
 "
 This is the main Spec2 UI of Pharo's PackageFormulas application.
 
-The container for formulas can be configured through #formulasContainer: setter method.
+It has a category list implemented in `PackageFormulasCategoriesUI` and a package selection list implemented in `PackageFormulasSelectorUI`.
+It also has a status bar to display a counter for user selections.
 
 "
 Class {
@@ -97,14 +98,15 @@ PackageFormulasMainUI >> initializeFormulasSelector [
 PackageFormulasMainUI >> initializeLayout [
 
 	self layout: (SpBoxLayout newTopToBottom 
-		add: #toolbar height: self class toolbarHeight + 10;
+		add: #toolbar height: self toolbarHeight + 10;
 		add: (SpPanedLayout newLeftToRight
 			positionOfSlider: 30 percent;
 			add: #categoriesPresenter;
 			add: #formulasTable;
 			yourself);
-		add: #statusBar height: SpToolbarMorph statusBarHeight);
-		yourself
+		add: #statusBar height: SpToolbarMorph statusBarHeight;
+		yourself)
+
 ]
 
 { #category : #initialization }
@@ -188,12 +190,12 @@ PackageFormulasMainUI >> toolbarActions [
 	^ (CmCommandGroup named: 'EPToolbar') asSpecGroup 
 		beRoot;
 		description: 'Commands related to toolbar operations and global application behavior';
-		register: (PackageFormulasInstallCommand forSpecContext: self);
-		register: (PackageFormulasInstallOptionsCommand forSpecContext: self);
-		register: (PackageFormulasViewInstalledCommand forSpecContext: self);
-		register: (PackageFormulasUpdateCommand forSpecContext: self);
-		register: (PackageFormulasHelpCommand forSpecContext: self);			
-		register: (PackageFormulasQuitCommand forSpecContext: self);
+		register: (PFInstallCommand forSpecContext: self);
+		register: (PFInstallOptionsCommand forSpecContext: self);
+		register: (PFViewInstalledCommand forSpecContext: self);
+		register: (PFUpdateCommand forSpecContext: self);
+		register: (PFHelpCommand forSpecContext: self);			
+		register: (PFQuitCommand forSpecContext: self);
 		yourself
 ]
 

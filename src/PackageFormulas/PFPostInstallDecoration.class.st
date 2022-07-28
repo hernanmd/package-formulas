@@ -10,13 +10,13 @@ PFPostInstallDecoration >> addToPackageFormula: aPackageFormula [
 	aPackageFormula addAfterDecoration: self
 ]
 
-{ #category : #private }
+{ #category : #accessing }
 PFPostInstallDecoration >> sourceCode [
 	" Private - See superimplementor's comment"
 
-	self halt.
 	^ String streamContents: [ : stream |
 		stream
 			<< self next sourceCode;
+			cr;
 			<< super sourceCode ]
 ]

@@ -32,11 +32,11 @@ PackageFormulasCategoriesUI class >> buildPFCatContextualGroupWith: presenterIns
 PackageFormulasCategoriesUI class >> buildSelectionOperationsGroupWith: presenterInstance [
 
 	^ (CmCommandGroup named: 'SelectionOperationsMenu') asSpecGroup
-		register: ((PackageCategoriesCtxBrowseCommand
+		register: ((PFCategoriesCtxBrowseCommand
 			forSpecWithIconNamed: #class
 			shortcutKey: 'B' asShortcut) 
 				context: presenterInstance);
-		register: ((PackageCategoriesCtxRequestCommand 
+		register: ((PFCategoriesCtxRequestCommand 
 			forSpecWithIconNamed: #packageAdd
 			shortcutKey: 'R' asShortcut) 
 				context: presenterInstance);					

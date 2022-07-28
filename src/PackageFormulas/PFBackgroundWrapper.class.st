@@ -1,20 +1,18 @@
 Class {
 	#name : #PFBackgroundWrapper,
 	#superclass : #PFWrapInstallDecoration,
-	#instVars : [
-		'link'
-	],
 	#category : #'PackageFormulas-Core'
 }
 
-{ #category : #private }
+{ #category : #accessing }
 PFBackgroundWrapper >> sourceCode [
+
 	" Private - See superimplementor's comment"
 
-	^ String streamContents: [ : stream |
-		stream
-			<< '[ ';
-			cr;
-			<< 	self next sourceCode;
-			<< ' ] fork.' ]
+	^ String streamContents: [ :stream | 
+		  stream
+			  << '[ ';
+			  nextPut: Character cr;
+			  << self next sourceCode;
+			  << ' ] fork.' ]
 ]

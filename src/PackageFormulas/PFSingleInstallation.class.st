@@ -1,9 +1,6 @@
 Class {
 	#name : #PFSingleInstallation,
 	#superclass : #PFInstallationComponent,
-	#instVars : [
-		'sourceCode'
-	],
 	#category : #'PackageFormulas-Core'
 }
 
@@ -37,19 +34,6 @@ PFSingleInstallation >> selector [
 
 	^ #tempUserPackageFormula
 
-]
-
-{ #category : #accessing }
-PFSingleInstallation >> sourceCode [
-
-	self halt.
-	^ sourceCode
-]
-
-{ #category : #accessing }
-PFSingleInstallation >> sourceCode: aString [
-
-	sourceCode := aString
 ]
 
 { #category : #'instance creation' }

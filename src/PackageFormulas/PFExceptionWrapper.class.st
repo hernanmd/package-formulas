@@ -28,22 +28,21 @@ PFExceptionWrapper >> exceptionClass: anObject [
 	exceptionClass := anObject
 ]
 
-{ #category : #private }
+{ #category : #accessing }
 PFExceptionWrapper >> sourceCode [
 	" Private - See superimplementor's comment"
 
-	self halt.
-	^ String streamContents: [ : stream |
-		stream
-			<< '[ ';
-			cr;
-			<< self next sourceCode;
-			cr;
-			<< ' ] on: ';
-			<< self exceptionClass asString;
-			cr;
-			<< 'do: ';
-			<< self exceptionBlock storeString ].
+	^ String streamContents: [ :stream | 
+		  stream
+			  << '[ ';
+			  nextPut: Character cr;
+			  << self next sourceCode;
+			  nextPut: Character cr;
+			  << ' ] on: ';
+			  << self exceptionClass greaseString;
+			  nextPut: Character cr;
+			  << 'do: ';
+			  << self exceptionBlock storeString ]
 ]
 
 { #category : #accessing }

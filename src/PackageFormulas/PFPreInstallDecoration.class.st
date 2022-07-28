@@ -10,17 +10,16 @@ PFPreInstallDecoration >> addToPackageFormula: aPackageFormula [
 	aPackageFormula addBeforeDecoration: self
 ]
 
-{ #category : #private }
+{ #category : #accessing }
 PFPreInstallDecoration >> sourceCode [
+
 	" Private - See superimplementor's comment"
 
-	self halt.
-	^ String streamContents: [ : stream |
-		stream
-			<< super sourceCode.
-		(super sourceCode endsWithSubCollection: '.'	)
-			ifFalse: [ stream << $. ].
-		stream
-			cr;
-			<< 	self next sourceCode ]
+	^ String streamContents: [ :stream | 
+		  stream << super sourceCode.
+		  (super sourceCode endsWithSubCollection: '.') ifFalse: [ 
+			  stream << $. ].
+		  stream
+			  nextPut: Character cr;
+			  << self next sourceCode ]
 ]

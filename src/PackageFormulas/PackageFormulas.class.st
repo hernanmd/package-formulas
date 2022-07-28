@@ -282,14 +282,11 @@ PackageFormulas class >> containersBTree [
 PackageFormulas class >> containersEssentials [
 	<formula: #collections>
 
-	[ 
-		Metacello new
-			baseline: 'ContainersEssentials';
-			repository: 'github://bauing-schmidt/Containers-Essentials';
-			load 
-	]
-	on: MCMergeOrLoadWarning
-	do: [ :warning | warning load ]
+	Metacello new
+		baseline: 'ContainersEssentials';
+		repository: 'github://bauing-schmidt/Containers-Essentials';
+		load 
+
 
 ]
 

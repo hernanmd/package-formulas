@@ -9,3 +9,9 @@ SpPackageFormulasPresenter >> labelHeight [
 
 	^ self class labelHeight
 ]
+
+{ #category : #defaults }
+SpPackageFormulasPresenter >> toolbarHeight [
+
+	^ self class toolbarHeight
+]

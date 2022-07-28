@@ -7,14 +7,15 @@ Class {
 	#category : #'PackageFormulas-Core'
 }
 
-{ #category : #private }
+{ #category : #accessing }
 PFProfileWrapper >> sourceCode [
+
 	" Private - See superimplementor's comment"
 
-	^ String streamContents: [ : stream |
-		stream
-			<< '[ ';
-			cr;
-			<< self next sourceCode;
-			<< ' ] timeToRun inspect.' ].
+	^ String streamContents: [ :stream | 
+		  stream
+			  << '[ ';
+			  nextPut: Character cr;
+			  << self next sourceCode;
+			  << ' ] timeToRun inspect.' ]
 ]

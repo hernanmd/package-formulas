@@ -1,13 +1,19 @@
+"
+Presents options to customize previosuly selected formulas. This presenter builds a ""user formula"" from  the formulas marked for installation in the `PackageFormulasMainUI`.
+
+Possible customizations are:
+
+- Actions before the main installation expressions (those containing `Metacello new`).
+- Actions which wrap the installation expressions (these are enclosed by blocks).
+- Actions after the installation expressions.
+
+"
 Class {
 	#name : #PackageFormulasScripterUI,
 	#superclass : #SpPackageFormulasPresenter,
 	#instVars : [
 		'actionsSelectorPresenter',
-		'preActionsPresenter',
 		'scriptPresenter',
-		'postActionsPresenter',
-		'preActionsLabel',
-		'postActionsLabel',
 		'installActionLabel',
 		'userFormula'
 	],
@@ -54,14 +60,8 @@ PackageFormulasScripterUI >> initializeLayout [
 		add: #actionsSelectorPresenter width: 200;
 		add: (SpBoxLayout newTopToBottom
 			spacing: 2;
-			add: #preActionsLabel height: self labelHeight;
-			add: #preActionsPresenter height: 70;
-
 			add: #installActionLabel height: self labelHeight;
 			add: #scriptPresenter;
-
-			add: #postActionsLabel height: self labelHeight;
-			add: #postActionsPresenter height: 70;
 			yourself);
 		yourself)
 ]
@@ -79,19 +79,7 @@ PackageFormulasScripterUI >> initializePresenters [
 { #category : #initialization }
 PackageFormulasScripterUI >> initializeScriptPresenters [
 	
-	preActionsLabel := self newLabel label: 'Pre-install actions'; yourself.
-	preActionsPresenter := self newCode 
-		beForScripting;
-		beWrapWord;
-		withoutLineNumbers;
-		whenSubmitDo: [ : scriptCode | self validateScript: scriptCode ].
-	postActionsLabel := self newLabel label: 'Post-install actions'; yourself.
-	postActionsPresenter := self newCode 
-		beForScripting;
-		beNotEditable;
-		beWrapWord;
-		withoutLineNumbers.
-	installActionLabel := self newLabel label: 'Main installation'; yourself.
+	installActionLabel := self newLabel label: 'Installation script'; yourself.
 	scriptPresenter := self newCode
 		beForScripting;
 		beWrapWord;
@@ -243,7 +231,7 @@ PackageFormulasScripterUI >> wrappedSource: aPackageFormula [
 	"Answer a <String> representing the installation script"
 
 	actionsSelectorPresenter selectedWrapperActions isEmpty 
-		ifFalse: [ ^ aPackageFormula aroundDecoration sourceCode ].
+		ifFalse: [ ^ aPackageFormula decoration sourceCode ].
 	^ aPackageFormula sourceCode
 ]
 
@@ -266,5 +254,5 @@ PackageFormulasScripterUI >> wrapperPresenterSetEmpty [
 { #category : #initialization }
 PackageFormulasScripterUI >> wrapperPresenterUpdate: aPackageFormula [
 
-	self wrapperActionsPresenterAddText: (self wrappedSource: aPackageFormula).
+	self scriptPresenter text: (self wrappedSource: aPackageFormula).
 ]

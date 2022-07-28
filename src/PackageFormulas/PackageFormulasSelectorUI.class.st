@@ -28,12 +28,12 @@ PackageFormulasSelectorUI class >> buildEPContextualGroupWith: presenterInstance
 PackageFormulasSelectorUI class >> buildRepositoryOperationsGroupWith: presenterInstance [
 
 	^ (CmCommandGroup named: 'RepositoryOperationsMenu') asSpecGroup
-		register: ((PackageFormulasCtxOpenHomepageCommand
+		register: ((PFCtxOpenHomepageCommand
 			forSpecWithIconNamed: #smallOpen
 			shortcutKey: 'H' asShortcut) 
 				context: presenterInstance;
 				description: 'Open a web browser on the selected repository homepage');			
-		register: ((PackageFormulasCtxOpenIssueCommand 
+		register: ((PFCtxOpenIssueCommand 
 			forSpecWithIconNamed: #smallError
 			shortcutKey: 'I' asShortcut)
 				context: presenterInstance;
@@ -46,23 +46,23 @@ PackageFormulasSelectorUI class >> buildRepositoryOperationsGroupWith: presenter
 PackageFormulasSelectorUI class >> buildSelectionOperationsGroupWith: presenterInstance [
 
 	^ (CmCommandGroup named: 'SelectionOperationsMenu') asSpecGroup
-		register: ((PackageFormulasCtxBrowseFormulaCommand
+		register: ((PFCtxBrowseFormulaCommand
 			forSpecWithIconNamed: #glamorousBrowse
 			shortcutKey: 'B' asShortcut) 
 				context: presenterInstance);
-		register: ((PackageFormulasCtxBrowseBaselineCommand
+		register: ((PFCtxBrowseBaselineCommand
 			forSpecWithIconNamed: #glamorousBrowse
 			shortcutKey: 'M' asShortcut) 
 				context: presenterInstance);				
-		register: ((PackageFormulasCtxBrowsePkgCommand
+		register: ((PFCtxBrowsePkgCommand
 			forSpecWithIconNamed: #glamorousBrowse
 			shortcutKey: 'S' asShortcut) 
 				context: presenterInstance);					
-		register: ((PackageFormulasCtxSelectAllCommand
+		register: ((PFCtxSelectAllCommand
 			forSpecWithIconNamed: #checkedBox
 			shortcutKey: 'A' asShortcut) 
 				context: presenterInstance);			
-		register: ((PackageFormulasCtxSelectNoneCommand 
+		register: ((PFCtxSelectNoneCommand 
 			forSpecWithIconNamed: #checkboxUnselected
 			shortcutKey: 'N' asShortcut)
 				context: presenterInstance);

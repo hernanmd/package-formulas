@@ -2,11 +2,10 @@ Class {
 	#name : #PFInstallationComponent,
 	#superclass : #Object,
 	#instVars : [
-		'next',
 		'name',
-		'beforeDecoration',
-		'afterDecoration',
-		'aroundDecoration'
+		'decoration',
+		'next',
+		'sourceCode'
 	],
 	#category : #'PackageFormulas-Core'
 }
@@ -69,10 +68,21 @@ PFInstallationComponent >> addBeforeDecoration: aPackageFormulaDecoration [
 ]
 
 { #category : #'accessing - decorators' }
-PFInstallationComponent >> addDecoration: aDecoration [
-	"Add aDecoration to the receivers decoration chain. Answer the added decoration."
-	
-	aDecoration addToPackageFormula: self
+PFInstallationComponent >> addDecoration: aPackageFormulaDecoration [
+
+	| previous current |
+
+	previous := nil.
+	current := self decoration.
+	[ current ~~ self ] whileTrue: [ 
+		previous := current.
+		current := current next ].
+	self setNext: current.
+	aPackageFormulaDecoration setNext: self.
+	previous
+		ifNil: [ self decoration: aPackageFormulaDecoration ]
+		ifNotNil: [ :arg | previous setNext: aPackageFormulaDecoration ].
+	^ aPackageFormulaDecoration
 ]
 
 { #category : #'accessing - decorators' }
@@ -117,6 +127,20 @@ PFInstallationComponent >> beforeDecoration: aDecoration [
 	beforeDecoration contents: aDecoration
 ]
 
+{ #category : #'accessing - decorators' }
+PFInstallationComponent >> decoration [
+
+	^ decoration
+		  ifNil: [ decoration := self ]
+		  ifNotNil: [ :arg | decoration contents ]
+]
+
+{ #category : #'accessing - decorators' }
+PFInstallationComponent >> decoration: aDecoration [
+
+	decoration contents: aDecoration
+]
+
 { #category : #'public access' }
 PFInstallationComponent >> evaluate: aFormulaExpression [
 	"Private - Evaluate Smalltalk code in aFormulaExpression"
@@ -129,9 +153,7 @@ PFInstallationComponent >> initialize [
 
 	super initialize.
 	next := ValueHolder new.
-	aroundDecoration := ValueHolder new contents: self.
-	beforeDecoration := ValueHolder new contents: self.
-	afterDecoration := ValueHolder new contents: self
+	decoration := ValueHolder new contents: self.
 ]
 
 { #category : #initialization }
@@ -158,7 +180,7 @@ PFInstallationComponent >> initializeBeforeDecoration [
 PFInstallationComponent >> install [
 
 	self halt.
-	self evaluate: self packageFormula sourceCode.
+	self evaluate: self sourceCode.
 ]
 
 { #category : #accessing }
@@ -173,7 +195,7 @@ PFInstallationComponent >> name: anObject [
 	name := anObject
 ]
 
-{ #category : #'accessing - deco' }
+{ #category : #'accessing - decorators' }
 PFInstallationComponent >> next [
 	"Answer the next decoration or component."
 
@@ -253,7 +275,25 @@ PFInstallationComponent >> removeBeforeDecoration: aDecoration [
 	^ nil
 ]
 
-{ #category : #'accessing - deco' }
+{ #category : #'accessing - decorators' }
+PFInstallationComponent >> removeDecoration: aDecoration [
+	"Remove aDecoration from the chain of decorations. Answer nil if aDecoration is not present."
+
+	| previous current |
+	previous := nil.
+	current := self decoration.
+	[ current = self ] whileFalse: [ 
+		current = aDecoration ifTrue: [ 
+			previous
+				ifNil: [ self decoration: current next ]
+				ifNotNil: [ :arg | previous setNext: current next ].
+			^ aDecoration setNext: nil ].
+		previous := current.
+		current := current next ].
+	^ nil
+]
+
+{ #category : #accessing }
 PFInstallationComponent >> setNext: aDecoration [
 	next contents: aDecoration
 ]
