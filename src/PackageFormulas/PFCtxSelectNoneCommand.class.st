@@ -30,7 +30,7 @@ PFCtxSelectNoneCommand class >> defaultName [
 PFCtxSelectNoneCommand >> execute [
 	"Unselect all marked formula items"
 	
-	self formulasTableItems 
+	self formulasTableItems
 		do: [ : fti | 
 			| cbs |
 			"Horrible way to get the table checkboxes..."

@@ -113,8 +113,8 @@ PackageFormulasSelectorUI >> initializeSelectableFormulas [
 	formulasTable
 		addColumn:
 			((SpCheckBoxTableColumn title: '' evaluated: [ :pragma | self selectedFormulas includes: pragma ])
-				onActivation: [ :formula | self updateSelectedFormula: formula ];
-				onDeactivation: [ : formula | self updateUnselectedFormula: formula ];
+				onActivation: [ :formula | self selectFormula: formula ];
+				onDeactivation: [ : formula | self unselectFormula: formula ];
 				beNotExpandable;
 				width: 20;
 				yourself);	
@@ -143,11 +143,13 @@ PackageFormulasSelectorUI >> initializeWindow: aWindowPresenter [
 		windowIcon: self windowIcon
 ]
 
-{ #category : #accessing }
-PackageFormulasSelectorUI >> removeSelections: aFormula [ 
+{ #category : #initialization }
+PackageFormulasSelectorUI >> selectFormula: formula [
 
-	(self selectedFormulas includes: aFormula)
-		ifTrue: [ self selectedFormulas remove: aFormula ]
+	formula hasBaselineInstalled ifTrue: [ ^ self ].
+	self owner increaseFormulaCount.
+	self selectedFormulas add: formula.
+	self formulasTable refresh.
 ]
 
 { #category : #accessing }
@@ -159,18 +161,11 @@ PackageFormulasSelectorUI >> selectedFormulas [
 ]
 
 { #category : #initialization }
-PackageFormulasSelectorUI >> updateSelectedFormula: formula [
+PackageFormulasSelectorUI >> unselectFormula: aFormula [
 
-	formula hasBaselineInstalled ifTrue: [ ^ self ].
-	self selectedFormulas add: formula.
-	self owner increaseFormulaCount
-]
-
-{ #category : #initialization }
-PackageFormulasSelectorUI >> updateUnselectedFormula: formula [
-
-	self removeSelections: formula.
-	self owner decreaseFormulaCount.
+	(self selectedFormulas includes: aFormula)
+		ifTrue: [ self selectedFormulas remove: aFormula ].
+	self formulasTable refresh.
 ]
 
 { #category : #callbacks }

@@ -199,6 +199,14 @@ PackageFormulasMainUI >> toolbarActions [
 		yourself
 ]
 
+{ #category : #accessing }
+PackageFormulasMainUI >> unselectFormula: aPackageFormula [
+
+	self selectedFormulas remove: aPackageFormula.
+	self formulasTable unselectFormula: aPackageFormula.
+	self decreaseFormulaCount.
+]
+
 { #category : #'accessing - status bar' }
 PackageFormulasMainUI >> updateStatusBar [
 

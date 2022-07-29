@@ -36,7 +36,9 @@ PFInstallCommand >> execute [
 	"Install all selected formulas in the receiver"
 
 	self selectedFormulas 
-		do: [ : formula | formula installIn: self application ]
+		do: [ : formula | 
+			formula installIn: self application.
+			self context unselectFormula: formula. ]
 		displayingProgress: [ : formula | 'Installing ' , formula asString ].
 	self inform: 'Done'
 ]
