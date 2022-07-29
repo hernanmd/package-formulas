@@ -4,12 +4,6 @@ Class {
 	#category : #'PackageFormulas-Core'
 }
 
-{ #category : #adding }
-PFPostInstallDecoration >> addToPackageFormula: aPackageFormula [
-
-	aPackageFormula addAfterDecoration: self
-]
-
 { #category : #accessing }
 PFPostInstallDecoration >> sourceCode [
 	" Private - See superimplementor's comment"

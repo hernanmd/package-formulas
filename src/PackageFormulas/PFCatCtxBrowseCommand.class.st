@@ -2,25 +2,25 @@
 Command to open a message list browser listing all the formulas which belong to the receiver's category.
 "
 Class {
-	#name : #PackageCategoriesCtxBrowseCommand,
-	#superclass : #PackageCategoriesContextualMenuCommand,
+	#name : #PFCatCtxBrowseCommand,
+	#superclass : #PFCatContextualMenuCommand,
 	#category : #'PackageFormulas-Commands'
 }
 
 { #category : #default }
-PackageCategoriesCtxBrowseCommand class >> defaultDescription [
+PFCatCtxBrowseCommand class >> defaultDescription [
 
 	^ 'Browse selected category'
 ]
 
 { #category : #default }
-PackageCategoriesCtxBrowseCommand class >> defaultName [
+PFCatCtxBrowseCommand class >> defaultName [
 
 	^ 'Browse'
 ]
 
 { #category : #executing }
-PackageCategoriesCtxBrowseCommand >> execute [
+PFCatCtxBrowseCommand >> execute [
 	"Private - Open a Browser on the selected category"
 
 	| categoryName |
@@ -34,7 +34,7 @@ PackageCategoriesCtxBrowseCommand >> execute [
 ]
 
 { #category : #private }
-PackageCategoriesCtxBrowseCommand >> messageListForCategory: aString [ 
+PFCatCtxBrowseCommand >> messageListForCategory: aString [ 
 	"Private - Answer a <Collection> of <CompiledMethod> including a pragma named aString.
 	See PackageFormula for rules for naming formulas through pragmas"
 	| formulasContainer formulaName |

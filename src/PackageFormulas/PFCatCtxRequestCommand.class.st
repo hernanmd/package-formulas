@@ -1,23 +1,23 @@
 Class {
-	#name : #PackageCategoriesCtxRequestCommand,
-	#superclass : #PackageCategoriesContextualMenuCommand,
+	#name : #PFCatCtxRequestCommand,
+	#superclass : #PFCatContextualMenuCommand,
 	#category : #'PackageFormulas-Commands'
 }
 
 { #category : #default }
-PackageCategoriesCtxRequestCommand class >> defaultDescription [
+PFCatCtxRequestCommand class >> defaultDescription [
 
 	^ 'Request a formula in this category'
 ]
 
 { #category : #default }
-PackageCategoriesCtxRequestCommand class >> defaultName [
+PFCatCtxRequestCommand class >> defaultName [
 
 	^ 'Request'
 ]
 
 { #category : #executing }
-PackageCategoriesCtxRequestCommand >> execute [
+PFCatCtxRequestCommand >> execute [
 	"Private - Open a Browser on the selected category"
 
 	| categoryName |

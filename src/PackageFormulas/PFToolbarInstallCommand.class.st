@@ -2,37 +2,37 @@
 This command installs the selected formulas in the current image. If there are no selections, the command is not executed.
 "
 Class {
-	#name : #PackageFormulasInstallCommand,
+	#name : #PFToolbarInstallCommand,
 	#superclass : #PackageFormulasToolbarCommand,
 	#category : #'PackageFormulas-Commands'
 }
 
 { #category : #'accessing - defaults' }
-PackageFormulasInstallCommand class >> defaultDescription [
+PFToolbarInstallCommand class >> defaultDescription [
 
 	^ 'Install selected formulas'
 ]
 
 { #category : #'accessing - defaults' }
-PackageFormulasInstallCommand class >> defaultIconName [
+PFToolbarInstallCommand class >> defaultIconName [
 
 	^ #smallDoIt
 ]
 
 { #category : #'accessing - defaults' }
-PackageFormulasInstallCommand class >> defaultName [
+PFToolbarInstallCommand class >> defaultName [
 
 	^ 'Install'
 ]
 
 { #category : #testing }
-PackageFormulasInstallCommand >> canBeExecuted [ 
+PFToolbarInstallCommand >> canBeExecuted [ 
 
 	^ self selectedFormulas notEmpty
 ]
 
 { #category : #executing }
-PackageFormulasInstallCommand >> execute [
+PFToolbarInstallCommand >> execute [
 	"Install all selected formulas in the receiver"
 
 	self selectedFormulas 

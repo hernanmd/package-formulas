@@ -1,3 +1,7 @@
+"
+Main page for package-formulas help.
+
+"
 Class {
 	#name : #PFInstallHelp,
 	#superclass : #PackageFormulasHelp,
@@ -21,9 +25,9 @@ PFInstallHelp class >> bookName [
 PFInstallHelp class >> exampleAddMultipleWrappers [
 
 	^ '(PackageFormulas @ #neoJson)
-		addDecoration: (PackageFormulaBackgroundWrapper new);
-		addDecoration: (PackageFormulaDisableMonitorWrapper new);
-		addDecoration: (PackageFormulaAfterInstall new sourceCode: ''self inform: ''Finished'');
+		addDecoration: (PFBackgroundWrapper new);
+		addDecoration: (PFDisableMonitorWrapper new);
+		addDecoration: (PFPostInstallDecoration new sourceCode: ''self inform: ''Finished'');
 		yourself'
 ]
 
@@ -31,7 +35,7 @@ PFInstallHelp class >> exampleAddMultipleWrappers [
 PFInstallHelp class >> exampleAddWrapper [
 
 	^ '(PackageFormulas for: #IDE) second
- 	addDecoration: (PackageFormulaBackgroundWrapper new);
+ 	addDecoration: (PFBackgroundWrapper new);
  	install.'
 ]
 

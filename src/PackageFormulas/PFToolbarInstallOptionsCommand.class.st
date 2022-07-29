@@ -1,35 +1,35 @@
 Class {
-	#name : #PackageFormulasInstallOptionsCommand,
+	#name : #PFToolbarInstallOptionsCommand,
 	#superclass : #PackageFormulasToolbarCommand,
 	#category : #'PackageFormulas-Commands'
 }
 
 { #category : #'accessing - defaults' }
-PackageFormulasInstallOptionsCommand class >> defaultDescription [
+PFToolbarInstallOptionsCommand class >> defaultDescription [
 
 	^ 'Set formulas options'
 ]
 
 { #category : #initialization }
-PackageFormulasInstallOptionsCommand class >> defaultIconName [
+PFToolbarInstallOptionsCommand class >> defaultIconName [
 
 	^ #configuration
 ]
 
 { #category : #'accessing - defaults' }
-PackageFormulasInstallOptionsCommand class >> defaultName [
+PFToolbarInstallOptionsCommand class >> defaultName [
 
 	^ 'Install Options'
 ]
 
 { #category : #testing }
-PackageFormulasInstallOptionsCommand >> canBeExecuted [ 
+PFToolbarInstallOptionsCommand >> canBeExecuted [ 
 
 	^ self selectedFormulas notEmpty
 ]
 
 { #category : #execution }
-PackageFormulasInstallOptionsCommand >> execute [
+PFToolbarInstallOptionsCommand >> execute [
 	"Test installation of selected formulas"
 
 	self canBeExecuted 
@@ -37,15 +37,15 @@ PackageFormulasInstallOptionsCommand >> execute [
 		ifFalse: [ self inform: 'No formulas selected.' ]
 ]
 
-{ #category : #'as yet unclassified' }
-PackageFormulasInstallOptionsCommand >> installFromScripter: aScripterUI [
+{ #category : #execution }
+PFToolbarInstallOptionsCommand >> installFromScripter: aScripterUI [
 
 	self halt.
 	aScripterUI formula install
 ]
 
 { #category : #execution }
-PackageFormulasInstallOptionsCommand >> openInstallOptions [
+PFToolbarInstallOptionsCommand >> openInstallOptions [
 
 	| answer |
 	

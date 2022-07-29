@@ -4,37 +4,37 @@ Abstract class grouping behavior for contextual menus in the PackageFormulas app
 Subclasses implement behavior accessible through right-click menus in the formula categories list.
 "
 Class {
-	#name : #PackageCategoriesContextualMenuCommand,
+	#name : #PFCatContextualMenuCommand,
 	#superclass : #CmCommand,
 	#category : #'PackageFormulas-Commands'
 }
 
 { #category : #accessing }
-PackageCategoriesContextualMenuCommand >> application [
+PFCatContextualMenuCommand >> application [
 
 	^ self context application
 ]
 
 { #category : #accessing }
-PackageCategoriesContextualMenuCommand >> applicationClass [
+PFCatContextualMenuCommand >> applicationClass [
 
 	^ self application class
 ]
 
 { #category : #accessing }
-PackageCategoriesContextualMenuCommand >> formulasTable [
+PFCatContextualMenuCommand >> formulasTable [
 
 	^ 	self context formulasTable.
 ]
 
 { #category : #accessing }
-PackageCategoriesContextualMenuCommand >> formulasTableColumns [
+PFCatContextualMenuCommand >> formulasTableColumns [
 
 	^ 	self formulasTable columns
 ]
 
 { #category : #accessing }
-PackageCategoriesContextualMenuCommand >> formulasTableItems [
+PFCatContextualMenuCommand >> formulasTableItems [
 
 	^ 	self formulasTable items
 ]

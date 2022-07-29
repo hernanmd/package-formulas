@@ -1,3 +1,7 @@
+"
+Help page to explain how to write a package formula.
+
+"
 Class {
 	#name : #PFWritingHelp,
 	#superclass : #PackageFormulasHelp,

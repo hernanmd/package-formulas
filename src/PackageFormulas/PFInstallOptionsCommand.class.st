@@ -52,7 +52,7 @@ PFInstallOptionsCommand >> openInstallOptions [
 	answer := PackageFormulasScripterUI basicNew
 		newUserFormulaFrom: self context selectedFormulas;	
 		initialize;
-		openModalWithSpec.
+		openModal.
 	answer
 		ifNotNil: [ : presenter | 
 			presenter isCancelled 

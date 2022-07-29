@@ -1,3 +1,7 @@
+"
+Help page to explain how to query package formulas.
+
+"
 Class {
 	#name : #PFQueryingHelp,
 	#superclass : #PackageFormulasHelp,

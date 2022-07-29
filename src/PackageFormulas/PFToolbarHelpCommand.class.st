@@ -1,29 +1,29 @@
 Class {
-	#name : #PackageFormulasHelpCommand,
+	#name : #PFToolbarHelpCommand,
 	#superclass : #PackageFormulasToolbarCommand,
 	#category : #'PackageFormulas-Commands'
 }
 
 { #category : #'accessing - defaults' }
-PackageFormulasHelpCommand class >> defaultDescription [
+PFToolbarHelpCommand class >> defaultDescription [
 
 	^ 'Open a Help window'
 ]
 
 { #category : #'accessing - defaults' }
-PackageFormulasHelpCommand class >> defaultIconName [
+PFToolbarHelpCommand class >> defaultIconName [
 
 	^ #smallHelp
 ]
 
 { #category : #'accessing - defaults' }
-PackageFormulasHelpCommand class >> defaultName [
+PFToolbarHelpCommand class >> defaultName [
 
 	^ 'Help'
 ]
 
 { #category : #execution }
-PackageFormulasHelpCommand >> execute [
+PFToolbarHelpCommand >> execute [
 	"Open a Help"
 
 	PackageFormulasHelp open.

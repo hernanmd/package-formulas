@@ -114,10 +114,21 @@ PackageFormulasScriptActionsTree >> defaultPostInstallActions [
 				
 		((PFPostInstallDecoration named: 'Open Help Browser')
 			sourceCode: 'HelpBrowser open.') .
-			
+
+		((PFPostInstallDecoration named: 'Open Class Hierarchy Browser')
+			sourceCode: 'Smalltalk tools browser open.') .
+
 		((PFPostInstallDecoration named: 'Log finished')
 			sourceCode: '''Installation finished'' asBeaconSignal log.') .
-
+			
+		((PFPostInstallDecoration named: 'Available memory')
+			sourceCode: 'Smalltalk tools workspace openContents: Smalltalk image spaceLeftAfterGarbageCollection surroundedBySingleQuotes.') .
+			
+		((PFPostInstallDecoration named: 'Image cleanup')
+			sourceCode: 'Smalltalk image cleanUp.') .
+			
+		((PFPostInstallDecoration named: 'Image cleanup (aggressive)')
+			sourceCode: 'Smalltalk image cleanUp: true.') .
 	 }
 ]
 
@@ -128,14 +139,29 @@ PackageFormulasScriptActionsTree >> defaultPreInstallActions [
 
 		((PFPreInstallDecoration named: 'Open Transcript')
 			sourceCode: 'Smalltalk tools openTranscript	.') .
-	
+				
+		((PFPreInstallDecoration named: 'Open Process Browser')
+			sourceCode: 'Smalltalk tools processBrowser open.') .
+
+		((PFPreInstallDecoration named: 'Garbage collect')
+			sourceCode: '5 timesRepeat: [ Smalltalk garbageCollect ].') .
+
 		((PFPreInstallDecoration named: 'Log start')
 			sourceCode: '''Installation started'' asBeaconSignal log.') . 
-			
+
+		((PFPreInstallDecoration named: 'Disable deprecation warning')
+			sourceCode: 'Deprecation raiseWarning: false; showWarning: false.') . 
+	
 		((PFPreInstallDecoration named: 'Save image')
 			sourceCode: '(Smalltalk snapshot: true andQuit: false)
-				ifFalse: [ UIManager default inform: ''Image saved'' ].')
+				ifFalse: [ UIManager default inform: ''Image saved'' ].') .
 				
+		((PFPreInstallDecoration named: 'Clean up processes')
+			sourceCode: 'ImageCleaner cleanUpProcesses.') .
+
+		((PFPreInstallDecoration named: 'Clean up image')
+			sourceCode: 'Smalltalk cleanUp: true except: #() confirming: false.') .
+
 		}
 ]
 

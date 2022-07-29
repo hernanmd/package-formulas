@@ -1,29 +1,29 @@
 Class {
-	#name : #PackageFormulasQuitCommand,
+	#name : #PFToolbarQuitCommand,
 	#superclass : #PackageFormulasToolbarCommand,
 	#category : #'PackageFormulas-Commands'
 }
 
 { #category : #'accessing - defaults' }
-PackageFormulasQuitCommand class >> defaultDescription [
+PFToolbarQuitCommand class >> defaultDescription [
 
 	^ 'Quit'
 ]
 
 { #category : #initialization }
-PackageFormulasQuitCommand class >> defaultIconName [
+PFToolbarQuitCommand class >> defaultIconName [
 
 	^ #smallQuit
 ]
 
 { #category : #'accessing - defaults' }
-PackageFormulasQuitCommand class >> defaultName [
+PFToolbarQuitCommand class >> defaultName [
 
 	^ 'Quit'
 ]
 
 { #category : #execution }
-PackageFormulasQuitCommand >> execute [
+PFToolbarQuitCommand >> execute [
 	"Close all the application's UI windows"
 
 	self application close

@@ -8,9 +8,3 @@ Class {
 	#superclass : #PFInstallDecoration,
 	#category : #'PackageFormulas-Core'
 }
-
-{ #category : #adding }
-PFWrapInstallDecoration >> addToPackageFormula: aPackageFormula [
-
-	aPackageFormula addAroundDecoration: self
-]

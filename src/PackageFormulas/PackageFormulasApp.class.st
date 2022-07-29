@@ -184,7 +184,7 @@ PackageFormulasApp >> installedFormulas [
 PackageFormulasApp >> start [
 	" Private - See superimplementor's comment "
 
-	(PackageFormulasMainUI newApplication: self) openWithSpec.
+	(PackageFormulasMainUI newApplication: self) open.
 ]
 
 { #category : #accessing }

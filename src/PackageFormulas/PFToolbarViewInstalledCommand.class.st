@@ -3,38 +3,38 @@ The Browse command opens a Class Hierarchy Browser on the currently highlighted 
 
 "
 Class {
-	#name : #PackageFormulasViewInstalledCommand,
+	#name : #PFToolbarViewInstalledCommand,
 	#superclass : #PackageFormulasToolbarCommand,
 	#category : #'PackageFormulas-Commands'
 }
 
 { #category : #'accessing - defaults' }
-PackageFormulasViewInstalledCommand class >> defaultDescription [
+PFToolbarViewInstalledCommand class >> defaultDescription [
 
 	^ 'View installed packages'
 ]
 
 { #category : #'accessing - defaults' }
-PackageFormulasViewInstalledCommand class >> defaultIconName [
+PFToolbarViewInstalledCommand class >> defaultIconName [
 
 	^ #packageColored
 ]
 
 { #category : #'accessing - defaults' }
-PackageFormulasViewInstalledCommand class >> defaultName [
+PFToolbarViewInstalledCommand class >> defaultName [
 
 	^ 'View installed'
 ]
 
 { #category : #testing }
-PackageFormulasViewInstalledCommand >> canBeExecuted [ 
+PFToolbarViewInstalledCommand >> canBeExecuted [ 
 	"Answer <true> if the receiver's application includes any of its defined formulas already installed"
 
 	^ self context hasFormulasInstalled
 ]
 
 { #category : #execution }
-PackageFormulasViewInstalledCommand >> execute [
+PFToolbarViewInstalledCommand >> execute [
 	"Private - Inspect the selected formula"
 
 	self canBeExecuted ifFalse: [ ^ self inform: 'No installed formulas in this image' ].

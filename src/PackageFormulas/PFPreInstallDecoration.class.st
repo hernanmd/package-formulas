@@ -4,12 +4,6 @@ Class {
 	#category : #'PackageFormulas-Core'
 }
 
-{ #category : #adding }
-PFPreInstallDecoration >> addToPackageFormula: aPackageFormula [
-
-	aPackageFormula addBeforeDecoration: self
-]
-
 { #category : #accessing }
 PFPreInstallDecoration >> sourceCode [
 
@@ -17,7 +11,7 @@ PFPreInstallDecoration >> sourceCode [
 
 	^ String streamContents: [ :stream | 
 		  stream << super sourceCode.
-		  (super sourceCode endsWithSubCollection: '.') ifFalse: [ 
+		  (super sourceCode endsWith: '.') ifFalse: [ 
 			  stream << $. ].
 		  stream
 			  nextPut: Character cr;

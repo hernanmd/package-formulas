@@ -1,29 +1,29 @@
 Class {
-	#name : #PackageFormulasUpdateCommand,
+	#name : #PFToolbarUpdateCommand,
 	#superclass : #PackageFormulasToolbarCommand,
 	#category : #'PackageFormulas-Commands'
 }
 
 { #category : #'accessing - defaults' }
-PackageFormulasUpdateCommand class >> defaultDescription [
+PFToolbarUpdateCommand class >> defaultDescription [
 
 	^ 'Update application and formulas'
 ]
 
 { #category : #'accessing - defaults' }
-PackageFormulasUpdateCommand class >> defaultIconName [
+PFToolbarUpdateCommand class >> defaultIconName [
 
 	^ #smallUpdate
 ]
 
 { #category : #'accessing - defaults' }
-PackageFormulasUpdateCommand class >> defaultName [
+PFToolbarUpdateCommand class >> defaultName [
 
 	^ 'Update'
 ]
 
 { #category : #execution }
-PackageFormulasUpdateCommand >> execute [
+PFToolbarUpdateCommand >> execute [
 	"Try to update the application"
 
 	| answer |

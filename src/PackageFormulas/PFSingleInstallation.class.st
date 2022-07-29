@@ -14,10 +14,11 @@ PFSingleInstallation class >> newWithFormulas: aCollection [
 
 { #category : #private }
 PFSingleInstallation >> formattedSourceFor: formula [
+	"Answer a <String> formatted with an ending dot"
 
 	| sourceText |
 	
-	^ ((sourceText := formula sourceCode) endsWithSubCollection: '.')
+	^ ((sourceText := formula sourceCode) endsWith: '.')
 		  ifFalse: [ sourceText , '.' ]
 		  ifTrue: [ sourceText ]
 ]
