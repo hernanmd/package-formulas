@@ -61,13 +61,6 @@ PackageFormulasScriptActionsTree >> actionsMap [
 ]
 
 { #category : #'add-remove' }
-PackageFormulasScriptActionsTree >> addPostAction: frmAction [
-
-	self selectedPostInstallActions add: frmAction.
-	self updatePostActions
-]
-
-{ #category : #'add-remove' }
 PackageFormulasScriptActionsTree >> addPreAction: frmAction [
 
 	self selectedWrapperActions add: frmAction.
@@ -281,20 +274,6 @@ PackageFormulasScriptActionsTree >> preInstallActions [
 ]
 
 { #category : #'add-remove' }
-PackageFormulasScriptActionsTree >> removePostAction: frmAction [
-
-	self selectedPostInstallActions remove: frmAction.
-	self updatePostActions.
-]
-
-{ #category : #'add-remove' }
-PackageFormulasScriptActionsTree >> removePreAction: frmAction [
-
-	self selectedPreInstallActions remove: frmAction.
-	self updatePreActions.
-]
-
-{ #category : #'add-remove' }
 PackageFormulasScriptActionsTree >> removeWrapperAction: frmAction [
 
 	self selectedWrapperActions remove: frmAction.
@@ -326,24 +305,6 @@ PackageFormulasScriptActionsTree >> selectedWrapperActions [
 PackageFormulasScriptActionsTree >> toolbarHeight [
 
 	^ self class toolbarHeight
-]
-
-{ #category : #updating }
-PackageFormulasScriptActionsTree >> updatePostActions [
-
-	self owner postActionsPresenterSetEmpty.
-	self selectedPostInstallActions do: [ :fAction | 
-		self formula addDecoration: fAction.		
-		self owner postActionsPresenterAddText: fAction sourceCode ]
-]
-
-{ #category : #updating }
-PackageFormulasScriptActionsTree >> updatePreActions [
-
-	self owner preActionsPresenterSetEmpty.
-	self selectedPreInstallActions do: [ :fAction | 
-		self formula addDecoration: fAction.
-		self owner preActionsPresenterAddText: fAction sourceCode ]
 ]
 
 { #category : #updating }

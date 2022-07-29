@@ -110,68 +110,19 @@ PackageFormulasScripterUI >> installation [
 	^ userFormula
 ]
 
+{ #category : #accessing }
+PackageFormulasScripterUI >> installationExpression [
+	"Answer a <String> with the final installation expression (not validated)"
+
+	^ self scriptPresenter text
+]
+
 { #category : #initialization }
 PackageFormulasScripterUI >> newUserFormulaFrom: aFormulaCollection [
 	"Answer a new <PackageFormula> including the source from the user selected formulas"
 
 	userFormula := PFSingleInstallation newWithFormulas: aFormulaCollection.
 	^ userFormula
-]
-
-{ #category : #accessing }
-PackageFormulasScripterUI >> postActionsPresenter [
-
-	^ postActionsPresenter
-]
-
-{ #category : #accessing }
-PackageFormulasScripterUI >> postActionsPresenter: anObject [
-
-	postActionsPresenter := anObject
-]
-
-{ #category : #callbacks }
-PackageFormulasScripterUI >> postActionsPresenterAddText: aString [
-
-	self postActionsPresenter text: (String streamContents: [ : stream |
-		stream
-			<< self postActionsPresenter text;
-			cr;
-			<< aString ]).
-]
-
-{ #category : #callbacks }
-PackageFormulasScripterUI >> postActionsPresenterSetEmpty [
-
-	self postActionsPresenter text: String empty
-]
-
-{ #category : #accessing }
-PackageFormulasScripterUI >> preActionsPresenter [
-
-	^ preActionsPresenter
-]
-
-{ #category : #accessing }
-PackageFormulasScripterUI >> preActionsPresenter: anObject [
-
-	preActionsPresenter := anObject
-]
-
-{ #category : #callbacks }
-PackageFormulasScripterUI >> preActionsPresenterAddText: aString [
-
-	self preActionsPresenter text: (String streamContents: [ : stream |
-		stream
-			<< self preActionsPresenter text;
-			cr;
-			<< aString ]).
-]
-
-{ #category : #callbacks }
-PackageFormulasScripterUI >> preActionsPresenterSetEmpty [
-
-	self preActionsPresenter text: String empty
 ]
 
 { #category : #accessing }

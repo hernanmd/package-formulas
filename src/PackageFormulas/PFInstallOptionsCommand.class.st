@@ -28,6 +28,13 @@ PFInstallOptionsCommand >> canBeExecuted [
 	^ self selectedFormulas notEmpty
 ]
 
+{ #category : #'public access' }
+PFInstallOptionsCommand >> evaluate: aFormulaExpression [
+	"Private - Evaluate Smalltalk code in aFormulaExpression"
+
+	Smalltalk compiler evaluate: aFormulaExpression.
+]
+
 { #category : #executing }
 PFInstallOptionsCommand >> execute [
 	"Test installation of selected formulas"
@@ -39,9 +46,9 @@ PFInstallOptionsCommand >> execute [
 
 { #category : #'as yet unclassified' }
 PFInstallOptionsCommand >> installFromScripter: aScripterUI [
+	"Install the receiver's formula in the context of the current application"
 
-	self halt.
-	aScripterUI formula install
+	self evaluate: aScripterUI installationExpression
 ]
 
 { #category : #execution }
