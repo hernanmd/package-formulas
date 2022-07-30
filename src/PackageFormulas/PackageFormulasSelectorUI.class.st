@@ -114,7 +114,7 @@ PackageFormulasSelectorUI >> initializeSelectableFormulas [
 		addColumn:
 			((SpCheckBoxTableColumn title: '' evaluated: [ :pragma | self selectedFormulas includes: pragma ])
 				onActivation: [ :formula | self updateSelectedFormula: formula ];
-				onDeactivation: [ : formula | self updateUnselectedFormula: formula ];
+				onDeactivation: [ : formula | self unselectFormula: formula ];
 				beNotExpandable;
 				width: 20;
 				yourself);	
@@ -141,15 +141,6 @@ PackageFormulasSelectorUI >> initializeWindow: aWindowPresenter [
 		title: self title;
 		initialExtent: self initialExtent;
 		windowIcon: self windowIcon
-]
-
-{ #category : #initialization }
-PackageFormulasSelectorUI >> selectFormula: formula [
-
-	formula hasBaselineInstalled ifTrue: [ ^ self ].
-	self owner increaseFormulaCount.
-	self selectedFormulas add: formula.
-	self formulasTable refresh.
 ]
 
 { #category : #accessing }
