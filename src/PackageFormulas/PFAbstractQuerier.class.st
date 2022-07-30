@@ -1,7 +1,12 @@
 "
 Abstract class to group querying formulas behavior.
 
-Subclasses can implement specific methods to query different API implementations, for example based in Metacello, Pakbot/Cargo, Gofer, etc.
+Subclasses should re-implement methods to query different API implementations, for example based in Metacello, Pakbot/Cargo, Gofer, etc. Currently these methods are:
+
+- #hasInstallerInstalled
+- #hasPackageInstalled
+- #parseRepositoryExpression
+
 
 "
 Class {
@@ -103,4 +108,11 @@ PFAbstractQuerier >> parseRepositoryExpression [
 	"Answer a <RBMessageNode> matching the receiver's expected repository: expression"
 
 	self subclassResponsibility
+]
+
+{ #category : #testing }
+PFAbstractQuerier >> repositoryRegistry [
+	"Answer a <Collection> of package registries currently installed in this system.
+	Reject any potential registry misleading to match other package names beggining with the same name."
+	^ IceRepository registry reject: [ : iceRep | iceRep name = 'pharo' ]
 ]

@@ -22,7 +22,7 @@ PFRecordCommand class >> defaultName [
 	^ 'Record'
 ]
 
-{ #category : #execution }
+{ #category : #executing }
 PFRecordCommand >> execute [
 	"Test installation of selected formulas"
 

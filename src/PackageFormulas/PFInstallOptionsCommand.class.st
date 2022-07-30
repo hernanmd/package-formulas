@@ -44,14 +44,14 @@ PFInstallOptionsCommand >> execute [
 		ifFalse: [ self inform: 'No formulas selected.' ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #executing }
 PFInstallOptionsCommand >> installFromScripter: aScripterUI [
 	"Install the receiver's formula in the context of the current application"
 
 	self evaluate: aScripterUI installationExpression
 ]
 
-{ #category : #execution }
+{ #category : #executing }
 PFInstallOptionsCommand >> openInstallOptions [
 	"Open a <PackageFormulasScripterUI> as a modal dialog, to prevent multiple conflicting installations"
 	| answer |

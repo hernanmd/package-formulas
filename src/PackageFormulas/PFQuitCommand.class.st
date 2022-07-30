@@ -22,7 +22,7 @@ PFQuitCommand class >> defaultName [
 	^ 'Quit'
 ]
 
-{ #category : #execution }
+{ #category : #executing }
 PFQuitCommand >> execute [
 	"Close all the application's UI windows"
 

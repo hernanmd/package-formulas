@@ -3,20 +3,18 @@ A PackageFormula represents an installation expression of one or multiple Pharo 
 
 A formula can perform the following actions: 
 
-- Answer if it's already installed #isInstalled.
-- Ask to be installed with #install.
-- Perform a #record as in `Metacello>>record`.
-- Obtain a `String` representing its web URL home page with #webLinkHome.
+- Answer if it's already installed with #isInstalled.
+- Be installed with #install.
+- Obtain additional information form its install expression:
+  - A `String` representing its web URL home page with #webLinkHome.
+  - A `String` url pointing to its issues page with #webLinkIssues.
 
-`PackageFormulas` is used as a default repository of formulas, but any class can store formulas, and pass its class name as parameter of the #allIn: method. This will answer the formulas as they only need to have a pragma in the method. 
+`PackageFormulas` is used as a default repository of formulas, but any class can store formulas. See class comments in `PackageFormulas` to check how to do it. 
 
-To use another class to store the formulas, subclass this class and add the methods in the class side.
+PackageFormula's uses two helper objects to obtain additional information 
 
-The rules for naming formula's categories through pragmas are as follows:
-
-- If the category represents an acronym, it must be all uppercase: FIFA, UN, MERCOSUR, etc.
-- If the category is a common name, it must be all lowercase, no capitalization.
-- If the category has two or more words, they must be separated by the Character $_
+- `PackageFormulaInfo` to hold and obtain general information such as its home page, issues page, etc.
+- A subclass of `PFAbstractQuerier` dinamically choosen according to the installation expression used.
 "
 Class {
 	#name : #PackageFormula,

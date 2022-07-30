@@ -1,3 +1,6 @@
+"
+Allows you to customize an exception handler by supplying the class of the `Exception` and the block to be executed.
+"
 Class {
 	#name : #PFExceptionWrapper,
 	#superclass : #PFWrapInstallDecoration,
@@ -39,7 +42,7 @@ PFExceptionWrapper >> sourceCode [
 			  << self next sourceCode;
 			  nextPut: Character cr;
 			  << ' ] on: ';
-			  << self exceptionClass greaseString;
+			  << self exceptionClass asString;
 			  nextPut: Character cr;
 			  << 'do: ';
 			  << self exceptionBlock storeString ]

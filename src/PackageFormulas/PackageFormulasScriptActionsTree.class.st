@@ -168,8 +168,8 @@ PackageFormulasScriptActionsTree >> defaultWrapperInstallActions [
 		(PFProfileWrapper named: 'Profile') .
 		(PFDisableMonitorWrapper named: 'Disable monitor') . 
 		((PFExceptionWrapper named: 'Install exception')
-			exceptionClass: Error;
-			sourceCode: 'self halt')	
+			exceptionClass: Error "IceGenericError";
+			sourceCode: '[ : ex | self halt ]')	
 	}
 ]
 

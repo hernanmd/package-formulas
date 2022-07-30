@@ -1,6 +1,13 @@
 "
 Acts as a repository of `PackageFormula`. Each PackageFormula can be browsed in the class side.
 
+To use another class to store the formulas, subclass this class and add ""formula"" methods in the class side.
+
+## Rules for naming formulas
+
+- If the category represents an acronym, it must be all uppercase: IDE, GIS, OWL, etc.
+- If the category is a common name, it must be all lowercase, no capitalization.
+- If the category has two or more words, they must be separated by the Character $_
 "
 Class {
 	#name : #PackageFormulas,

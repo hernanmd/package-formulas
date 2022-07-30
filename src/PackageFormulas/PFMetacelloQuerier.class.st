@@ -40,17 +40,13 @@ PFMetacelloQuerier >> handlePackageNotFound: aNotFound [
 ]
 
 { #category : #testing }
-PFMetacelloQuerier >> harRPackageNamed: aString [ 
+PFMetacelloQuerier >> harRPackageNamed: aString [
 
 	| pkgRepository |
-	pkgRepository := IceRepository registry detect: [ :r | 
-				self 
-					matchPackageName: aString
-					and: r name ]
-			ifNone: [ ^ false ].
-
+	pkgRepository := self repositoryRegistry
+		                 detect: [ :r | self matchPackageName: aString and: r name ]
+		                 ifNone: [ ^ false ].
 	^ pkgRepository loadedPackages notEmpty
-
 ]
 
 { #category : #testing }
@@ -79,15 +75,15 @@ PFMetacelloQuerier >> hasPackageInstalled [
 ]
 
 { #category : #testing }
-PFMetacelloQuerier >> hasPackageWithRepositoryAddress: aRBLiteralValueNode [ 
+PFMetacelloQuerier >> hasPackageWithRepositoryAddress: aRBLiteralValueNode [
 
 	| pkgRepository |
-	pkgRepository := IceRepository registry
-			                 detect: [ :r | 
+	pkgRepository := self repositoryRegistry
+		                 detect: [ :r | 
 			                 self
 				                 matchPackageName: r name
 				                 withRepository: aRBLiteralValueNode value ]
-			                 ifNone: [ ^ false ].
+		                 ifNone: [ ^ false ].
 	^ pkgRepository loadedPackages notEmpty
 ]
 
@@ -140,6 +136,7 @@ PFMetacelloQuerier >> parseRepositoryExpression [
 
 { #category : #testing }
 PFMetacelloQuerier >> prvHasCategoryNamed: aString [ 
+	"Answer <true> if aString matches a System category"
 
 	^ SystemOrganizer default categories anySatisfy: [ : cat |
 		self matchPackageName: aString and: cat ]

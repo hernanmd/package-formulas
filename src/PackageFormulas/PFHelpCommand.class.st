@@ -25,7 +25,7 @@ PFHelpCommand class >> defaultName [
 	^ 'Help'
 ]
 
-{ #category : #execution }
+{ #category : #executing }
 PFHelpCommand >> execute [
 	"Open a Help"
 

@@ -74,8 +74,10 @@ PackageFormulaInfo >> querier [
 { #category : #private }
 PackageFormulaInfo >> urlForSchema: aString [ 
 	"Answer a <String> representing a valid web address for aString. i.e. Given 'github' get 'https://github.com'"
-	
-	^ self packageFormula repositorySchemas at: aString
+
+	^ self packageFormula repositorySchemas 
+		at: aString
+
 
 ]
 
@@ -87,7 +89,9 @@ PackageFormulaInfo >> webLinkHome [
 	urlString := self parseRepositoryExpression
 		             ifNotNil: [ :messageNode | messageNode arguments anyOne value ]
 		             ifNil: [ self parseRepositoryHomeAlt ].
-	^ self buildHTTPHomeLink: urlString asZnUrl
+	^ (urlString beginsWithAnyOf: #('http' 'file' 'tonel'))
+		ifTrue: [ urlString ]
+		ifFalse: [ self buildHTTPHomeLink: urlString asZnUrl ]
 ]
 
 { #category : #'accessing - cursor' }

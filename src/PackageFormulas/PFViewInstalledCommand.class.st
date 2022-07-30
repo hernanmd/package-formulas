@@ -33,7 +33,7 @@ PFViewInstalledCommand >> canBeExecuted [
 	^ self context hasFormulasInstalled
 ]
 
-{ #category : #execution }
+{ #category : #executing }
 PFViewInstalledCommand >> execute [
 	"Private - Inspect the selected formula"
 

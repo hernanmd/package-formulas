@@ -22,7 +22,7 @@ PFUpdateCommand class >> defaultName [
 	^ 'Update'
 ]
 
-{ #category : #execution }
+{ #category : #executing }
 PFUpdateCommand >> execute [
 	"Try to update the application"
 

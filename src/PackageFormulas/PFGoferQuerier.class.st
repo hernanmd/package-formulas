@@ -1,3 +1,6 @@
+"
+Provides an interface to query a `PackageFormula`, specifically for formulas containing `Gofer` expressions.
+"
 Class {
 	#name : #PFGoferQuerier,
 	#superclass : #PFAbstractQuerier,
@@ -11,6 +14,29 @@ PFGoferQuerier class >> installerClassName [
 	^ 'Gofer'
 ]
 
+{ #category : #accessing }
+PFGoferQuerier >> hasConfigurationName: aRBMethodNode [
+
+	"Assume for now package it contains the String 'ConfigurationOf<package-name>'"
+
+	| extractedTree |
+	extractedTree := RBParseTreeSearcher
+		                 treeMatching: '``@anything package: ``@args'
+		                 in: aRBMethodNode.
+	extractedTree ifNotNil: [ :arg | 
+		| pkgRepository configName |
+		configName := extractedTree arguments anyOne.
+		pkgRepository := self repositoryRegistry
+			                 detect: [ :r | 
+				                 self
+					                 matchPackageName: r name
+					                 withPackageNamed:
+					                 (configName value copyAfter: 'ConfigurationOf') ]
+			                 ifNone: [ ^ false ].
+		^ pkgRepository loadedPackages notEmpty ].
+	^ false
+]
+
 { #category : #testing }
 PFGoferQuerier >> hasInstallerInstalled [
 
@@ -21,26 +47,13 @@ PFGoferQuerier >> hasInstallerInstalled [
 PFGoferQuerier >> hasPackageInstalled [
 	"Answer <true> if the package specified in anAST is found in the image"
 	
-	^ self searchByConfigurationName: self packageFormulaAst
+	^ self hasConfigurationName: self packageFormulaAst
 ]
 
-{ #category : #accessing }
-PFGoferQuerier >> searchByConfigurationName: aRBMethodNode [ 
-	"Assume for now package it contains the String 'ConfigurationOf<package-name>'"
-	| extractedTree |
-	
-	extractedTree := RBParseTreeSearcher
-		                 treeMatching: '``@anything package: ``@args'
-		                 in: aRBMethodNode.
-	extractedTree ifNotNil: [ :arg | 
-		| pkgRepository configName |
-		configName := extractedTree arguments anyOne.
-		pkgRepository := IceRepository registry
-			                 detect: [ :r | 
-			                 self
-				                 matchPackageName: r name
-				                 withPackageNamed: (configName value copyAfter: 'ConfigurationOf') ]
-			                 ifNone: [ ^ false ].
-		^ pkgRepository loadedPackages notEmpty ].
-	^ false
+{ #category : #parsing }
+PFGoferQuerier >> parseRepositoryExpression [ 
+	"Answer a <RBMessageNode> matching the receiver's expected repository: expression"
+
+	^ self parseExpression: '``@anything url: ``@arg1'
+
 ]

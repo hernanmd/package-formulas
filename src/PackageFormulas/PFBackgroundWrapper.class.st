@@ -1,3 +1,7 @@
+"
+This decorator wraps any install expression to execute it as a background process, at a standard background priority, using the available process primitives.
+
+"
 Class {
 	#name : #PFBackgroundWrapper,
 	#superclass : #PFWrapInstallDecoration,
