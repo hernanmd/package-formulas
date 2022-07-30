@@ -26,6 +26,6 @@ PFQuitCommand class >> defaultName [
 PFQuitCommand >> execute [
 	"Close all the application's UI windows"
 
-	self application close
+	self application closeAllWindows
 
 ]

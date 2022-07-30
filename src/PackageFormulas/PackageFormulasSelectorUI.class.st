@@ -123,7 +123,7 @@ PackageFormulasSelectorUI >> initializeSelectableFormulas [
 				"enabled: false;"
 				width: 90;
 				yourself);		
-		addColumn: ((SpCheckBoxTableColumn title: 'Baseline' evaluated: [: formula | formula hasBaselineInstalled ])
+		addColumn: ((SpCheckBoxTableColumn title: 'Baseline' evaluated: [: formula | formula hasInstallerInstalled ])
 				width: 90;
 				yourself);			
 		items: OrderedCollection new;
@@ -161,7 +161,7 @@ PackageFormulasSelectorUI >> selectedFormulas [
 { #category : #initialization }
 PackageFormulasSelectorUI >> updateSelectedFormula: formula [
 
-	formula hasBaselineInstalled ifTrue: [ ^ self ].
+	formula hasInstallerInstalled ifTrue: [ ^ self ].
 	self selectedFormulas add: formula.
 	self owner increaseFormulaCount
 ]

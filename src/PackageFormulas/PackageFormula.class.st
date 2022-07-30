@@ -94,10 +94,10 @@ PackageFormula >> categories: anObject [
 ]
 
 { #category : #testing }
-PackageFormula >> hasBaselineInstalled [
+PackageFormula >> hasInstallerInstalled [
 	"Answer <true> if receiver's method, assumed to be a Metacello install expression, is installed in the receiver"
 
-	^ self querier hasBaselineInstalled
+	^ self querier hasInstallerInstalled
 ]
 
 { #category : #testing }
@@ -109,6 +109,7 @@ PackageFormula >> hasPackageInstalled [
 
 { #category : #accessing }
 PackageFormula >> info [
+	"Answer a <PackageFormulaInfo>, a helper to provider more information about a formula"
 
 	^ info
 		ifNil: [ info := PackageFormulaInfo for: self ]
@@ -153,9 +154,10 @@ PackageFormula >> printOn: aStream [
 
 { #category : #accessing }
 PackageFormula >> querier [
+	"Answer a <PFAbstractQuerier>, a helper to query the receiver"
 
 	^ querier
-		ifNil: [ querier := PackageFormulaQuerier for: self ]
+		ifNil: [ querier := PFAbstractQuerier for: self ]
 ]
 
 { #category : #accessing }

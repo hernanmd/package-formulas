@@ -6,7 +6,6 @@ Class {
 
 { #category : #accessing }
 PFDisableMonitorWrapper >> sourceCode [
-
 	" Private - See superimplementor's comment"
 
 	^ String streamContents: [ :stream | 

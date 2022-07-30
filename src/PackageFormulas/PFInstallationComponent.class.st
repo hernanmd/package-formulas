@@ -1,3 +1,6 @@
+"
+This decoration just provides subclasses sourceCode state `String`. See subclasses for specific functionality using source code.
+"
 Class {
 	#name : #PFInstallationComponent,
 	#superclass : #Object,
@@ -109,7 +112,7 @@ PFInstallationComponent >> removeDecoration: aDecoration [
 	^ nil
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing - decorators' }
 PFInstallationComponent >> setNext: aDecoration [
 	next contents: aDecoration
 ]

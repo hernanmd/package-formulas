@@ -112,7 +112,7 @@ PackageFormulasScriptActionsTree >> defaultPostInstallActions [
 			sourceCode: 'Smalltalk tools browser open.') .
 
 		((PFPostInstallDecoration named: 'Log finished')
-			sourceCode: '''Installation finished'' asBeaconSignal log.') .
+			sourceCode: '''Installation finished'' asBeaconSignal emit.') .
 			
 		((PFPostInstallDecoration named: 'Available memory')
 			sourceCode: 'Smalltalk tools workspace openContents: Smalltalk image spaceLeftAfterGarbageCollection surroundedBySingleQuotes.') .
@@ -140,7 +140,7 @@ PackageFormulasScriptActionsTree >> defaultPreInstallActions [
 			sourceCode: '5 timesRepeat: [ Smalltalk garbageCollect ].') .
 
 		((PFPreInstallDecoration named: 'Log start')
-			sourceCode: '''Installation started'' asBeaconSignal log.') . 
+			sourceCode: '''Installation started'' asBeaconSignal emit.') . 
 
 		((PFPreInstallDecoration named: 'Disable deprecation warning')
 			sourceCode: 'Deprecation raiseWarning: false; showWarning: false.') . 

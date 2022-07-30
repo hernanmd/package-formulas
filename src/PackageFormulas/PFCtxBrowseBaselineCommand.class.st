@@ -30,7 +30,7 @@ PFCtxBrowseBaselineCommand >> canBeExecuted [
 
 	^ (self application 
 		propertyAt: #formulaSelection 
-		ifAbsent: [ ^ false ]) hasBaselineInstalled.
+		ifAbsent: [ ^ false ]) hasInstallerInstalled.
 ]
 
 { #category : #executing }
@@ -38,7 +38,7 @@ PFCtxBrowseBaselineCommand >> execute [
 	"Private - Inspect the selected pragma"
 
 	self application propertyAt: #formulaSelection ifAbsent: [ ^ self ].
-	self querier baselineName
+	self querier definitionName
 		ifNotEmpty: [ : baselineName |
 			self stBrowser
 				openOnClass: (self class environment at: ('BaselineOf' , baselineName) asSymbol)

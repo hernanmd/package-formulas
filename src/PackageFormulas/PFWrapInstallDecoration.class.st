@@ -5,6 +5,6 @@ Subclasses should implement the method #valueInClass:withSelector: which receive
 "
 Class {
 	#name : #PFWrapInstallDecoration,
-	#superclass : #PFInstallDecoration,
+	#superclass : #PFInstallationComponent,
 	#category : #'PackageFormulas-Core'
 }

@@ -52,28 +52,23 @@ PackageFormulaInfo >> packageFormula: anObject [
 ]
 
 { #category : #parsing }
-PackageFormulaInfo >> packageFormulaAst [
+PackageFormulaInfo >> parseRepositoryExpression [
 
-	^ self packageFormula ast
+	^ self querier parseRepositoryExpression
 ]
 
 { #category : #parsing }
-PackageFormulaInfo >> parseFromGitHubExtendedShortcut [
+PackageFormulaInfo >> parseRepositoryHomeAlt [
 	"Parse an alternative usage of Metacello install expressions"
 
-	^ ((RBParseTreeSearcher
-		    treeMatching: '``@anything githubUser: ``@arg1 project: ``@arg2 commitish: ``@arg3 path: ``@arg4'
-		    in: self packageFormulaAst) arguments first: 2) 
-				ifNotNil: [ :args | self buildGitHubLink: args ]
+	^ self querier parseRepositoryAltExpression ifNotNil: [ :args | 
+		  self buildGitHubLink: args ]
 ]
 
 { #category : #parsing }
-PackageFormulaInfo >> parseRepositoryExpression [
-	"Answer a <RBMessageNode> matching the receiver's expected repository: expression"
+PackageFormulaInfo >> querier [
 
-	^ RBParseTreeSearcher
-		  treeMatching: '``@anything repository: ``@arg1'
-		  in: self packageFormulaAst
+	^ self packageFormula querier
 ]
 
 { #category : #private }
@@ -91,7 +86,7 @@ PackageFormulaInfo >> webLinkHome [
 	| urlString |
 	urlString := self parseRepositoryExpression
 		             ifNotNil: [ :messageNode | messageNode arguments anyOne value ]
-		             ifNil: [ self parseFromGitHubExtendedShortcut ].
+		             ifNil: [ self parseRepositoryHomeAlt ].
 	^ self buildHTTPHomeLink: urlString asZnUrl
 ]
 

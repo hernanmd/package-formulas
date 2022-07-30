@@ -1,0 +1,106 @@
+"
+Abstract class to group querying formulas behavior.
+
+Subclasses can implement specific methods to query different API implementations, for example based in Metacello, Pakbot/Cargo, Gofer, etc.
+
+"
+Class {
+	#name : #PFAbstractQuerier,
+	#superclass : #Object,
+	#instVars : [
+		'packageFormula'
+	],
+	#category : #'PackageFormulas-Core'
+}
+
+{ #category : #'instance creation' }
+PFAbstractQuerier class >> findQuerierClass: aPackageFormula [
+
+	^ self allSubclasses
+		  detect: [ :subClass | 
+		  subClass matchInstallExpression: aPackageFormula ]
+		  ifNone: [ 
+			  self error:
+				  'There is no Package Formula querier for the expression in: '
+				  , aPackageFormula name ]
+]
+
+{ #category : #'instance creation' }
+PFAbstractQuerier class >> for: aPackageFormula [
+	"Answer an instance of the subclass matching the installation expression found in aPackageFormula"
+
+	^ (self findQuerierClass: aPackageFormula)
+		new
+		packageFormula: aPackageFormula;
+		yourself
+]
+
+{ #category : #'instance creation' }
+PFAbstractQuerier class >> installerClassName [
+	"Answer a <String> with the class name used to install a package (e.g. Gofer, Metacello, etc)"
+
+	self subclassResponsibility
+]
+
+{ #category : #'instance creation' }
+PFAbstractQuerier class >> matchInstallExpression: aPackageFormula [
+	"Answer <true> if the receiver match the installation expression found in aPackageFormula"
+	
+	^ aPackageFormula ast body references: self installerClassName
+]
+
+{ #category : #testing }
+PFAbstractQuerier >> hasInstallerInstalled [ 
+
+	self subclassResponsibility
+]
+
+{ #category : #testing }
+PFAbstractQuerier >> hasPackageInstalled [
+	"Answer <true> if the package specified in the receiver's formula AST is found in the image"
+	
+	self subclassResponsibility
+]
+
+{ #category : #testing }
+PFAbstractQuerier >> matchPackageName: aString withPackageNamed: aString2 [ 
+	"Answer <true> if aString matches aString2"
+
+	^ aString size > aString2 size 
+		ifTrue: [ aString asLowercase beginsWith: aString2 asLowercase ]
+		ifFalse: [ aString2 asLowercase beginsWith: aString asLowercase ]
+]
+
+{ #category : #accessing }
+PFAbstractQuerier >> packageFormula [
+
+	^ packageFormula
+]
+
+{ #category : #accessing }
+PFAbstractQuerier >> packageFormula: anObject [
+
+	packageFormula := anObject
+]
+
+{ #category : #parsing }
+PFAbstractQuerier >> packageFormulaAst [
+	"Answer the package formula's <RBMethodNode>"
+
+	^ self packageFormula ast
+]
+
+{ #category : #parsing }
+PFAbstractQuerier >> parseExpression: aString [
+
+	^ RBParseTreeSearcher
+		   treeMatching: aString
+		   in: self packageFormulaAst
+]
+
+{ #category : #parsing }
+PFAbstractQuerier >> parseRepositoryExpression [ 
+	"Answer a <RBMessageNode> matching the receiver's expected repository: expression"
+
+	self subclassResponsibility
+]

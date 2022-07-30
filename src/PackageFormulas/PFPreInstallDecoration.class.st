@@ -1,6 +1,6 @@
 Class {
 	#name : #PFPreInstallDecoration,
-	#superclass : #PFInstallDecoration,
+	#superclass : #PFInstallationComponent,
 	#category : #'PackageFormulas-Core'
 }
 
