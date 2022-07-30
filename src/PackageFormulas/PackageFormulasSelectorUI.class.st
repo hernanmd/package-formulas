@@ -143,11 +143,13 @@ PackageFormulasSelectorUI >> initializeWindow: aWindowPresenter [
 		windowIcon: self windowIcon
 ]
 
-{ #category : #accessing }
-PackageFormulasSelectorUI >> removeSelections: aFormula [ 
+{ #category : #initialization }
+PackageFormulasSelectorUI >> selectFormula: formula [
 
-	(self selectedFormulas includes: aFormula)
-		ifTrue: [ self selectedFormulas remove: aFormula ]
+	formula hasBaselineInstalled ifTrue: [ ^ self ].
+	self owner increaseFormulaCount.
+	self selectedFormulas add: formula.
+	self formulasTable refresh.
 ]
 
 { #category : #accessing }
@@ -159,18 +161,19 @@ PackageFormulasSelectorUI >> selectedFormulas [
 ]
 
 { #category : #initialization }
+PackageFormulasSelectorUI >> unselectFormula: aFormula [
+
+	(self selectedFormulas includes: aFormula)
+		ifTrue: [ self selectedFormulas remove: aFormula ].
+	self formulasTable refresh.
+]
+
+{ #category : #initialization }
 PackageFormulasSelectorUI >> updateSelectedFormula: formula [
 
 	formula hasInstallerInstalled ifTrue: [ ^ self ].
 	self selectedFormulas add: formula.
 	self owner increaseFormulaCount
-]
-
-{ #category : #initialization }
-PackageFormulasSelectorUI >> updateUnselectedFormula: formula [
-
-	self removeSelections: formula.
-	self owner decreaseFormulaCount.
 ]
 
 { #category : #callbacks }

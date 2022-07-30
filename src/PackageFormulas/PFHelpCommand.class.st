@@ -1,3 +1,6 @@
+"
+Implements the callback command for the Help button.
+"
 Class {
 	#name : #PFHelpCommand,
 	#superclass : #PFToolbarCommand,

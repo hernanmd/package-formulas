@@ -1120,6 +1120,7 @@ PackageFormulas class >> mutalk [
 { #category : #formulas }
 PackageFormulas class >> neoCsv [
 	<formula: #general>
+	<formula: #parsing>
 
 	Metacello new
 		baseline: 'NeoCSV';
