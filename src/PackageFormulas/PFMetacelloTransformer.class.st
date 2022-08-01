@@ -11,10 +11,9 @@ Class {
 { #category : #accessing }
 PFMetacelloTransformer >> record [
 
-	| metacelloRecordExpression |
-	metacelloRecordExpression := (RBParseTreeRewriter 
+	^ (RBParseTreeRewriter 
 		replace: '``@anything load' 
 		with: '``@anything record' 
 		in: self packageFormulaAst body) formattedCode.
-	Smalltalk compiler evaluate: metacelloRecordExpression.
+
 ]

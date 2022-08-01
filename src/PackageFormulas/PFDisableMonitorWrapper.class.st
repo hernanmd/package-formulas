@@ -4,7 +4,7 @@ Disables the lEpicea ogging of its installation expression.
 Class {
 	#name : #PFDisableMonitorWrapper,
 	#superclass : #PFWrapInstallDecoration,
-	#category : #'PackageFormulas-Core'
+	#category : #'PackageFormulas-Decorator'
 }
 
 { #category : #accessing }

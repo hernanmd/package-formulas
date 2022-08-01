@@ -8,7 +8,7 @@ Class {
 		'exceptionClass',
 		'exceptionBlock'
 	],
-	#category : #'PackageFormulas-Core'
+	#category : #'PackageFormulas-Decorator'
 }
 
 { #category : #private }

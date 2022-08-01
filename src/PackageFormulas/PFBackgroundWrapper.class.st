@@ -5,7 +5,7 @@ This decorator wraps any install expression to execute it as a background proces
 Class {
 	#name : #PFBackgroundWrapper,
 	#superclass : #PFWrapInstallDecoration,
-	#category : #'PackageFormulas-Core'
+	#category : #'PackageFormulas-Decorator'
 }
 
 { #category : #accessing }

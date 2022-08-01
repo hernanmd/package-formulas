@@ -5,7 +5,7 @@ Wraps a Pharo expression to measure its execution time.
 Class {
 	#name : #PFBenchmarkWrapper,
 	#superclass : #PFWrapInstallDecoration,
-	#category : #'PackageFormulas-Core'
+	#category : #'PackageFormulas-Decorator'
 }
 
 { #category : #accessing }

@@ -40,16 +40,6 @@ PFMetacelloQuerier >> handlePackageNotFound: aNotFound [
 ]
 
 { #category : #testing }
-PFMetacelloQuerier >> harRPackageNamed: aString [
-
-	| pkgRepository |
-	pkgRepository := self repositoryRegistry
-		                 detect: [ :r | self matchPackageName: aString and: r name ]
-		                 ifNone: [ ^ false ].
-	^ pkgRepository loadedPackages notEmpty
-]
-
-{ #category : #testing }
 PFMetacelloQuerier >> hasInstallerInstalled [
 	"Answer <true> if receiver's method, assumed to be a Metacello install expression, is installed in the receiver"
 
@@ -83,6 +73,16 @@ PFMetacelloQuerier >> hasPackageWithRepositoryAddress: aRBLiteralValueNode [
 			                 self
 				                 matchPackageName: r name
 				                 withRepository: aRBLiteralValueNode value ]
+		                 ifNone: [ ^ false ].
+	^ pkgRepository loadedPackages notEmpty
+]
+
+{ #category : #testing }
+PFMetacelloQuerier >> hasRPackageNamed: aString [
+
+	| pkgRepository |
+	pkgRepository := self repositoryRegistry
+		                 detect: [ :r | self matchPackageName: aString and: r name ]
 		                 ifNone: [ ^ false ].
 	^ pkgRepository loadedPackages notEmpty
 ]
@@ -151,7 +151,7 @@ PFMetacelloQuerier >> prvHasPackageInstalled [
 	| pkgNode |
 	
 	pkgNode := self parseBaselineExpression arguments anyOne value.
-	^ (self prvHasCategoryNamed: pkgNode) or: [ self harRPackageNamed: pkgNode ]
+	^ (self prvHasCategoryNamed: pkgNode) or: [ self hasRPackageNamed: pkgNode ]
 
 
 ]

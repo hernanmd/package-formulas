@@ -1,7 +1,10 @@
+"
+This decoration first write its source code, and then append the previously code chain in its decoration chain (up to the `PackageFormula` installation expression).
+"
 Class {
 	#name : #PFPreInstallDecoration,
 	#superclass : #PFInstallationComponent,
-	#category : #'PackageFormulas-Core'
+	#category : #'PackageFormulas-Decorator'
 }
 
 { #category : #accessing }

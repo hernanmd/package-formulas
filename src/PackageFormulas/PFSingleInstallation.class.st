@@ -1,7 +1,7 @@
 Class {
 	#name : #PFSingleInstallation,
 	#superclass : #PFInstallationComponent,
-	#category : #'PackageFormulas-Core'
+	#category : #'PackageFormulas-Decorator'
 }
 
 { #category : #'instance creation' }
@@ -21,13 +21,6 @@ PFSingleInstallation >> formattedSourceFor: formula [
 	^ ((sourceText := formula sourceCode) endsWith: '.')
 		  ifFalse: [ sourceText , '.' ]
 		  ifTrue: [ sourceText ]
-]
-
-{ #category : #initialization }
-PFSingleInstallation >> selector [
-
-	^ #tempUserPackageFormula
-
 ]
 
 { #category : #'instance creation' }

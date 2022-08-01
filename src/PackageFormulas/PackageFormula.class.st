@@ -22,7 +22,6 @@ Class {
 	#instVars : [
 		'categories',
 		'querier',
-		'installation',
 		'info'
 	],
 	#classVars : [

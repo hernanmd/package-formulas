@@ -10,7 +10,7 @@ Class {
 		'next',
 		'sourceCode'
 	],
-	#category : #'PackageFormulas-Core'
+	#category : #'PackageFormulas-Decorator'
 }
 
 { #category : #'instance creation' }
