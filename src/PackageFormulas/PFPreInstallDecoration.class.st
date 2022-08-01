@@ -6,7 +6,6 @@ Class {
 
 { #category : #accessing }
 PFPreInstallDecoration >> sourceCode [
-
 	" Private - See superimplementor's comment"
 
 	^ String streamContents: [ :stream | 

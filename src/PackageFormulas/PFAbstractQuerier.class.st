@@ -11,23 +11,20 @@ Subclasses should re-implement methods to query different API implementations, f
 "
 Class {
 	#name : #PFAbstractQuerier,
-	#superclass : #Object,
-	#instVars : [
-		'packageFormula'
-	],
+	#superclass : #PFAbstractFormula,
 	#category : #'PackageFormulas-Core'
 }
 
 { #category : #'instance creation' }
 PFAbstractQuerier class >> findQuerierClass: aPackageFormula [
+	"Answer a <PFAbstractQuerier> subclass matching a reference in aPackageFormula definition"
 
 	^ self allSubclasses
-		  detect: [ :subClass | 
-		  subClass matchInstallExpression: aPackageFormula ]
+		  detect: [ :subClass | subClass matchInstallExpression: aPackageFormula ]
 		  ifNone: [ 
 			  self error:
 				  'There is no Package Formula querier for the expression in: '
-				  , aPackageFormula name ]
+				  , aPackageFormula selector ]
 ]
 
 { #category : #'instance creation' }
@@ -76,27 +73,9 @@ PFAbstractQuerier >> matchPackageName: aString withPackageNamed: aString2 [
 		ifFalse: [ aString2 asLowercase beginsWith: aString asLowercase ]
 ]
 
-{ #category : #accessing }
-PFAbstractQuerier >> packageFormula [
-
-	^ packageFormula
-]
-
-{ #category : #accessing }
-PFAbstractQuerier >> packageFormula: anObject [
-
-	packageFormula := anObject
-]
-
-{ #category : #parsing }
-PFAbstractQuerier >> packageFormulaAst [
-	"Answer the package formula's <RBMethodNode>"
-
-	^ self packageFormula ast
-]
-
 { #category : #parsing }
 PFAbstractQuerier >> parseExpression: aString [
+	"Answer a <RBMessageNode> matching the receiver's expected repository expression"
 
 	^ RBParseTreeSearcher
 		   treeMatching: aString

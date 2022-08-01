@@ -237,7 +237,7 @@ PackageFormulasScriptActionsTree >> initializeWrapperInstallAvailableActions [
 		                               yourself
 ]
 
-{ #category : #accessing }
+{ #category : #updating }
 PackageFormulasScriptActionsTree >> installation [
 
 	^ self owner installation

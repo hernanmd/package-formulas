@@ -73,6 +73,7 @@ PackageFormula >> <= aPackageFormula [
 
 { #category : #accessing }
 PackageFormula >> ast [
+	"Answer the receiver's <RBMethodNode>"
 
 	^ self method ast
 ]
@@ -82,13 +83,20 @@ PackageFormula >> categories [
 	"Answer a <Collection> of <Symbol> representing categories found in the receiver"
 
 	^ categories
-		ifNil: [ categories := OrderedCollection new ]
+		ifNil: [ categories := self collectFormulaCategories ]
 ]
 
 { #category : #accessing }
 PackageFormula >> categories: anObject [
 
 	categories := anObject
+]
+
+{ #category : #accessing }
+PackageFormula >> collectFormulaCategories [
+	"Answer a <Collection> with the receiver's categories"
+	
+	^ self method properties formulaCategories
 ]
 
 { #category : #testing }
@@ -123,16 +131,10 @@ PackageFormula >> install [
 
 { #category : #accessing }
 PackageFormula >> installIn: aSpApplication [
-	"Execute the receiver's assumed to have a Metacello install expression using the default container for formulas"
+	"Install the receiver's assumed to have a Metacello install expression using the default container for formulas"
 
 	aSpApplication formulasContainer perform: self method selector.
 
-]
-
-{ #category : #accessing }
-PackageFormula >> installation [
-
-	^ installation
 ]
 
 { #category : #testing }
@@ -158,17 +160,6 @@ PackageFormula >> querier [
 		ifNil: [ querier := PFAbstractQuerier for: self ]
 ]
 
-{ #category : #accessing }
-PackageFormula >> record [
-
-	| metacelloRecordExpression |
-	metacelloRecordExpression := (RBParseTreeRewriter 
-		replace: '``@anything load' 
-		with: '``@anything record' 
-		in: self ast body) formattedCode.
-	Smalltalk compiler evaluate: metacelloRecordExpression.
-]
-
 { #category : #private }
 PackageFormula >> repositorySchemas [ 
 	"See class side"
@@ -177,15 +168,8 @@ PackageFormula >> repositorySchemas [
 ]
 
 { #category : #accessing }
-PackageFormula >> selector [
-	"Answer the selector of the pragma.
-	 For a pragma defined as <key1: val1 key2: val2> this will answer #key1:key2:."
-	
-	^ self method selector
-]
-
-{ #category : #accessing }
 PackageFormula >> sourceCode [
+	"Answer a <String> representing the receiver's method body"
 
 	^ self ast body sourceCode.
 ]

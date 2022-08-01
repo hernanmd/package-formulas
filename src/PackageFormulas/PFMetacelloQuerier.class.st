@@ -114,6 +114,7 @@ PFMetacelloQuerier >> package [
 
 { #category : #testing }
 PFMetacelloQuerier >> parseBaselineExpression [
+	"Answer a <RBMessageNode> matching the receiver's expected repository expression"
 
 	^ self parseExpression: '``@anything baseline: ``@args'
 
@@ -121,6 +122,7 @@ PFMetacelloQuerier >> parseBaselineExpression [
 
 { #category : #parsing }
 PFMetacelloQuerier >> parseRepositoryAltExpression [
+	"Answer a <Collection> with the receiver's repository expression parametersT"
 
 	^ (self parseExpression: '``@anything githubUser: ``@arg1 project: ``@arg2 commitish: ``@arg3 path: ``@arg4') 
 			arguments first: 2

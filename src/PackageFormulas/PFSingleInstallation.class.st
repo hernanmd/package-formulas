@@ -23,13 +23,6 @@ PFSingleInstallation >> formattedSourceFor: formula [
 		  ifTrue: [ sourceText ]
 ]
 
-{ #category : #private }
-PFSingleInstallation >> install [
-
-	self halt.
-	Smalltalk compiler evaluate: self sourceCode.
-]
-
 { #category : #initialization }
 PFSingleInstallation >> selector [
 

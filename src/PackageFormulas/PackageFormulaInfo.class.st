@@ -1,9 +1,13 @@
+"
+Helper object to access `PackageFormula` additional information such as:
+
+- Its web home URL.
+- Its issues URL address.
+
+"
 Class {
 	#name : #PackageFormulaInfo,
-	#superclass : #Object,
-	#instVars : [
-		'packageFormula'
-	],
+	#superclass : #PFAbstractFormula,
 	#category : #'PackageFormulas-Core'
 }
 
@@ -16,15 +20,17 @@ PackageFormulaInfo class >> for: aPackageFormula [
 ]
 
 { #category : #private }
-PackageFormulaInfo >> buildGitHubLink: args [
-	"Answer a <String> representing the github link to the receiver's repository"
+PackageFormulaInfo >> buildGitHubLink: aCollection [
+	"Answer a <String> representing the github link to the receiver's repository.
+	If aCollection is empty, answer an empty <String>"
 
+	aCollection ifEmpty: [ ^ String empty ].
 	^ String streamContents: [ : stream |
 		stream 
 			<< 'github://';
-			<<  args first value;
+			<<  aCollection first value;
 			<<  $/;
-			<< args second value ]
+			<< aCollection second value ]
 ]
 
 { #category : #private }
@@ -36,30 +42,19 @@ PackageFormulaInfo >> buildHTTPHomeLink: url [
 				<< (self urlForSchema: url scheme);
 				<< url authority;
 				<< $/;
-				<< (url directory copyUpTo: $:) ]
-]
-
-{ #category : #accessing }
-PackageFormulaInfo >> packageFormula [
-
-	^ packageFormula
-]
-
-{ #category : #accessing }
-PackageFormulaInfo >> packageFormula: anObject [
-
-	packageFormula := anObject
+				 << url firstPathSegment ]
 ]
 
 { #category : #parsing }
 PackageFormulaInfo >> parseRepositoryExpression [
+	"Answer a <RBMessageNode> matching the receiver's expected repository: expression"
 
 	^ self querier parseRepositoryExpression
 ]
 
 { #category : #parsing }
 PackageFormulaInfo >> parseRepositoryHomeAlt [
-	"Parse an alternative usage of Metacello install expressions"
+	"Answer a <Collection>. Parse an alternative usage of Metacello install expressions"
 
 	^ self querier parseRepositoryAltExpression ifNotNil: [ :args | 
 		  self buildGitHubLink: args ]
@@ -67,6 +62,7 @@ PackageFormulaInfo >> parseRepositoryHomeAlt [
 
 { #category : #parsing }
 PackageFormulaInfo >> querier [
+	"Answer the receive's <PFAbstractQuerier>"
 
 	^ self packageFormula querier
 ]
@@ -96,6 +92,7 @@ PackageFormulaInfo >> webLinkHome [
 
 { #category : #'accessing - cursor' }
 PackageFormulaInfo >> webLinkIssues [
-	
+	"Answer a <String> representing the URL to report issues"
+
 	^ self webLinkHome , '/issues'
 ]

@@ -11,7 +11,6 @@ AdditionalMethodState >> formula [
 			ifFalse: [ 
 				^ PackageFormula new
 					method: propertyOrPragma method;
-					categories: self formulaCategories;
 					yourself ] ]
 ]
 
@@ -20,7 +19,7 @@ AdditionalMethodState >> formulaCategories [
 	"Answer a <Collection> of <Symbol> each representing a package formula category found in the receiver"
 
 	^ self pragmas 
-		select: [ : pragma | pragma selector beginsWith: 'formula' ]
+		select: [ : pragma | pragma selector = 'formula:' ]
 		thenCollect: [ : pragma | pragma arguments first ].
 
 ]
