@@ -9,6 +9,26 @@ Class {
 }
 
 { #category : #accessing }
+PackageFormulasSelectorUI class >> buildBrowsingOperationsGroupWith: presenterInstance [
+
+	^ (CmCommandGroup named: 'BrowseOperationsMenu') asSpecGroup
+		register: ((PFCtxBrowseFormulaCommand
+			forSpecWithIconNamed: #glamorousBrowse
+			shortcutKey: 'B' asShortcut) 
+				context: presenterInstance);
+		register: ((PFCtxBrowseBaselineCommand
+			forSpecWithIconNamed: #glamorousBrowse
+			shortcutKey: 'M' asShortcut) 
+				context: presenterInstance);				
+		register: ((PFCtxBrowsePkgCommand
+			forSpecWithIconNamed: #glamorousBrowse
+			shortcutKey: 'S' asShortcut) 
+				context: presenterInstance);
+		beDisplayedAsGroup;
+		yourself
+]
+
+{ #category : #accessing }
 PackageFormulasSelectorUI class >> buildCommandsGroupWith: presenterInstance forRoot: rootCommandGroup [
 
 	rootCommandGroup
@@ -19,8 +39,22 @@ PackageFormulasSelectorUI class >> buildCommandsGroupWith: presenterInstance for
 PackageFormulasSelectorUI class >> buildEPContextualGroupWith: presenterInstance [
 
 	^ (CmCommandGroup named: 'PFSelContextualMenu') asSpecGroup
-		register: (self buildSelectionOperationsGroupWith: presenterInstance);	
+		register: (self buildBrowsingOperationsGroupWith: presenterInstance);
+		register: (self buildSelectionOperationsGroupWith: presenterInstance);
 		register: (self buildRepositoryOperationsGroupWith: presenterInstance);
+		register: (self buildFormulaOperationsGroupWith: presenterInstance);		
+		yourself
+]
+
+{ #category : #accessing }
+PackageFormulasSelectorUI class >> buildFormulaOperationsGroupWith: presenterInstance [
+
+	^ (CmCommandGroup named: 'FormulaOperationsMenu') asSpecGroup
+		register: ((PFCtxOpenPlaygroundCommand
+			forSpecWithIconNamed: #glamorousBrowse
+			shortcutKey: 'P' asShortcut) 
+				context: presenterInstance);
+		beDisplayedAsGroup;
 		yourself
 ]
 
@@ -38,6 +72,11 @@ PackageFormulasSelectorUI class >> buildRepositoryOperationsGroupWith: presenter
 			shortcutKey: 'I' asShortcut)
 				context: presenterInstance;
 				description: 'Open a web browser on the selected repository issues page');
+		register: ((PFCtxRemoveBaselineCommand 
+			forSpecWithIconNamed: #smallDelete
+			shortcutKey: 'D' asShortcut)
+				context: presenterInstance;
+				description: 'Remove the baseline of selected formula');
 		beDisplayedAsGroup;
 		yourself
 ]
@@ -46,18 +85,6 @@ PackageFormulasSelectorUI class >> buildRepositoryOperationsGroupWith: presenter
 PackageFormulasSelectorUI class >> buildSelectionOperationsGroupWith: presenterInstance [
 
 	^ (CmCommandGroup named: 'SelectionOperationsMenu') asSpecGroup
-		register: ((PFCtxBrowseFormulaCommand
-			forSpecWithIconNamed: #glamorousBrowse
-			shortcutKey: 'B' asShortcut) 
-				context: presenterInstance);
-		register: ((PFCtxBrowseBaselineCommand
-			forSpecWithIconNamed: #glamorousBrowse
-			shortcutKey: 'M' asShortcut) 
-				context: presenterInstance);				
-		register: ((PFCtxBrowsePkgCommand
-			forSpecWithIconNamed: #glamorousBrowse
-			shortcutKey: 'S' asShortcut) 
-				context: presenterInstance);					
 		register: ((PFCtxSelectAllCommand
 			forSpecWithIconNamed: #checkedBox
 			shortcutKey: 'A' asShortcut) 

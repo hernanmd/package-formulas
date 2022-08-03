@@ -167,6 +167,14 @@ PackageFormula >> repositorySchemas [
 ]
 
 { #category : #accessing }
+PackageFormula >> selector [
+	"Answer a <Symbol> representing the selector of the pragma, if none is found then use the method selector"
+
+	^ super selector
+		ifNil: [ self ast selector ]
+]
+
+{ #category : #accessing }
 PackageFormula >> sourceCode [
 	"Answer a <String> representing the receiver's method body"
 

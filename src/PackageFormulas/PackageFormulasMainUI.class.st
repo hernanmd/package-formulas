@@ -51,6 +51,14 @@ PackageFormulasMainUI >> formulasTable [
 	^ formulasTable
 ]
 
+{ #category : #'event registration' }
+PackageFormulasMainUI >> handleMethodChange: anAnnouncement [
+	"A new formula was added or removed, update the receiver"
+
+	self formulasTable update.
+
+]
+
 { #category : #accessing }
 PackageFormulasMainUI >> hasFormulasInstalled [
 	"Answer <true> if the receiver's application includes any of its defined formulas already installed"
@@ -78,6 +86,8 @@ PackageFormulasMainUI >> initialize [
 	super initialize.
 	selectionCount := 0.
 	statusBar pushMessage: self statusBarMessage.
+	self registerInterestToSystemAnnouncement.
+
 ]
 
 { #category : #initialization }
@@ -140,6 +150,16 @@ PackageFormulasMainUI >> initializeToolbar [
 PackageFormulasMainUI >> popMessage [
 
 	statusBar popMessage
+]
+
+{ #category : #'event registration' }
+PackageFormulasMainUI >> registerInterestToSystemAnnouncement [
+	<systemEventRegistration>
+	
+	SystemAnnouncer uniqueInstance unsubscribe: self.
+	SystemAnnouncer uniqueInstance weak
+		when: MethodRemoved, MethodAdded, MethodModified 
+		send: #handleMethodChange: to: self
 ]
 
 { #category : #accessing }

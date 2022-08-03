@@ -14,22 +14,7 @@ Class {
 }
 
 { #category : #accessing }
-PackageFormulasCategoriesUI class >> buildCommandsGroupWith: presenterInstance forRoot: rootCommandGroup [
-
-	rootCommandGroup
-		register: (self buildPFCatContextualGroupWith: presenterInstance)
-]
-
-{ #category : #accessing }
-PackageFormulasCategoriesUI class >> buildPFCatContextualGroupWith: presenterInstance [
-
-	^ (CmCommandGroup named: 'PFCatContextualMenu') asSpecGroup
-		register: (self buildSelectionOperationsGroupWith: presenterInstance);	
-		yourself
-]
-
-{ #category : #accessing }
-PackageFormulasCategoriesUI class >> buildSelectionOperationsGroupWith: presenterInstance [
+PackageFormulasCategoriesUI class >> buildBrowsingOperationsGroupWith: presenterInstance [
 
 	^ (CmCommandGroup named: 'SelectionOperationsMenu') asSpecGroup
 		register: ((PFCategoriesCtxBrowseCommand
@@ -41,6 +26,21 @@ PackageFormulasCategoriesUI class >> buildSelectionOperationsGroupWith: presente
 			shortcutKey: 'R' asShortcut) 
 				context: presenterInstance);					
 		beDisplayedAsGroup;
+		yourself
+]
+
+{ #category : #accessing }
+PackageFormulasCategoriesUI class >> buildCommandsGroupWith: presenterInstance forRoot: rootCommandGroup [
+
+	rootCommandGroup
+		register: (self buildPFCatContextualGroupWith: presenterInstance)
+]
+
+{ #category : #accessing }
+PackageFormulasCategoriesUI class >> buildPFCatContextualGroupWith: presenterInstance [
+
+	^ (CmCommandGroup named: 'PFCatContextualMenu') asSpecGroup
+		register: (self buildBrowsingOperationsGroupWith: presenterInstance);	
 		yourself
 ]
 

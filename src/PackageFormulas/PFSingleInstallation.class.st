@@ -1,3 +1,6 @@
+"
+It represents an installation expression which uses one of the available installer packages: `Metacello`, `Gofer`, Pakbot, etc. Note that this expression could be composed of multiple installation expressions.
+"
 Class {
 	#name : #PFSingleInstallation,
 	#superclass : #PFInstallationComponent,

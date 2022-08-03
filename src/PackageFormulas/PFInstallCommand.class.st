@@ -39,6 +39,6 @@ PFInstallCommand >> execute [
 		do: [ : formula | 
 			formula installIn: self application.
 			self context unselectFormula: formula. ]
-		displayingProgress: [ : formula | 'Installing ' , formula asString ].
+		displayingProgress: [ : formula | 'Installing ' , formula selector ].
 	self inform: 'Done'
 ]

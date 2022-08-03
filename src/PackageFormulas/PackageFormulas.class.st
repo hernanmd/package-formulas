@@ -152,6 +152,17 @@ PackageFormulas class >> bugReport [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> cade [
+	<formula: #component>
+	<formula: #ui>
+
+	Metacello new
+		baseline: 'Cade';
+		repository: 'github://OpenSmock/Cade';
+		load.
+]
+
+{ #category : #formulas }
 PackageFormulas class >> cannon [
 	<formula: #general>
 
@@ -935,6 +946,17 @@ PackageFormulas class >> launchpad [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> libVlc [
+	<formula: #bindings>
+
+	Metacello new
+		baseline: 'VLC';
+		repository: 'github://badetitou/Pharo-LibVLC';
+		load.
+
+]
+
+{ #category : #formulas }
 PackageFormulas class >> libusbPharo [
 	<formula: #IOT>
 	<formula: #bindings>
@@ -1208,6 +1230,17 @@ PackageFormulas class >> p3glorp [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> passwordCrypt [
+	<formula: #bindings>
+	<formula: #security>
+
+	Metacello new
+		baseline: 'PasswordCrypt';
+		repository: 'github://PierceNg/PasswordCrypt/src-st';
+ 		load.
+]
+
+{ #category : #formulas }
 PackageFormulas class >> pastell [
 	<formula: #XML>
 
@@ -1308,6 +1341,17 @@ PackageFormulas class >> pharoThings [
 		baseline: 'PharoThings';
 		repository: 'github://pharo-iot/PharoThings/src';
 		load: #(RemoteDevServer Raspberry).
+]
+
+{ #category : #formulas }
+PackageFormulas class >> phoedown [
+	<formula: #bindings>
+
+	Metacello new
+		baseline: 'Phoedown';
+		repository: 'github://PierceNg/Phoedown/src';
+		load.
+
 ]
 
 { #category : #formulas }
