@@ -181,6 +181,15 @@ PackageFormulasApp >> installedFormulas [
 ]
 
 { #category : #accessing }
+PackageFormulasApp >> selectedFormulas [
+	"Answer a <Collection> with the formulas marked for installation"
+	
+	^ self 
+		propertyAt: #selectedFormulas
+		ifAbsentPut: [ Set new ]
+]
+
+{ #category : #accessing }
 PackageFormulasApp >> start [
 	" Private - See superimplementor's comment "
 

@@ -24,12 +24,6 @@ PackageFormulasMainUI >> categoriesPresenter [
 	^ categoriesPresenter
 ]
 
-{ #category : #callbacks }
-PackageFormulasMainUI >> cleanCategoriesPresenterSelection [
-
-	self categoriesPresenter unselect.
-]
-
 { #category : #'accessing - status bar' }
 PackageFormulasMainUI >> decreaseFormulaCount [
 
@@ -213,10 +207,17 @@ PackageFormulasMainUI >> toolbarActions [
 		register: (PFInstallCommand forSpecContext: self);
 		register: (PFInstallOptionsCommand forSpecContext: self);
 		register: (PFViewInstalledCommand forSpecContext: self);
+		register: (PFViewToInstallCommand forSpecContext: self);
 		register: (PFUpdateCommand forSpecContext: self);
 		register: (PFHelpCommand forSpecContext: self);			
 		register: (PFQuitCommand forSpecContext: self);
 		yourself
+]
+
+{ #category : #callbacks }
+PackageFormulasMainUI >> unselectCategories [
+
+	self categoriesPresenter unselect.
 ]
 
 { #category : #accessing }

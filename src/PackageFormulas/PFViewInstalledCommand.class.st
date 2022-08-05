@@ -23,7 +23,7 @@ PFViewInstalledCommand class >> defaultIconName [
 { #category : #'accessing - defaults' }
 PFViewInstalledCommand class >> defaultName [
 
-	^ 'View installed'
+	^ 'Installed'
 ]
 
 { #category : #testing }
@@ -40,5 +40,5 @@ PFViewInstalledCommand >> execute [
 	self canBeExecuted ifFalse: [ ^ self inform: 'No installed formulas in this image' ].
 	self context 
 		formulasItems: self application installedFormulas;
-		cleanCategoriesPresenterSelection.
+		unselectCategories.
 ]

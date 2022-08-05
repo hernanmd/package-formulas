@@ -14,7 +14,6 @@ Class {
 	#name : #PackageFormulasSelectorUI,
 	#superclass : #SpPackageFormulasPresenter,
 	#instVars : [
-		'selectedFormulas',
 		'formulasTable'
 	],
 	#category : #'PackageFormulas-UI'
@@ -120,13 +119,21 @@ PackageFormulasSelectorUI >> formulasIn: aPackageGroupSymbol [
 PackageFormulasSelectorUI >> formulasItems: aCollection [
 	"Private - Update the displayed formulas with aCollection"
 
-	self formulasTable items: aCollection
+	self formulasTable items: aCollection asOrderedCollection
 ]
 
 { #category : #accessing }
 PackageFormulasSelectorUI >> formulasTable [
 
 	^ formulasTable
+]
+
+{ #category : #callbacks }
+PackageFormulasSelectorUI >> handleSelectorChange: anObject [
+	"Private - Handle selection focus. Update current selection if anObject is not nil"
+
+	anObject ifNotNil: [ 
+		self application propertyAt: #formulaSelection put: anObject ]
 ]
 
 { #category : #initialization }
@@ -168,8 +175,7 @@ PackageFormulasSelectorUI >> initializeSelectableFormulas [
 		items: OrderedCollection new;
 		alternateRowsColor;
 		searchMatching: [ :selFormula :textToSearch | selFormula selector beginsWith: textToSearch ];
-		whenSelectionChangedDo: [ : selection | 
-			self application propertyAt: #formulaSelection put: selection selectedItem ];
+		whenSelectionChangedDo: [ : selection | self handleSelectorChange: selection selectedItem ];
 		contextMenu: [ (self rootCommandsGroup / 'PFSelContextualMenu') beRoot asMenuPresenter ];	
 		beResizable. 
 
@@ -186,10 +192,10 @@ PackageFormulasSelectorUI >> initializeWindow: aWindowPresenter [
 
 { #category : #accessing }
 PackageFormulasSelectorUI >> selectedFormulas [
-	"Answer a <OrderedCollection> of formulas marked for installation"
+	"Answer a <Collection> of formulas marked for installation"
 
-	^ selectedFormulas
-		ifNil: [ selectedFormulas := OrderedCollection new ]
+	^ self application selectedFormulas
+
 ]
 
 { #category : #initialization }
@@ -204,7 +210,11 @@ PackageFormulasSelectorUI >> unselectFormula: aFormula [
 PackageFormulasSelectorUI >> updateSelectedFormula: formula [
 
 	formula hasInstallerInstalled ifTrue: [ ^ self ].
-	self selectedFormulas add: formula.
+	self application 
+		propertyAt: #selectedFormulas
+		ifPresent: [ : selFmls | selFmls add: formula ]
+		ifAbsentPut: [ Set new ].
+	"self selectedFormulas add: formula."
 	self owner increaseFormulaCount
 ]
 

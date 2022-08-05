@@ -121,7 +121,7 @@ PackageFormulasScripterUI >> installationExpression [
 PackageFormulasScripterUI >> newUserFormulaFrom: aFormulaCollection [
 	"Answer a new <PackageFormula> including the source from the user selected formulas"
 
-	userFormula := PFSingleInstallation newWithFormulas: aFormulaCollection.
+	userFormula := PFSingleInstallation newWithFormulas: aFormulaCollection asOrderedCollection.
 	^ userFormula
 ]
 
