@@ -14,13 +14,13 @@ PFCtxBrowseFormulaCommand class >> defaultDescription [
 	^ 'Browse selected formula'
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : #initialization }
 PFCtxBrowseFormulaCommand class >> defaultIconName [
 
 	^ #glamorousBrowse
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFCtxBrowseFormulaCommand class >> defaultName [
 
 	^ 'Browse Formula'

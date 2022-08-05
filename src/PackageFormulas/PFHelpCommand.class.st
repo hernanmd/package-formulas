@@ -19,7 +19,7 @@ PFHelpCommand class >> defaultIconName [
 	^ #smallHelp
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFHelpCommand class >> defaultName [
 
 	^ 'Help'

@@ -7,7 +7,7 @@ Class {
 	#category : #'PackageFormulas-Commands'
 }
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFCtxRemoveBaselineCommand class >> defaultDescription [
 
 	^ 'Remove the Baseline of the selected formula'
@@ -19,10 +19,10 @@ PFCtxRemoveBaselineCommand class >> defaultIconName [
 	^ #smallDelete
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFCtxRemoveBaselineCommand class >> defaultName [
 
-	^ 'Remove Baselinee'
+	^ 'Remove Baseline'
 ]
 
 { #category : #testing }

@@ -8,7 +8,7 @@ Class {
 	#category : #'PackageFormulas-Help'
 }
 
-{ #category : #'accessing - pages' }
+{ #category : #accessing }
 PackageFormulasHelp class >> bookDescription [
 	^ 'Package Formulas'
 ]
@@ -54,7 +54,7 @@ The default formulas are found in the PackageFormulas class (on the class side),
 In case you want to have your own packages listed in the application, you can simply request a Formula using the Request menu option from the contextual menu in a category'
 ]
 
-{ #category : #'instance creation' }
+{ #category : #accessing }
 PackageFormulasHelp class >> pages [
 	^ #(intro)
 ]

@@ -8,7 +8,7 @@ Class {
 	#category : #'PackageFormulas-Commands'
 }
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFViewInstalledCommand class >> defaultDescription [
 
 	^ 'View installed packages'
@@ -20,7 +20,7 @@ PFViewInstalledCommand class >> defaultIconName [
 	^ #packageColored
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFViewInstalledCommand class >> defaultName [
 
 	^ 'Installed'

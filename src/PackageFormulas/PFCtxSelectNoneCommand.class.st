@@ -8,7 +8,7 @@ Class {
 	#category : #'PackageFormulas-Commands'
 }
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFCtxSelectNoneCommand class >> defaultDescription [
 
 	^ 'Unselect all formulas'

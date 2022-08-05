@@ -12,7 +12,7 @@ Class {
 	#category : #'PackageFormulas-Commands'
 }
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFCtxOpenHomepageCommand class >> defaultDescription [
 
 	^ 'Open homepage'
@@ -24,7 +24,7 @@ PFCtxOpenHomepageCommand class >> defaultIconName [
 	^ #home
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFCtxOpenHomepageCommand class >> defaultName [
 
 	^ 'Visit Homepage'

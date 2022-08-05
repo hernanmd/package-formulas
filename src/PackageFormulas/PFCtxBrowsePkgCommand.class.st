@@ -7,19 +7,19 @@ Class {
 	#category : #'PackageFormulas-Commands'
 }
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFCtxBrowsePkgCommand class >> defaultDescription [
 
 	^ 'Browse selected formula''s source code'
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : #initialization }
 PFCtxBrowsePkgCommand class >> defaultIconName [
 
 	^ #glamorousBrowse
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFCtxBrowsePkgCommand class >> defaultName [
 
 	^ 'Browse Source Code'

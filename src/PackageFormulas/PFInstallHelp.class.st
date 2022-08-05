@@ -8,7 +8,7 @@ Class {
 	#category : #'PackageFormulas-Help'
 }
 
-{ #category : #accessing }
+{ #category : #'accessing - pages' }
 PFInstallHelp class >> bookDescription [ 
 
 	^ 'This section describes how to use the Package Formulas API to make queries about formulas. See subsections for details.'

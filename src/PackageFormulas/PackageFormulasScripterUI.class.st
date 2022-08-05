@@ -143,26 +143,6 @@ PackageFormulasScripterUI >> title [
 	^ 'Package Formulas: Install Options'
 ]
 
-{ #category : #private }
-PackageFormulasScripterUI >> toolbarButtons [
-	| buttons |
-
-	buttons := OrderedCollection new.
-	buttons add: (self newToolbarButton
-		 label: 'Install';
-		 icon: (self iconNamed: #smallOk);
-		 help: 'Install the selected formulas';
-		 action: [ self installSelectedFormulas ];
-		 yourself).
-	buttons add: (self newToolbarButton
-		 label: 'Cancel';
-		 icon: (self iconNamed: #smallCancel);
-		 help: 'Cancel';
-		 action: [ self delete ];
-		 yourself).
-	^ buttons
-]
-
 { #category : #callbacks }
 PackageFormulasScripterUI >> validateScript: scriptCode [
 

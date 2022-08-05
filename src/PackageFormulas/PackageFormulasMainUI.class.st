@@ -68,7 +68,7 @@ PackageFormulasMainUI >> increaseFormulaCount [
 	self updateStatusBar.
 ]
 
-{ #category : #initialization }
+{ #category : #TOREMOVE }
 PackageFormulasMainUI >> initialExtent [
  
 	^ 700 @ 600

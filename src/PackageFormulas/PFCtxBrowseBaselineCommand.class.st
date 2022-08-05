@@ -7,19 +7,19 @@ Class {
 	#category : #'PackageFormulas-Commands'
 }
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFCtxBrowseBaselineCommand class >> defaultDescription [
 
 	^ 'Browse selected formula''s Baseline code'
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : #initialization }
 PFCtxBrowseBaselineCommand class >> defaultIconName [
 
 	^ #glamorousBrowse
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFCtxBrowseBaselineCommand class >> defaultName [
 
 	^ 'Browse Baseline'

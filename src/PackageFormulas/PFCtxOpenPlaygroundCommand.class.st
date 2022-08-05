@@ -7,7 +7,7 @@ Class {
 	#category : #'PackageFormulas-Commands'
 }
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFCtxOpenPlaygroundCommand class >> defaultDescription [
 
 	^ 'Open a Playground with Formula contents'
@@ -19,7 +19,7 @@ PFCtxOpenPlaygroundCommand class >> defaultIconName [
 	^ #workspace
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFCtxOpenPlaygroundCommand class >> defaultName [
 
 	^ 'Open Playground Formula'

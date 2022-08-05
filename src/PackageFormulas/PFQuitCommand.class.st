@@ -1,3 +1,7 @@
+"
+A simple command to quit the Package Formualas application.
+
+"
 Class {
 	#name : #PFQuitCommand,
 	#superclass : #PFToolbarCommand,

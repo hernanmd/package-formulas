@@ -9,6 +9,12 @@ Class {
 	#category : #'PackageFormulas-Commands'
 }
 
+{ #category : #initialization }
+PFToolbarCommand class >> defaultIconName [ 
+
+	self subclassResponsibility
+]
+
 { #category : #accessing }
 PFToolbarCommand class >> defaultShortcut [
 

@@ -12,7 +12,6 @@ Class {
 	#name : #PackageFormulasApp,
 	#superclass : #SpApplication,
 	#instVars : [
-		'formulas',
 		'formulasContainer',
 		'group'
 	],
@@ -77,6 +76,7 @@ PackageFormulasApp class >> updateApp [
 			bar current: 0.66.
 			self updatePackage.
 			bar current: 1 ].
+	^ self inform: 'Update finished'
 ]
 
 { #category : #accessing }

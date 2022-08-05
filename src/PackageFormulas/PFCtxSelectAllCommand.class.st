@@ -36,7 +36,7 @@ PFCtxSelectAllCommand >> execute [
 			cbs := self formulasTableColumns select: [ : c |
 				(c isKindOf: SpCheckBoxTableColumn) and: [ c title isEmpty  ] ].
 			cbs do: [ : cb | cb onActivation cull: fti ] ]
-		displayingProgress: [ : formula | 'Selecting ' , formula selector ]..
+		displayingProgress: [ : formula | 'Selecting ' , formula selector ].
 	self formulasTable refresh.
 
 ]

@@ -1,3 +1,6 @@
+"
+A command to open a UI with install option for the currently selected formulas.
+"
 Class {
 	#name : #PFInstallOptionsCommand,
 	#superclass : #PFToolbarCommand,

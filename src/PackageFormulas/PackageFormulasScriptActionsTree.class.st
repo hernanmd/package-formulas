@@ -254,12 +254,6 @@ PackageFormulasScriptActionsTree >> newPkgActionCheckbox [
 			  self removeWrapperAction: frmAction ]
 ]
 
-{ #category : #'instance creation' }
-PackageFormulasScriptActionsTree >> open [
-
-	(PackageFormulasApp newApplication: self application) open
-]
-
 { #category : #initialization }
 PackageFormulasScriptActionsTree >> postInstallActions [
 

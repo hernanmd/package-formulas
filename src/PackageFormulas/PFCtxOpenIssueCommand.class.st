@@ -7,7 +7,7 @@ Class {
 	#category : #'PackageFormulas-Commands'
 }
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFCtxOpenIssueCommand class >> defaultDescription [
 
 	^ 'Open an issue'
@@ -19,7 +19,7 @@ PFCtxOpenIssueCommand class >> defaultIconName [
 	^ #comments
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFCtxOpenIssueCommand class >> defaultName [
 
 	^ 'Open Issue'

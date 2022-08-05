@@ -6,11 +6,14 @@ Subclasses implement behavior accessible through right-click menus in the formul
 Class {
 	#name : #PFContextualMenuCommand,
 	#superclass : #CmCommand,
-	#instVars : [
-		'querier'
-	],
 	#category : #'PackageFormulas-Commands'
 }
+
+{ #category : #initialization }
+PFContextualMenuCommand class >> defaultIconName [ 
+
+	self subclassResponsibility
+]
 
 { #category : #accessing }
 PFContextualMenuCommand >> application [
