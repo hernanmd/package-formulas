@@ -48,23 +48,25 @@ PFWritingHelp class >> exampleMultipleCategoriesFormula [
  		load'
 ]
 
-{ #category : #'instance creation' }
-PFWritingHelp class >> headingText [
-
-	^ self heading: 'Writing a formula'
-]
-
 { #category : #accessing }
 PFWritingHelp class >> pages [
-	^ #(writingAFormula)
+	^ #(writingAFormula writingAFormulaImplementation)
 ]
 
 { #category : #'instance creation' }
 PFWritingHelp class >> writingAFormula [
 
 	^ HelpTopic 
-		title: self headingText
+		title: (self heading: 'Writing a formula')
 		contents: self writingFormulasHelpContents
+]
+
+{ #category : #'instance creation' }
+PFWritingHelp class >> writingAFormulaImplementation [
+
+	^ HelpTopic 
+		title: (self heading: 'Implementation Details')
+		contents: self writingFormulasImplementationDetails
 ]
 
 { #category : #'instance creation' }
@@ -87,4 +89,11 @@ and it will be listed in both categories of the Package Formulas UI.
 ' format: { 
 	self exampleBasicFormula .
 	self exampleMultipleCategoriesFormula }
+]
+
+{ #category : #'instance creation' }
+PFWritingHelp class >> writingFormulasImplementationDetails [
+
+	^ '
+In its most basic form in the current implementation, a PackageFormula is simply a CompiledMethod that includes a Pragma identified by the name "formula:", and an argument specifying a category. Future implementations could avoid using Pragmas, however the API will not change and the UI will maintain its functionality.'
 ]

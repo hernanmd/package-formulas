@@ -10,22 +10,7 @@ Class {
 
 { #category : #'accessing - pages' }
 PackageFormulasHelp class >> bookDescription [
-	^ 'Package Formulas is a front-end for installing packages on a Pharo image. Each package is specified in a formula.
-
-In its most basic form, a PackageFormula is simply a CompiledMethod that includes a Pragma identified by the name "formula:", and an argument specifying a category.
-
-For example, the following method defines a PackageFormula in the "general" category, intended for packages with generic functionality:
-
-````smalltalk
-method
-	<formula: #general>
-```
-
-This way no more is needed to define a PackageFormula, except to add the package installation code. This will usually be a Metacello expression, such as you can see in any README.md of project repositories in Pharo.
-
-Most packages are actually in the PackageFormulas class (on the class side), but nothing prevents you from defining your own formula container for your own packages.
-
-In case you want to have your own packages listed in the application, you can simply clone this repository, add your "package formulas" methods (i.e. with the pragma and the installation expression), and then send a Pull Request.'
+	^ 'Package Formulas'
 ]
 
 { #category : #accessing }
@@ -62,21 +47,11 @@ PackageFormulasHelp class >> packageFormulasIntro [
 PackageFormulasHelp class >> packageFormulasIntroText [ 
 		
 		^ '
-Package Formulas is a front-end for installing reviewed packages on a Pharo image. 
-Each package is represented by a formula entered by a user.
+Package Formulas is a front-end for installing packages on a Pharo image. Each formula describes an installation. An installation contains one or multiple categories, along with a Pharo expression. Package Formulas does not assume any particular install manager, it could be Gofer, Metacello or a Pakbot expression.
 
-In its most basic form, a PackageFormula is simply a CompiledMethod that includes a Pragma identified by the name "formula:", and an argument specifying a category.
+The default formulas are found in the PackageFormulas class (on the class side), but nothing prevents you from defining your own formula container for your own packages.
 
-For example, the following method defines a PackageFormula in the "general" category, intended for packages with generic functionality:
-
-method
-	<formula: #general>
-
-This way no more is needed to define a PackageFormula, except to add the package installation code. This will usually be a Metacello expression, such as you can see in any README.md of project repositories in Pharo.
-
-Most packages are actually in the PackageFormulas class (on the class side), but nothing prevents you from defining your own formula container for your own packages.
-
-In case you want to have your own packages listed in the application, you can simply clone this repository, add your "package formulas" methods (i.e. with the pragma and the installation expression), and then send a Pull Request.'
+In case you want to have your own packages listed in the application, you can simply request a Formula using the Request menu option from the contextual menu in a category'
 ]
 
 { #category : #'instance creation' }

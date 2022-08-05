@@ -10,6 +10,7 @@ Class {
 
 { #category : #accessing }
 PFMetacelloTransformer >> record [
+	"Transform the receiver's formula from a load action to record"
 
 	^ (RBParseTreeRewriter 
 		replace: '``@anything load' 

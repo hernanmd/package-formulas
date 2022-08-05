@@ -18,14 +18,13 @@ Class {
 	#superclass : #SpPackageFormulasPresenter,
 	#instVars : [
 		'actionsMap',
-		'actionsPostTreePresenter',
-		'actionsPreTreePresenter',
 		'selectedWrapperActions',
-		'actionsWrapperTreePresenter',
 		'actions',
 		'selectedPostInstallActions',
 		'selectedPreInstallActions',
-		'formulas'
+		'actionsPostTreePresenter',
+		'actionsPreTreePresenter',
+		'actionsWrapperTreePresenter'
 	],
 	#category : #'PackageFormulas-UI'
 }

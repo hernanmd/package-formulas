@@ -1,3 +1,15 @@
+"
+Presents a list of formulas for a specific category.
+
+ToDo: Currently it also holds the selected formulas, although that could not be necessary.
+ 
+Internal Representation and Key Implementation Points.
+
+Instance Variables
+	formulasTable:		<Object>
+	selectedFormulas:		<Object>
+
+"
 Class {
 	#name : #PackageFormulasSelectorUI,
 	#superclass : #SpPackageFormulasPresenter,
@@ -154,6 +166,8 @@ PackageFormulasSelectorUI >> initializeSelectableFormulas [
 				width: 90;
 				yourself);			
 		items: OrderedCollection new;
+		alternateRowsColor;
+		searchMatching: [ :selFormula :textToSearch | selFormula selector beginsWith: textToSearch ];
 		whenSelectionChangedDo: [ : selection | 
 			self application propertyAt: #formulaSelection put: selection selectedItem ];
 		contextMenu: [ (self rootCommandsGroup / 'PFSelContextualMenu') beRoot asMenuPresenter ];	

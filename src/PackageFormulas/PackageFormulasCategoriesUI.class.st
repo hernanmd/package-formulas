@@ -88,6 +88,8 @@ PackageFormulasCategoriesUI >> initializePresenters [
 PackageFormulasCategoriesUI >> initializeSelectableCategories [
 
 	categoriesList	:= self newList
+		enableSearch;
+		headerTitle: 'Categories';
 		items: self allCategories;
 		whenSelectionChangedDo: [ self updateWithFormulasIn: self selectedCategory ];
 		contextMenu: [ (self rootCommandsGroup / 'PFCatContextualMenu') beRoot asMenuPresenter ]

@@ -8,6 +8,9 @@ Helper object to access `PackageFormula` additional information such as:
 Class {
 	#name : #PackageFormulaInfo,
 	#superclass : #PFAbstractFormula,
+	#instVars : [
+		'broken'
+	],
 	#category : #'PackageFormulas-Core'
 }
 
@@ -17,6 +20,19 @@ PackageFormulaInfo class >> for: aPackageFormula [
 	^ self new
 		packageFormula: aPackageFormula;
 		yourself
+]
+
+{ #category : #accessing }
+PackageFormulaInfo >> broken [
+
+	^ broken
+]
+
+{ #category : #accessing }
+PackageFormulaInfo >> broken: aBoolan [
+	"Set the receiver's formula as non-working"
+
+	broken := aBoolan
 ]
 
 { #category : #private }
