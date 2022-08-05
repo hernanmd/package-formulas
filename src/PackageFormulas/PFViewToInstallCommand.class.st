@@ -33,7 +33,7 @@ PFViewToInstallCommand >> canBeExecuted [
 PFViewToInstallCommand >> execute [
 	"Private - Inspect the selected formula"
 
-	self canBeExecuted ifFalse: [ ^ self inform: 'No formulas selected to install.' ].
+	self canBeExecuted ifFalse: [ self inform: 'No formulas selected to install.' ].
 	self context 
 		formulasItems: self application selectedFormulas;
 		unselectCategories.
