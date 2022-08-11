@@ -92,14 +92,21 @@ PackageFormulasApp class >> updateBaseline [
 
 { #category : #accessing }
 PackageFormulasApp class >> updatePackage [
+	"Close all receiver's windows and load the latest application version"
 
+	PackageFormulasMainUI allInstancesDo: [ : pfSp | pfSp delete. ].
 	EpMonitor disableDuring: [ 
+		"
+		It seems Metacello uses the package-cache even with #ignoreImage.
 		Metacello new
-			baseline: #PackageFormulas;
-			repository: self repositoryAddress;
-			onConflict: [: ex | ex allow ]; 
-			load: #default ]
-
+			ignoreImage;
+			onConflict: [ :e | e useIncoming ];
+			onUpgrade: [ :e | e useIncoming ];
+			repository: 'github://hernanmd/package-formulas/src';
+			baseline: 'PackageFormulas';
+			load."
+	(IceRepository registry detect: [ :each | each name = 'package-formulas' ]) pull ].
+	self new run.
 ]
 
 { #category : #defaults }
