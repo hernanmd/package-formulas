@@ -84,10 +84,11 @@ PackageFormulasScriptActionsTree >> defaultActionsMap [
 		
 ]
 
-{ #category : #defaults }
+{ #category : #layout }
 PackageFormulasScriptActionsTree >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
+		spacing: 3;
 		add: #actionsPreTreePresenter;
 		add: #actionsWrapperTreePresenter;
 		add: #actionsPostTreePresenter;

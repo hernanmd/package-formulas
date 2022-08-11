@@ -566,7 +566,7 @@ PackageFormulas class >> ethel [
 
 { #category : #formulas }
 PackageFormulas class >> fame [
-	<formula: #general>
+	<formula: #software_engineering>
 
 	Metacello new
 		baseline: 'Fame';
@@ -576,12 +576,22 @@ PackageFormulas class >> fame [
 
 { #category : #formulas }
 PackageFormulas class >> famix [
-	<formula: #general>
+	<formula: #software_engineering>
 
 	Metacello new
 		baseline: 'Famix';
 		repository: 'github://moosetechnology/Famix:development/src';
 		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> fast [
+	<formula: #software_engineering>
+
+	Metacello new
+		githubUser: 'moosetechnology' project: 'FAST' commitish: 'v2' path: 'src';
+		baseline: 'FAST';
+		load
 ]
 
 { #category : #formulas }
@@ -823,7 +833,7 @@ PackageFormulas class >> highchartsSt [
 
 { #category : #formulas }
 PackageFormulas class >> hunter [
-	<formula: #reverse_engineering>
+	<formula: #software_engineering>
 
 	Metacello new
 		baseline: 'Hunter';
@@ -1113,6 +1123,16 @@ PackageFormulas class >> molecule [
 		baseline: 'Molecule';
 		repository: 'github://OpenSmock/Molecule';
 		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> moose [
+	<formula: #software_engineering>
+
+	Metacello new
+		baseline: 'Moose';
+		repository: 'github://moosetechnology/Moose:development/src';
+		load
 ]
 
 { #category : #formulas }
@@ -1455,6 +1475,28 @@ PackageFormulas class >> seasideQuasar [
 		onConflictUseLoaded;
 		load: 'all'.
 
+]
+
+{ #category : #formulas }
+PackageFormulas class >> seaside_magritte_voyage [
+	<formula: #stacks>
+
+	Metacello new
+		baseline: 'SeasideMagritteVoyage';
+		repository: 'github://hernanmd/Seaside-Magritte-Voyage/src';
+		onConflictUseLoaded;
+		load
+]
+
+{ #category : #formulas }
+PackageFormulas class >> seaside_magritte_voyage_bootstrap [
+	<formula: #stacks>
+
+	Metacello new
+		baseline: 'SeasideBootstrapMagritteVoyage';
+		repository: 'github://hernanmd/Seaside-Bootstrap-Magritte-Voyage/src';
+		onConflictUseLoaded;
+		load
 ]
 
 { #category : #formulas }

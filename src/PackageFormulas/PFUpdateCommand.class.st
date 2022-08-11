@@ -32,7 +32,7 @@ PFUpdateCommand >> execute [
 		acceptLabel: 'Confirm';
 		cancelLabel: 'Cancel';
 		title: 'PackageFormulas confirmation request';
-		openModalWithSpec.
+		openModal.
 	answer ifFalse: [ ^ self ].
 	PackageFormulasApp updateApp.
 	self inform: 'Done'
