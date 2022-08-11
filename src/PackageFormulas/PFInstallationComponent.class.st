@@ -1,5 +1,13 @@
 "
-This decoration just provides subclasses sourceCode state `String`. See subclasses for specific functionality using source code.
+Provide subclasses an interface to add, remove and access decorations to source code.
+Source code is represented as a `String`. 
+
+Subclasses implements specific decorators such as:
+
+- Pre-installation preprends new source before its source code.
+- Post-installation add new source code after its source.
+- Wrap installation add new source code around its source code.
+
 "
 Class {
 	#name : #PFInstallationComponent,
@@ -122,6 +130,7 @@ PFInstallationComponent >> sourceCode [
 	"Answer the receivers installation <String>"
 
 	^ sourceCode
+		ifNil: [ sourceCode := String empty ]
 ]
 
 { #category : #accessing }

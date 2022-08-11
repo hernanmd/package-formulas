@@ -21,9 +21,13 @@ PFSingleInstallation >> formattedSourceFor: formula [
 
 	| sourceText |
 	
-	^ ((sourceText := formula sourceCode) endsWith: '.')
-		  ifFalse: [ sourceText , '.' ]
-		  ifTrue: [ sourceText ]
+	sourceText := formula sourceCode.
+	^ sourceText isEmpty
+		  ifTrue: [ sourceText ]	
+		  ifFalse: [ 
+				(sourceText endsWith: '.')
+					ifFalse: [ sourceText , '.' ]
+					ifTrue: [ sourceText ] ]
 ]
 
 { #category : #'instance creation' }

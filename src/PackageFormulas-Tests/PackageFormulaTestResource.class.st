@@ -1,31 +1,54 @@
 Class {
 	#name : #PackageFormulaTestResource,
 	#superclass : #TestResource,
-	#category : #'PackageFormulas-Tests'
+	#category : #'PackageFormulas-Tests-Core'
 }
 
-{ #category : #'instance creation' }
-PackageFormulaTestResource >> newPackageFormula [
-
-	^ PackageFormula newFrom: self samplePragma
-]
-
-{ #category : #'instance creation' }
-PackageFormulaTestResource >> newPackageFormulaAlt [
-
-	^ PackageFormula newFrom: self samplePragmaAlt
-]
-
 { #category : #running }
-PackageFormulaTestResource >> newPackageFormulaEmpty [
+PackageFormulaTestResource >> newMockEmptyPackageFormula [
 
 	^ PackageFormula newFrom: self samplePragmaEmpty
 ]
 
 { #category : #'instance creation' }
-PackageFormulaTestResource >> newPackageFormulaGofer [
+PackageFormulaTestResource >> newMockEmptyPackageFormulaAlt [
+
+	^  PackageFormula newFrom: self samplePragmaEmpty
+]
+
+{ #category : #'instance creation' }
+PackageFormulaTestResource >> newMockEmptyPackageFormulaGofer [
+
+	^  PackageFormula newFrom: self samplePragmaEmpty
+]
+
+{ #category : #'instance creation' }
+PackageFormulaTestResource >> newMockPackageFormula [
+
+	^ PackageFormula newFrom: self samplePragma
+]
+
+{ #category : #'instance creation' }
+PackageFormulaTestResource >> newMockPackageFormulaAlt [
+
+	^ PackageFormula newFrom: self samplePragmaAlt
+]
+
+{ #category : #'instance creation' }
+PackageFormulaTestResource >> newMockPackageFormulaGofer [
 
 	^ PackageFormula newFrom: self samplePragmaGofer
+]
+
+{ #category : #'instance creation' }
+PackageFormulaTestResource >> newNonPackageFormula [
+
+	^ PackageFormula newFrom: self samplePragmaNonFormula
+]
+
+{ #category : #accessing }
+PackageFormulaTestResource >> nonSampleFormula [
+
 ]
 
 { #category : #accessing }
@@ -87,4 +110,10 @@ PackageFormulaTestResource >> samplePragmaEmpty [
 PackageFormulaTestResource >> samplePragmaGofer [
 
 	^ (self class >> #sampleFormulasGofer) pragmas anyOne
+]
+
+{ #category : #running }
+PackageFormulaTestResource >> samplePragmaNonFormula [
+
+	^ (self class >> #nonSampleFormula) pragmas anyOne
 ]

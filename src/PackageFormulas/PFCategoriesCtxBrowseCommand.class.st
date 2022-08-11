@@ -43,5 +43,8 @@ PFCategoriesCtxBrowseCommand >> messageListForCategory: aString [
 	formulaName := 	aString.
 	(aString allSatisfy: #isUppercase)
 		ifFalse: [ formulaName := aString uncapitalized ].
-	^ (PackageFormulas allNamed: formulaName in: formulasContainer class) collect: #method.
+	^ (formulasContainer 
+			allNamed: formulaName 
+			in: formulasContainer class) 
+				collect: #method.
 ]

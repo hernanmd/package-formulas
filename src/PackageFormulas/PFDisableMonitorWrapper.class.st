@@ -1,5 +1,5 @@
 "
-Disables the lEpicea ogging of its installation expression.
+Wrapper that Disables the Epicea log of its source code.
 "
 Class {
 	#name : #PFDisableMonitorWrapper,

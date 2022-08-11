@@ -131,7 +131,7 @@ PackageFormulasScriptActionsTree >> defaultPreInstallActions [
 	^ { 
 
 		((PFPreInstallDecoration named: 'Open Transcript')
-			sourceCode: 'Smalltalk tools openTranscript	.') .
+			sourceCode: 'Smalltalk tools openTranscript.') .
 				
 		((PFPreInstallDecoration named: 'Open Process Browser')
 			sourceCode: 'Smalltalk tools processBrowser open.') .

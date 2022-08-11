@@ -12,7 +12,7 @@ To use another class to store the formulas, subclass this class and add ""formul
 Class {
 	#name : #PackageFormulas,
 	#superclass : #Object,
-	#category : #'PackageFormulas-Repository'
+	#category : #'PackageFormulas-Containers'
 }
 
 { #category : #accessing }

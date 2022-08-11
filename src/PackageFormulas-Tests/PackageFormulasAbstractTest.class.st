@@ -7,7 +7,7 @@ Class {
 		'packageFormulaEmpty',
 		'packageFormulaAlt'
 	],
-	#category : #'PackageFormulas-Tests'
+	#category : #'PackageFormulas-Tests-Core'
 }
 
 { #category : #accessing }
@@ -16,28 +16,76 @@ PackageFormulasAbstractTest class >> resources [
 	^ Array with: PackageFormulaTestResource
 ]
 
-{ #category : #running }
-PackageFormulasAbstractTest >> newPackageFormula [
+{ #category : #test }
+PackageFormulasAbstractTest >> newMockEmptyFormulas [
 
-	^ self resource newPackageFormula
+	^ { 
+		self newMockEmptyPackageFormula .
+		self newMockEmptyPackageFormulaAlt .
+		self newMockEmptyPackageFormulaGofer }
+]
+
+{ #category : #test }
+PackageFormulasAbstractTest >> newMockEmptyInstallation [
+
+	^ PFSingleInstallation newWithFormulas: self newMockEmptyFormulas
 ]
 
 { #category : #running }
-PackageFormulasAbstractTest >> newPackageFormulaAlt [
+PackageFormulasAbstractTest >> newMockEmptyPackageFormula [
 
-	^ self resource newPackageFormulaAlt
+	^ self resource newMockEmptyPackageFormula
 ]
 
 { #category : #running }
-PackageFormulasAbstractTest >> newPackageFormulaEmpty [
+PackageFormulasAbstractTest >> newMockEmptyPackageFormulaAlt [
 
-	^ self resource newPackageFormulaEmpty
+	^ self resource newMockEmptyPackageFormulaAlt
 ]
 
 { #category : #running }
-PackageFormulasAbstractTest >> newPackageFormulaGofer [
+PackageFormulasAbstractTest >> newMockEmptyPackageFormulaGofer [
 
-	^ self resource newPackageFormulaGofer
+	^ self resource newMockEmptyPackageFormulaGofer
+]
+
+{ #category : #test }
+PackageFormulasAbstractTest >> newMockFormulas [
+
+	^ { 
+		self newMockPackageFormula .
+		self newMockPackageFormulaAlt .
+		self newMockPackageFormulaGofer }
+]
+
+{ #category : #test }
+PackageFormulasAbstractTest >> newMockInstallation [
+
+	^ PFSingleInstallation newWithFormulas: self newMockFormulas
+]
+
+{ #category : #running }
+PackageFormulasAbstractTest >> newMockPackageFormula [
+
+	^ self resource newMockPackageFormula
+]
+
+{ #category : #running }
+PackageFormulasAbstractTest >> newMockPackageFormulaAlt [
+
+	^ self resource newMockPackageFormulaAlt
+]
+
+{ #category : #running }
+PackageFormulasAbstractTest >> newMockPackageFormulaGofer [
+
+	^ self resource newMockPackageFormulaGofer
+]
+
+{ #category : #running }
+PackageFormulasAbstractTest >> newNonPackageFormula [
+
+	^ self resource newNonPackageFormula
 ]
 
 { #category : #accessing }
@@ -62,8 +110,8 @@ PackageFormulasAbstractTest >> resource [
 PackageFormulasAbstractTest >> setUp [
 
 	super setUp.
-	packageFormula := self newPackageFormula.
-	packageFormulaGofer := self newPackageFormulaGofer.
-	packageFormulaEmpty := self newPackageFormulaEmpty.
-	packageFormulaAlt := self newPackageFormulaAlt.
+	packageFormula := self newMockPackageFormula.
+	packageFormulaGofer := self newMockPackageFormulaGofer.
+	packageFormulaEmpty := self newMockEmptyPackageFormula.
+	packageFormulaAlt := self newMockPackageFormulaAlt.
 ]

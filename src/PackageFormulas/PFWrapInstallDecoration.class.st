@@ -1,7 +1,7 @@
 "
 A hierarchy of wrapper for package formulas.
 
-Subclasses should implement the method #valueInClass:withSelector: which receives a `Class` and a selector `Symbol` and answer (currently) a `String` with wrapped source code.
+See subclasses for examples.
 "
 Class {
 	#name : #PFWrapInstallDecoration,

@@ -23,16 +23,10 @@ PackageFormulaInfo class >> for: aPackageFormula [
 ]
 
 { #category : #accessing }
-PackageFormulaInfo >> broken [
-
-	^ broken
-]
-
-{ #category : #accessing }
-PackageFormulaInfo >> broken: aBoolan [
+PackageFormulaInfo >> broken: aBoolean [
 	"Set the receiver's formula as non-working"
 
-	broken := aBoolan
+	broken := aBoolean
 ]
 
 { #category : #private }
@@ -59,6 +53,13 @@ PackageFormulaInfo >> buildHTTPHomeLink: url [
 				<< url authority;
 				<< $/;
 				 << url firstPathSegment ]
+]
+
+{ #category : #testing }
+PackageFormulaInfo >> isBroken [
+	"Answer <true> if the receiver is marked as broken"
+	
+	^ broken
 ]
 
 { #category : #parsing }

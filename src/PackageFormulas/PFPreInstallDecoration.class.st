@@ -13,9 +13,17 @@ PFPreInstallDecoration >> sourceCode [
 
 	^ String streamContents: [ :stream | 
 		  stream << super sourceCode.
-		  (super sourceCode endsWith: '.') ifFalse: [ 
-			  stream << $. ].
+		  self splitSourceOn: stream.
 		  stream
-			  nextPut: Character cr;
+			  << Character cr;
 			  << self next sourceCode ]
+]
+
+{ #category : #accessing }
+PFPreInstallDecoration >> splitSourceOn: stream [
+	"Private - If receiver's source code is not empty, divide it if there is no sentence separator. Otherwise do nothing."
+	
+	sourceCode ifEmpty: [ ^ self  ].
+	(sourceCode endsWith: '.')
+		ifFalse: [ stream << $. ].
 ]

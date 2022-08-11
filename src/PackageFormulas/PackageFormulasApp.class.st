@@ -84,6 +84,7 @@ PackageFormulasApp class >> updateBaseline [
 		
 	Iceberg enableMetacelloIntegration ifFalse: [ 
 		Gofer new 
+			disablePackageCache;
 			url: self repositoryAddress asZnUrl;
 			package: 'BaselineOfPackageFormulas';
 			load ].
@@ -120,7 +121,7 @@ PackageFormulasApp >> defaultFormulasContainer [
 PackageFormulasApp >> formulas [
 	"Answer a <Collection> of <PackageFormula> found in the receiver's environment"
 
-	^ PackageFormulas allIn: self formulasContainer class
+	^ self formulasContainer allIn: self formulasContainer class
 ]
 
 { #category : #queries }
@@ -136,6 +137,12 @@ PackageFormulasApp >> formulasContainer [
 	
 	^ formulasContainer
 		ifNil: [ formulasContainer := self defaultFormulasContainer ]
+]
+
+{ #category : #accessing }
+PackageFormulasApp >> formulasContainer: anObject [
+
+	formulasContainer := anObject
 ]
 
 { #category : #queries }
@@ -157,7 +164,7 @@ PackageFormulasApp >> formulasInCategory: aPackageCategorySymbol [
 	pkgPragmaId := (aPackageCategorySymbol allSatisfy: #isUppercase)
 		ifFalse: [ aPackageCategorySymbol uncapitalized ]
 		ifTrue: [ aPackageCategorySymbol ].
-	^ PackageFormulas for: pkgPragmaId
+	^ self formulasContainer for: pkgPragmaId
 
 ]
 

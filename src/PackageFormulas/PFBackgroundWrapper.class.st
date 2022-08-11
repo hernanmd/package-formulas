@@ -10,7 +10,6 @@ Class {
 
 { #category : #accessing }
 PFBackgroundWrapper >> sourceCode [
-
 	" Private - See superimplementor's comment"
 
 	^ String streamContents: [ :stream | 

@@ -45,7 +45,7 @@ PFExceptionWrapper >> sourceCode [
 			  << self exceptionClass asString;
 			  nextPut: Character cr;
 			  << 'do: ';
-			  << self exceptionBlock storeString ]
+			  << self exceptionBlock ]
 ]
 
 { #category : #accessing }

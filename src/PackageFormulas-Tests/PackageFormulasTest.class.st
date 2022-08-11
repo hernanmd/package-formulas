@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'formulas'
 	],
-	#category : #'PackageFormulas-Tests'
+	#category : #'PackageFormulas-Tests-Core'
 }
 
 { #category : #accessing }

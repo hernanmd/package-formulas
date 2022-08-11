@@ -121,14 +121,6 @@ PackageFormula >> info [
 ]
 
 { #category : #accessing }
-PackageFormula >> install [
-	"Execute the receiver's assumed to have a Metacello install expression using the default container for formulas"
-
-	PackageFormulas perform: self method selector.
-
-]
-
-{ #category : #accessing }
 PackageFormula >> installIn: aSpApplication [
 	"Install the receiver's assumed to have a Metacello install expression using the default container for formulas"
 
