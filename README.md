@@ -16,7 +16,7 @@
 
 # Description
 
-Package Formulas is a package manager front-end to simplify the installation of different software packages in [Pharo](https://www.pharo.org).
+Package Formulas is a package manager front-end to simplify the installation and update of different software packages in [Pharo](https://www.pharo.org). It includes an installation mode with options to enable scriptable execution of formulas. Being agnostic mean that will detect installation specifications from multiple package installer implementations such as Metacello, Gofer and Pakbot.
 
 - Package Formulas already includes a predefined set of categorized formulas.
 - UI allows you to install packages in bulk.
@@ -54,6 +54,10 @@ If you want to add the Badges to your Metacello Baselines or Configurations, cop
                 with: [ spec repository: 'github://hernanmd/package-formulas/src' ];
         " ... "
 ```
+# ToDo
+
+- Add FormulaDescription.
+- Add Mark as broken option.
 
 # Contribute
 
