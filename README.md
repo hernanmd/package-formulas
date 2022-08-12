@@ -16,7 +16,7 @@
 
 # Description
 
-Package Formulas is a package manager front-end to simplify the installation and update of different software packages in [Pharo](https://www.pharo.org). It includes an installation mode with options to enable scriptable execution of formulas. Being agnostic mean that will detect installation specifications from multiple package installer implementations such as Metacello, Gofer and Pakbot.
+Package Formulas is a package manager front-end to simplify the installation and update of different software packages in [Pharo](https://www.pharo.org). It includes an installation mode with options to enable scriptable execution of formulas. Being agnostic mean that will detect installation specifications from multiple package installer implementations such as [Metacello](https://github.com/Metacello/metacello), Gofer and [Pakbot](https://github.com/pharo-pkg/pakbot).
 
 - Package Formulas already includes a predefined set of categorized formulas.
 - UI allows you to install packages in bulk.
