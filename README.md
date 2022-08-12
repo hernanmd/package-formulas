@@ -5,6 +5,7 @@
 # Table of Contents
 
 - [Description](#description)
+- [Usage](#usage)
 - [Installation](#installation)
   - [Baseline String](#baseline-string)
 - [Contribute](#contribute)
@@ -13,10 +14,25 @@
 
 # Description
 
+Package Formulas is a package manager front-end to simplify the installation of different software packages in [Pharo](https://www.pharo.org).
+
+- Package Formulas already includes a predefined set of categorized formulas.
+- UI allows you to install packages in bulk.
+- It is simple to create a script from selections.
+- Scripts can be decorated with pre, post, and wrapper actions.
+- You can request to list your own or recommended formulas by opening issues from the UI.
+  - Then the package formula will be reviewed to avoid naming conflicts, and to prevent adding broken formulas.
+  - The UI could be used with a custom container of your favorite, validated, isolated or private formulas.
+- (Currently) it does not automatically collect packages from remote repositories or query on-line servers, however, you can easily jump to 
+browse a selected project homepage.
+
+# Usage
+
+![package-formulas](https://user-images.githubusercontent.com/4825959/184296959-a2f25292-f6ec-4fde-b268-0c5d0f5a625c.gif)
+
 # Installation
 
 ```smalltalk
-
 EpMonitor disableDuring: [ 
         Metacello new   
                 baseline: 'PackageFormulas';     
@@ -36,8 +52,6 @@ If you want to add the Badges to your Metacello Baselines or Configurations, cop
                 with: [ spec repository: 'github://hernanmd/package-formulas/src' ];
         " ... "
 ```
-
-# Usage
 
 # Contribute
 
