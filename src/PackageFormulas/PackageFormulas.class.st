@@ -1752,7 +1752,7 @@ PackageFormulas class >> twitterSdkPharo [
 
 { #category : #formulas }
 PackageFormulas class >> umlMetamodel [
-	<formula: #Reverse_engineering>
+	<formula: #software_engineering>
 
 	Metacello new
 		baseline: 'UMLMetamodel';
@@ -1823,7 +1823,7 @@ PackageFormulas class >> xPath [
 
 { #category : #formulas }
 PackageFormulas class >> xmi [
-	<formula: #Reverse_engineering>
+	<formula: #software_engineering>
 
 	Metacello new
 		baseline: 'OPXMI';
