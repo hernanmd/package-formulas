@@ -3,6 +3,6 @@ Subclasses may implement specific code transformations in `PackageFormula` insta
 "
 Class {
 	#name : #PFAbstractTransformer,
-	#superclass : #PFAbstractFormula,
+	#superclass : #PFAbstractObject,
 	#category : #'PackageFormulas-Core'
 }

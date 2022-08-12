@@ -11,7 +11,7 @@ Subclasses should re-implement methods to query different API implementations, f
 "
 Class {
 	#name : #PFAbstractQuerier,
-	#superclass : #PFAbstractFormula,
+	#superclass : #PFAbstractObject,
 	#category : #'PackageFormulas-Core'
 }
 

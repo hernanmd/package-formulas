@@ -82,6 +82,12 @@ PackageFormulasAbstractTest >> newMockPackageFormulaGofer [
 	^ self resource newMockPackageFormulaGofer
 ]
 
+{ #category : #tests }
+PackageFormulasAbstractTest >> newMockPackageFormulaNoBaseline [
+
+	^ self resource newMockPackageFormulaNoBaseline
+]
+
 { #category : #running }
 PackageFormulasAbstractTest >> newNonPackageFormula [
 

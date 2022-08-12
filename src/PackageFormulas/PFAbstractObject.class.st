@@ -2,7 +2,7 @@
 Provides subclasses a holder for a `PackageFormula`.
 "
 Class {
-	#name : #PFAbstractFormula,
+	#name : #PFAbstractObject,
 	#superclass : #Object,
 	#instVars : [
 		'packageFormula'
@@ -11,19 +11,19 @@ Class {
 }
 
 { #category : #accessing }
-PFAbstractFormula >> packageFormula [
+PFAbstractObject >> packageFormula [
 
 	^ packageFormula
 ]
 
 { #category : #accessing }
-PFAbstractFormula >> packageFormula: anObject [
+PFAbstractObject >> packageFormula: anObject [
 
 	packageFormula := anObject
 ]
 
 { #category : #parsing }
-PFAbstractFormula >> packageFormulaAst [
+PFAbstractObject >> packageFormulaAst [
 	"Answer the package formula's <RBMethodNode>"
 
 	^ self packageFormula ast

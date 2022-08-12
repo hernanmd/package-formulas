@@ -19,11 +19,13 @@ PFMetacelloQuerier >> definitionName [
 	"Answer a <String> with the name of the receiver matching its baseline pattern. i.e.: 'BaselineOfXXX'
 	Answer an empty <String> if formula does not have a Baseline name"
 	
-	^ (RBParseTreeSearcher
-		  treeMatching: '``@anything baseline: ``@arg1'
-		  in: self packageFormulaAst) arguments
-			ifEmpty: [ self inform: 'Formula has no Baseline arguments' ]
-			ifNotEmpty: [ : args | args first value ]
+	^ self parseBaselineExpression
+		ifNil: [ String empty ]
+		ifNotNil: [ : ast | ast arguments
+			ifEmpty: [ 
+				self inform: 'Formula has no Baseline arguments'. 
+				String empty ]
+			ifNotEmpty: [ : args | args first value ] ]
 ]
 
 { #category : #private }
@@ -43,13 +45,10 @@ PFMetacelloQuerier >> handlePackageNotFound: aNotFound [
 PFMetacelloQuerier >> hasInstallerInstalled [
 	"Answer <true> if receiver's method, assumed to be a Metacello install expression, is installed in the receiver"
 
-	| extractedTree |
-	
-	(extractedTree := self parseBaselineExpression) 
-		ifNotNil: [ 
-			| baselineName | 
-			baselineName := extractedTree arguments anyOne.
-			^ Smalltalk hasClassNamed: 'BaselineOf' , baselineName value ].
+	self parseBaselineExpression ifNotNil: [ : extractedTree |
+		| baselineName | 
+		baselineName := extractedTree arguments anyOne.
+		^ Smalltalk hasClassNamed: 'BaselineOf' , baselineName value ].
 	^ false
 ]
 

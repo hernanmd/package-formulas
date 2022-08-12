@@ -25,7 +25,7 @@ PFCtxBrowsePkgCommand class >> defaultName [
 	^ 'Browse Source Code'
 ]
 
-{ #category : #executing }
+{ #category : #testing }
 PFCtxBrowsePkgCommand >> canBeExecuted [ 
 
 	^ (self application 

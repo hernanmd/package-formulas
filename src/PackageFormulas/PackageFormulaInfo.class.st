@@ -7,7 +7,7 @@ Helper object to access `PackageFormula` additional information such as:
 "
 Class {
 	#name : #PackageFormulaInfo,
-	#superclass : #PFAbstractFormula,
+	#superclass : #PFAbstractObject,
 	#instVars : [
 		'broken'
 	],
@@ -53,6 +53,13 @@ PackageFormulaInfo >> buildHTTPHomeLink: url [
 				<< url authority;
 				<< $/;
 				 << url firstPathSegment ]
+]
+
+{ #category : #initialization }
+PackageFormulaInfo >> initialize [
+
+	super initialize.
+	broken := false.
 ]
 
 { #category : #testing }

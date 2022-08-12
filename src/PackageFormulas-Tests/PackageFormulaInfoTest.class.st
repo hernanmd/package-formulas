@@ -80,6 +80,14 @@ PackageFormulaInfoTest >> testBuildHTTPHomeLink [
 
 ]
 
+{ #category : #test }
+PackageFormulaInfoTest >> testIsBroken [
+
+	self deny: packageFormulaInfo isBroken.
+	packageFormulaInfo broken: true.
+	self assert: packageFormulaInfo isBroken.
+]
+
 { #category : #running }
 PackageFormulaInfoTest >> testParseRepositoryExpression [
 
