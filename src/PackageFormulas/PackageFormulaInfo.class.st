@@ -3,6 +3,7 @@ Helper object to access `PackageFormula` additional information such as:
 
 - Its web home URL.
 - Its issues URL address.
+- Health status (broken installation).
 
 "
 Class {

@@ -1,3 +1,6 @@
+"
+Command to display a list of pending formulas to install.
+"
 Class {
 	#name : #PFViewToInstallCommand,
 	#superclass : #PFToolbarCommand,

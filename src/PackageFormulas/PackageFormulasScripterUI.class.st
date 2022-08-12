@@ -132,12 +132,6 @@ PackageFormulasScripterUI >> scriptPresenter [
 ]
 
 { #category : #accessing }
-PackageFormulasScripterUI >> scriptPresenter: anObject [
-
-	scriptPresenter := anObject
-]
-
-{ #category : #accessing }
 PackageFormulasScripterUI >> title [
 
 	^ 'Package Formulas: Install Options'
@@ -164,16 +158,6 @@ PackageFormulasScripterUI >> wrappedSource: aPackageFormula [
 	actionsSelectorPresenter selectedWrapperActions isEmpty 
 		ifFalse: [ ^ aPackageFormula decoration sourceCode ].
 	^ aPackageFormula sourceCode
-]
-
-{ #category : #callbacks }
-PackageFormulasScripterUI >> wrapperActionsPresenterAddText: aString [
-
-	self scriptPresenter text: (String streamContents: [ : stream |
-		stream
-			<< self scriptPresenter text;
-			cr;
-			<< aString ]).
 ]
 
 { #category : #callbacks }

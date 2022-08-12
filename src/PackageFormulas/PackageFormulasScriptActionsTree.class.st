@@ -60,13 +60,6 @@ PackageFormulasScriptActionsTree >> actionsMap [
 ]
 
 { #category : #'add-remove' }
-PackageFormulasScriptActionsTree >> addPreAction: frmAction [
-
-	self selectedWrapperActions add: frmAction.
-	self updateWrapperActions.
-]
-
-{ #category : #'add-remove' }
 PackageFormulasScriptActionsTree >> addWrapperAction: frmAction [
 
 	self selectedWrapperActions add: frmAction.
@@ -293,12 +286,6 @@ PackageFormulasScriptActionsTree >> selectedWrapperActions [
 
 	^ selectedWrapperActions
 		ifNil: [ selectedWrapperActions := OrderedCollection new ]
-]
-
-{ #category : #defaults }
-PackageFormulasScriptActionsTree >> toolbarHeight [
-
-	^ self class toolbarHeight
 ]
 
 { #category : #updating }

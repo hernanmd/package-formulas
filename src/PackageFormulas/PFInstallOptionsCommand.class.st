@@ -7,7 +7,7 @@ Class {
 	#category : #'PackageFormulas-Commands'
 }
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFInstallOptionsCommand class >> defaultDescription [
 
 	^ 'Set formulas options'
@@ -19,7 +19,7 @@ PFInstallOptionsCommand class >> defaultIconName [
 	^ #configuration
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFInstallOptionsCommand class >> defaultName [
 
 	^ 'Install Options'

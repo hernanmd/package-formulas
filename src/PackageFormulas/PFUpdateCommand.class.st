@@ -1,22 +1,25 @@
+"
+Command to update the application packages. As formulas are contained in methods, it also triggers an update of package formulas.
+"
 Class {
 	#name : #PFUpdateCommand,
 	#superclass : #PFToolbarCommand,
 	#category : #'PackageFormulas-Commands'
 }
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFUpdateCommand class >> defaultDescription [
 
 	^ 'Update application and formulas'
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : #initialization }
 PFUpdateCommand class >> defaultIconName [
 
 	^ #smallUpdate
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFUpdateCommand class >> defaultName [
 
 	^ 'Update'

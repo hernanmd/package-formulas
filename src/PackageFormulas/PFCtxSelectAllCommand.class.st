@@ -19,7 +19,7 @@ PFCtxSelectAllCommand class >> defaultIconName [
 	^ #checkedBox
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFCtxSelectAllCommand class >> defaultName [
 
 	^ 'Select All'

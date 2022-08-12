@@ -1,3 +1,6 @@
+"
+This command open a Web Browser page to request a new formula to be included in the Package Formulas container.
+"
 Class {
 	#name : #PFCategoriesCtxRequestCommand,
 	#superclass : #PFCategoriesContextualMenuCommand,
@@ -18,7 +21,7 @@ PFCategoriesCtxRequestCommand class >> defaultName [
 
 { #category : #executing }
 PFCategoriesCtxRequestCommand >> execute [
-	"Private - Open a Browser on the selected category"
+	"Private - Open a Web Browser to request a new formula"
 
 	| categoryName |
 	

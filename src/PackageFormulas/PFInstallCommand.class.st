@@ -7,19 +7,19 @@ Class {
 	#category : #'PackageFormulas-Commands'
 }
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFInstallCommand class >> defaultDescription [
 
 	^ 'Install selected formulas'
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : #initialization }
 PFInstallCommand class >> defaultIconName [
 
 	^ #smallDoIt
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFInstallCommand class >> defaultName [
 
 	^ 'Install'

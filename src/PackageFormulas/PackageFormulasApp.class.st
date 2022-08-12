@@ -26,6 +26,20 @@ PackageFormulasApp class >> appLocalWorkingDirectory [
 ]
 
 { #category : #private }
+PackageFormulasApp class >> example1 [
+
+	PackageFormulasApp new start
+]
+
+{ #category : #private }
+PackageFormulasApp class >> example2 [
+
+	PackageFormulasApp new
+		formulasContainer: CustomPackageFormulas;
+		start.
+]
+
+{ #category : #private }
 PackageFormulasApp class >> menuPackageFormulasOn: aBuilder [
 	<worldMenu>
 

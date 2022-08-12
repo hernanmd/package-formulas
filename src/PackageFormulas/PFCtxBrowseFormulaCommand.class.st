@@ -8,7 +8,7 @@ Class {
 	#category : #'PackageFormulas-Commands'
 }
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFCtxBrowseFormulaCommand class >> defaultDescription [
 
 	^ 'Browse selected formula'

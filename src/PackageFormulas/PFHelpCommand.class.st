@@ -7,13 +7,13 @@ Class {
 	#category : #'PackageFormulas-Commands'
 }
 
-{ #category : #'accessing - defaults' }
+{ #category : #default }
 PFHelpCommand class >> defaultDescription [
 
 	^ 'Open a Help window'
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : #initialization }
 PFHelpCommand class >> defaultIconName [
 
 	^ #smallHelp

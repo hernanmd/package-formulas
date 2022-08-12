@@ -1,3 +1,6 @@
+"
+This command is planned to be included in future versions to manually tag a package as broken, i.e. after an installation fails.
+"
 Class {
 	#name : #PFCtxTagBrokenCommand,
 	#superclass : #PFContextualMenuCommand,
