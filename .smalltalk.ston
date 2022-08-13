@@ -8,7 +8,8 @@ SmalltalkCISpec {
   ],
   #testing : {
     #coverage : {
-      #packages : [ 'PackageFormulas*' ]
+      #packages : [ 'PackageFormulas*' ],
+      #format: #lcov
     }
   }
 }
