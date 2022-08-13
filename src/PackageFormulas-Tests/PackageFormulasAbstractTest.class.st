@@ -89,6 +89,12 @@ PackageFormulasAbstractTest >> newMockPackageFormulaNoBaseline [
 ]
 
 { #category : #running }
+PackageFormulasAbstractTest >> newMockPackageFormulaWithBranchName [
+
+	^ self resource newMockPackageFormulaWithBranchName
+]
+
+{ #category : #running }
 PackageFormulasAbstractTest >> newNonPackageFormula [
 
 	^ self resource newNonPackageFormula

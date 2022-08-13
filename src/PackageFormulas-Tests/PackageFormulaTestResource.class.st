@@ -47,6 +47,12 @@ PackageFormulaTestResource >> newMockPackageFormulaNoBaseline [
 ]
 
 { #category : #'instance creation' }
+PackageFormulaTestResource >> newMockPackageFormulaWithBranchName [
+
+	^  PackageFormula newFrom: self samplePragmaWithBranchName
+]
+
+{ #category : #'instance creation' }
 PackageFormulaTestResource >> newNonPackageFormula [
 
 	^ PackageFormula newFrom: self samplePragmaNonFormula
@@ -94,6 +100,16 @@ PackageFormulaTestResource >> sampleFormulaNoBaseline [
 ]
 
 { #category : #accessing }
+PackageFormulaTestResource >> sampleFormulaWithBranchName [
+	<formula: #general>
+
+	Metacello new
+		baseline: 'PackageFormulas';
+		repository: 'github://hernanmd/package-formulas:master';
+		load.
+]
+
+{ #category : #accessing }
 PackageFormulaTestResource >> sampleFormulasGofer [
 	<formula: #math>
 
@@ -137,4 +153,10 @@ PackageFormulaTestResource >> samplePragmaNoBaseline [
 PackageFormulaTestResource >> samplePragmaNonFormula [
 
 	^ (self class >> #nonSampleFormula) pragmas anyOne
+]
+
+{ #category : #running }
+PackageFormulaTestResource >> samplePragmaWithBranchName [
+
+	^ (self class >> #sampleFormulaWithBranchName) pragmas anyOne
 ]

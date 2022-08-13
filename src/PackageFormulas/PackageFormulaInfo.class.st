@@ -53,7 +53,7 @@ PackageFormulaInfo >> buildHTTPHomeLink: url [
 				<< (self urlForSchema: url scheme);
 				<< url authority;
 				<< $/;
-				 << url firstPathSegment ]
+				 << (self urlForSegment: url firstPathSegment) ]
 ]
 
 { #category : #initialization }
@@ -99,6 +99,14 @@ PackageFormulaInfo >> urlForSchema: aString [
 	^ self packageFormula repositorySchemas 
 		at: aString
 
+
+]
+
+{ #category : #private }
+PackageFormulaInfo >> urlForSegment: aString [ 
+	"Parse the URL segment in aString and answer a <String> without artifacts like $:"
+	
+	^ (aString findTokens: $:) first
 
 ]
 

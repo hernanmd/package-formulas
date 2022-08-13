@@ -5,7 +5,8 @@ Class {
 		'packageFormulaInfoGofer',
 		'packageFormulaInfoEmpty',
 		'packageFormulaInfo',
-		'packageFormulaInfoAlt'
+		'packageFormulaInfoAlt',
+		'packageFormulaInfoWithBranchName'
 	],
 	#category : #'PackageFormulas-Tests-Core'
 }
@@ -32,6 +33,7 @@ PackageFormulaInfoTest >> setUp [
 	packageFormulaInfoEmpty := PackageFormulaInfo for: self newMockEmptyPackageFormula.
 	packageFormulaInfoAlt := PackageFormulaInfo for: self newMockPackageFormulaAlt.
 	packageFormulaInfoGofer := PackageFormulaInfo for: self newMockPackageFormulaGofer.
+	packageFormulaInfoWithBranchName := PackageFormulaInfo for: self newMockPackageFormulaWithBranchName.
 ]
 
 { #category : #running }
@@ -148,6 +150,26 @@ PackageFormulaInfoTest >> testUrlForSchema [
 	
 ]
 
+{ #category : #tests }
+PackageFormulaInfoTest >> testUrlForSegment [
+
+	self 
+		assert: (packageFormulaInfo urlForSegment: 'hernanmd/package-formulas:master') 
+		equals: 'hernanmd/package-formulas'.
+	
+	self
+		assert: (packageFormulaInfo urlForSegment: 'hernanmd/package-formulas') 
+		equals: 'hernanmd/package-formulas'.
+	
+	self
+		assert: (packageFormulaInfo urlForSegment: 'hernanmd') 
+		equals: 'hernanmd'.
+		
+	self
+		should: [ packageFormulaInfo urlForSegment: String empty ] 
+		raise: SubscriptOutOfBounds
+]
+
 { #category : #running }
 PackageFormulaInfoTest >> testWebLinkHome [
 
@@ -163,7 +185,10 @@ PackageFormulaInfoTest >> testWebLinkHome [
 		equals: 'https://github.com/grpistoia/Mathemagics'.
 	self
 		assert: packageFormulaInfoAlt webLinkHome 
-		equals: 'https://github.com/pharo-contributions/Artefact'
+		equals: 'https://github.com/pharo-contributions/Artefact'.
+	self
+		assert: packageFormulaInfoWithBranchName webLinkHome 
+		equals: 'https://github.com/hernanmd/package-formulas'.
 ]
 
 { #category : #running }
