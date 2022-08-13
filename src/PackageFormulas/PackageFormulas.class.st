@@ -904,16 +904,6 @@ PackageFormulas class >> iterators [
 ]
 
 { #category : #formulas }
-PackageFormulas class >> jun [
-	<formula: #graphics>
-
-	Metacello new
-		baseline: 'Jun';
-		repository: 'github://tomooda/Jun';
-		load.
-]
-
-{ #category : #formulas }
 PackageFormulas class >> kendrick [
 	<formula: #science>
 
