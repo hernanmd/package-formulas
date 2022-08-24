@@ -642,7 +642,7 @@ PackageFormulas class >> fogEvm [
 
 	Metacello new
 		baseline: 'FogEVM';
-		repository: 'github://smartanvil/FogEVM/src';
+		repository: 'github://hernanmd/FogEVM/src';
 		load.
 ]
 

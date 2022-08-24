@@ -49,7 +49,7 @@ PackageFormulasMainUI >> formulasTable [
 PackageFormulasMainUI >> handleMethodChange: anAnnouncement [
 	"A new formula was added or removed, update the receiver"
 
-	self formulasTable update.
+	self formulasTable updateWithFormulasIn: self selectedCategory.
 
 ]
 
