@@ -51,7 +51,10 @@ PFInstallOptionsCommand >> execute [
 PFInstallOptionsCommand >> installFromScripter: aScripterUI [
 	"Install the receiver's formula in the context of the current application"
 
-	self evaluate: aScripterUI installationExpression
+	self evaluate: aScripterUI installationExpression.
+	self selectedFormulas 
+		do: [ : formula | self context unselectFormula: formula ]
+		displayingProgress: [ : formula | 'Deselecting ' , formula selector ]. 
 ]
 
 { #category : #executing }
