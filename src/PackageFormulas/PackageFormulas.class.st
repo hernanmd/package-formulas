@@ -595,6 +595,16 @@ PackageFormulas class >> fast [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> fileDialog [
+	<formula: #ui>
+
+	Metacello new
+		baseline: 'FileDialog';
+		repository: 'github://hernanmd/file-dialog/repository';
+		load
+]
+
+{ #category : #formulas }
 PackageFormulas class >> fileLibraryHelper [
 	<formula: #web>
 
