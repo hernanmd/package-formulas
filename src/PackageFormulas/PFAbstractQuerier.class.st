@@ -23,7 +23,7 @@ PFAbstractQuerier class >> findQuerierClass: aPackageFormula [
 		  detect: [ :subClass | subClass matchInstallExpression: aPackageFormula ]
 		  ifNone: [ 
 			  self error:
-				  'There is no Package Formula querier for the expression in: '
+				  'Format of package formula invalid or There is no Package Formula suitable for a querier for the expression in: '
 				  , aPackageFormula selector ]
 ]
 

@@ -28,8 +28,7 @@ PFCtxBrowseFormulaCommand class >> defaultName [
 
 { #category : #executing }
 PFCtxBrowseFormulaCommand >> execute [
-
-	"Private - Inspect the selected pragma"
+	"Private - Open a browser with the selected pragma"
 
 	| method |
 	self application propertyAt: #formulaSelection ifAbsent: [ ^ self ].

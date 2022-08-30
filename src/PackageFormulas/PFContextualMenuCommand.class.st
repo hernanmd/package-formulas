@@ -21,6 +21,12 @@ PFContextualMenuCommand >> application [
 	^ self context application
 ]
 
+{ #category : #executing }
+PFContextualMenuCommand >> formulasContainer [
+
+	^ self application formulasContainer
+]
+
 { #category : #accessing }
 PFContextualMenuCommand >> formulasTable [
 

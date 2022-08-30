@@ -61,7 +61,11 @@ PackageFormulasSelectorUI class >> buildEPContextualGroupWith: presenterInstance
 PackageFormulasSelectorUI class >> buildFormulaOperationsGroupWith: presenterInstance [
 
 	^ (CmCommandGroup named: 'FormulaOperationsMenu') asSpecGroup
-		register: ((PFCtxOpenPlaygroundCommand
+			register: ((PFCtxAddFormulaCommand
+			forSpecWithIconNamed: #glamorousAdd
+			shortcutKey: 'A' asShortcut) 
+				context: presenterInstance);	
+			register: ((PFCtxOpenPlaygroundCommand
 			forSpecWithIconNamed: #glamorousBrowse
 			shortcutKey: 'P' asShortcut) 
 				context: presenterInstance);

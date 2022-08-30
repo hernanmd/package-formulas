@@ -91,6 +91,17 @@ PackageFormulas class >> awsSdkSmalltalk [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> badges [
+	<formula: #IDE>
+
+	Metacello new
+		repository: 'github://hernanmd/badges/src';
+		baseline: 'Badges';
+		load
+
+]
+
+{ #category : #formulas }
 PackageFormulas class >> bloc [
 	<formula: #graphics>
 
@@ -170,6 +181,16 @@ PackageFormulas class >> cannon [
 		baseline: 'Cannon';
 		repository: 'github://ba-st/Cannon:release-candidate/source';
 		load.
+]
+
+{ #category : #formulas }
+PackageFormulas class >> casino [
+	<formula: #software_engineering>
+
+	Metacello new
+		githubUser: 'badetitou' project: 'Casino' commitish: 'v1.x.x' path: 'src';
+		baseline: 'Casino';
+		load
 ]
 
 { #category : #formulas }
@@ -1426,6 +1447,17 @@ PackageFormulas class >> quickAccess [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> rules [
+	<formula: #testing>
+
+	Metacello new
+		githubUser: 'jecisc' project: 'Rules' commitish: 'v1.x.x' path: 'src';
+		baseline: 'Rules';
+		load
+
+]
+
+{ #category : #formulas }
 PackageFormulas class >> sState [
 	<formula: #general>
 
@@ -1580,6 +1612,17 @@ PackageFormulas class >> sqlite3 [
 		repository: 'github://pharo-rdbms/Pharo-SQLite3/src';
 		baseline: 'SQLite3';
 		load
+]
+
+{ #category : #formulas }
+PackageFormulas class >> stateSpecs [
+	<formula: #testing>
+
+	Metacello new
+		 baseline: 'StateSpecs';
+		repository: 'github://dionisiydk/StateSpecs';
+		load
+
 ]
 
 { #category : #formulas }
