@@ -977,6 +977,16 @@ PackageFormulas class >> launchpad [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> libStemmer [
+	<formula: #science>
+
+	Metacello new
+		baseline: 'LibStemmer';
+		repository: 'github://hernanmd/LibStemmer/src';
+		load
+]
+
+{ #category : #formulas }
 PackageFormulas class >> libVlc [
 	<formula: #bindings>
 
