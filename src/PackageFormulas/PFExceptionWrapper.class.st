@@ -12,6 +12,17 @@ Class {
 }
 
 { #category : #private }
+PFExceptionWrapper >> defaultInstallExceptionClass [
+
+	^ Smalltalk globals 
+		at: #MCMergeOrLoadWarning
+		ifPresent: [ : class | class ]
+		ifAbsent: [ self error ]
+
+
+]
+
+{ #category : #private }
 PFExceptionWrapper >> exceptionBlock [
 
 	^ exceptionBlock
@@ -22,7 +33,7 @@ PFExceptionWrapper >> exceptionBlock [
 PFExceptionWrapper >> exceptionClass [
 
 	^ exceptionClass
-		ifNil: [ exceptionClass := MCMergeOrLoadWarning ]
+		ifNil: [ exceptionClass := self defaultInstallExceptionClass ]
 ]
 
 { #category : #accessing }

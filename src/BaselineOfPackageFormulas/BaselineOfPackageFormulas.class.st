@@ -16,5 +16,11 @@ BaselineOfPackageFormulas >> baseline: spec [
 			spec 
 				group: 'Core' 						with: #('PackageFormulas');
 				group: 'Tests' 						with: #('PackageFormulas' 'PackageFormulas-Tests');
-				group: 'default' 					with: #('Core' 'Tests') ]
+				group: 'default' 					with: #('Core' 'Tests').
+									
+			spec 
+				for: #'pharo11.x' 
+				do: [ 
+					spec package: 'PackageFormulas' with: [ spec requires: #('PackageFormulas-Pharo11') ] ].
+					spec package: 'PackageFormulas-Pharo11' ]
 ]
