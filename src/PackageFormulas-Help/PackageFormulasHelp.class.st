@@ -1,3 +1,6 @@
+"
+Main page for package-formulas help.
+"
 Class {
 	#name : #PackageFormulasHelp,
 	#superclass : #CustomHelp2,
@@ -13,76 +16,44 @@ PackageFormulasHelp class >> bookDescription [
 PackageFormulasHelp class >> bookName [
 	"Return the name of the help book"
 
-	^ 'Installing'
+	^ 'Package Formulas'
 ]
 
 { #category : #accessing }
-PackageFormulasHelp class >> exampleAddMultipleWrappers [
-
-	^ '(PackageFormulas @ #neoJson)
-		addDecoration: (PFBackgroundWrapper new);
-		addDecoration: (PFDisableMonitorWrapper new);
-		addDecoration: (PFPostInstallDecoration new sourceCode: ''self inform: ''Finished'');
-		yourself'
-]
-
-{ #category : #accessing }
-PackageFormulasHelp class >> exampleAddWrapper [
-
-	^ '(PackageFormulas for: #IDE) second
- 	addDecoration: (PFBackgroundWrapper new);
- 	install.'
-]
-
-{ #category : #accessing }
-PackageFormulasHelp class >> exampleInstallScript [
-
-	^ '(PackageFormulas @ #neoJson) install.'
-]
-
-{ #category : #accessing }
-PackageFormulasHelp class >> headingText [
-
-	^ self heading: 'How to use it as an API'
-]
-
-{ #category : #accessing }
-PackageFormulasHelp class >> howToUseTheAPI [
+PackageFormulasHelp class >> intro [
 
 	^ HelpTopic 
-		title: 'Installing Formulas' 
-		contents: self installFormulasHelp
+		title: self bookName
+		contents: self packageFormulasIntro
+]
+
+{ #category : #'instance creation' }
+PackageFormulasHelp class >> open [
+	<script>
+	^ (HelpBrowser openOn: self) next
 ]
 
 { #category : #accessing }
-PackageFormulasHelp class >> installFormulasHelp [
+PackageFormulasHelp class >> packageFormulasIntro [
 
-	^ String streamContents: [ : stream |
-		stream 
-			<< self headingText;
-			<< self installFormulasHelpContents ]
+	^ String streamContents: [ : stream | 
+		stream
+			<< (self heading: 'Introduction');
+			<< self packageFormulasIntroText ]
 ]
 
 { #category : #accessing }
-PackageFormulasHelp class >> installFormulasHelpContents [
+PackageFormulasHelp class >> packageFormulasIntroText [ 
+		
+		^ '
+Package Formulas is a front-end for installing packages on a Pharo image. Each formula describes an installation. An installation contains one or multiple categories, along with a Pharo expression. Package Formulas does not assume any particular install manager, it could be Gofer, Metacello or a Pakbot expression.
 
-	^  '# Install a Formula
-	
-{1}
+The default formulas are found in the PackageFormulas class (on the class side), but nothing prevents you from defining your own formula container for your own packages.
 
-# Add a wrapper and install
-
-{2}
-
-# Add multiple wrappers and install
-
-{3} ' format: { 
-	self exampleInstallScript . 
-	self exampleAddWrapper . 
-	self exampleAddMultipleWrappers  }
+In case you want to have your own packages listed in the application, you can simply request a Formula using the Request menu option from the contextual menu in a category'
 ]
 
 { #category : #accessing }
 PackageFormulasHelp class >> pages [
-	^ #( howToUseTheAPI)
+	^ #(intro)
 ]
