@@ -226,5 +226,6 @@ PackageFormulasSelectorUI >> updateSelectedFormula: formula [
 PackageFormulasSelectorUI >> updateWithFormulasIn: aSelectedCategory [
 	"Private - Category selection has changed, update the displayed formulas"
 
-	self formulasItems: (self formulasIn: aSelectedCategory) asSortedCollection
+	aSelectedCategory 
+		ifNotNil: [ : selectedCat | self formulasItems: (self formulasIn: aSelectedCategory) asSortedCollection ]
 ]
