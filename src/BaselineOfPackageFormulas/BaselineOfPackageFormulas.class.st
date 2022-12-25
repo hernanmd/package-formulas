@@ -12,8 +12,9 @@ BaselineOfPackageFormulas >> baseline: spec [
 		do: [ 
 			spec 
 				package: 'PackageFormulas';
-				package: 'PackageFormulas-Tests'	with: [ spec requires: #(PackageFormulas) ].
-			spec 
+				package: 'PackageFormulas-UI' 		with: [ spec requires: #(PackageFormulas) ];
+				package: 'PackageFormulas-Tests'	with: [ spec requires: #(PackageFormulas) ];
+
 				group: 'Core' 						with: #('PackageFormulas');
 				group: 'UI'							with: #('PackageFormulas-UI');
 				group: 'Tests' 						with: #('PackageFormulas' 'PackageFormulas-Tests');
