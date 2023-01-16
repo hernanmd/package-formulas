@@ -1824,6 +1824,16 @@ PackageFormulas class >> uncommonThemes [
 ]
 
 { #category : #formulas }
+PackageFormulas class >> unicorn [
+	<formula: #VM>
+
+	Metacello new
+		repository: 'github://pharo-project/pharo-unicorn/src';
+		baseline: 'Unicorn';
+		load
+]
+
+{ #category : #formulas }
 PackageFormulas class >> voyageEjdb [
 	<formula: #databases>
 
