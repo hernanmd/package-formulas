@@ -218,6 +218,15 @@ PackageFormulasApp >> selectedFormulas [
 ]
 
 { #category : #accessing }
+PackageFormulasApp >> selectedFormulas: aCollection [
+	"Answer a <Collection> with the formulas marked for installation"
+
+	^ self
+		propertyAt: #selectedFormulas
+		put: aCollection asSet
+]
+
+{ #category : #accessing }
 PackageFormulasApp >> start [
 	" Private - See superimplementor's comment "
 

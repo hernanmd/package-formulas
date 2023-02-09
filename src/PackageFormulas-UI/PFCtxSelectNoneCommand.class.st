@@ -26,17 +26,10 @@ PFCtxSelectNoneCommand class >> defaultName [
 	^ 'Select None'
 ]
 
-{ #category : #execution }
+{ #category : #executing }
 PFCtxSelectNoneCommand >> execute [
 	"Unselect all marked formula items"
-	
-	self formulasTableItems
-		do: [ : fti | 
-			| cbs |
-			"Horrible way to get the table checkboxes..."
-			cbs := self formulasTableColumns select: [ : c |
-				(c isKindOf: SpCheckBoxTableColumn) and: [ c title isEmpty  ] ].
-			cbs do: [ : cb | cb onDeactivation cull: fti ] ]
-		displayingProgress: [ : formula | 'Unselecting ' , formula selector ].
-	self formulasTable refresh.
+
+	self context selectedFormulas: Set empty.
+	self formulasTable refresh
 ]

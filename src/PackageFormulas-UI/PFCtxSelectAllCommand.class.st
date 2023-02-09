@@ -28,15 +28,7 @@ PFCtxSelectAllCommand class >> defaultName [
 { #category : #executing }
 PFCtxSelectAllCommand >> execute [
 	"Select all uninstalled formula items"
-	
-	self formulasTableItems 
-		do: [ : fti | 
-			| cbs |
-			"Horrible way to get the table checkboxes..."
-			cbs := self formulasTableColumns select: [ : c |
-				(c isKindOf: SpCheckBoxTableColumn) and: [ c title isEmpty  ] ].
-			cbs do: [ : cb | cb onActivation cull: fti ] ]
-		displayingProgress: [ : formula | 'Selecting ' , formula selector ].
-	self formulasTable refresh.
 
+	self context selectedFormulas: self formulasTableItems.
+	self formulasTable refresh
 ]

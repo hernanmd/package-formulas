@@ -34,12 +34,6 @@ PFContextualMenuCommand >> formulasTable [
 ]
 
 { #category : #accessing }
-PFContextualMenuCommand >> formulasTableColumns [
-
-	^ 	self formulasTable columns
-]
-
-{ #category : #accessing }
 PFContextualMenuCommand >> formulasTableItems [
 
 	^ 	self formulasTable items
@@ -48,7 +42,7 @@ PFContextualMenuCommand >> formulasTableItems [
 { #category : #accessing }
 PFContextualMenuCommand >> querier [
 	"Answer the receiver's object to make queries to package formulas"
-	
+
 	^ self selectedFormula querier
 ]
 

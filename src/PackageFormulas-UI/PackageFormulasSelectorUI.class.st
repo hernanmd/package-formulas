@@ -202,6 +202,13 @@ PackageFormulasSelectorUI >> selectedFormulas [
 
 ]
 
+{ #category : #accessing }
+PackageFormulasSelectorUI >> selectedFormulas: aCollection [
+	"Set a <Collection> of formulas to be marked for installation"
+
+	^ self application selectedFormulas: aCollection
+]
+
 { #category : #initialization }
 PackageFormulasSelectorUI >> unselectFormula: aFormula [
 
