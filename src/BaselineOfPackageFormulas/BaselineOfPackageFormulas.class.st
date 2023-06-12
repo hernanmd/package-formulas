@@ -28,6 +28,12 @@ BaselineOfPackageFormulas >> baseline: spec [
 			spec 
 				for: #'pharo11.x' 
 				do: [ 
-					spec package: 'PackageFormulas' with: [ spec requires: #('PackageFormulas-Pharo11') ] ].
-					spec package: 'PackageFormulas-Pharo11' ]
+					spec package: 'PackageFormulas' with: [ spec requires: #('PackageFormulas-Pharo11') ].
+					spec package: 'PackageFormulas-Pharo11' ].
+			spec
+				for: #'pharo12.x'
+				do: [ 
+					spec package: 'PackageFormulas' with: [ spec requires: #('PackageFormulas-Pharo12') ].
+					spec package: 'PackageFormulas-Pharo12' ] 
+			]
 ]

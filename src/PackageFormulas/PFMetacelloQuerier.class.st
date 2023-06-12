@@ -136,15 +136,6 @@ PFMetacelloQuerier >> parseRepositoryExpression [
 ]
 
 { #category : #testing }
-PFMetacelloQuerier >> prvHasCategoryNamed: aString [ 
-	"Answer <true> if aString matches a System category"
-
-	^ SystemOrganizer default categories anySatisfy: [ : cat |
-		self matchPackageName: aString and: cat ]
-
-]
-
-{ #category : #testing }
 PFMetacelloQuerier >> prvHasPackageInstalled [
 
 	| pkgNode |
