@@ -21,9 +21,9 @@ PackageFormulasTest >> formulas: anObject [
 
 { #category : #running }
 PackageFormulasTest >> setUp [
-	
+
 	super setUp.
-	formulas := PackageFormulas class organization listAtCategoryNamed: 'formulas'.
+	formulas := PackageFormulas class selectorsInProtocol: 'formulas'
 ]
 
 { #category : #tests }
