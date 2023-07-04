@@ -112,6 +112,15 @@ PFMetacelloQuerier >> package [
 ]
 
 { #category : #testing }
+PFMetacelloQuerier >> packageOrganizer [
+
+	SystemVersion current major >= 10
+		ifTrue: [ ^ (Smalltalk at: #RPackageOrganizer) default ].
+	^ (Smalltalk at: #SystemOrganizer) default
+
+]
+
+{ #category : #testing }
 PFMetacelloQuerier >> parseBaselineExpression [
 	"Answer a <RBMessageNode> matching the receiver's expected repository expression"
 
