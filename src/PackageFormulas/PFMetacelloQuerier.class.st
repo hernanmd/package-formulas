@@ -112,11 +112,11 @@ PFMetacelloQuerier >> package [
 ]
 
 { #category : #testing }
-PFMetacelloQuerier >> packageOrganizer [
+PFMetacelloQuerier >> packageOrganizerItems [
 
 	SystemVersion current major >= 10
-		ifTrue: [ ^ (Smalltalk at: #RPackageOrganizer) default ].
-	^ (Smalltalk at: #SystemOrganizer) default
+		ifTrue: [ ^ (Smalltalk at: #RPackageOrganizer) default packages ].
+	^ (Smalltalk at: #SystemOrganizer) default categories
 ]
 
 { #category : #testing }
@@ -147,8 +147,10 @@ PFMetacelloQuerier >> parseRepositoryExpression [
 PFMetacelloQuerier >> prvHasCategoryNamed: aString [ 
 	"Answer <true> if aString matches a System category"
 
-	^ self packageOrganizer categories anySatisfy: [ : cat |
-		self matchPackageName: aString and: cat ]
+	| pkgs |
+	(pkgs := self packageOrganizerItems) anyOne isString
+		ifFalse: [ pkgs := pkgs collect: #name ].
+	^ pkgs anySatisfy: [ : cat | self matchPackageName: aString and: cat ]
 ]
 
 { #category : #testing }
