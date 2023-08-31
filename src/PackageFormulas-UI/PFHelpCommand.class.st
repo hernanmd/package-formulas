@@ -29,6 +29,6 @@ PFHelpCommand class >> defaultName [
 PFHelpCommand >> execute [
 	"Open a Help"
 
-	PackageFormulasHelp open.
+	MicDocumentBrowser open.
 
 ]

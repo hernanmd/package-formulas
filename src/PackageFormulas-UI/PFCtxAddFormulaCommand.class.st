@@ -57,7 +57,7 @@ PFCtxAddFormulaCommand >> newFormulaNamed: aString category: formulaCategoriesSt
 PFCtxAddFormulaCommand >> newFormulaTemplate [
 
 	^ 'Metacello new
-		baseline: ''YouBaselineName'';
+		baseline: ''YourBaselineName'';
 		repository: ''github://your-username/your-repository/src'';
 		load'
 ]

@@ -87,6 +87,11 @@ PackageFormulasSelectorUI class >> buildRepositoryOperationsGroupWith: presenter
 			shortcutKey: 'I' asShortcut)
 				context: presenterInstance;
 				description: 'Open a web browser on the selected repository issues page');
+		register: ((PFCtxRemoveFormulaCommand 
+			forSpecWithIconNamed: #smallDelete
+			shortcutKey: 'R' asShortcut)
+				context: presenterInstance;
+				description: 'Remove the selected formula');
 		register: ((PFCtxRemoveBaselineCommand 
 			forSpecWithIconNamed: #smallDelete
 			shortcutKey: 'D' asShortcut)
