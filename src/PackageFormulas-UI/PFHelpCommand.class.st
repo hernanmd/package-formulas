@@ -29,6 +29,6 @@ PFHelpCommand class >> defaultName [
 PFHelpCommand >> execute [
 	"Open a Help"
 
-	MicDocumentBrowser open.
+	MicDocumentBrowserPresenter open.
 
 ]
