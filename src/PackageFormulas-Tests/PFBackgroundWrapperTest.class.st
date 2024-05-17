@@ -2,12 +2,14 @@
 A PFBackgroundWrapperTest is a test class for testing the behavior of PFBackgroundWrapper
 "
 Class {
-	#name : #PFBackgroundWrapperTest,
-	#superclass : #PFAbstractDecorationTest,
-	#category : #'PackageFormulas-Tests-Decorator'
+	#name : 'PFBackgroundWrapperTest',
+	#superclass : 'PFAbstractDecorationTest',
+	#category : 'PackageFormulas-Tests-Decorator',
+	#package : 'PackageFormulas-Tests',
+	#tag : 'Decorator'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PFBackgroundWrapperTest >> expectedSource [
 
 	^ String streamContents: [ : stream |
@@ -18,14 +20,14 @@ PFBackgroundWrapperTest >> expectedSource [
 			<< ' ] fork.' ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PFBackgroundWrapperTest >> setUp [
 
 	super setUp.
 	decorator := PFBackgroundWrapper new.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PFBackgroundWrapperTest >> testSourceCode [
 
 	self assert: decorator next equals: nil.

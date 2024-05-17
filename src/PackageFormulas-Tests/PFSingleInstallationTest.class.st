@@ -2,12 +2,14 @@
 A PFSingleInstallationTest is a test class for testing the behavior of PFSingleInstallation
 "
 Class {
-	#name : #PFSingleInstallationTest,
-	#superclass : #PFAbstractDecorationTest,
-	#category : #'PackageFormulas-Tests-Decorator'
+	#name : 'PFSingleInstallationTest',
+	#superclass : 'PFAbstractDecorationTest',
+	#category : 'PackageFormulas-Tests-Decorator',
+	#package : 'PackageFormulas-Tests',
+	#tag : 'Decorator'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PFSingleInstallationTest >> expectedSource [
 
 	^ 'Metacello new
@@ -24,14 +26,14 @@ Gofer new
 		load.'
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PFSingleInstallationTest >> setUp [
 
 	super setUp.
 	decorator := PFSingleInstallation new.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PFSingleInstallationTest >> testUsingFormulas [
 
 	self assert: decorator sourceCode trimBoth equals: String empty.

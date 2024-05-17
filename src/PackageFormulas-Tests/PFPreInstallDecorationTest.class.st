@@ -2,19 +2,21 @@
 A PFPreInstallDecorationTest is a test class for testing the behavior of PFPreInstallDecoration
 "
 Class {
-	#name : #PFPreInstallDecorationTest,
-	#superclass : #PFAbstractDecorationTest,
-	#category : #'PackageFormulas-Tests-Decorator'
+	#name : 'PFPreInstallDecorationTest',
+	#superclass : 'PFAbstractDecorationTest',
+	#category : 'PackageFormulas-Tests-Decorator',
+	#package : 'PackageFormulas-Tests',
+	#tag : 'Decorator'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PFPreInstallDecorationTest >> setUp [
 
 	super setUp.
 	decorator := PFPreInstallDecoration new.
 ]
 
-{ #category : #test }
+{ #category : 'tests' }
 PFPreInstallDecorationTest >> testSourceCode [
 
 	self assert: decorator next equals: nil.

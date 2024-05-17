@@ -2,19 +2,21 @@
 A PFPostInstallDecorationTest is a test class for testing the behavior of PFPostInstallDecoration
 "
 Class {
-	#name : #PFPostInstallDecorationTest,
-	#superclass : #PFAbstractDecorationTest,
-	#category : #'PackageFormulas-Tests-Decorator'
+	#name : 'PFPostInstallDecorationTest',
+	#superclass : 'PFAbstractDecorationTest',
+	#category : 'PackageFormulas-Tests-Decorator',
+	#package : 'PackageFormulas-Tests',
+	#tag : 'Decorator'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PFPostInstallDecorationTest >> setUp [
 
 	super setUp.
 	decorator := PFPostInstallDecoration new.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PFPostInstallDecorationTest >> testSourceCode [
 
 	self assert: decorator next equals: nil.

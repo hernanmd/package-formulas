@@ -2,15 +2,17 @@
 A PFMetacelloQuerierTest is a test class for testing the behavior of PFMetacelloQuerier
 "
 Class {
-	#name : #PFMetacelloQuerierTest,
-	#superclass : #PackageFormulasAbstractTest,
+	#name : 'PFMetacelloQuerierTest',
+	#superclass : 'PackageFormulasAbstractTest',
 	#instVars : [
 		'querier'
 	],
-	#category : #'PackageFormulas-Tests-Core'
+	#category : 'PackageFormulas-Tests-Core',
+	#package : 'PackageFormulas-Tests',
+	#tag : 'Core'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PFMetacelloQuerierTest >> setUp [
 
 	super setUp.
@@ -20,7 +22,7 @@ PFMetacelloQuerierTest >> setUp [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PFMetacelloQuerierTest >> testDefinitionName [
 
 	self assert: (querier definitionName isKindOf: String).
@@ -42,7 +44,7 @@ PFMetacelloQuerierTest >> testDefinitionName [
 	self should: [ querier definitionName ] raise: MessageNotUnderstood.
 ]
 
-{ #category : #test }
+{ #category : 'tests' }
 PFMetacelloQuerierTest >> testHasInstallerInstalled [
 
 	self assert: querier hasInstallerInstalled.
@@ -51,7 +53,7 @@ PFMetacelloQuerierTest >> testHasInstallerInstalled [
 
 ]
 
-{ #category : #test }
+{ #category : 'tests' }
 PFMetacelloQuerierTest >> testHasPackageInstalled [
 
 	self assert: querier hasPackageInstalled.

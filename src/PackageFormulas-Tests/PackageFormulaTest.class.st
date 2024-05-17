@@ -1,17 +1,19 @@
 Class {
-	#name : #PackageFormulaTest,
-	#superclass : #PackageFormulasAbstractTest,
-	#category : #'PackageFormulas-Tests-Core'
+	#name : 'PackageFormulaTest',
+	#superclass : 'PackageFormulasAbstractTest',
+	#category : 'PackageFormulas-Tests-Core',
+	#package : 'PackageFormulas-Tests',
+	#tag : 'Core'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PackageFormulaTest >> testAst [
 
 	self assert: (packageFormula ast isKindOf: RBMethodNode).
 	self assert: (packageFormula ast references: 'Metacello').
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PackageFormulaTest >> testCategories [
 
 	self assert: (packageFormula categories isKindOf: Collection).
@@ -24,7 +26,7 @@ PackageFormulaTest >> testCategories [
 	self assertCollection: packageFormulaAlt categories hasSameElements: #(#general).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PackageFormulaTest >> testCollectFormulaCategories [
 
 	self assert: (packageFormula collectFormulaCategories isKindOf: Collection).
@@ -37,35 +39,35 @@ PackageFormulaTest >> testCollectFormulaCategories [
 	self assertCollection: packageFormulaAlt collectFormulaCategories hasSameElements: #(#general).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PackageFormulaTest >> testHasInstallerInstalled [
 
 	self assert: packageFormula hasInstallerInstalled.
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PackageFormulaTest >> testHasPackageInstalled [
 
 	self assert: (packageFormula hasPackageInstalled isKindOf: Boolean).
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PackageFormulaTest >> testInfo [
 
 	self assert: (packageFormula info isKindOf: PackageFormulaInfo).
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PackageFormulaTest >> testIsInstalled [
 
 	self assert: (packageFormula isInstalled isKindOf: Boolean).
 	self should: [ packageFormulaEmpty isInstalled ] raise: Error.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PackageFormulaTest >> testQuerier [
 
 	self assert: (packageFormula querier isKindOf: PFAbstractQuerier).
@@ -76,7 +78,7 @@ PackageFormulaTest >> testQuerier [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PackageFormulaTest >> testRepositorySchemas [
 
 	self assert: (self packageFormula repositorySchemas isKindOf: Dictionary).
@@ -85,7 +87,7 @@ PackageFormulaTest >> testRepositorySchemas [
 	self assert: (self packageFormula repositorySchemas at: 'github') equals: 'https://github.com/'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PackageFormulaTest >> testSelector [
 
 	self assert: (packageFormula selector isKindOf: Symbol).
@@ -95,7 +97,7 @@ PackageFormulaTest >> testSelector [
 	self assert: packageFormulaEmpty selector equals: #formula:
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PackageFormulaTest >> testSourceCode [
 
 	| expectedSourceCode |
@@ -104,7 +106,7 @@ PackageFormulaTest >> testSourceCode [
 	self assert: packageFormula sourceCode equals: expectedSourceCode.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PackageFormulaTest >> testlessOrEqualThan [
 
 	self assert: packageFormula <= packageFormulaAlt

@@ -1,6 +1,6 @@
 Class {
-	#name : #PackageFormulaInfoTest,
-	#superclass : #PackageFormulasAbstractTest,
+	#name : 'PackageFormulaInfoTest',
+	#superclass : 'PackageFormulasAbstractTest',
 	#instVars : [
 		'packageFormulaInfoGofer',
 		'packageFormulaInfoEmpty',
@@ -8,24 +8,26 @@ Class {
 		'packageFormulaInfoAlt',
 		'packageFormulaInfoWithBranchName'
 	],
-	#category : #'PackageFormulas-Tests-Core'
+	#category : 'PackageFormulas-Tests-Core',
+	#package : 'PackageFormulas-Tests',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormulaInfoTest >> packageFormulaInfo [
 	" Answer the packageFormulaInfo of this PackageFormulaInfoTest "
 
 	^ packageFormulaInfo
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormulaInfoTest >> packageFormulaInfo: anObject [
 	" Sets the packageFormulaInfo of this PackageFormulaInfoTest "
 
 	packageFormulaInfo := anObject
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PackageFormulaInfoTest >> setUp [
 
 	super setUp.
@@ -36,7 +38,7 @@ PackageFormulaInfoTest >> setUp [
 	packageFormulaInfoWithBranchName := PackageFormulaInfo for: self newMockPackageFormulaWithBranchName.
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PackageFormulaInfoTest >> testBuildGitHubLink [
 
 	| repositoryArgument |
@@ -54,7 +56,7 @@ PackageFormulaInfoTest >> testBuildGitHubLink [
 		equals: 'github://pharo-contributions/Artefact'
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PackageFormulaInfoTest >> testBuildHTTPHomeLink [
 
 	self 
@@ -82,7 +84,7 @@ PackageFormulaInfoTest >> testBuildHTTPHomeLink [
 
 ]
 
-{ #category : #test }
+{ #category : 'tests' }
 PackageFormulaInfoTest >> testIsBroken [
 
 	self deny: packageFormulaInfo isBroken.
@@ -90,7 +92,7 @@ PackageFormulaInfoTest >> testIsBroken [
 	self assert: packageFormulaInfo isBroken.
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PackageFormulaInfoTest >> testParseRepositoryExpression [
 
 	self 
@@ -102,7 +104,7 @@ PackageFormulaInfoTest >> testParseRepositoryExpression [
 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PackageFormulaInfoTest >> testParseRepositoryHomeAlt [
 
 	self 
@@ -119,7 +121,7 @@ PackageFormulaInfoTest >> testParseRepositoryHomeAlt [
 		equals: 'github://pharo-contributions/Artefact'.
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PackageFormulaInfoTest >> testQuerier [
 
 	self assert: (packageFormulaInfo querier isKindOf: PFAbstractQuerier).
@@ -129,7 +131,7 @@ PackageFormulaInfoTest >> testQuerier [
 	
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PackageFormulaInfoTest >> testUrlForSchema [
 
 	self 
@@ -150,7 +152,7 @@ PackageFormulaInfoTest >> testUrlForSchema [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PackageFormulaInfoTest >> testUrlForSegment [
 
 	self 
@@ -170,7 +172,7 @@ PackageFormulaInfoTest >> testUrlForSegment [
 		raise: SubscriptOutOfBounds
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PackageFormulaInfoTest >> testWebLinkHome [
 
 	self assert: (packageFormulaInfo webLinkHome isKindOf: String).
@@ -191,7 +193,7 @@ PackageFormulaInfoTest >> testWebLinkHome [
 		equals: 'https://github.com/hernanmd/package-formulas'.
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PackageFormulaInfoTest >> testWebLinkIssues [
 
 	self assert: (packageFormulaInfo webLinkIssues isKindOf: String).

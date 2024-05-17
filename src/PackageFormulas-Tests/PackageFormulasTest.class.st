@@ -1,32 +1,34 @@
 Class {
-	#name : #PackageFormulasTest,
-	#superclass : #TestCase,
+	#name : 'PackageFormulasTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'formulas'
 	],
-	#category : #'PackageFormulas-Tests-Core'
+	#category : 'PackageFormulas-Tests-Core',
+	#package : 'PackageFormulas-Tests',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormulasTest >> formulas [
 
 	^ formulas
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormulasTest >> formulas: anObject [
 
 	formulas := anObject
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PackageFormulasTest >> setUp [
 
 	super setUp.
 	formulas := PackageFormulas class selectorsInProtocol: 'formulas'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PackageFormulasTest >> testFormulasFor [
 
 	| someFormulas |
@@ -42,7 +44,7 @@ PackageFormulasTest >> testFormulasFor [
 		description: 'It tests all retrieved formulas are package formula'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PackageFormulasTest >> testHasFormulas [
 
 	self

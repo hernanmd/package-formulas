@@ -1,13 +1,15 @@
 Class {
-	#name : #PFAbstractDecorationTest,
-	#superclass : #PackageFormulasAbstractTest,
+	#name : 'PFAbstractDecorationTest',
+	#superclass : 'PackageFormulasAbstractTest',
 	#instVars : [
 		'decorator'
 	],
-	#category : #'PackageFormulas-Tests-Decorator'
+	#category : 'PackageFormulas-Tests-Decorator',
+	#package : 'PackageFormulas-Tests',
+	#tag : 'Decorator'
 }
 
-{ #category : #test }
+{ #category : 'test' }
 PFAbstractDecorationTest >> expectedSource [
 
 	^ 'Metacello new

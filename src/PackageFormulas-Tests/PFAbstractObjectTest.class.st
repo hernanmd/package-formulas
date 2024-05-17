@@ -2,15 +2,17 @@
 A PFAbstractObjectTest is a test class for testing the behavior of PFAbstractObject
 "
 Class {
-	#name : #PFAbstractObjectTest,
-	#superclass : #PackageFormulasAbstractTest,
+	#name : 'PFAbstractObjectTest',
+	#superclass : 'PackageFormulasAbstractTest',
 	#instVars : [
 		'querier'
 	],
-	#category : #'PackageFormulas-Tests-Core'
+	#category : 'PackageFormulas-Tests-Core',
+	#package : 'PackageFormulas-Tests',
+	#tag : 'Core'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PFAbstractObjectTest >> setUp [
 
 	super setUp.
@@ -19,13 +21,13 @@ PFAbstractObjectTest >> setUp [
 		yourself.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PFAbstractObjectTest >> testPackageFormula [
 
 	self assert: (querier packageFormula isKindOf: PackageFormula)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PFAbstractObjectTest >> testPackageFormulaAst [
 
 	self assert: (querier packageFormulaAst isKindOf: RBMethodNode).

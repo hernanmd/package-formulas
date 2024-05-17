@@ -1,69 +1,71 @@
 Class {
-	#name : #PackageFormulaTestResource,
-	#superclass : #TestResource,
-	#category : #'PackageFormulas-Tests-Core'
+	#name : 'PackageFormulaTestResource',
+	#superclass : 'TestResource',
+	#category : 'PackageFormulas-Tests-Core',
+	#package : 'PackageFormulas-Tests',
+	#tag : 'Core'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PackageFormulaTestResource >> newMockEmptyPackageFormula [
 
 	^ PackageFormula newFrom: self samplePragmaEmpty
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PackageFormulaTestResource >> newMockEmptyPackageFormulaAlt [
 
 	^  PackageFormula newFrom: self samplePragmaEmpty
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PackageFormulaTestResource >> newMockEmptyPackageFormulaGofer [
 
 	^  PackageFormula newFrom: self samplePragmaEmpty
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PackageFormulaTestResource >> newMockPackageFormula [
 
 	^ PackageFormula newFrom: self samplePragma
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PackageFormulaTestResource >> newMockPackageFormulaAlt [
 
 	^ PackageFormula newFrom: self samplePragmaAlt
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PackageFormulaTestResource >> newMockPackageFormulaGofer [
 
 	^ PackageFormula newFrom: self samplePragmaGofer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PackageFormulaTestResource >> newMockPackageFormulaNoBaseline [
 
 	^ PackageFormula newFrom: self samplePragmaNoBaseline
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PackageFormulaTestResource >> newMockPackageFormulaWithBranchName [
 
 	^  PackageFormula newFrom: self samplePragmaWithBranchName
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PackageFormulaTestResource >> newNonPackageFormula [
 
 	^ PackageFormula newFrom: self samplePragmaNonFormula
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormulaTestResource >> nonSampleFormula [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormulaTestResource >> sampleFormula [
 	<formula: #general>
 
@@ -73,7 +75,7 @@ PackageFormulaTestResource >> sampleFormula [
 		load.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormulaTestResource >> sampleFormulaAlt [
 	<formula: #general>
 
@@ -83,14 +85,14 @@ PackageFormulaTestResource >> sampleFormulaAlt [
 		load
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormulaTestResource >> sampleFormulaEmpty [
 	<formula: #general>
 	<formula: #testing>
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormulaTestResource >> sampleFormulaNoBaseline [
 	<formula: #general>
 
@@ -99,7 +101,7 @@ PackageFormulaTestResource >> sampleFormulaNoBaseline [
 		load.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormulaTestResource >> sampleFormulaWithBranchName [
 	<formula: #general>
 
@@ -109,7 +111,7 @@ PackageFormulaTestResource >> sampleFormulaWithBranchName [
 		load.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormulaTestResource >> sampleFormulasGofer [
 	<formula: #math>
 
@@ -119,43 +121,43 @@ PackageFormulaTestResource >> sampleFormulasGofer [
 		load.
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PackageFormulaTestResource >> samplePragma [
 
 	^ (self class >> #sampleFormula) pragmas anyOne
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PackageFormulaTestResource >> samplePragmaAlt [
 
 	^ (self class >> #sampleFormulaAlt) pragmas anyOne
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PackageFormulaTestResource >> samplePragmaEmpty [
 
 	^ (self class >> #sampleFormulaEmpty) pragmas anyOne
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PackageFormulaTestResource >> samplePragmaGofer [
 
 	^ (self class >> #sampleFormulasGofer) pragmas anyOne
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PackageFormulaTestResource >> samplePragmaNoBaseline [
 
 	^ (self class >> #sampleFormulaNoBaseline) pragmas anyOne
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PackageFormulaTestResource >> samplePragmaNonFormula [
 
 	^ (self class >> #nonSampleFormula) pragmas anyOne
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PackageFormulaTestResource >> samplePragmaWithBranchName [
 
 	^ (self class >> #sampleFormulaWithBranchName) pragmas anyOne
