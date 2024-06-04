@@ -3,12 +3,14 @@ Wraps a Pharo expression to measure its execution time.
 
 "
 Class {
-	#name : #PFBenchmarkWrapper,
-	#superclass : #PFWrapInstallDecoration,
-	#category : #'PackageFormulas-Decorator'
+	#name : 'PFBenchmarkWrapper',
+	#superclass : 'PFWrapInstallDecoration',
+	#category : 'PackageFormulas-Decorator',
+	#package : 'PackageFormulas',
+	#tag : 'Decorator'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PFBenchmarkWrapper >> sourceCode [
 
 	" Private - See superimplementor's comment"

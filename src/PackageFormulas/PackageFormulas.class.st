@@ -10,19 +10,21 @@ To use another class to store the formulas, subclass this class and add ""formul
 - If the category has two or more words, they must be separated by the Character $_
 "
 Class {
-	#name : #PackageFormulas,
-	#superclass : #Object,
-	#category : #'PackageFormulas-Containers'
+	#name : 'PackageFormulas',
+	#superclass : 'Object',
+	#category : 'PackageFormulas-Containers',
+	#package : 'PackageFormulas',
+	#tag : 'Containers'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormulas class >> @ formulaName [
 	"Answer a <PackageFormula> identified by formulaName <Symbol>"
 	
 	^ (self class >> formulaName) formula
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> abstractMath [
 	<formula: #math>
 
@@ -32,7 +34,7 @@ PackageFormulas class >> abstractMath [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> aconcagua [
 	<formula: #General>
 
@@ -42,14 +44,14 @@ PackageFormulas class >> aconcagua [
 		load.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormulas class >> allIn: aClass [
 	"Answer a <Collection> of <PackageFormula> found in aClass"
 
 	^ (aClass methods select: #hasPragma) collect: #formula
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormulas class >> allNamed: aSymbol in: aClass [
 	"Answer a <Collection> of all <PackageFormula> found in methods of aClass whose selector is aSymbol."
 	
@@ -59,7 +61,7 @@ PackageFormulas class >> allNamed: aSymbol in: aClass [
 				ifTrue: [ stream nextPut: formula ] ] ]
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> artefact [
 	<formula: #general>
 
@@ -69,7 +71,7 @@ PackageFormulas class >> artefact [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> autotest [
 	<formula: #testing>
 
@@ -79,7 +81,7 @@ PackageFormulas class >> autotest [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> awsSdkSmalltalk [
 	<formula: #general>
 
@@ -90,7 +92,7 @@ PackageFormulas class >> awsSdkSmalltalk [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> badges [
 	<formula: #IDE>
 
@@ -101,7 +103,7 @@ PackageFormulas class >> badges [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> bloc [
 	<formula: #graphics>
 
@@ -111,7 +113,7 @@ PackageFormulas class >> bloc [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> blocPac [
 	<formula: #graphics>
 
@@ -121,7 +123,7 @@ PackageFormulas class >> blocPac [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> blockStyler [
 	<formula: #IDE>
 
@@ -132,7 +134,7 @@ PackageFormulas class >> blockStyler [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> boardwalk [
 	<formula: #web>
 
@@ -142,7 +144,7 @@ PackageFormulas class >> boardwalk [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> brick [
 	<formula: #graphics>
 
@@ -152,7 +154,7 @@ PackageFormulas class >> brick [
         load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> bugReport [
 	<formula: #Debugging>
 
@@ -162,7 +164,7 @@ PackageFormulas class >> bugReport [
     	load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> cade [
 	<formula: #component>
 	<formula: #ui>
@@ -173,7 +175,7 @@ PackageFormulas class >> cade [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> cannon [
 	<formula: #general>
 
@@ -183,7 +185,7 @@ PackageFormulas class >> cannon [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> casino [
 	<formula: #software_engineering>
 
@@ -193,7 +195,7 @@ PackageFormulas class >> casino [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> cdb [
 	<formula: #databases>
 
@@ -203,7 +205,7 @@ PackageFormulas class >> cdb [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> chanel [
 	<formula: #general>
 
@@ -213,7 +215,7 @@ PackageFormulas class >> chanel [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> chest [
 	<formula: #debugging>
 	
@@ -223,7 +225,7 @@ PackageFormulas class >> chest [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> citezen [
 	<formula: #Documentation>
 
@@ -233,7 +235,7 @@ PackageFormulas class >> citezen [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> collectionExtensions [
 	<formula: #collections>
 
@@ -243,7 +245,7 @@ PackageFormulas class >> collectionExtensions [
     	load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> colorExtensions [
 	<formula: #graphics>
 
@@ -253,7 +255,7 @@ PackageFormulas class >> colorExtensions [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> commonUtils [
 	<formula: #general>
 
@@ -263,7 +265,7 @@ PackageFormulas class >> commonUtils [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> compendium [
 	<formula: #IDE>
 
@@ -275,7 +277,7 @@ PackageFormulas class >> compendium [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> constraintsLayout [
 	<formula: #graphics>
 
@@ -285,7 +287,7 @@ PackageFormulas class >> constraintsLayout [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> consultingDetective [
 	<formula: #general>
 
@@ -296,7 +298,7 @@ PackageFormulas class >> consultingDetective [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> containersArray2D [
 	<formula: #collections>
 
@@ -306,7 +308,7 @@ PackageFormulas class >> containersArray2D [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> containersBTree [
 	<formula: #collections>
 
@@ -317,7 +319,7 @@ PackageFormulas class >> containersBTree [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> containersEssentials [
 	<formula: #collections>
 
@@ -329,7 +331,7 @@ PackageFormulas class >> containersEssentials [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> containersGrid [
 	<formula: #collections>
 
@@ -340,7 +342,7 @@ PackageFormulas class >> containersGrid [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> containersHashTable [
 	<formula: #collections>
 
@@ -350,7 +352,7 @@ PackageFormulas class >> containersHashTable [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> containersKeyedTree [
 	<formula: #collections>
 
@@ -360,7 +362,7 @@ PackageFormulas class >> containersKeyedTree [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> containersLinkedList [
 	<formula: #collections>
 
@@ -371,7 +373,7 @@ PackageFormulas class >> containersLinkedList [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> containersOrderPreservingDictionary [
 	<formula: #collections>
 
@@ -381,7 +383,7 @@ PackageFormulas class >> containersOrderPreservingDictionary [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> containersOrderedMultiMap [
 	<formula: #collections>
 
@@ -392,7 +394,7 @@ PackageFormulas class >> containersOrderedMultiMap [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> containersOrderedSet [
 	<formula: #collections>
 
@@ -402,7 +404,7 @@ PackageFormulas class >> containersOrderedSet [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> containersPropertyEnvironment [
 	<formula: #collections>
 
@@ -413,7 +415,7 @@ PackageFormulas class >> containersPropertyEnvironment [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> containersQueue [
 	<formula: #collections>
 
@@ -423,7 +425,7 @@ PackageFormulas class >> containersQueue [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> containersRope [
 	<formula: #collections>
 
@@ -434,7 +436,7 @@ PackageFormulas class >> containersRope [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> containersRunArraye [
 	<formula: #collections>
 
@@ -444,7 +446,7 @@ PackageFormulas class >> containersRunArraye [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> containersStack [
 	<formula: #collections>
 
@@ -454,7 +456,7 @@ PackageFormulas class >> containersStack [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> containersTrie [
 	<formula: #collections>
 
@@ -464,7 +466,7 @@ PackageFormulas class >> containersTrie [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> containersUniqueOrdered [
 	<formula: #collections>
 
@@ -474,7 +476,7 @@ PackageFormulas class >> containersUniqueOrdered [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> cormas [
 	<formula: #science>
 
@@ -484,7 +486,7 @@ PackageFormulas class >> cormas [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> coverageBrowser [
 	<formula: #testing>
 	
@@ -494,7 +496,7 @@ PackageFormulas class >> coverageBrowser [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> cryptoNacl [
 	<formula: #security>
 
@@ -504,7 +506,7 @@ PackageFormulas class >> cryptoNacl [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> cryptography [
 	<formula: #security>
 
@@ -514,7 +516,7 @@ PackageFormulas class >> cryptography [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> dataBindings [
 	<formula: #web>
 
@@ -525,7 +527,7 @@ PackageFormulas class >> dataBindings [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> dataFrame [
 	<formula: #science>
 
@@ -535,7 +537,7 @@ PackageFormulas class >> dataFrame [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> deepTraverser [
 	<formula: #general>
 
@@ -545,7 +547,7 @@ PackageFormulas class >> deepTraverser [
     	load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> documentationSupport [
 	<formula: #documentation>
 
@@ -555,7 +557,7 @@ PackageFormulas class >> documentationSupport [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> elasticsearch [
 	<formula: #general>
 
@@ -565,7 +567,7 @@ PackageFormulas class >> elasticsearch [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> espell [
 	<formula: #General>
 
@@ -575,7 +577,7 @@ PackageFormulas class >> espell [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> ethel [
 	<formula: #web>
 
@@ -585,7 +587,7 @@ PackageFormulas class >> ethel [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> fame [
 	<formula: #software_engineering>
 
@@ -595,7 +597,7 @@ PackageFormulas class >> fame [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> famix [
 	<formula: #software_engineering>
 
@@ -605,7 +607,7 @@ PackageFormulas class >> famix [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> fast [
 	<formula: #software_engineering>
 
@@ -615,7 +617,7 @@ PackageFormulas class >> fast [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> fileDialog [
 	<formula: #ui>
 
@@ -625,7 +627,7 @@ PackageFormulas class >> fileDialog [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> fileLibraryHelper [
 	<formula: #web>
 
@@ -636,7 +638,7 @@ PackageFormulas class >> fileLibraryHelper [
     	load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> fileMan [
 	<formula: #general>
 
@@ -647,7 +649,7 @@ PackageFormulas class >> fileMan [
 	(Smalltalk at: #ConfigurationOfFileMan) perform: #load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> fixedDecimal [
 	<formula: #math>
 
@@ -657,7 +659,7 @@ PackageFormulas class >> fixedDecimal [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> fog [
 	<formula: #blockchain>
 
@@ -667,7 +669,7 @@ PackageFormulas class >> fog [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> fogEvm [
 	<formula: #blockchain>
 
@@ -677,7 +679,7 @@ PackageFormulas class >> fogEvm [
 		load.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormulas class >> for: aCategorySymbol [
 	"Answer a <Collection> of <PackageFormula> matching receiver's formulas in aCategorySymbol"
 
@@ -686,7 +688,7 @@ PackageFormulas class >> for: aCategorySymbol [
 		in: self class
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> fsmEditor [
 	<formula: #General>
 
@@ -697,7 +699,7 @@ PackageFormulas class >> fsmEditor [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> function [
 	<formula: #math>
 
@@ -707,7 +709,7 @@ PackageFormulas class >> function [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> gadm [
 	<formula: #GIS>
 
@@ -717,7 +719,7 @@ PackageFormulas class >> gadm [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> garage [
 	<formula: #databases>
 
@@ -727,7 +729,7 @@ PackageFormulas class >> garage [
     	load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> geoJSON [
 	<formula: #general>
 
@@ -737,7 +739,7 @@ PackageFormulas class >> geoJSON [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> geoSphere [
 	<formula: #GIS>
 
@@ -747,7 +749,7 @@ PackageFormulas class >> geoSphere [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> geometry [
 	<formula: #math>
 
@@ -757,7 +759,7 @@ PackageFormulas class >> geometry [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> getText [
 	<formula: #general>
 
@@ -767,7 +769,7 @@ PackageFormulas class >> getText [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> ghost [
 	<formula: #IDE>
 
@@ -778,7 +780,7 @@ PackageFormulas class >> ghost [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> gitBridge [
 	<formula: #interaction>
 
@@ -788,7 +790,7 @@ PackageFormulas class >> gitBridge [
     	load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> graphQl [
 	<formula: #web>
 
@@ -798,7 +800,7 @@ PackageFormulas class >> graphQl [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> graphViz [
 	<formula: #graphics>
 
@@ -808,7 +810,7 @@ PackageFormulas class >> graphViz [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> grease [
 	<formula: #general>
 
@@ -818,7 +820,7 @@ PackageFormulas class >> grease [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> harbour [
 	<formula: #IDE>
 
@@ -830,7 +832,7 @@ PackageFormulas class >> harbour [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> hashTable [
 	<formula: #collections>
 
@@ -840,7 +842,7 @@ PackageFormulas class >> hashTable [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> heimdall [
 	<formula: #web>
 
@@ -852,7 +854,7 @@ PackageFormulas class >> heimdall [
     	load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> highchartsSt [
 	<formula: #web>
 
@@ -862,7 +864,7 @@ PackageFormulas class >> highchartsSt [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> hunter [
 	<formula: #software_engineering>
 
@@ -872,7 +874,7 @@ PackageFormulas class >> hunter [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> iPharo [
 	<formula: #science>
 
@@ -882,7 +884,7 @@ PackageFormulas class >> iPharo [
 		load:'default'
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> iconFactory [
 	<formula: #graphics>
 
@@ -893,7 +895,7 @@ PackageFormulas class >> iconFactory [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> infinity [
 	<formula: #math>
 
@@ -903,7 +905,7 @@ PackageFormulas class >> infinity [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> ipfs [
 	<formula: #Blockchain>
 
@@ -913,7 +915,7 @@ PackageFormulas class >> ipfs [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> iso3166 [
 	<formula: #General>
 
@@ -924,7 +926,7 @@ PackageFormulas class >> iso3166 [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> iterators [
 	<formula: #collections>
 
@@ -934,7 +936,7 @@ PackageFormulas class >> iterators [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> kendrick [
 	<formula: #science>
 
@@ -945,7 +947,7 @@ PackageFormulas class >> kendrick [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> kobold [
 	<formula: #web>
 
@@ -955,7 +957,7 @@ PackageFormulas class >> kobold [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> lapack [
 	<formula: #math>
 	<formula: #bindings>
@@ -966,7 +968,7 @@ PackageFormulas class >> lapack [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> launchpad [
 	<formula: #IDE>
 
@@ -976,7 +978,7 @@ PackageFormulas class >> launchpad [
 		load: 'Development'.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> libStemmer [
 	<formula: #science>
 
@@ -986,7 +988,7 @@ PackageFormulas class >> libStemmer [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> libVlc [
 	<formula: #bindings>
 
@@ -997,7 +999,7 @@ PackageFormulas class >> libVlc [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> libusbPharo [
 	<formula: #IOT>
 	<formula: #bindings>
@@ -1008,7 +1010,7 @@ PackageFormulas class >> libusbPharo [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> literateSmalltalk [
 	<formula: #IDE>
 
@@ -1019,7 +1021,7 @@ PackageFormulas class >> literateSmalltalk [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> liveWeb [
 	<formula: #web>
 
@@ -1029,7 +1031,7 @@ PackageFormulas class >> liveWeb [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> mDBaseGenerator [
 	<formula: #web>
 
@@ -1039,7 +1041,7 @@ PackageFormulas class >> mDBaseGenerator [
     	load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> mPyTools [
 	<formula: #bindings>
 	<formula: #python>
@@ -1051,7 +1053,7 @@ PackageFormulas class >> mPyTools [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> magicLiteralsSelector [
 	<formula: #IDE>
 
@@ -1062,7 +1064,7 @@ PackageFormulas class >> magicLiteralsSelector [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> magritte [
 	<formula: #general>
 
@@ -1072,7 +1074,7 @@ PackageFormulas class >> magritte [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> materialColors [
 	<formula: #graphics>
 
@@ -1082,7 +1084,7 @@ PackageFormulas class >> materialColors [
     	load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> mathemagics [
 	<formula: #math>
 
@@ -1093,7 +1095,7 @@ PackageFormulas class >> mathemagics [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> methodProxies [
 	<formula: #general>
 
@@ -1103,7 +1105,7 @@ PackageFormulas class >> methodProxies [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> methodTrackers [
 	<formula: #testing>
 	
@@ -1113,7 +1115,7 @@ PackageFormulas class >> methodTrackers [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> microwitch [
 	<formula: #bindings>
 	<formula: #python>
@@ -1125,7 +1127,7 @@ PackageFormulas class >> microwitch [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> mirage [
 	<formula: #IDE>
 
@@ -1136,7 +1138,7 @@ PackageFormulas class >> mirage [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> mocketry [
 	<formula: #testing>
 
@@ -1146,7 +1148,7 @@ PackageFormulas class >> mocketry [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> molecule [
 	<formula: #component>
 
@@ -1156,7 +1158,7 @@ PackageFormulas class >> molecule [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> moose [
 	<formula: #software_engineering>
 
@@ -1166,7 +1168,7 @@ PackageFormulas class >> moose [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> mqtt [
 	<formula: #general>
 
@@ -1177,7 +1179,7 @@ PackageFormulas class >> mqtt [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> mustache [
 	<formula: #general>
 
@@ -1187,7 +1189,7 @@ PackageFormulas class >> mustache [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> mutalk [
 	<formula: #testing>
 
@@ -1197,7 +1199,7 @@ PackageFormulas class >> mutalk [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> neoCsv [
 	<formula: #general>
 	<formula: #parsing>
@@ -1208,7 +1210,7 @@ PackageFormulas class >> neoCsv [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> neoJson [
 	<formula: #general>
 	<formula: #parsing>
@@ -1219,7 +1221,7 @@ PackageFormulas class >> neoJson [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> openApi [
 	<formula: #general>
 
@@ -1229,7 +1231,7 @@ PackageFormulas class >> openApi [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> orderPreservingDictionary [
 	<formula: #collections>
 
@@ -1239,7 +1241,7 @@ PackageFormulas class >> orderPreservingDictionary [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> osSubprocess [
 	<formula: #general>
 
@@ -1250,7 +1252,7 @@ PackageFormulas class >> osSubprocess [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> osc [
 	<formula: #interaction>
 
@@ -1260,7 +1262,7 @@ PackageFormulas class >> osc [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> p3 [
 	<formula: #databases>
 
@@ -1270,7 +1272,7 @@ PackageFormulas class >> p3 [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> p3glorp [
 	<formula: #databases>
 
@@ -1280,7 +1282,7 @@ PackageFormulas class >> p3glorp [
 		load: 'glorp'.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> passwordCrypt [
 	<formula: #bindings>
 	<formula: #security>
@@ -1291,7 +1293,7 @@ PackageFormulas class >> passwordCrypt [
  		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> pastell [
 	<formula: #XML>
 
@@ -1301,7 +1303,7 @@ PackageFormulas class >> pastell [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> petitParser [
 	<formula: #general>
 
@@ -1312,7 +1314,7 @@ PackageFormulas class >> petitParser [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> pharoEnhacements [
 	<formula: #IDE>
 
@@ -1323,7 +1325,7 @@ PackageFormulas class >> pharoEnhacements [
 		load: #('ALL')
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> pharoI18n [
 	<formula: #IDE>
 
@@ -1334,7 +1336,7 @@ PackageFormulas class >> pharoI18n [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> pharoLauncher [
 	<formula: #IDE>
 
@@ -1344,7 +1346,7 @@ PackageFormulas class >> pharoLauncher [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> pharoMinizinc [
 	<formula: #bindings>
 
@@ -1354,7 +1356,7 @@ PackageFormulas class >> pharoMinizinc [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> pharoODBC [
 	<formula: #databases>
 
@@ -1364,7 +1366,7 @@ PackageFormulas class >> pharoODBC [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> pharoSQLite3 [
 	<formula: #databases>
 
@@ -1374,7 +1376,7 @@ PackageFormulas class >> pharoSQLite3 [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> pharoSpaceAndTime [
 	<formula: #testing>
 
@@ -1384,7 +1386,7 @@ PackageFormulas class >> pharoSpaceAndTime [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> pharoThings [
 	<formula: #IOT>
 
@@ -1394,7 +1396,7 @@ PackageFormulas class >> pharoThings [
 		load: #(RemoteDevServer Raspberry).
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> phoedown [
 	<formula: #bindings>
 
@@ -1405,7 +1407,7 @@ PackageFormulas class >> phoedown [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> polyMath [
 	<formula: #science>
 
@@ -1415,7 +1417,7 @@ PackageFormulas class >> polyMath [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> pots [
 	<formula: #IOT>
 
@@ -1425,7 +1427,7 @@ PackageFormulas class >> pots [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> projectFramework [
 	<formula: #general>
 
@@ -1435,7 +1437,7 @@ PackageFormulas class >> projectFramework [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> punQLite [
 	<formula: #databases>
 
@@ -1445,7 +1447,7 @@ PackageFormulas class >> punQLite [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> quickAccess [
 	<formula: #IDE>
 
@@ -1456,7 +1458,7 @@ PackageFormulas class >> quickAccess [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> rules [
 	<formula: #testing>
 
@@ -1467,7 +1469,7 @@ PackageFormulas class >> rules [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> sState [
 	<formula: #general>
 
@@ -1477,7 +1479,7 @@ PackageFormulas class >> sState [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> scheduler [
 	<formula: #general>
 
@@ -1487,7 +1489,7 @@ PackageFormulas class >> scheduler [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> seamless [
 	<formula: #IDE>
 
@@ -1497,7 +1499,7 @@ PackageFormulas class >> seamless [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> seaside [
 	<formula: #web>
 
@@ -1507,7 +1509,7 @@ PackageFormulas class >> seaside [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> seasideQuasar [
 	<formula: #web>
 
@@ -1519,7 +1521,7 @@ PackageFormulas class >> seasideQuasar [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> seaside_magritte_voyage [
 	<formula: #stacks>
 
@@ -1530,7 +1532,7 @@ PackageFormulas class >> seaside_magritte_voyage [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> seaside_magritte_voyage_bootstrap [
 	<formula: #stacks>
 
@@ -1541,7 +1543,7 @@ PackageFormulas class >> seaside_magritte_voyage_bootstrap [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> seekerDebugger [
 	<formula: #debugging>
 
@@ -1551,7 +1553,7 @@ PackageFormulas class >> seekerDebugger [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> serialPort [
 	<formula: #bindings>
 
@@ -1561,7 +1563,7 @@ PackageFormulas class >> serialPort [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> smallAmp [
 	<formula: #testing>
 
@@ -1571,7 +1573,7 @@ PackageFormulas class >> smallAmp [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> smartTest [
 	<formula: #testing>
 
@@ -1582,7 +1584,7 @@ PackageFormulas class >> smartTest [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> soup [
 	<formula: #web>
 
@@ -1592,7 +1594,7 @@ PackageFormulas class >> soup [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> sparta [
 	<formula: #graphics>
 
@@ -1603,7 +1605,7 @@ PackageFormulas class >> sparta [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> spreadsheet [
 	<formula: #general>
 
@@ -1613,7 +1615,7 @@ PackageFormulas class >> spreadsheet [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> sqlite3 [
 	<formula: #bindings>
 	<formula: #databases>
@@ -1624,7 +1626,7 @@ PackageFormulas class >> sqlite3 [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> stateSpecs [
 	<formula: #testing>
 
@@ -1635,7 +1637,7 @@ PackageFormulas class >> stateSpecs [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> ston [
 	<formula: #serialization>
 
@@ -1645,7 +1647,7 @@ PackageFormulas class >> ston [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> stringExtensions [
 	<formula: #collections>
 
@@ -1655,7 +1657,7 @@ PackageFormulas class >> stringExtensions [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> superUser [
 	<formula: #General>
 
@@ -1666,7 +1668,7 @@ PackageFormulas class >> superUser [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> systemInteraction [
 	<formula: #general>
 
@@ -1676,7 +1678,7 @@ PackageFormulas class >> systemInteraction [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> tasksLogger [
 	<formula: #web>
 
@@ -1687,7 +1689,7 @@ PackageFormulas class >> tasksLogger [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> tealight [
 	<formula: #web>
 
@@ -1697,7 +1699,7 @@ PackageFormulas class >> tealight [
 		load 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> telePharoClient [
 	<formula: #IDE>
 
@@ -1707,7 +1709,7 @@ PackageFormulas class >> telePharoClient [
 		load: 'Client'.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> telePharoServer [
 	<formula: #IDE>
 
@@ -1717,7 +1719,7 @@ PackageFormulas class >> telePharoServer [
 		load: 'Server'.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> telescopeCytoscape [
 	<formula: #graphics>
 
@@ -1729,7 +1731,7 @@ PackageFormulas class >> telescopeCytoscape [
     	load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> testWorkers [
 	<formula: #testing>
 	
@@ -1739,7 +1741,7 @@ PackageFormulas class >> testWorkers [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> tilingWindowmanager [
 	<formula: #IDE>
 
@@ -1753,7 +1755,7 @@ PackageFormulas class >> tilingWindowmanager [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> tinyLogger [
 	<formula: #General>
 
@@ -1763,7 +1765,7 @@ PackageFormulas class >> tinyLogger [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> treeQuery [
 	<formula: #general>
 
@@ -1773,7 +1775,7 @@ PackageFormulas class >> treeQuery [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> tuio [
 	<formula: #interaction>
 
@@ -1783,7 +1785,7 @@ PackageFormulas class >> tuio [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> turbo [
 	<formula: #IDE>
 
@@ -1793,7 +1795,7 @@ PackageFormulas class >> turbo [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> twitterSdkPharo [
 	<formula: #web>
 
@@ -1803,7 +1805,7 @@ PackageFormulas class >> twitterSdkPharo [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> umlMetamodel [
 	<formula: #software_engineering>
 
@@ -1813,7 +1815,7 @@ PackageFormulas class >> umlMetamodel [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> uncommonThemes [
 	<formula: #IDE>
 
@@ -1823,7 +1825,7 @@ PackageFormulas class >> uncommonThemes [
 		load 	
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> voyageEjdb [
 	<formula: #databases>
 
@@ -1833,7 +1835,7 @@ PackageFormulas class >> voyageEjdb [
 		load: 'ejdb tests'.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> voyageMongo [
 	<formula: #databases>
 
@@ -1843,7 +1845,7 @@ PackageFormulas class >> voyageMongo [
 		load: 'mongo tests'.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> woden [
 	<formula: #graphics>
 
@@ -1853,7 +1855,7 @@ PackageFormulas class >> woden [
 		load
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> workflow [
 	<formula: #science>
 
@@ -1863,7 +1865,7 @@ PackageFormulas class >> workflow [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> xPath [
 	<formula: #XML>
 
@@ -1874,7 +1876,7 @@ PackageFormulas class >> xPath [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> xmi [
 	<formula: #software_engineering>
 
@@ -1884,7 +1886,7 @@ PackageFormulas class >> xmi [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> xmlDomVisitor [
 	<formula: #XML>
 
@@ -1894,7 +1896,7 @@ PackageFormulas class >> xmlDomVisitor [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> xmlParser [
 	<formula: #XML>
 
@@ -1905,7 +1907,7 @@ PackageFormulas class >> xmlParser [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> xmlParserHTML [
 	<formula: #XML>
 
@@ -1916,7 +1918,7 @@ PackageFormulas class >> xmlParserHTML [
 
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> xmlParserStAX [
 	<formula: #XML>
 
@@ -1926,7 +1928,7 @@ PackageFormulas class >> xmlParserStAX [
 		load.
 ]
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 PackageFormulas class >> xmlWriter [
 	<formula: #XML>
 

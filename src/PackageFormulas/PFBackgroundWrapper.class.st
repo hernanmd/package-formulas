@@ -3,12 +3,14 @@ This decorator wraps any install expression to execute it as a background proces
 
 "
 Class {
-	#name : #PFBackgroundWrapper,
-	#superclass : #PFWrapInstallDecoration,
-	#category : #'PackageFormulas-Decorator'
+	#name : 'PFBackgroundWrapper',
+	#superclass : 'PFWrapInstallDecoration',
+	#category : 'PackageFormulas-Decorator',
+	#package : 'PackageFormulas',
+	#tag : 'Decorator'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PFBackgroundWrapper >> sourceCode [
 	" Private - See superimplementor's comment"
 

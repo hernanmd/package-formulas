@@ -1,6 +1,6 @@
-Extension { #name : #CompiledMethod }
+Extension { #name : 'CompiledMethod' }
 
-{ #category : #'*PackageFormulas' }
+{ #category : '*PackageFormulas' }
 CompiledMethod >> formula [
 	"Answer the receiver's <PackageFormula>"
 
@@ -11,7 +11,7 @@ CompiledMethod >> formula [
 		ifFalse: [ self error ]
 ]
 
-{ #category : #'*PackageFormulas' }
+{ #category : '*PackageFormulas' }
 CompiledMethod >> hasPackageFormula [
 	"Answer <true> if the recevier contains a pragma defining a PackageFormula"
 

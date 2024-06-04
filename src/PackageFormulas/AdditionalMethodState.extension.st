@@ -1,6 +1,6 @@
-Extension { #name : #AdditionalMethodState }
+Extension { #name : 'AdditionalMethodState' }
 
-{ #category : #'*PackageFormulas' }
+{ #category : '*PackageFormulas' }
 AdditionalMethodState >> formula [
 	"Answer a <PackageFormula> if found in the receiver"
 
@@ -14,7 +14,7 @@ AdditionalMethodState >> formula [
 					yourself ] ]
 ]
 
-{ #category : #'*PackageFormulas' }
+{ #category : '*PackageFormulas' }
 AdditionalMethodState >> formulaCategories [
 	"Answer a <Collection> of <Symbol> each representing a package formula category found in the receiver"
 
@@ -24,13 +24,13 @@ AdditionalMethodState >> formulaCategories [
 
 ]
 
-{ #category : #'*PackageFormulas' }
+{ #category : '*PackageFormulas' }
 AdditionalMethodState >> formulasDo: aFullBlockClosure [ 
 
 	aFullBlockClosure value: self formula
 ]
 
-{ #category : #'*PackageFormulas' }
+{ #category : '*PackageFormulas' }
 AdditionalMethodState >> isPackageFormula [
 	"Answer <true> if the receiver contains any package formula"
 	

@@ -2,19 +2,21 @@
 Provides an interface to query a `PackageFormula`, specifically for formulas containing `Gofer` expressions.
 "
 Class {
-	#name : #PFGoferQuerier,
-	#superclass : #PFAbstractQuerier,
-	#category : #'PackageFormulas-Core'
+	#name : 'PFGoferQuerier',
+	#superclass : 'PFAbstractQuerier',
+	#category : 'PackageFormulas-Core',
+	#package : 'PackageFormulas',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PFGoferQuerier class >> installerClassName [
 	"See superimplementor's comment"
 
 	^ 'Gofer'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PFGoferQuerier >> hasConfigurationName: aRBMethodNode [
 
 	"Assume for now package it contains the String 'ConfigurationOf<package-name>'"
@@ -37,20 +39,20 @@ PFGoferQuerier >> hasConfigurationName: aRBMethodNode [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PFGoferQuerier >> hasInstallerInstalled [
 
 	^ self hasPackageInstalled.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PFGoferQuerier >> hasPackageInstalled [
 	"Answer <true> if the package specified in anAST is found in the image"
 	
 	^ self hasConfigurationName: self packageFormulaAst
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 PFGoferQuerier >> parseRepositoryExpression [ 
 	"Answer a <RBMessageNode> matching the receiver's expected repository: expression"
 

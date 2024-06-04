@@ -2,12 +2,14 @@
 Wrapper that Disables the Epicea log of its source code.
 "
 Class {
-	#name : #PFDisableMonitorWrapper,
-	#superclass : #PFWrapInstallDecoration,
-	#category : #'PackageFormulas-Decorator'
+	#name : 'PFDisableMonitorWrapper',
+	#superclass : 'PFWrapInstallDecoration',
+	#category : 'PackageFormulas-Decorator',
+	#package : 'PackageFormulas',
+	#tag : 'Decorator'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PFDisableMonitorWrapper >> sourceCode [
 	" Private - See superimplementor's comment"
 

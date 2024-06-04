@@ -2,19 +2,21 @@
 Provides an interface to query a `PackageFormula`, specifically for formulas containing `Metacello` expressions.
 "
 Class {
-	#name : #PFMetacelloQuerier,
-	#superclass : #PFAbstractQuerier,
-	#category : #'PackageFormulas-Core'
+	#name : 'PFMetacelloQuerier',
+	#superclass : 'PFAbstractQuerier',
+	#category : 'PackageFormulas-Core',
+	#package : 'PackageFormulas',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PFMetacelloQuerier class >> installerClassName [
 	"See superimplementor's comment"
 
 	^ 'Metacello'
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 PFMetacelloQuerier >> definitionName [
 	"Answer a <String> with the name of the receiver matching its baseline pattern. i.e.: 'BaselineOfXXX'
 	Answer an empty <String> if formula does not have a Baseline name"
@@ -28,20 +30,20 @@ PFMetacelloQuerier >> definitionName [
 			ifNotEmpty: [ : args | args first value ] ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PFMetacelloQuerier >> handlePackageNotFound: aNotFound [ 
 	"Answer the first package matching aNotFound signaler"
 
 	| pkgName |
 	pkgName := aNotFound signaler withoutNumbers asLowercase.
-	RPackageOrganizer default packagesDo: [ : p |
+	self pharoPackageOrganizer default packagesDo: [ : p |
 		(p name asLowercase beginsWith: pkgName)
 			ifTrue: [ ^ p ] ].
 	self inform: 'A package was found but no source code seems to be available for this package: ' , aNotFound signaler.
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PFMetacelloQuerier >> hasInstallerInstalled [
 	"Answer <true> if receiver's method, assumed to be a Metacello install expression, is installed in the receiver"
 
@@ -52,7 +54,7 @@ PFMetacelloQuerier >> hasInstallerInstalled [
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PFMetacelloQuerier >> hasPackageInstalled [
 	"Answer <true> if the package specified in anAST is found in the image"
 
@@ -63,7 +65,7 @@ PFMetacelloQuerier >> hasPackageInstalled [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PFMetacelloQuerier >> hasPackageWithRepositoryAddress: aRBLiteralValueNode [
 
 	| pkgRepository |
@@ -76,7 +78,7 @@ PFMetacelloQuerier >> hasPackageWithRepositoryAddress: aRBLiteralValueNode [
 	^ pkgRepository loadedPackages notEmpty
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PFMetacelloQuerier >> hasRPackageNamed: aString [
 
 	| pkgRepository |
@@ -86,7 +88,7 @@ PFMetacelloQuerier >> hasRPackageNamed: aString [
 	^ pkgRepository loadedPackages notEmpty
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PFMetacelloQuerier >> matchPackageName: aString and: aString2 [ 
 
 	^ aString size > aString2 size 
@@ -94,7 +96,7 @@ PFMetacelloQuerier >> matchPackageName: aString and: aString2 [
 		ifFalse: [ aString2 asLowercase beginsWith: aString asLowercase ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PFMetacelloQuerier >> matchPackageName: pkgNameString withRepository: repositorySpecString [
 
 	| pkgNameInRepositorySpec |
@@ -102,7 +104,7 @@ PFMetacelloQuerier >> matchPackageName: pkgNameString withRepository: repository
 	^ pkgNameString asLowercase = pkgNameInRepositorySpec asLowercase
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 PFMetacelloQuerier >> package [
 	"Answer the <RPackage> of the receiver's package name"
 	
@@ -111,15 +113,21 @@ PFMetacelloQuerier >> package [
 	do: [ : ex | self handlePackageNotFound: ex ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PFMetacelloQuerier >> packageOrganizerItems [
 
-	SystemVersion current major >= 10
-		ifTrue: [ ^ (Smalltalk at: #RPackageOrganizer) default packages ].
-	^ (Smalltalk at: #SystemOrganizer) default categories
+	| organizerClass |
+	
+	organizerClass := (SystemVersion current major between: 10 and: 12)
+		ifTrue: [ #RPackageOrganizer ]
+		ifFalse: [ SystemVersion current major >= 13 
+			ifTrue: [ #PackageOrganizer ] ].
+	^ organizerClass
+		ifNotNil: [ (Smalltalk at: organizerClass) default packages ]
+		ifNil: [ (Smalltalk at: #SystemOrganizer) default categories ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PFMetacelloQuerier >> parseBaselineExpression [
 	"Answer a <RBMessageNode> matching the receiver's expected repository expression"
 
@@ -127,7 +135,7 @@ PFMetacelloQuerier >> parseBaselineExpression [
 
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 PFMetacelloQuerier >> parseRepositoryAltExpression [
 	"Answer a <Collection> with the receiver's repository expression parametersT"
 
@@ -135,7 +143,7 @@ PFMetacelloQuerier >> parseRepositoryAltExpression [
 			arguments first: 2
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 PFMetacelloQuerier >> parseRepositoryExpression [ 
 	"Answer a <RBMessageNode> matching the receiver's expected repository: expression"
 
@@ -143,7 +151,21 @@ PFMetacelloQuerier >> parseRepositoryExpression [
 
 ]
 
-{ #category : #testing }
+{ #category : 'accessing' }
+PFMetacelloQuerier >> pharoPackageOrganizer [
+
+	| organizerClass |
+	
+	organizerClass := (SystemVersion current major between: 10 and: 12)
+		ifTrue: [ #RPackageOrganizer ]
+		ifFalse: [ SystemVersion current major >= 13 
+			ifTrue: [ #PackageOrganizer ] ].
+	^ organizerClass
+		ifNotNil: [ (Smalltalk at: organizerClass) ]
+		ifNil: [ (Smalltalk at: #SystemOrganizer) ]
+]
+
+{ #category : 'testing' }
 PFMetacelloQuerier >> prvHasCategoryNamed: aString [ 
 	"Answer <true> if aString matches a System category"
 
@@ -153,7 +175,7 @@ PFMetacelloQuerier >> prvHasCategoryNamed: aString [
 	^ pkgs anySatisfy: [ : cat | self matchPackageName: aString and: cat ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PFMetacelloQuerier >> prvHasPackageInstalled [
 
 	| pkgNode |

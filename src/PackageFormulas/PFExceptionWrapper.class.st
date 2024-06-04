@@ -2,16 +2,18 @@
 Allows you to customize an exception handler by supplying the class of the `Exception` and the block to be executed.
 "
 Class {
-	#name : #PFExceptionWrapper,
-	#superclass : #PFWrapInstallDecoration,
+	#name : 'PFExceptionWrapper',
+	#superclass : 'PFWrapInstallDecoration',
 	#instVars : [
 		'exceptionClass',
 		'exceptionBlock'
 	],
-	#category : #'PackageFormulas-Decorator'
+	#category : 'PackageFormulas-Decorator',
+	#package : 'PackageFormulas',
+	#tag : 'Decorator'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PFExceptionWrapper >> defaultInstallExceptionClass [
 
 	^ Smalltalk globals 
@@ -22,27 +24,27 @@ PFExceptionWrapper >> defaultInstallExceptionClass [
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PFExceptionWrapper >> exceptionBlock [
 
 	^ exceptionBlock
 		ifNil: [ exceptionBlock := '[ : ex | ex load ]' ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PFExceptionWrapper >> exceptionClass [
 
 	^ exceptionClass
 		ifNil: [ exceptionClass := self defaultInstallExceptionClass ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PFExceptionWrapper >> exceptionClass: anObject [
 
 	exceptionClass := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PFExceptionWrapper >> sourceCode [
 	" Private - See superimplementor's comment"
 
@@ -59,7 +61,7 @@ PFExceptionWrapper >> sourceCode [
 			  << self exceptionBlock ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PFExceptionWrapper >> sourceCode: aString [ 
 
 	exceptionBlock := aString

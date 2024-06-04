@@ -12,12 +12,14 @@ PackageFormulasApp new
 
 "
 Class {
-	#name : #CustomPackageFormulas,
-	#superclass : #PackageFormulas,
-	#category : #'PackageFormulas-Containers'
+	#name : 'CustomPackageFormulas',
+	#superclass : 'PackageFormulas',
+	#category : 'PackageFormulas-Containers',
+	#package : 'PackageFormulas',
+	#tag : 'Containers'
 }
 
-{ #category : #formulas }
+{ #category : 'formulas' }
 CustomPackageFormulas class >> reprexIt [
 	<formula: #IDE>
 	

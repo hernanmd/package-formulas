@@ -1,6 +1,6 @@
-Extension { #name : #Pragma }
+Extension { #name : 'Pragma' }
 
-{ #category : #'*PackageFormulas' }
+{ #category : '*PackageFormulas' }
 Pragma >> isPackageFormula [
 	"Answer <true> if the receiver has a formula selector"
 

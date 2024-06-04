@@ -1,6 +1,6 @@
-Extension { #name : #Behavior }
+Extension { #name : 'Behavior' }
 
-{ #category : #'*PackageFormulas' }
+{ #category : '*PackageFormulas' }
 Behavior >> formulas [
 	"Answer a <Collection> of <PackageFormula> found in the receiver"
 
@@ -10,7 +10,7 @@ Behavior >> formulas [
 
 ]
 
-{ #category : #'*PackageFormulas' }
+{ #category : '*PackageFormulas' }
 Behavior >> formulasDo: aFullBlockClosure [ 
 	"Evaluate aFullBlockClosure for each of the receiver's method formula"
 

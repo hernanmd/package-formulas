@@ -2,12 +2,14 @@
 This decoration first write its source code, and then append the previously code chain in its decoration chain (up to the `PackageFormula` installation expression).
 "
 Class {
-	#name : #PFPreInstallDecoration,
-	#superclass : #PFInstallationComponent,
-	#category : #'PackageFormulas-Decorator'
+	#name : 'PFPreInstallDecoration',
+	#superclass : 'PFInstallationComponent',
+	#category : 'PackageFormulas-Decorator',
+	#package : 'PackageFormulas',
+	#tag : 'Decorator'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PFPreInstallDecoration >> sourceCode [
 	" Private - See superimplementor's comment"
 
@@ -19,7 +21,7 @@ PFPreInstallDecoration >> sourceCode [
 			  << self next sourceCode ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PFPreInstallDecoration >> splitSourceOn: stream [
 	"Private - If receiver's source code is not empty, divide it if there is no sentence separator. Otherwise do nothing."
 	

@@ -1,1 +1,1 @@
-Package { #name : #PackageFormulas }
+Package { #name : 'PackageFormulas' }

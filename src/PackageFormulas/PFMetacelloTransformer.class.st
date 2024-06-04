@@ -3,12 +3,14 @@ Can transform a `Metacello` expression in its `PackageFormula`, for example repl
 
 "
 Class {
-	#name : #PFMetacelloTransformer,
-	#superclass : #PFAbstractTransformer,
-	#category : #'PackageFormulas-Core'
+	#name : 'PFMetacelloTransformer',
+	#superclass : 'PFAbstractTransformer',
+	#category : 'PackageFormulas-Core',
+	#package : 'PackageFormulas',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PFMetacelloTransformer >> record [
 	"Transform the receiver's formula from a load action to record"
 

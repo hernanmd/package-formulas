@@ -2,12 +2,14 @@
 It represents an installation expression which uses one of the available installer packages: `Metacello`, `Gofer`, Pakbot, etc. Note that this expression could be composed of multiple installation expressions.
 "
 Class {
-	#name : #PFSingleInstallation,
-	#superclass : #PFInstallationComponent,
-	#category : #'PackageFormulas-Decorator'
+	#name : 'PFSingleInstallation',
+	#superclass : 'PFInstallationComponent',
+	#category : 'PackageFormulas-Decorator',
+	#package : 'PackageFormulas',
+	#tag : 'Decorator'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PFSingleInstallation class >> newWithFormulas: aCollection [
 
 	^ self new
@@ -15,7 +17,7 @@ PFSingleInstallation class >> newWithFormulas: aCollection [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PFSingleInstallation >> formattedSourceFor: formula [
 	"Answer a <String> formatted with an ending dot"
 
@@ -30,13 +32,13 @@ PFSingleInstallation >> formattedSourceFor: formula [
 					ifTrue: [ sourceText ] ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PFSingleInstallation >> sourceCodeFrom: aFormulaCollection [
 
 	^ aFormulaCollection collect: [ : formula | self formattedSourceFor: formula ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PFSingleInstallation >> usingFormulas: aFormulaCollection [
 
 	self sourceCode: ((self sourceCodeFrom: aFormulaCollection) joinUsing: Character cr).

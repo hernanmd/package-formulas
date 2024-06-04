@@ -17,8 +17,8 @@ PackageFormula's uses two helper objects to obtain additional information
 - A subclass of `PFAbstractQuerier` dinamically choosen according to the installation expression used.
 "
 Class {
-	#name : #PackageFormula,
-	#superclass : #Pragma,
+	#name : 'PackageFormula',
+	#superclass : 'Pragma',
 	#instVars : [
 		'categories',
 		'querier',
@@ -27,10 +27,12 @@ Class {
 	#classVars : [
 		'RepositorySchemas'
 	],
-	#category : #'PackageFormulas-Core'
+	#category : 'PackageFormulas-Core',
+	#package : 'PackageFormulas',
+	#tag : 'Core'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PackageFormula class >> initRepositorySchemas [
 	"Private - Ideally this could be built using something like:
 	IceUrlBuilder new
@@ -45,7 +47,7 @@ PackageFormula class >> initRepositorySchemas [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PackageFormula class >> newFrom: aPragma [
 	
 	^ self new
@@ -55,7 +57,7 @@ PackageFormula class >> newFrom: aPragma [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PackageFormula class >> repositorySchemas [
 	"Answer a <Dictionary> which maps host names to its web URL"
 
@@ -63,21 +65,21 @@ PackageFormula class >> repositorySchemas [
 		ifNil: [ RepositorySchemas := self initRepositorySchemas ]
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PackageFormula >> <= aPackageFormula [
 	"Answer <true> if the receiver's selector comes before aPackageFormula in alphabetically order"
 	
 	^ self method selector <= aPackageFormula method selector
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormula >> ast [
 	"Answer the receiver's <RBMethodNode>"
 
 	^ self method ast
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormula >> categories [
 	"Answer a <Collection> of <Symbol> representing categories found in the receiver"
 
@@ -85,34 +87,34 @@ PackageFormula >> categories [
 		ifNil: [ categories := self collectFormulaCategories ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormula >> categories: anObject [
 
 	categories := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormula >> collectFormulaCategories [
 	"Answer a <Collection> with the receiver's categories"
 	
 	^ self method properties formulaCategories
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PackageFormula >> hasInstallerInstalled [
 	"Answer <true> if receiver's method, assumed to be a Metacello install expression, is installed in the receiver"
 
 	^ self querier hasInstallerInstalled
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PackageFormula >> hasPackageInstalled [
 	"Answer <true> if the receiver is installed in the current environment"
 
 	^ self querier hasPackageInstalled
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormula >> info [
 	"Answer a <PackageFormulaInfo>, a helper to provider more information about a formula"
 
@@ -120,7 +122,7 @@ PackageFormula >> info [
 		ifNil: [ info := PackageFormulaInfo for: self ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormula >> installIn: aSpApplication [
 	"Install the receiver's assumed to have a Metacello install expression using the default container for formulas"
 
@@ -128,14 +130,14 @@ PackageFormula >> installIn: aSpApplication [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PackageFormula >> isInstalled [
 	"Answer <true> if the receiver is installed in the current environment"
 
 	^ self querier hasPackageInstalled
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PackageFormula >> printOn: aStream [
 
 	aStream 
@@ -143,7 +145,7 @@ PackageFormula >> printOn: aStream [
 		<< self method asString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormula >> querier [
 	"Answer a <PFAbstractQuerier>, a helper to query the receiver"
 
@@ -151,14 +153,14 @@ PackageFormula >> querier [
 		ifNil: [ querier := PFAbstractQuerier for: self ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PackageFormula >> repositorySchemas [ 
 	"See class side"
 	
 	^ self class repositorySchemas
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormula >> selector [
 	"Answer a <Symbol> representing the selector of the pragma, if none is found then use the method selector"
 
@@ -166,7 +168,7 @@ PackageFormula >> selector [
 		ifNil: [ self ast selector ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormula >> sourceCode [
 	"Answer a <String> representing the receiver's method body"
 

@@ -1,6 +1,6 @@
-Extension { #name : #String }
+Extension { #name : 'String' }
 
-{ #category : #'*PackageFormulas' }
+{ #category : '*PackageFormulas' }
 String >> withoutNumbers [
 	"Return a copy of the receiver with numbers removed "
 

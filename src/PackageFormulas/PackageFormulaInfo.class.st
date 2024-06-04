@@ -7,15 +7,17 @@ Helper object to access `PackageFormula` additional information such as:
 
 "
 Class {
-	#name : #PackageFormulaInfo,
-	#superclass : #PFAbstractObject,
+	#name : 'PackageFormulaInfo',
+	#superclass : 'PFAbstractObject',
 	#instVars : [
 		'broken'
 	],
-	#category : #'PackageFormulas-Core'
+	#category : 'PackageFormulas-Core',
+	#package : 'PackageFormulas',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PackageFormulaInfo class >> for: aPackageFormula [
 
 	^ self new
@@ -23,14 +25,14 @@ PackageFormulaInfo class >> for: aPackageFormula [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormulaInfo >> broken: aBoolean [
 	"Set the receiver's formula as non-working"
 
 	broken := aBoolean
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PackageFormulaInfo >> buildGitHubLink: aCollection [
 	"Answer a <String> representing the github link to the receiver's repository.
 	If aCollection is empty, answer an empty <String>"
@@ -44,7 +46,7 @@ PackageFormulaInfo >> buildGitHubLink: aCollection [
 			<< aCollection second value ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PackageFormulaInfo >> buildHTTPHomeLink: url [
 	"Answer a <String> representing the receiver's home URL address"
 
@@ -56,28 +58,28 @@ PackageFormulaInfo >> buildHTTPHomeLink: url [
 				 << (self urlForSegment: url firstPathSegment) ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PackageFormulaInfo >> initialize [
 
 	super initialize.
 	broken := false.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PackageFormulaInfo >> isBroken [
 	"Answer <true> if the receiver is marked as broken"
 	
 	^ broken
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 PackageFormulaInfo >> parseRepositoryExpression [
 	"Answer a <RBMessageNode> matching the receiver's expected repository: expression"
 
 	^ self querier parseRepositoryExpression
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 PackageFormulaInfo >> parseRepositoryHomeAlt [
 	"Answer a <Collection>. Parse an alternative usage of Metacello install expressions"
 
@@ -85,14 +87,14 @@ PackageFormulaInfo >> parseRepositoryHomeAlt [
 		  self buildGitHubLink: args ]
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 PackageFormulaInfo >> querier [
 	"Answer the receive's <PFAbstractQuerier>"
 
 	^ self packageFormula querier
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PackageFormulaInfo >> urlForSchema: aString [ 
 	"Answer a <String> representing a valid web address for aString. i.e. Given 'github' get 'https://github.com'"
 
@@ -102,7 +104,7 @@ PackageFormulaInfo >> urlForSchema: aString [
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PackageFormulaInfo >> urlForSegment: aString [ 
 	"Parse the URL segment in aString and answer a <String> without artifacts like $:"
 	
@@ -110,7 +112,7 @@ PackageFormulaInfo >> urlForSegment: aString [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PackageFormulaInfo >> webLinkHome [
 	"Answer a <String> representing the home page URL of the receiver's formula"
 
@@ -123,7 +125,7 @@ PackageFormulaInfo >> webLinkHome [
 		ifFalse: [ self buildHTTPHomeLink: urlString asZnUrl ]
 ]
 
-{ #category : #'accessing - cursor' }
+{ #category : 'accessing - cursor' }
 PackageFormulaInfo >> webLinkIssues [
 	"Answer a <String> representing the URL to report issues"
 
